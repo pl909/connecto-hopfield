@@ -1,11 +1,11 @@
 # connecto-hopfield
 Modern Hopfield Networks for Connectonomics
 
-##Preprocessing Pipeline
+## Preprocessing Pipeline
 
 https://github.com/spisakt/RPN-signature
 
-##Dataset Samples
+## Dataset Samples
 
 
 Samples from the dataset are added to the repository. They have the following descriptions:
