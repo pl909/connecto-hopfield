@@ -18,3 +18,8 @@ sujectIDs.txt: text file linking data files to QC indices
 
 _bet30.nii.gz: in the folder anat_preproc (anatomical derivatives)/brain_mask/
 Displays the anatomical brain mask of the sample. 
+
+## Hopfield Networks
+
+Basic code from https://github.com/ml-jku/hopfield-layers added, which contains classes that can be used in hflayers.
+
