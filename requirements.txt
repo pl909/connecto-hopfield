@@ -1,0 +1,18 @@
+torch>=1.9.0
+torchvision>=0.10.0
+numpy>=1.19.0
+pandas>=1.2.0
+scikit-learn>=0.24.0
+matplotlib>=3.3.0
+seaborn>=0.11.0
+pyyaml>=5.4.0
+scipy>=1.6.0
+nibabel>=3.2.0  # For neuroimaging file formats
+tqdm>=4.60.0    # For progress bars
+jupyterlab>=3.0.0  # For interactive analysis
+nilearn>=0.8.0  # For brain visualization
+tensorboard>=2.5.0  # For visualizing training
+argparse
+logging
+os
+glob 

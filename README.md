@@ -1,176 +1,269 @@
-# Hopfield Networks is All You Need
+# Attentive Connectome-based Hopfield Network (ACHNN) for Pain State Classification
 
-_Hubert Ramsauer<sup>1</sup>, Bernhard Schäfl<sup>1</sup>, Johannes Lehner<sup>1</sup>, Philipp Seidl<sup>1</sup>,
-Michael Widrich<sup>1</sup>, Lukas Gruber<sup>1</sup>, Markus Holzleitner<sup>1</sup>, Milena Pavlović<sup>3, 4</sup>,
-Geir Kjetil Sandve<sup>4</sup>, Victor Greiff<sup>3</sup>, David Kreil<sup>2</sup>, Michael Kopp<sup>2</sup>, Günter
-Klambauer<sup>1</sup>, Johannes Brandstetter<sup>1</sup>, Sepp Hochreiter<sup>1, 2</sup>_
+## Project Overview
 
-<sup>1</sup> ELLIS Unit Linz and LIT AI Lab, Institute for Machine Learning, Johannes Kepler University Linz, Austria  
-<sup>2</sup> Institute of Advanced Research in Artificial Intelligence (IARAI)  
-<sup>3</sup> Department of Immunology, University of Oslo, Norway  
-<sup>4</sup> Department of Informatics, University of Oslo, Norway
+This project implements an Attentive Connectome-based Hopfield Network (ACHNN) designed to classify distinct brain states related to pain perception using fMRI data. The model leverages modern Hopfield networks combined with attention mechanisms to identify and learn patterns in whole-brain functional connectivity during different pain conditions.
 
----
+The primary goals are:
+1. **Classification of dynamic pain states** using regional brain activity patterns
+2. **Analysis of attention mechanisms** to understand how the model identifies relevant brain regions
+3. **Exploration of latent space representations** to gain insights into neural network reconfigurations during pain
 
-##### Detailed blog post on this paper as well as the necessary background on Hopfield networks at [this link](https://ml-jku.github.io/hopfield-layers/).
+The model is applied to the ds000140 dataset, which includes fMRI recordings of participants experiencing controlled heat pain stimuli at varying intensities under different cognitive modulation conditions (passive experience, regulate UP, regulate DOWN).
 
----
+## Dataset Context
 
-The transformer and BERT models pushed the performance on NLP tasks to new levels via their attention mechanism. We show
-that this attention mechanism is the update rule of a modern Hopfield network with continuous states. This new Hopfield
-network can store exponentially (with the dimension) many patterns,converges with one update, and has exponentially
-small retrieval errors. The number of stored patterns must be traded off against convergence speed and retrieval error.
-The new Hopfield network has three types of energy minima (fixed points of the update):
+The project uses the **ds000140 dataset** from OpenNeuro, which contains:
+- Task-based fMRI with controlled heat pain stimuli at varying intensities
+- Experimental conditions with cognitive pain modulation:
+  - **Passive experience**: Normal experience of pain stimuli
+  - **Regulate UP**: Cognitive amplification of pain perception
+  - **Regulate DOWN**: Cognitive reduction of pain perception
 
-1. global fixed point averaging over all patterns,
-2. metastable states averaging over a subset of patterns, and
-3. fixed points which store a single pattern.
+Data is preprocessed using the **RPN-Signature pipeline**, which produces:
+- Regional timeseries for 122 brain regions (MIST122 atlas)
+- Motion parameters and quality control metrics
+- Subject-level framewise displacement measures
 
-Transformers learn an attention mechanism by constructing an embedding of patterns and queries into an associative
-space. Transformer and BERT models operate in their first layers preferably in the global averaging regime, while they
-operate in higher layers in metastable states. The gradient in transformers is maximal in the regime of metastable
-states, is uniformly distributed when averaging globally, and vanishes when a fixed point is near a stored pattern.
-Based on the Hopfield network interpretation, we analyzed learning of transformer and BERT architectures. Learning
-starts with attention heads that average and then most of them switch to metastable states. However, the majority of
-heads in the first layers still averages and can be replaced by averaging operations like the Gaussian weighting that we
-propose. In contrast, heads in the last layers steadily learn and seem to use metastable states to collect information
-created in lower layers. These heads seem a promising target for improving transformers. Neural networks that integrate
-Hopfield networks that are equivalent to attention heads outperform other methods on immune repertoire classification,
-where the Hopfield net stores several hundreds of thousands of patterns.
+## Project Structure
 
-With _this_ repository, we provide a PyTorch implementation of a new layer called “Hopfield” which allows to equip deep
-learning architectures with Hopfield networks as new memory concepts.
-
-The full paper is available at [https://arxiv.org/abs/2008.02217](https://arxiv.org/abs/2008.02217).
-
-## Requirements
-
-The software was developed and tested on the following 64-bit operating systems:
-
-- CentOS Linux release 8.1.1911 (Core)
-- macOS 10.15.5 (Catalina)
-
-As the development environment, [Python](https://www.python.org) 3.8.3 in combination
-with [PyTorch](https://pytorch.org) 1.6.0 was used (a version of at least 1.5.0 should be sufficient). More details on
-how to install PyTorch are available on the [official project page](https://pytorch.org).
-
-## Installation
-
-The recommended way to install the software is to use `pip/pip3`:
-
-```bash
-$ pip3 install git+https://github.com/ml-jku/hopfield-layers
+```
+project_root/
+│
+├── configs/
+│   └── achnn_config.yaml         # Configuration for model, training, and analysis
+│
+├── src/
+│   ├── hflayers/                 # Hopfield layer implementation
+│   ├── data_loader.py            # Data loading and processing utilities
+│   ├── models.py                 # ACHNN model implementation
+│   ├── training.py               # Training and evaluation functions
+│   └── utils.py                  # Helper functions
+│
+├── scripts/
+│   ├── run_qc_filter.py          # Quality control filtering script
+│   ├── run_achnn_training.py     # Main training script
+│   ├── run_achnn_analysis.py     # Analysis script for trained models
+│   └── test_data_access.py       # Script to test data accessibility
+│
+├── results/                      # Results directory (created during execution)
+│   └── experiment_*/             # Results from each experiment
+│
+└── README.md                     # This file
 ```
 
-To successfully run the [Jupyter notebooks](https://jupyter.org) contained in [examples](examples/), additional
-third-party modules are needed:
+## Data Directory Structure
 
-```bash
-$ pip3 install -r examples/requirements.txt
+The expected data structure from the RPN-Signature preprocessing pipeline is:
+
+```
+/usr/project/xtmp/ds000140-proc/
+│
+├── regional-timeseries/          # Regional timeseries in tab-separated format
+│   └── sub-XX_task-pain_run-XX_timeseries.tsv
+│
+├── func_preproc/                 # Functional derivatives
+│   ├── popFD_max.txt             # Max FD values per subject
+│   ├── pop_percent_scrubbed.txt  # Percent of volumes scrubbed per subject
+│   │
+│   └── mc_fd/                    # Framewise displacement timeseries
+│       └── sub-XX_task-pain_run-XX_FD.txt
+│
+├── QC/                           # Quality check images and visualizations
+│   ├── FD/                       # Framewise displacement plots
+│   ├── regional_timeseries/      # Carpet plots of atlas-based timeseries
+│   └── ...                       # Other QC outputs
+│
+└── sub-XX/                       # Subject directories with BIDS format
+    └── func/                     # Functional data
+        └── sub-XX_task-pain_run-XX_events.tsv  # Event files
 ```
 
-The installation of the [Jupyter software](https://jupyter.org/install.html) itself is not covered. More details on how
-to install Jupyter are available at the [official installation page](https://jupyter.org/install.html).
+## The ACHNN Model
+
+The ACHNN model architecture integrates temporal dynamics and associative memory through:
+
+1. **Linear Embedding Layer**: Projects 122 brain regions to hidden dimension
+2. **Positional Encoding**: Adds temporal position information to the sequence
+3. **Transformer Encoder Blocks**: Process dynamic temporal information using self-attention
+4. **Modern Hopfield Layer**: Implements an associative memory based on continuous modern Hopfield networks
+5. **Classification Head**: Maps retrieved patterns to pain condition classes
+
+### Key Components:
+
+- **Self-Attention Mechanism**: Captures temporal dependencies among brain regions over time
+- **Hopfield Core**: Functions as an associative memory that learns prototype patterns of brain states
+- **Stored Patterns**: Learnable patterns that represent distinct brain states or configurations
+- **Hopfield Attention**: Attention weights over stored patterns reveal what patterns are most relevant for each condition
+
+## Setup Instructions
+
+### Prerequisites
+
+- Python 3.8 or higher
+- PyTorch 1.9 or higher
+- CUDA-capable GPU (recommended for training)
+- Access to the preprocessed ds000140 dataset
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [repository-url]
+   cd [repository-directory]
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Update configuration:
+   Edit `configs/achnn_config.yaml` to set your data paths and model parameters.
 
 ## Usage
 
-To get up and running with Hopfield-based networks, only <i>one</i> argument needs to be set, the size (depth) of the
-input.
+### Testing Data Access
 
-```python
-from hflayers import Hopfield
+First, verify that all required data files are accessible:
 
-hopfield = Hopfield(input_size=...)
+```bash
+python scripts/test_data_access.py configs/achnn_config.yaml
 ```
 
-It is also possible to replace commonly used pooling functions with a Hopfield-based one. Internally, a <i>state
-pattern</i> is trained, which in turn is used to compute pooling weights with respect to the input.
+This script checks for existence and readability of critical data files including:
+- Regional timeseries files
+- Framewise displacement files
+- QC summary files
+- Event files
 
-```python
-from hflayers import HopfieldPooling
+### Quality Control Filtering
 
-hopfield_pooling = HopfieldPooling(input_size=...)
+Filter subjects based on motion metrics from RPN-Signature outputs:
+
+```bash
+python scripts/run_qc_filter.py configs/achnn_config.yaml
 ```
 
-A second variant of our Hopfield-based modules is one which employs a trainable but fixed lookup mechanism. Internally,
-one or multiple <i>stored patterns</i> and <i>pattern projections</i> are trained (optionally in a non-shared manner),
-which in turn are used as a lookup mechanism independent of the input data.
+This script:
+- Loads the maximum FD and percent scrubbed values for each subject
+- Applies thresholds to exclude high-motion subjects
+- Saves a list of included subjects to `results/included_subjects.txt`
 
-```python
-from hflayers import HopfieldLayer
+### Training the ACHNN Model
 
-hopfield_lookup = HopfieldLayer(input_size=...)
+Train the model with cross-validation:
+
+```bash
+python scripts/run_achnn_training.py configs/achnn_config.yaml
 ```
 
-The usage is as <i>simple</i> as with the main module, but equally <i>powerful</i>.
+This script will:
+- Load data for subjects that passed QC
+- Create sliding windows from the timeseries data
+- Perform cross-validation, training the ACHNN model on each fold
+- Save model checkpoints, metrics, and visualizations
+- Generate aggregated results across all folds
 
-## Examples
+### Analyzing a Trained Model
 
-Generally, the Hopfield layer is designed to be used to implement or to substitute different layers like:
+Analyze the attention patterns and latent space of a trained model:
 
-- <b>Pooling layers:</b> We consider the Hopfield layer as a pooling layer if only one static state (query) pattern
-  exists. Then, it is de facto a pooling over the sequence, which results from the softmax values applied on the stored
-  patterns. Therefore, our Hopfield layer can act as a pooling layer.
+```bash
+python scripts/run_achnn_analysis.py --experiment_dir results/experiment_name
+```
 
-- <b>Permutation equivariant layers:</b> Our Hopfield layer can be used as a plug-in replacement for permutation
-  equivariant layers. Since the Hopfield layer is an associative memory it assumes no dependency between the input
-  patterns.
+This script will:
+- Load a trained model
+- Generate attention heatmaps showing which stored patterns are activated for each condition
+- Visualize the latent space using t-SNE and PCA
+- Compare attention patterns between pain intensities and modulation conditions
 
-- <b>GRU & LSTM layers:</b> Our Hopfield layer can be used as a plug-in replacement for GRU & LSTM layers. Optionally,
-  for substituting GRU & LSTM layers, positional encoding might be considered.
+## Understanding the Results
 
-- <b>Attention layers:</b>  Our Hopfield layer can act as an attention layer, where state (query) and stored (key)
-  patterns are different, and need to be associated.
+### Classification Performance
 
-The folder [examples](examples/) contains multiple demonstrations on how to use the <code>Hopfield</code>, <code>
-HopfieldPooling</code> as well as the <code>HopfieldLayer</code> modules. To successfully run the
-contained [Jupyter notebooks](https://jupyter.org), additional third-party modules
-like [pandas](https://pandas.pydata.org) and [seaborn](https://seaborn.pydata.org) are required.
+The model classifies different pain states based on patterns of brain activity. Key metrics include:
+- Accuracy and F1-score for each condition
+- Confusion matrix showing classification patterns
 
-- [Bit Pattern Set](examples/bit_pattern/bit_pattern_demo.ipynb): The dataset of this demonstration falls into the
-  category of <i>binary classification</i> tasks in the domain of <i>Multiple Instance Learning (MIL)</i> problems. Each
-  bag comprises a collection of bit pattern instances, wheres each instance is a sequence of <b>0s</b> and <b>1s</b>.
-  The positive class has specific bit patterns injected, which are absent in the negative one. This demonstration shows,
-  that <code>Hopfield</code>, <code>HopfieldPooling</code> and <code>HopfieldLayer</code> are capable of learning and
-  filtering each bag with respect to the class-defining bit patterns.
+### Attention Analysis
 
-- [Latch Sequence Set](examples/latch_sequence/latch_sequence_demo.ipynb): We study an easy example of learning
-  long-term dependencies by using a simple <i>latch task</i>,
-  see [Hochreiter and Mozer](https://link.springer.com/chapter/10.1007/3-540-44668-0_92). The essence of this task is
-  that a sequence of inputs is presented, beginning with one of two symbols, <b>A</b> or <b>B</b>, and after a variable
-  number of time steps, the model has to output a corresponding symbol. Thus, the task requires memorizing the original
-  input over time. It has to be noted, that both class-defining symbols must only appear at the first position of a
-  sequence. This task was specifically designed to demonstrate the capability of recurrent neural networks to capture
-  long term dependencies. This demonstration shows, that <code>Hopfield</code>, <code>HopfieldPooling</code> and <code>
-  HopfieldLayer</code> adapt extremely fast to this specific task, concentrating only on the first entry of the
-  sequence.
+The Hopfield attention analysis reveals:
+- Which stored patterns are activated for each pain condition
+- How attention patterns differ between pain intensities (high vs. medium vs. low)
+- How pain modulation (UP vs. DOWN vs. passive) affects pattern activation
 
-- [Attention-based Deep Multiple Instance Learning](examples/mnist_bags/mnist_bags_demo.ipynb): The dataset of this
-  demonstration falls into the category of <i>binary classification</i> tasks in the domain of <i>Multiple Instance
-  Learning (MIL)</i> problems, see [Ilse and Tomczak](https://arxiv.org/abs/1802.04712). Each bag comprises a collection
-  of <b>28x28</b> grayscale images/instances, whereas each instance is a sequence of pixel values in the range
-  of <b>[0; 255]</b>. The amount of instances per pag is drawn from a Gaussian with specified mean and variance. The
-  positive class is defined by the presence of the target number/digit, whereas the negative one by its absence.
+### Latent Space Analysis
 
-## Disclaimer
+The latent space visualizations show:
+- Clustering of similar brain states
+- Transitions between states
+- Separation between different experimental conditions
 
-Some implementations of this repository are based on existing ones of the
-official [PyTorch repository v1.6.0](https://github.com/pytorch/pytorch/tree/v1.6.0) and accordingly extended and
-modified. In the following, the involved parts are listed:
+## Customization
 
-- The implementation of [HopfieldCore](hflayers/activation.py#L16) is based on the implementation
-  of [MultiheadAttention](https://github.com/pytorch/pytorch/blob/b31f58de6fa8bbda5353b3c77d9be4914399724d/torch/nn/modules/activation.py#L771)
-  .
-- The implementation of [hopfield_core_forward](hflayers/functional.py#L8) is based on the implementation
-  of [multi_head_attention_forward](https://github.com/pytorch/pytorch/blob/b31f58de6fa8bbda5353b3c77d9be4914399724d/torch/nn/functional.py#L3854)
-  .
-- The implementation of [HopfieldEncoderLayer](hflayers/transformer.py#L12) is based on the implementation
-  of [TransformerEncoderLayer](https://github.com/pytorch/pytorch/blob/b31f58de6fa8bbda5353b3c77d9be4914399724d/torch/nn/modules/transformer.py#L241)
-  .
-- The implementation of [HopfieldDecoderLayer](hflayers/transformer.py#L101) is based on the implementation
-  of [TransformerDecoderLayer](https://github.com/pytorch/pytorch/blob/b31f58de6fa8bbda5353b3c77d9be4914399724d/torch/nn/modules/transformer.py#L303)
-  .
+### Modifying Event Labels
 
-## License
+To adapt the model for different experimental conditions:
+1. Update the `conditions_to_classify` in `config.yaml`
+2. Modify the `_map_condition_label` method in `data_loader.py` to properly extract labels from your events.tsv files
 
-This repository is BSD-style licensed (see [LICENSE](LICENSE)), except where noted otherwise.
+### Adjusting the Model Architecture
+
+To modify the model architecture:
+1. Adjust hyperparameters in `achnn_config.yaml`:
+   - Change the number of Hopfield stored patterns
+   - Modify transformer layers and attention heads
+   - Tune dropout rates and learning parameters
+
+### Running on Different Data
+
+To apply the model to a different dataset:
+1. Ensure your data is preprocessed into regional timeseries format
+2. Update the paths in `achnn_config.yaml`
+3. Adjust the data loading functions in `data_loader.py` to match your file structure
+
+## Troubleshooting
+
+### Common Issues
+
+1. **ImportError for HopfieldCore**: 
+   - Ensure the `hflayers` directory is in your Python path
+   - Check that PyTorch version is compatible (1.9+ recommended)
+
+2. **CUDA Out of Memory**:
+   - Reduce batch size in `achnn_config.yaml`
+   - Decrease model dimensions (hidden_dim, hopfield_pattern_dim)
+
+3. **Data Access Issues**:
+   - Run `test_data_access.py` to verify all required files are accessible
+   - Check that file paths in `achnn_config.yaml` match the actual data structure
+   - Ensure file naming patterns match between the config and actual files
+
+4. **Poor Classification Performance**:
+   - Ensure labels are correctly aligned with fMRI data considering HRF delay
+   - Verify motion scrubbing parameters and QC thresholds
+   - Adjust window size (seq_len) to better capture temporal dynamics
+
+## Acknowledgments
+
+- The Modern Hopfield Network implementation is based on "Hopfield Networks is All You Need" (Ramsauer et al., 2020)
+- The ds000140 dataset: OpenNeuro dataset (https://openneuro.org/datasets/ds000140)
+- RPN-Signature preprocessing pipeline was used for brain parcellation and denoising
+
+## Citations
+
+```
+# Add relevant citations here, including:
+# - Original ds000140 dataset paper
+# - Modern Hopfield Networks paper
+# - RPN-Signature pipeline paper
+# - Your own work when published
+```

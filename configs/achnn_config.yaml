@@ -1,0 +1,128 @@
+# ACHNN Configuration File for dynamic pain state classification using ds000140 dataset
+
+# Experiment name
+experiment_name: "ACHNN_ds000140"
+
+# Paths
+paths:
+  # Base directories
+  base_dir: /usr/project/xtmp/ds000140-proc/  # Base directory for ds000140 processed data
+  results_base_dir: ./results/  # Base directory for experiment results
+
+  # Specific paths derived from base_dir
+  regional_timeseries_dir: ${paths.base_dir}/regional-timeseries/  # Regional timeseries directory
+  fd_dir: ${paths.base_dir}/func_preproc/mc_fd/  # Framewise displacement data
+  qc_dir: ${paths.base_dir}/QC/  # Quality control directory
+
+  # Output files
+  included_subjects: ${paths.results_base_dir}/included_subjects.txt  # List of included subjects after QC
+
+# Data parameters
+data:
+  # Basic parameters
+  tr: 2.0  # Repetition time in seconds
+  hrf_delay_secs: 6.0  # HRF delay in seconds (for aligning labels)
+  seq_len: 10  # Window length (in TRs)
+  window_step: 2  # Step size for sliding window (in TRs)
+  num_regions: 122  # Number of brain regions (MIST122 atlas)
+  baseline_label: "baseline"  # Label for non-task periods
+
+  # Motion scrubbing parameters
+  apply_scrubbing: true  # Whether to apply motion scrubbing
+  fd_threshold: 0.5  # Framewise displacement threshold (mm)
+  
+  # Scrubbing info
+  fd_file_suffix: "_FD.txt"  # Suffix for FD files
+  scrub_info_file: ${paths.base_dir}/func_preproc/pop_percent_scrubbed.txt  # Global scrubbing percentage info
+  
+  # Runs to include
+  included_runs: [1, 2, 3, 4]  # List of run numbers to include
+  
+  # Specific conditions to classify (empty list means classify all non-baseline conditions)
+  conditions_to_classify: [
+    "high_intensity_passive_experience",
+    "high_intensity_regulate_up",
+    "high_intensity_regulate_down",
+    "medium_intensity_passive_experience",
+    "low_intensity_passive_experience"
+  ]
+
+# ACHNN model parameters
+achnn_model:
+  # Model dimensions
+  hidden_dim: 64  # Dimension of hidden representations
+  num_classes: 5  # Number of classes to predict (should match length of conditions_to_classify)
+  
+  # Dropout rates
+  embedding_dropout: 0.2
+  pos_encoding_dropout: 0.1
+  encoder_dropout: 0.2
+  classifier_dropout: 0.3
+  hopfield_dropout: 0.1
+  
+  # Self-attention parameters
+  use_positional_encoding: true
+  num_encoder_layers: 2
+  num_self_attn_heads: 4
+  transformer_ff_dim: 256
+  
+  # Hopfield layer parameters
+  hopfield_num_heads: 1
+  hopfield_num_stored_patterns: 10
+  hopfield_scaling: 2.5  # Beta parameter controlling temperature (typically between 1.0-5.0)
+  hopfield_pattern_dim: 64
+  hopfield_update_steps: 3
+  hopfield_update_steps_eps: 1e-4
+  normalize_patterns: true
+  
+  # Query selection method for Hopfield input
+  query_selection_method: "last"  # Options: "last", "mean", "first"
+  return_attention: true  # Whether to return attention weights for analysis
+
+# Training parameters
+training:
+  # Basic training parameters
+  num_epochs: 100
+  batch_size: 32
+  learning_rate: 0.0005
+  weight_decay: 0.01
+  early_stopping_patience: 15
+  seed: 42  # Random seed for reproducibility
+  device: "cuda"  # Device to use for training (cuda or cpu)
+  
+  # Cross-validation
+  cv_folds: 5
+  
+  # Class weights (for imbalanced classes)
+  use_class_weights: true
+
+# QC parameters
+qc:
+  # Thresholds for subject inclusion
+  max_fd: 5.0  # Maximum framewise displacement
+  max_scrub: 25.0  # Maximum percentage of TRs to be scrubbed
+  fd_summary_file: ${paths.base_dir}/func_preproc/popFD_max.txt  # Max FD values per subject
+  percent_scrubbed_file: ${paths.base_dir}/func_preproc/pop_percent_scrubbed.txt  # Percent of volumes scrubbed
+
+# Analysis parameters
+analysis:
+  # General analysis parameters
+  plot_dpi: 300  # DPI for saving plots
+  
+  # Latent space analysis
+  tsne_perplexity: 30
+  pca_components: 2
+  
+  # Attention analysis
+  attention_heatmap_cmap: "viridis"
+  
+  # Condition comparison groupings
+  intensity_groups:
+    high: ["high_intensity_passive_experience", "high_intensity_regulate_up", "high_intensity_regulate_down"]
+    medium: ["medium_intensity_passive_experience"]
+    low: ["low_intensity_passive_experience"]
+  
+  modulation_groups:
+    passive: ["high_intensity_passive_experience", "medium_intensity_passive_experience", "low_intensity_passive_experience"]
+    regulate_up: ["high_intensity_regulate_up"]
+    regulate_down: ["high_intensity_regulate_down"] 
