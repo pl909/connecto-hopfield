@@ -1,0 +1,13 @@
+/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/transformer.py:385: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 328, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 191, in main
+    early_stopping = EarlyStopping(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 37, in __init__
+    self.val_loss_min = np.Inf
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/numpy/__init__.py", line 400, in __getattr__
+    raise AttributeError(
+AttributeError: `np.Inf` was removed in the NumPy 2.0 release. Use `np.inf` instead.
+
