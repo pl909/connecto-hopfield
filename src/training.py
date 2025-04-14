@@ -70,73 +70,120 @@ class EarlyStopping:
             self.trace_func(f"Error saving model checkpoint to {self.path}: {e}")
 
 # --- CORRECTED train_epoch function ---
-def train_epoch(model, dataloader, criterion, optimizer, device, scaler=None):
+def train_epoch(model, dataloader, criterion, optimizer, device, scaler=None, clip_value=1.0, scheduler=None):
     """
     Train the model for one epoch.
     
     Args:
-        model: The model to train
-        dataloader: Training DataLoader
+        model: Model to train
+        dataloader: DataLoader with training data
         criterion: Loss function
-        optimizer: Optimizer
-        device: Device to train on (cuda/cpu)
+        optimizer: Optimizer to use
+        device: Device to train on
         scaler: Optional GradScaler for mixed precision training
-    
+        clip_value: Value for gradient clipping
+        scheduler: Optional learning rate scheduler to call after each batch
+        
     Returns:
-        tuple: (average_loss, average_accuracy) for the epoch
+        tuple: (average_loss, accuracy) for the epoch
     """
     model.train()
-    epoch_loss = 0.0
-    correct_predictions = 0
-    total_samples = 0
+    running_loss = 0.0
+    correct = 0
+    total = 0
     
-    for inputs, targets in dataloader:
-        inputs, targets = inputs.to(device, non_blocking=True), targets.to(device, non_blocking=True)
+    # Print progress every N batches
+    print_freq = 100
+    
+    # Initialize tracker for moving average loss
+    moving_avg_loss = None
+    ma_beta = 0.9  # Moving average decay factor
+    
+    for batch_idx, (inputs, targets) in enumerate(dataloader):
+        inputs, targets = inputs.to(device), targets.to(device)
         
-        # Zero the parameter gradients
-        optimizer.zero_grad(set_to_none=True)  # More efficient than just zero
+        # Clear gradients
+        optimizer.zero_grad()
         
+        # Forward pass
         if scaler is not None:
-            # Mixed precision forward pass
-            with torch.amp.autocast('cuda'):
+            # Mixed precision training
+            with torch.amp.autocast(device.type):
                 outputs, _, _ = model(inputs)
                 loss = criterion(outputs, targets)
-            
-            # Scale loss and perform backward pass
+                
+            # Backpropagation with gradient scaling
             scaler.scale(loss).backward()
             
-            # Unscale before gradient clipping (if used)
-            # scaler.unscale_(optimizer)
-            # torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            # Monitor gradients
+            total_grad_norm = 0
+            num_params_with_grad = 0
+            for p in model.parameters():
+                if p.grad is not None:
+                    param_norm = p.grad.data.norm(2)
+                    total_grad_norm += param_norm.item() ** 2
+                    num_params_with_grad += 1
             
-            # Update weights with scaled gradients
+            total_grad_norm = total_grad_norm ** 0.5 if num_params_with_grad > 0 else 0
+            
+            # Apply gradient clipping
+            if clip_value > 0:
+                scaler.unscale_(optimizer)
+                torch.nn.utils.clip_grad_norm_(model.parameters(), clip_value)
+                
+            # Update weights
             scaler.step(optimizer)
             scaler.update()
         else:
-            # Standard precision forward pass
+            # Standard precision training
             outputs, _, _ = model(inputs)
             loss = criterion(outputs, targets)
             
-            # Backward pass and optimize
+            # Backpropagation
             loss.backward()
             
-            # Optional: Gradient Clipping (helps prevent exploding gradients)
-            # torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0) 
+            # Monitor gradients
+            total_grad_norm = 0
+            num_params_with_grad = 0
+            for p in model.parameters():
+                if p.grad is not None:
+                    param_norm = p.grad.data.norm(2)
+                    total_grad_norm += param_norm.item() ** 2
+                    num_params_with_grad += 1
             
+            total_grad_norm = total_grad_norm ** 0.5 if num_params_with_grad > 0 else 0
+            
+            # Apply gradient clipping
+            if clip_value > 0:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), clip_value)
+                
+            # Update weights
             optimizer.step()
         
-        # Track loss
-        epoch_loss += loss.item() * inputs.size(0)
+        # Step LR scheduler if provided (for batch-based schedulers like OneCycleLR)
+        if scheduler is not None:
+            scheduler.step()
         
-        # Track accuracy
-        _, predicted = torch.max(outputs.data, 1)
-        total_samples += targets.size(0)
-        correct_predictions += (predicted == targets).sum().item()
+        # Update statistics
+        running_loss += loss.item()
+        _, predicted = outputs.max(1)
+        total += targets.size(0)
+        correct += predicted.eq(targets).sum().item()
+        
+        # Calculate moving average loss for better tracking
+        if moving_avg_loss is None:
+            moving_avg_loss = loss.item()
+        else:
+            moving_avg_loss = ma_beta * moving_avg_loss + (1 - ma_beta) * loss.item()
+        
+        # Print progress
+        if (batch_idx + 1) % print_freq == 0 or (batch_idx + 1) == len(dataloader):
+            print(f"Batch {batch_idx+1}/{len(dataloader)}, Loss: {loss.item():.4f}, MA Loss: {moving_avg_loss:.4f}, Grad Norm: {total_grad_norm:.4e}")
     
-    avg_loss = epoch_loss / total_samples
-    avg_accuracy = correct_predictions / total_samples
+    epoch_loss = running_loss / len(dataloader)
+    accuracy = 100.0 * correct / total
     
-    return avg_loss, avg_accuracy
+    return epoch_loss, accuracy
 
 def validate_epoch(model, dataloader, criterion, device):
     """
@@ -216,7 +263,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer,
     
     for epoch in range(num_epochs):
         # Train
-        train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
+        train_loss, train_accuracy = train_epoch(model, train_loader, criterion, optimizer, device)
         
         # Validate
         val_loss, val_accuracy, val_preds, val_targets = validate_epoch(

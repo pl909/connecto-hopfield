@@ -1,0 +1,26 @@
+/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/transformer.py:385: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:62: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 385, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 245, in main
+    train_loss, train_acc = train_epoch(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 104, in train_epoch
+    outputs, _, _ = model(inputs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/models.py", line 319, in forward
+    hopfield_output = self.hopfield(
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/hflayers/activation.py", line 309, in forward
+    return hopfield_core_forward(
+  File "/home/pl217/connecto-hopfield/hflayers/functional.py", line 337, in hopfield_core_forward
+    q = torch.masked_scatter(input=q, mask=update_active_heads, source=torch.bmm(active_xi, active_k))
+RuntimeError: masked_scatter_: expected self and source to have same dtypes but got Float and Half

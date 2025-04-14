@@ -15,6 +15,7 @@ import pickle
 import yaml
 import matplotlib.pyplot as plt
 import seaborn as sns
+from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, OneCycleLR
 
 # Add src directory to Python path to allow importing modules
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -159,6 +160,12 @@ def main(config_path):
         train_dataset = FMRIWindowDataset(X_train, y_train)
         val_dataset = FMRIWindowDataset(X_val, y_val)
         
+        # Calculate class weights to handle imbalance
+        class_counts = np.bincount(y_train)
+        total_samples = len(y_train)
+        class_weights = torch.FloatTensor(total_samples / (len(class_counts) * class_counts))
+        logging.info(f"Using class weights: {class_weights}")
+        
         train_loader = DataLoader(
             train_dataset,
             batch_size=config['training']['batch_size'],
@@ -191,16 +198,53 @@ def main(config_path):
         # Enable CUDA optimizations if available
         if device.type == 'cuda':
             # Set autocast for mixed precision training (faster and uses less memory)
-            scaler = torch.amp.GradScaler('cuda') 
+            use_mixed_precision = config['training'].get('mixed_precision', False)  # Default to False for stability
+            scaler = torch.amp.GradScaler() if use_mixed_precision else None
             torch.backends.cudnn.benchmark = True  # Optimize for fixed input sizes
-            logging.info("CUDA optimizations enabled: mixed precision and cuDNN benchmark")
+            logging.info(f"CUDA optimizations enabled: mixed precision={use_mixed_precision} and cuDNN benchmark=True")
+        else:
+            use_mixed_precision = False
+            scaler = None
         
-        # Loss function, optimizer, and early stopping
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.AdamW( # Use AdamW for better weight decay handling
-            model.parameters(),
-            lr=config['training']['learning_rate'],
-            weight_decay=config['training']['weight_decay']
+        # Loss function with class weights
+        class_weights = class_weights.to(device)
+        criterion = nn.CrossEntropyLoss(weight=class_weights)
+        
+        # Set up optimizer with layer-specific parameters
+        # Apply higher learning rate to classifier and lower rate to the rest
+        base_lr = config['training']['learning_rate']
+        params = [
+            {'params': model.module.hopfield.parameters() if hasattr(model, 'module') else model.hopfield.parameters(), 
+             'lr': base_lr * 1.5},  # Higher LR for Hopfield
+            {'params': model.module.classifier.parameters() if hasattr(model, 'module') else model.classifier.parameters(), 
+             'lr': base_lr * 2.0},  # Higher LR for classifier
+            {'params': model.module.embed.parameters() if hasattr(model, 'module') else model.embed.parameters(), 
+             'lr': base_lr},  # Base LR for embedding
+            {'params': model.module.transformer_encoder.parameters() if hasattr(model, 'module') else model.transformer_encoder.parameters(), 
+             'lr': base_lr * 0.8},  # Slightly lower LR for transformer
+        ]
+        
+        # AdamW optimizer with parameter-specific learning rates
+        optimizer = optim.AdamW(
+            params,
+            lr=base_lr,
+            weight_decay=config['training']['weight_decay'],
+            betas=(0.9, 0.999),
+            eps=1e-8
+        )
+        
+        # Use OneCycleLR scheduler with warmup
+        steps_per_epoch = len(train_loader)
+        total_steps = steps_per_epoch * config['training']['num_epochs']
+        
+        scheduler = OneCycleLR(
+            optimizer,
+            max_lr=[base_lr * 1.5, base_lr * 2.0, base_lr, base_lr * 0.8],
+            total_steps=total_steps,
+            pct_start=0.1,  # Use first 10% of training for warmup
+            div_factor=25,  # Initial lr is max_lr/25
+            final_div_factor=10000,  # Final lr is max_lr/10000
+            anneal_strategy='cos'  # Use cosine annealing
         )
         
         checkpoint_path = os.path.join(fold_dir, 'best_model.pt')
@@ -221,16 +265,34 @@ def main(config_path):
         # Training loop for the fold
         for epoch in range(config['training']['num_epochs']):
             # Train for one epoch
-            if device.type == 'cuda':
+            if device.type == 'cuda' and use_mixed_precision:
                 # Use mixed precision training
                 with torch.amp.autocast('cuda'):
-                    train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device, scaler=scaler) 
+                    train_loss, train_acc = train_epoch(
+                        model, 
+                        train_loader, 
+                        criterion, 
+                        optimizer, 
+                        device, 
+                        scaler=scaler,
+                        clip_value=config['training'].get('gradient_clip', 1.0),
+                        scheduler=scheduler
+                    ) 
                 # Evaluate on validation set with mixed precision
                 with torch.amp.autocast('cuda'):
                     val_loss, val_accuracy, _, _ = validate_epoch(model, val_loader, criterion, device)
             else:
                 # Regular training without mixed precision
-                train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device) 
+                train_loss, train_acc = train_epoch(
+                    model, 
+                    train_loader, 
+                    criterion, 
+                    optimizer, 
+                    device,
+                    scaler=None,  # Explicitly set to None when not using mixed precision
+                    clip_value=config['training'].get('gradient_clip', 1.0),
+                    scheduler=scheduler
+                ) 
                 val_loss, val_accuracy, _, _ = validate_epoch(model, val_loader, criterion, device)
             
             # Update log
@@ -238,11 +300,15 @@ def main(config_path):
             fold_log['val_loss'].append(val_loss)
             fold_log['val_acc'].append(val_accuracy) # Log val accuracy
             
+            # Don't update scheduler here - it's now updated in the train_epoch function
+            current_lr = optimizer.param_groups[0]['lr']
+            
             # Log progress
             logging.info(
                 f"Epoch {epoch+1}/{config['training']['num_epochs']} - "
                 f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, " # Log train accuracy
-                f"Val Loss: {val_loss:.4f}, Val Acc: {val_accuracy:.4f}"
+                f"Val Loss: {val_loss:.4f}, Val Acc: {val_accuracy:.4f}, "
+                f"LR: {current_lr:.6f}"
             )
             
             # Check early stopping based on validation loss
