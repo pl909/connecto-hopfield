@@ -241,86 +241,105 @@ class ACHNN(nn.Module):
     
     def forward(self, x, return_intermediates=False):
         """
-        Forward pass through the ACHNN model.
+        Forward pass through the network.
         
         Args:
-            x: Tensor of shape [batch_size, seq_len, num_regions]
-            return_intermediates: Whether to return intermediate representations for analysis
+            x: Input tensor of shape [batch_size, seq_len, input_dim]
+            return_intermediates: Whether to return intermediate activations
             
         Returns:
-            tuple: (output_logits, hopfield_attention, intermediates) where:
-                - output_logits: Tensor of shape [batch_size, num_classes]
-                - hopfield_attention: Tensor of shape [batch_size, hopfield_num_stored_patterns] or None
-                - intermediates: Dictionary of intermediate representations or None
+            tuple: (class_logits, hopfield_attention, intermediate_activations)
+            - class_logits: Output class logits of shape [batch_size, num_classes]
+            - hopfield_attention: Attention weights from Hopfield layer
+            - intermediate_activations: Dict of intermediate activations (if return_intermediates=True)
         """
-        batch_size, seq_len, _ = x.shape
         intermediates = {} if return_intermediates else None
+        batch_size, seq_len, _ = x.shape
         
-        # Initial embedding (from regional timeseries to hidden dimension)
-        x = self.embed(x)
+        # Initial projection to hidden dimension
+        x = self.embed(x)  # [batch_size, seq_len, hidden_dim]
         x = self.embed_dropout(x)
+        if return_intermediates:
+            intermediates['embed_output'] = x.detach().clone()
         
-        # Optional positional encoding
+        # Add positional encoding if enabled
         if self.use_positional_encoding:
             x = self.pos_encoder(x)
+            if return_intermediates:
+                intermediates['pos_encoded'] = x.detach().clone()
         
-        if return_intermediates:
-            intermediates['embedded'] = x.detach().clone()
-            
-        # Transformer encoder with self-attention for temporal processing
+        # Pass through transformer encoder layers
+        # We could create a padding mask here if sequences have variable lengths
+        # src_key_padding_mask = create_padding_mask(x)
         x = self.transformer_encoder(x)
-        
         if return_intermediates:
             intermediates['transformer_output'] = x.detach().clone()
-        
-        # Select query vector (typically the last time step)
-        query = self._select_query_vector(x)
-        
-        if return_intermediates:
-            intermediates['query'] = query.detach().clone()
             
         # Apply normalization
-        query = self.norm1(query)
+        x = self.norm1(x)
+            
+        # Select query vector for Hopfield retrieval
+        # This determines what we're "looking up" in the Hopfield memory
+        hopfield_query = self._select_query_vector(x)
+        if return_intermediates:
+            intermediates['hopfield_query'] = hopfield_query.detach().clone()
         
-        # Hopfield core layer for pattern retrieval
-        # We use the key and value to be the same as query for associative memory retrieval
-        # The Hopfield layer will use its learned stored patterns to match against the query
-        hopfield_output, attn_weights, raw_assoc, _ = self.hopfield(
-            query=query,
-            key=query,
-            value=query,
-            need_weights=True,
-            attn_mask=None,  # No attention mask needed
-            key_padding_mask=None,  # No padding mask needed
-            scaling=self.hopfield_scaling,  # Beta parameter controlling temperature
-            update_steps_max=self.hopfield_update_steps,  # Maximum number of pattern retrieval iterations
-            update_steps_eps=self.hopfield_update_steps_eps,  # Convergence threshold
-            return_raw_associations=True,  # Get raw association scores for analysis
-            return_pattern_projections=False  # We don't need pattern projections
+        # Prepare Hopfield inputs
+        # Reshape query from [batch_size, hidden_dim] to [batch_size, 1, hidden_dim]
+        # HopfieldCore expects a 3D tensor with shape [batch_size, seq_len, hidden_dim]
+        hopfield_query = hopfield_query.unsqueeze(1)  # Add sequence dimension
+        
+        # Apply Hopfield retrieval
+        # This performs modern Hopfield network retrieval with attention mechanism
+        # q: query (what we're looking for), k: keys (stored patterns), v: values (stored patterns)
+        # Output shape: [batch_size, out_dim]
+        hopfield_output = self.hopfield(
+            query=hopfield_query,   # [batch_size, 1, hidden_dim]
+            key=hopfield_query,     # Use same tensor for key (or None to use learnable patterns)
+            value=hopfield_query,   # Use same tensor for value (or None to use learnable patterns)
+            need_weights=True,      # Return attention weights
+            update_steps_max=self.hopfield_update_steps,
+            update_steps_eps=self.hopfield_update_steps_eps,
+            return_raw_associations=True  # Get the raw association weights
         )
         
-        # Extract attention weights over stored patterns (useful for analysis)
-        if raw_assoc is not None:
-            # raw_assoc has shape [batch_size, num_heads, 1, hopfield_num_stored_patterns]
-            hopfield_attention = raw_assoc.squeeze(2)  # Remove seq_len dimension (always 1 for query)
+        # The HopfieldCore can return different formats based on parameters:
+        # 1. Just the output tensor
+        # 2. (output, attention_weights)
+        # 3. (output, attention_weights, raw_associations)
+        
+        if isinstance(hopfield_output, tuple):
+            # First element is always the output tensor
+            retrieved = hopfield_output[0]
+            
+            # Second element is attention weights if available
+            hopfield_attn = hopfield_output[1] if len(hopfield_output) > 1 else None
+            
+            # For debugging - store raw associations
+            if len(hopfield_output) > 2:
+                raw_associations = hopfield_output[2]
+            else:
+                raw_associations = None
         else:
-            hopfield_attention = None
+            # If it's not a tuple, it's just the output tensor
+            retrieved = hopfield_output
+            hopfield_attn = None
+            raw_associations = None
             
-        if return_intermediates:
-            intermediates['hopfield_output'] = hopfield_output.detach().clone()
-            if hopfield_attention is not None:
-                intermediates['hopfield_attention'] = hopfield_attention.detach().clone()
+        # Remove the sequence dimension from output
+        retrieved = retrieved.squeeze(1)
         
+        if return_intermediates:
+            intermediates['hopfield_output'] = retrieved.detach().clone()
+            
         # Apply second normalization
-        hopfield_output = self.norm2(hopfield_output)
+        retrieved = self.norm2(retrieved)
         
-        # Classification head
-        logits = self.classifier(hopfield_output)
+        # Pass through classifier to get class logits
+        logits = self.classifier(retrieved)
         
-        if return_intermediates:
-            intermediates['pre_logits'] = hopfield_output.detach().clone()
-            
-        return logits, hopfield_attention, intermediates
+        # Return tuple of (class_logits, hopfield_attention, intermediates)
+        return logits, hopfield_attn, intermediates
     
     def extract_latent_representations(self, dataloader, device='cpu'):
         """
@@ -341,7 +360,7 @@ class ACHNN(nn.Module):
             for inputs, targets in dataloader:
                 inputs = inputs.to(device)
                 _, _, intermediates = self.forward(inputs, return_intermediates=True)
-                latent_vectors.append(intermediates['pre_logits'].cpu().numpy())
+                latent_vectors.append(intermediates['hopfield_output'].cpu().numpy())
                 labels.append(targets.numpy())
                 
         return np.vstack(latent_vectors), np.concatenate(labels)

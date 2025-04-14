@@ -23,101 +23,20 @@ sys.path.append(project_root)
 
 try:
     from src.utils import load_config, setup_logging, set_seed
-    from src.data_loader import load_all_subject_data, FMRIWindowDataset
+    from src.data_loader import load_all_subject_data, FMRIWindowDataset 
     from src.models import ACHNN
-    from src.training import train_epoch, evaluate, EarlyStopping, save_training_log, save_json_metrics
+    # Corrected import list for src/training.py
+    from src.training import ( 
+        train_epoch, validate_epoch, EarlyStopping, evaluate_model, 
+        plot_learning_curves, save_confusion_matrix_plot, 
+        save_json_metrics, save_training_log, # Added missing functions here
+        analyze_hopfield_attention, visualize_latent_space # Keep these if needed elsewhere, though not used directly in run_training.py
+    )
 except ImportError as e:
     print(f"Error importing modules: {e}. Make sure you're running from the project root or have the 'src' directory in your PYTHONPATH.")
     sys.exit(1)
 
-def plot_learning_curves(fold_logs, output_path):
-    """
-    Plots average training and validation loss/accuracy across folds.
-    
-    Args:
-        fold_logs: List of dictionaries containing training/validation metrics per fold
-        output_path: Where to save the plot
-    """
-    plt.figure(figsize=(12, 5))
-    
-    # Extract metrics
-    train_losses = [log['train_loss'] for log in fold_logs]
-    val_losses = [log['val_loss'] for log in fold_logs]
-    train_accs = [log['train_acc'] for log in fold_logs]
-    val_accs = [log['val_acc'] for log in fold_logs]
-    
-    # Find maximum number of epochs across all folds
-    max_epochs = max(len(losses) for losses in train_losses)
-    
-    # Pad shorter sequences with NaN for consistent averaging
-    train_losses_padded = [losses + [np.nan] * (max_epochs - len(losses)) for losses in train_losses]
-    val_losses_padded = [losses + [np.nan] * (max_epochs - len(losses)) for losses in val_losses]
-    train_accs_padded = [accs + [np.nan] * (max_epochs - len(accs)) for accs in train_accs]
-    val_accs_padded = [accs + [np.nan] * (max_epochs - len(accs)) for accs in val_accs]
-    
-    # Calculate mean metrics, ignoring NaN values
-    mean_train_loss = np.nanmean(train_losses_padded, axis=0)
-    mean_val_loss = np.nanmean(val_losses_padded, axis=0)
-    mean_train_acc = np.nanmean(train_accs_padded, axis=0)
-    mean_val_acc = np.nanmean(val_accs_padded, axis=0)
-    
-    epochs = range(1, max_epochs + 1)
-    
-    # Plot loss
-    plt.subplot(1, 2, 1)
-    plt.plot(epochs, mean_train_loss, 'b-', label='Train Loss')
-    plt.plot(epochs, mean_val_loss, 'r-', label='Validation Loss')
-    plt.title('Average Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    
-    # Plot accuracy
-    plt.subplot(1, 2, 2)
-    plt.plot(epochs, mean_train_acc, 'b-', label='Train Accuracy')
-    plt.plot(epochs, mean_val_acc, 'r-', label='Validation Accuracy')
-    plt.title('Average Accuracy')
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy')
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    
-    # Create directory if it doesn't exist
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    
-    # Save the figure
-    plt.savefig(output_path, dpi=150)
-    plt.close()
-    logging.info(f"Learning curves saved to {output_path}")
-
-def save_confusion_matrix_plot(cm, class_names, output_path, title='Confusion Matrix'):
-    """
-    Creates and saves a confusion matrix plot.
-    
-    Args:
-        cm: Confusion matrix (numpy array)
-        class_names: Names of the classes
-        output_path: Where to save the plot
-        title: Title of the plot
-    """
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                xticklabels=class_names, yticklabels=class_names)
-    plt.title(title)
-    plt.xlabel('Predicted Label')
-    plt.ylabel('True Label')
-    plt.tight_layout()
-    
-    # Create directory if it doesn't exist
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    
-    # Save the figure
-    plt.savefig(output_path, dpi=150)
-    plt.close()
-    logging.info(f"Confusion matrix saved to {output_path}")
+# Removed plot_learning_curves and save_confusion_matrix_plot as they are now in src/training.py
 
 def get_device(device_name):
     """
@@ -141,7 +60,7 @@ def get_device(device_name):
 
 def main(config_path):
     """
-    Main function that runs the full training and cross-validation process.
+    Main function that runs the full training and cross-validation process for ABIDE ASD vs TDC.
     
     Args:
         config_path: Path to the YAML configuration file
@@ -159,7 +78,7 @@ def main(config_path):
     # Setup logging
     log_path = os.path.join(experiment_dir, 'training.log')
     setup_logging(log_path)
-    logging.info(f"Starting experiment: {experiment_name}")
+    logging.info(f"Starting experiment: {experiment_name} (ABIDE ASD vs TDC Classification)")
     logging.info(f"Results will be saved to: {experiment_dir}")
     
     # Save config copy
@@ -175,48 +94,50 @@ def main(config_path):
     # Get device (CPU or CUDA)
     device = get_device(config['training']['device'])
     
-    # Load subject IDs from QC filter output
-    included_subjects_file = os.path.join(results_base_dir, 'included_subjects.txt')
+    # --- Load and prepare ABIDE data ---
+    phenotypic_file = os.path.join(config['paths']['base_dir'], config['paths']['phenotypic_file'])
     try:
-        with open(included_subjects_file, 'r') as f:
-            included_subjects = [line.strip() for line in f if line.strip()]
-        logging.info(f"Loaded {len(included_subjects)} subjects from {included_subjects_file}")
-    except FileNotFoundError:
-        logging.error(f"Included subjects file not found: {included_subjects_file}")
-        logging.error("Please run the QC filtering script first.")
-        sys.exit(1)
-    
-    # Load and prepare data
-    try:
-        logging.info("Loading and preparing data...")
+        logging.info("Loading and preparing ABIDE data...")
+        # The load_all_subject_data function now handles reading the CSV and filtering internally
         X_all, y_all, groups_all, label_encoder = load_all_subject_data(
-            config, included_subjects_file, experiment_dir)
+            config, phenotypic_file, experiment_dir # Pass pheno file path directly
+        )
         
+        # Ensure num_classes is correctly set for binary classification
         num_classes = len(label_encoder.classes_)
-        if 'num_classes' in config['achnn_model'] and num_classes != config['achnn_model']['num_classes']:
-            logging.warning(f"Number of classes in data ({num_classes}) differs from config"
-                          f" ({config['achnn_model']['num_classes']}). Updating config.")
-            config['achnn_model']['num_classes'] = num_classes
-        elif 'num_classes' not in config['achnn_model']:
-            logging.info(f"Setting num_classes in config to {num_classes}")
-            config['achnn_model']['num_classes'] = num_classes
-        
-        logging.info(f"Data loaded: {X_all.shape[0]} samples, {num_classes} classes")
-        logging.info(f"Class labels: {label_encoder.classes_.tolist()}")
+        if num_classes != 2:
+             logging.warning(f"Expected 2 classes (ASD/TDC) but found {num_classes}. Check DX_GROUP filtering.")
+             # Update config just in case, though it should be 2
+             config['achnn_model']['num_classes'] = num_classes
+        else:
+             config['achnn_model']['num_classes'] = 2 # Explicitly set for clarity
+             logging.info(f"Confirmed binary classification task with {num_classes} classes.")
+
+        # Ensure num_regions matches the atlas used (e.g., CC200)
+        expected_regions = config['data']['num_regions']
+        actual_regions = X_all.shape[2]
+        if actual_regions != expected_regions:
+            logging.error(f"Mismatch between config num_regions ({expected_regions}) and data features ({actual_regions}).")
+            sys.exit(1)
+
+        logging.info(f"Data loaded: {X_all.shape[0]} total windows across {len(np.unique(groups_all))} subjects.")
+        logging.info(f"Class labels (encoded): {np.unique(y_all)}")
+        logging.info(f"Label mapping: {dict(zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)))}")
+
     except Exception as e:
-        logging.error(f"Error loading data: {e}", exc_info=True)
+        logging.error(f"Error loading or preparing ABIDE data: {e}", exc_info=True)
         sys.exit(1)
     
     # Cross-Validation Setup
     n_folds = config['training']['cv_folds']
-    logging.info(f"Starting {n_folds}-fold cross-validation...")
+    logging.info(f"Starting {n_folds}-fold group cross-validation (grouped by subject)...")
     
     # Initialize GroupKFold
     group_kfold = GroupKFold(n_splits=n_folds)
     
     # Storage for metrics and logs
     all_fold_metrics = []
-    all_fold_logs = []
+    all_fold_logs = [] # Store epoch logs for each fold
     all_fold_cms = []
     
     # Cross-Validation Loop
@@ -227,12 +148,12 @@ def main(config_path):
         fold_dir = os.path.join(experiment_dir, f"fold_{fold}")
         os.makedirs(fold_dir, exist_ok=True)
         
-        # Split data
+        # Split data for this fold
         X_train, y_train = X_all[train_idx], y_all[train_idx]
         X_val, y_val = X_all[val_idx], y_all[val_idx]
         
-        logging.info(f"Train split: {X_train.shape[0]} samples")
-        logging.info(f"Validation split: {X_val.shape[0]} samples")
+        logging.info(f"Train split: {X_train.shape[0]} windows from {len(np.unique(groups_all[train_idx]))} subjects")
+        logging.info(f"Validation split: {X_val.shape[0]} windows from {len(np.unique(groups_all[val_idx]))} subjects")
         
         # Create datasets and dataloaders
         train_dataset = FMRIWindowDataset(X_train, y_train)
@@ -242,25 +163,41 @@ def main(config_path):
             train_dataset,
             batch_size=config['training']['batch_size'],
             shuffle=True,
-            num_workers=2,
-            pin_memory=(device.type == 'cuda')
+            num_workers=16,  # Use all 16 CPUs for data loading
+            pin_memory=True,  # Pin memory for faster GPU transfer
+            persistent_workers=True,  # Keep workers alive between batches
+            prefetch_factor=2  # Prefetch batches for better throughput
         )
         
         val_loader = DataLoader(
             val_dataset,
             batch_size=config['training']['batch_size'],
             shuffle=False,
-            num_workers=2,
-            pin_memory=(device.type == 'cuda')
+            num_workers=8,  # Use fewer workers for validation
+            pin_memory=True,  # Pin memory for faster GPU transfer
+            persistent_workers=True,  # Keep workers alive between batches
+            prefetch_factor=2  # Prefetch batches for better throughput
         )
         
-        # Initialize model
-        model = ACHNN(config, num_classes=num_classes).to(device)
-        logging.info(f"Initialized ACHNN model with {num_classes} output classes")
+        # Initialize model (make sure num_classes=2)
+        model = ACHNN(config, num_classes=2)
+        # Use DataParallel if multiple GPUs are available
+        if torch.cuda.device_count() > 1:
+            logging.info(f"Using {torch.cuda.device_count()} GPUs")
+            model = nn.DataParallel(model)
+        model = model.to(device)
+        logging.info(f"Initialized ACHNN model for fold {fold+1}")
+        
+        # Enable CUDA optimizations if available
+        if device.type == 'cuda':
+            # Set autocast for mixed precision training (faster and uses less memory)
+            scaler = torch.amp.GradScaler('cuda') 
+            torch.backends.cudnn.benchmark = True  # Optimize for fixed input sizes
+            logging.info("CUDA optimizations enabled: mixed precision and cuDNN benchmark")
         
         # Loss function, optimizer, and early stopping
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.Adam(
+        optimizer = optim.AdamW( # Use AdamW for better weight decay handling
             model.parameters(),
             lr=config['training']['learning_rate'],
             weight_decay=config['training']['weight_decay']
@@ -271,80 +208,85 @@ def main(config_path):
             patience=config['training']['patience'],
             verbose=True,
             path=checkpoint_path,
-            trace_func=logging.info
+            trace_func=logging.info # Log early stopping messages
         )
         
         # Training logs for this fold
         fold_log = {
             'train_loss': [],
-            'train_acc': [],
             'val_loss': [],
-            'val_acc': []
+            'val_acc': [] # Store val accuracy per epoch
         }
         
-        # Training loop
-        for epoch in range(config['training']['epochs']):
+        # Training loop for the fold
+        for epoch in range(config['training']['num_epochs']):
             # Train for one epoch
-            train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device)
-            
-            # Evaluate on validation set
-            val_metrics, val_cm, val_cm_plot = evaluate(
-                model, val_loader, criterion, device, label_encoder)
-            
-            val_loss = val_metrics['loss']
-            val_acc = val_metrics['accuracy']
+            if device.type == 'cuda':
+                # Use mixed precision training
+                with torch.amp.autocast('cuda'):
+                    train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device, scaler=scaler) 
+                # Evaluate on validation set with mixed precision
+                with torch.amp.autocast('cuda'):
+                    val_loss, val_accuracy, _, _ = validate_epoch(model, val_loader, criterion, device)
+            else:
+                # Regular training without mixed precision
+                train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device) 
+                val_loss, val_accuracy, _, _ = validate_epoch(model, val_loader, criterion, device)
             
             # Update log
             fold_log['train_loss'].append(train_loss)
-            fold_log['train_acc'].append(train_acc)
             fold_log['val_loss'].append(val_loss)
-            fold_log['val_acc'].append(val_acc)
+            fold_log['val_acc'].append(val_accuracy) # Log val accuracy
             
             # Log progress
             logging.info(
-                f"Epoch {epoch+1}/{config['training']['epochs']} - "
-                f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, "
-                f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}"
+                f"Epoch {epoch+1}/{config['training']['num_epochs']} - "
+                f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, " # Log train accuracy
+                f"Val Loss: {val_loss:.4f}, Val Acc: {val_accuracy:.4f}"
             )
             
-            # Check early stopping
-            early_stopping(val_loss, model)
+            # Check early stopping based on validation loss
+            early_stopping(val_loss, model, epoch)
             if early_stopping.early_stop:
                 logging.info(f"Early stopping triggered at epoch {epoch+1}")
                 break
         
-        # Save training log for this fold
-        log_path = os.path.join(fold_dir, 'train_log.csv')
-        save_training_log(fold_log, log_path)
+        # Save training log (epoch-wise metrics) for this fold
+        log_csv_path = os.path.join(fold_dir, 'epoch_log.csv')
+        save_training_log(fold_log, log_csv_path) # Use updated function name
         
-        # Load best model
+        # Load best model from checkpoint
         try:
-            model.load_state_dict(torch.load(checkpoint_path))
-            logging.info(f"Loaded best model from {checkpoint_path}")
+            # Ensure model is on the correct device before loading state dict
+            model = model.to(device) 
+            model.load_state_dict(torch.load(checkpoint_path, map_location=device))
+            logging.info(f"Loaded best model from epoch {early_stopping.best_epoch+1} via {checkpoint_path}")
         except Exception as e:
-            logging.error(f"Error loading best model: {e}")
-            logging.info("Using current model instead")
+            logging.error(f"Error loading best model checkpoint: {e}")
+            logging.info("Using model state from the end of training instead.")
         
-        # Final evaluation
-        final_metrics, final_cm, final_cm_plot = evaluate(
-            model, val_loader, criterion, device, label_encoder)
+        # Final evaluation on the validation set for this fold
+        logging.info("Performing final evaluation on validation set for this fold...")
+        final_metrics = evaluate_model( # Use updated function name
+            model, val_loader, criterion, device, label_encoder.classes_)
         
-        # Save metrics and confusion matrix
-        metrics_path = os.path.join(fold_dir, 'val_metrics.json')
-        save_json_metrics(final_metrics, metrics_path)
+        # Save final metrics and confusion matrix for the fold
+        metrics_path = os.path.join(fold_dir, 'final_val_metrics.json')
+        save_json_metrics(final_metrics, metrics_path) # Use updated function name
         
-        if final_cm_plot is not None:
-            cm_plot_path = os.path.join(fold_dir, 'val_confusion_matrix.png')
-            final_cm_plot.savefig(cm_plot_path, dpi=150)
-            plt.close()
-            logging.info(f"Saved confusion matrix plot to {cm_plot_path}")
+        cm_plot_path = os.path.join(fold_dir, 'final_val_confusion_matrix.png')
+        save_confusion_matrix_plot( # Use updated function name
+             final_metrics['confusion_matrix'], 
+             label_encoder.classes_, 
+             cm_plot_path
+        )
         
-        # Store metrics for aggregation
+        # Store results for aggregation
         all_fold_metrics.append(final_metrics)
-        all_fold_logs.append(fold_log)
-        all_fold_cms.append(final_cm)
+        all_fold_logs.append(fold_log) # Store epoch logs
+        all_fold_cms.append(final_metrics['confusion_matrix'])
         
-        logging.info(f"Completed fold {fold+1}/{n_folds}")
+        logging.info(f"Completed fold {fold+1}/{n_folds}. Val Acc: {final_metrics['accuracy']:.4f}, Val F1: {final_metrics['f1_score']:.4f}")
     
     # Aggregate results across folds
     logging.info("Aggregating results across all folds...")
@@ -353,45 +295,53 @@ def main(config_path):
     aggregated_dir = os.path.join(experiment_dir, 'aggregated')
     os.makedirs(aggregated_dir, exist_ok=True)
     
-    # Calculate mean/std of metrics across folds
+    # Calculate mean/std of final validation metrics across folds
     agg_metrics = {}
-    for metric in all_fold_metrics[0].keys():
-        if metric in ['loss', 'accuracy', 'f1_weighted']:
-            values = [fold_metric[metric] for fold_metric in all_fold_metrics]
-            agg_metrics[f'mean_{metric}'] = np.mean(values)
-            agg_metrics[f'std_{metric}'] = np.std(values)
+    # Use keys from the last fold's metrics dict as reference
+    metric_keys_to_agg = ['accuracy', 'f1_score', 'test_loss'] # Use 'f1_score' if weighted is default
     
+    for metric in metric_keys_to_agg:
+        values = [fold_metric[metric] for fold_metric in all_fold_metrics if metric in fold_metric]
+        if values: # Check if list is not empty
+             agg_metrics[f'mean_{metric}'] = np.mean(values)
+             agg_metrics[f'std_{metric}'] = np.std(values)
+        else:
+             agg_metrics[f'mean_{metric}'] = np.nan
+             agg_metrics[f'std_{metric}'] = np.nan
+
     # Save aggregated metrics
-    agg_metrics_path = os.path.join(aggregated_dir, 'mean_metrics.json')
+    agg_metrics_path = os.path.join(aggregated_dir, 'aggregated_metrics.json')
     save_json_metrics(agg_metrics, agg_metrics_path)
     logging.info(f"Saved aggregated metrics to {agg_metrics_path}")
     
     # Log aggregated performance
-    logging.info("=== Aggregated Performance ===")
-    for metric, value in agg_metrics.items():
-        logging.info(f"{metric}: {value:.4f}")
-    
-    # Plot and save learning curves
-    curves_path = os.path.join(aggregated_dir, 'learning_curves.png')
-    plot_learning_curves(all_fold_logs, curves_path)
+    logging.info("=== Aggregated Performance (Mean ± Std across Folds) ===")
+    logging.info(f"  Accuracy: {agg_metrics.get('mean_accuracy', 'N/A'):.4f} ± {agg_metrics.get('std_accuracy', 'N/A'):.4f}")
+    logging.info(f"  F1 Score: {agg_metrics.get('mean_f1_score', 'N/A'):.4f} ± {agg_metrics.get('std_f1_score', 'N/A'):.4f}")
+    logging.info(f"  Val Loss: {agg_metrics.get('mean_test_loss', 'N/A'):.4f} ± {agg_metrics.get('std_test_loss', 'N/A'):.4f}")
+
+    # Plot and save average learning curves
+    curves_path = os.path.join(aggregated_dir, 'aggregated_learning_curves.png')
+    plot_learning_curves(all_fold_logs, curves_path) # Use updated function name
     
     # Aggregate and save confusion matrix
-    agg_cm = np.sum(all_fold_cms, axis=0)
-    cm_plot_path = os.path.join(aggregated_dir, 'confusion_matrix.png')
-    save_confusion_matrix_plot(
-        agg_cm, 
-        label_encoder.classes_, 
-        cm_plot_path, 
-        title='Aggregated Confusion Matrix'
-    )
+    if all_fold_cms:
+        agg_cm = np.sum(all_fold_cms, axis=0)
+        cm_plot_path = os.path.join(aggregated_dir, 'aggregated_confusion_matrix.png')
+        save_confusion_matrix_plot( # Use updated function name
+            agg_cm, 
+            label_encoder.classes_, 
+            cm_plot_path, 
+            title='Aggregated Confusion Matrix (Summed over Folds)'
+        )
     
     logging.info(f"Experiment '{experiment_name}' completed successfully.")
-    logging.info(f"Results saved to {experiment_dir}")
+    logging.info(f"Aggregated results saved to {aggregated_dir}")
+
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train ACHNN model with cross-validation")
+    parser = argparse.ArgumentParser(description="Train ACHNN model for ABIDE ASD vs TDC classification with cross-validation")
     parser.add_argument("config", help="Path to configuration YAML file")
     args = parser.parse_args()
-    
-    main(args.config) 
+    main(args.config)
