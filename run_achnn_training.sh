@@ -6,7 +6,7 @@
 #SBATCH --mem=48g
 #SBATCH -e slurm-%j.err
 #SBATCH -o slurm-%j.out
-#SBATCH --partition=athena-genai
+#SBATCH --partition=athena
 #SBATCH --account=pl217
 #SBATCH --gres=gpu:1
 

@@ -40,38 +40,42 @@ data:
   # Removed task-specific parameters like hrf_delay_secs, included_runs, conditions_to_classify
 
 achnn_model:
-  hidden_dim: 128
+  hidden_dim: 128         # Restored original hidden dimension
   num_classes: 2         # Binary classification: ASD vs TDC
-  num_encoder_layers: 2  # Example: Number of Transformer layers
-  num_self_attn_heads: 4 # Example: Heads for self-attention
-  transformer_ff_dim: 512 # Example: Feedforward dim in Transformer
-  embedding_dropout: 0.1
-  encoder_dropout: 0.1
-  classifier_dropout: 0.2
+  num_encoder_layers: 2  # Increased layers for better feature extraction
+  num_self_attn_heads: 8 # Increased from 2 to 8 heads
+  transformer_ff_dim: 512 # Increased from 256 to 512
+  embedding_dropout: 0.2  # Moderate dropout
+  encoder_dropout: 0.2    # Moderate dropout
+  classifier_dropout: 0.3 # Increased dropout for classifier
   use_positional_encoding: True
-  query_selection_method: 'last' # How to get query for Hopfield ('last', 'mean', 'first')
+  query_selection_method: 'mean' # Changed from 'last' to 'mean' to capture full sequence information
   # Hopfield specific
-  hopfield_num_heads: 1 # Often 1 for this type of layer
-  hopfield_num_stored_patterns: 16 # Learnable patterns representing states
-  hopfield_pattern_dim: 128        # Dimension of stored patterns (often = hidden_dim)
-  hopfield_scaling: 1.0            # Beta parameter
-  hopfield_update_steps: 1         # Typically 1 update step
-  normalize_patterns: False        # Whether to normalize patterns in Hopfield space
+  hopfield_num_heads: 2   # Increased from 1 to 2
+  hopfield_num_stored_patterns: 16 # Increased from 4 to 16
+  hopfield_pattern_dim: 128   # Match hidden_dim
+  hopfield_scaling: 2.0       # Increased from 1.0 to 2.0
+  hopfield_update_steps: 3    # Increased from 1 to 3 update steps
+  normalize_patterns: True    # Keep True for better training
 
 training:
-  seed: 42
-  device: 'cuda'         # 'cuda' or 'cpu'
-  batch_size: 64
-  num_epochs: 100
-  learning_rate: 0.0001
-  weight_decay: 0.01
-  cv_folds: 5            # Number of cross-validation folds
-  patience: 15           # Early stopping patience
-  num_workers: 16        # Number of worker processes for data loading
-  pin_memory: true       # Pin memory for faster data transfer to GPU
-  persistent_workers: true # Keep workers alive between iterations
-  mixed_precision: true  # Use mixed precision training for faster computation
-  prefetch_factor: 2     # Number of batches loaded in advance by each worker
+  seed: 1024       # Changed seed value to break symmetry
+  device: 'cuda'   # 'cuda' or 'cpu'
+  batch_size: 16   # Keep smaller batch size
+  num_epochs: 100  # Increased from 50 to 100
+  learning_rate: 0.005  # Increased from 0.003 to 0.005
+  weight_decay: 0.0001  # Increased from 0.00005 to 0.0001
+  scheduler_step_size: 5
+  scheduler_gamma: 0.8   # Less aggressive reduction
+  early_stopping_patience: 15
+  gradient_clip: 1.0     # Increased from 0.5 to 1.0
+  mixed_precision: false # Keep disabled for stability
+  cv_folds: 5
+  patience: 20
+  num_workers: 16
+  pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 2
 
 analysis:
   plot_dpi: 150

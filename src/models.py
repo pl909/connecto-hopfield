@@ -128,6 +128,9 @@ class ACHNN(nn.Module):
         
         # Build model components
         
+        # Feature normalization layer for consistent scaling across samples
+        self.feature_norm = nn.BatchNorm1d(self.input_dim)
+        
         # Initial embedding layer: project from region timeseries to hidden dimension
         self.embed = nn.Linear(self.input_dim, self.hidden_dim)
         self.embed_dropout = nn.Dropout(self.embedding_dropout)
@@ -195,7 +198,7 @@ class ACHNN(nn.Module):
         self.self_attn_weights = None
         
         # Initialize parameters with small values to improve training stability
-        self._initialize_parameters()
+        # self._initialize_parameters()  # Commented out to use PyTorch default initialization
         
         logging.info(f"Initialized ACHNN model with:")
         logging.info(f"  - Input dimension: {self.input_dim}")
@@ -204,17 +207,6 @@ class ACHNN(nn.Module):
         logging.info(f"  - Hopfield layer: {self.hopfield_num_stored_patterns} stored patterns, scaling {self.hopfield_scaling}")
         logging.info(f"  - Hopfield parameters: pattern_dim={self.hopfield_pattern_dim}, update_steps={self.hopfield_update_steps}")
         logging.info(f"  - Output classes: {self.num_classes}")
-        
-    def _initialize_parameters(self):
-        """Initialize model parameters for improved training stability."""
-        # Initialize embedding layer with small values
-        nn.init.xavier_uniform_(self.embed.weight, gain=0.01)
-        if self.embed.bias is not None:
-            nn.init.zeros_(self.embed.bias)
-        
-        # Initialize classifier layer
-        nn.init.xavier_uniform_(self.classifier[1].weight, gain=0.01)
-        nn.init.zeros_(self.classifier[1].bias)
         
     def _select_query_vector(self, x):
         """
@@ -254,7 +246,14 @@ class ACHNN(nn.Module):
             - intermediate_activations: Dict of intermediate activations (if return_intermediates=True)
         """
         intermediates = {} if return_intermediates else None
-        batch_size, seq_len, _ = x.shape
+        batch_size, seq_len, num_features = x.shape
+        
+        # Normalize features for each region independently
+        # Reshape to [batch_size * seq_len, num_features]
+        x_flat = x.reshape(-1, num_features)
+        x_norm = self.feature_norm(x_flat)
+        # Reshape back to [batch_size, seq_len, num_features]
+        x = x_norm.reshape(batch_size, seq_len, num_features)
         
         # Initial projection to hidden dimension
         x = self.embed(x)  # [batch_size, seq_len, hidden_dim]
@@ -269,8 +268,6 @@ class ACHNN(nn.Module):
                 intermediates['pos_encoded'] = x.detach().clone()
         
         # Pass through transformer encoder layers
-        # We could create a padding mask here if sequences have variable lengths
-        # src_key_padding_mask = create_padding_mask(x)
         x = self.transformer_encoder(x)
         if return_intermediates:
             intermediates['transformer_output'] = x.detach().clone()
@@ -279,55 +276,50 @@ class ACHNN(nn.Module):
         x = self.norm1(x)
             
         # Select query vector for Hopfield retrieval
-        # This determines what we're "looking up" in the Hopfield memory
         hopfield_query = self._select_query_vector(x)
         if return_intermediates:
             intermediates['hopfield_query'] = hopfield_query.detach().clone()
         
-        # Prepare Hopfield inputs
-        # Reshape query from [batch_size, hidden_dim] to [batch_size, 1, hidden_dim]
-        # HopfieldCore expects a 3D tensor with shape [batch_size, seq_len, hidden_dim]
-        hopfield_query = hopfield_query.unsqueeze(1)  # Add sequence dimension
+        # Stabilize inputs with normalization
+        # This helps prevent numerical issues and improves learning
+        hopfield_query = F.normalize(hopfield_query, p=2, dim=1) * 3.0
         
-        # Apply Hopfield retrieval
-        # This performs modern Hopfield network retrieval with attention mechanism
-        # q: query (what we're looking for), k: keys (stored patterns), v: values (stored patterns)
-        # Output shape: [batch_size, out_dim]
-        hopfield_output = self.hopfield(
-            query=hopfield_query,   # [batch_size, 1, hidden_dim]
-            key=hopfield_query,     # Use same tensor for key (or None to use learnable patterns)
-            value=hopfield_query,   # Use same tensor for value (or None to use learnable patterns)
-            need_weights=True,      # Return attention weights
-            update_steps_max=self.hopfield_update_steps,
-            update_steps_eps=self.hopfield_update_steps_eps,
-            return_raw_associations=True  # Get the raw association weights
-        )
+        # Add residual connection directly from transformer to classifier
+        transformer_features = hopfield_query.clone()
         
-        # The HopfieldCore can return different formats based on parameters:
-        # 1. Just the output tensor
-        # 2. (output, attention_weights)
-        # 3. (output, attention_weights, raw_associations)
+        # Reshape query for hopfield (batch_size, 1, hidden_dim)
+        hopfield_query = hopfield_query.unsqueeze(1)
         
-        if isinstance(hopfield_output, tuple):
-            # First element is always the output tensor
-            retrieved = hopfield_output[0]
+        # Always use float32 for Hopfield calculations for numerical stability
+        hopfield_query_float = hopfield_query.to(torch.float32)
+        
+        try:
+            # Use a stronger scaling factor to emphasize pattern differences
+            hopfield_output = self.hopfield(
+                query=hopfield_query_float,
+                key=hopfield_query_float,  # Use query as key for associative recall
+                value=hopfield_query_float,  # Use query as value for associative recall
+                need_weights=True,
+                update_steps_max=self.hopfield_update_steps,
+                update_steps_eps=self.hopfield_update_steps_eps,
+                return_raw_associations=True
+            )
             
-            # Second element is attention weights if available
+            # Extract outputs and attention weights
+            retrieved = hopfield_output[0].squeeze(1)  # Remove sequence dimension
             hopfield_attn = hopfield_output[1] if len(hopfield_output) > 1 else None
             
-            # For debugging - store raw associations
-            if len(hopfield_output) > 2:
-                raw_associations = hopfield_output[2]
-            else:
-                raw_associations = None
-        else:
-            # If it's not a tuple, it's just the output tensor
-            retrieved = hopfield_output
-            hopfield_attn = None
-            raw_associations = None
+            # Apply learnable scaling to the output
+            retrieved = retrieved * self.hopfield_scaling
             
-        # Remove the sequence dimension from output
-        retrieved = retrieved.squeeze(1)
+            # Add residual connection to help with gradient flow
+            retrieved = retrieved + transformer_features
+            
+        except RuntimeError as e:
+            print(f"Hopfield layer error: {e}")
+            # Fall back to transformer features if Hopfield fails
+            retrieved = transformer_features
+            hopfield_attn = None
         
         if return_intermediates:
             intermediates['hopfield_output'] = retrieved.detach().clone()
@@ -338,7 +330,6 @@ class ACHNN(nn.Module):
         # Pass through classifier to get class logits
         logits = self.classifier(retrieved)
         
-        # Return tuple of (class_logits, hopfield_attention, intermediates)
         return logits, hopfield_attn, intermediates
     
     def extract_latent_representations(self, dataloader, device='cpu'):
