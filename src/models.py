@@ -128,6 +128,9 @@ class ACHNN(nn.Module):
         
         # Build model components
         
+        # Feature normalization layer for consistent scaling across samples
+        self.feature_norm = nn.BatchNorm1d(self.input_dim)
+        
         # Initial embedding layer: project from region timeseries to hidden dimension
         self.embed = nn.Linear(self.input_dim, self.hidden_dim)
         self.embed_dropout = nn.Dropout(self.embedding_dropout)
@@ -195,7 +198,7 @@ class ACHNN(nn.Module):
         self.self_attn_weights = None
         
         # Initialize parameters with small values to improve training stability
-        self._initialize_parameters()
+        # self._initialize_parameters()  # Commented out to use PyTorch default initialization
         
         logging.info(f"Initialized ACHNN model with:")
         logging.info(f"  - Input dimension: {self.input_dim}")
@@ -204,17 +207,6 @@ class ACHNN(nn.Module):
         logging.info(f"  - Hopfield layer: {self.hopfield_num_stored_patterns} stored patterns, scaling {self.hopfield_scaling}")
         logging.info(f"  - Hopfield parameters: pattern_dim={self.hopfield_pattern_dim}, update_steps={self.hopfield_update_steps}")
         logging.info(f"  - Output classes: {self.num_classes}")
-        
-    def _initialize_parameters(self):
-        """Initialize model parameters for improved training stability."""
-        # Initialize embedding layer with small values
-        nn.init.xavier_uniform_(self.embed.weight, gain=0.01)
-        if self.embed.bias is not None:
-            nn.init.zeros_(self.embed.bias)
-        
-        # Initialize classifier layer
-        nn.init.xavier_uniform_(self.classifier[1].weight, gain=0.01)
-        nn.init.zeros_(self.classifier[1].bias)
         
     def _select_query_vector(self, x):
         """
@@ -241,86 +233,104 @@ class ACHNN(nn.Module):
     
     def forward(self, x, return_intermediates=False):
         """
-        Forward pass through the ACHNN model.
+        Forward pass through the network.
         
         Args:
-            x: Tensor of shape [batch_size, seq_len, num_regions]
-            return_intermediates: Whether to return intermediate representations for analysis
+            x: Input tensor of shape [batch_size, seq_len, input_dim]
+            return_intermediates: Whether to return intermediate activations
             
         Returns:
-            tuple: (output_logits, hopfield_attention, intermediates) where:
-                - output_logits: Tensor of shape [batch_size, num_classes]
-                - hopfield_attention: Tensor of shape [batch_size, hopfield_num_stored_patterns] or None
-                - intermediates: Dictionary of intermediate representations or None
+            tuple: (class_logits, hopfield_attention, intermediate_activations)
+            - class_logits: Output class logits of shape [batch_size, num_classes]
+            - hopfield_attention: Attention weights from Hopfield layer
+            - intermediate_activations: Dict of intermediate activations (if return_intermediates=True)
         """
-        batch_size, seq_len, _ = x.shape
         intermediates = {} if return_intermediates else None
+        batch_size, seq_len, num_features = x.shape
         
-        # Initial embedding (from regional timeseries to hidden dimension)
-        x = self.embed(x)
+        # Normalize features for each region independently
+        # Reshape to [batch_size * seq_len, num_features]
+        x_flat = x.reshape(-1, num_features)
+        x_norm = self.feature_norm(x_flat)
+        # Reshape back to [batch_size, seq_len, num_features]
+        x = x_norm.reshape(batch_size, seq_len, num_features)
+        
+        # Initial projection to hidden dimension
+        x = self.embed(x)  # [batch_size, seq_len, hidden_dim]
         x = self.embed_dropout(x)
+        if return_intermediates:
+            intermediates['embed_output'] = x.detach().clone()
         
-        # Optional positional encoding
+        # Add positional encoding if enabled
         if self.use_positional_encoding:
             x = self.pos_encoder(x)
+            if return_intermediates:
+                intermediates['pos_encoded'] = x.detach().clone()
         
-        if return_intermediates:
-            intermediates['embedded'] = x.detach().clone()
-            
-        # Transformer encoder with self-attention for temporal processing
+        # Pass through transformer encoder layers
         x = self.transformer_encoder(x)
-        
         if return_intermediates:
             intermediates['transformer_output'] = x.detach().clone()
-        
-        # Select query vector (typically the last time step)
-        query = self._select_query_vector(x)
-        
-        if return_intermediates:
-            intermediates['query'] = query.detach().clone()
             
         # Apply normalization
-        query = self.norm1(query)
-        
-        # Hopfield core layer for pattern retrieval
-        # We use the key and value to be the same as query for associative memory retrieval
-        # The Hopfield layer will use its learned stored patterns to match against the query
-        hopfield_output, attn_weights, raw_assoc, _ = self.hopfield(
-            query=query,
-            key=query,
-            value=query,
-            need_weights=True,
-            attn_mask=None,  # No attention mask needed
-            key_padding_mask=None,  # No padding mask needed
-            scaling=self.hopfield_scaling,  # Beta parameter controlling temperature
-            update_steps_max=self.hopfield_update_steps,  # Maximum number of pattern retrieval iterations
-            update_steps_eps=self.hopfield_update_steps_eps,  # Convergence threshold
-            return_raw_associations=True,  # Get raw association scores for analysis
-            return_pattern_projections=False  # We don't need pattern projections
-        )
-        
-        # Extract attention weights over stored patterns (useful for analysis)
-        if raw_assoc is not None:
-            # raw_assoc has shape [batch_size, num_heads, 1, hopfield_num_stored_patterns]
-            hopfield_attention = raw_assoc.squeeze(2)  # Remove seq_len dimension (always 1 for query)
-        else:
-            hopfield_attention = None
+        x = self.norm1(x)
             
+        # Select query vector for Hopfield retrieval
+        hopfield_query = self._select_query_vector(x)
         if return_intermediates:
-            intermediates['hopfield_output'] = hopfield_output.detach().clone()
-            if hopfield_attention is not None:
-                intermediates['hopfield_attention'] = hopfield_attention.detach().clone()
+            intermediates['hopfield_query'] = hopfield_query.detach().clone()
         
+        # Stabilize inputs with normalization
+        # This helps prevent numerical issues and improves learning
+        hopfield_query = F.normalize(hopfield_query, p=2, dim=1) * 3.0
+        
+        # Add residual connection directly from transformer to classifier
+        transformer_features = hopfield_query.clone()
+        
+        # Reshape query for hopfield (batch_size, 1, hidden_dim)
+        hopfield_query = hopfield_query.unsqueeze(1)
+        
+        # Always use float32 for Hopfield calculations for numerical stability
+        hopfield_query_float = hopfield_query.to(torch.float32)
+        
+        try:
+            # Use a stronger scaling factor to emphasize pattern differences
+            hopfield_output = self.hopfield(
+                query=hopfield_query_float,
+                key=hopfield_query_float,  # Use query as key for associative recall
+                value=hopfield_query_float,  # Use query as value for associative recall
+                need_weights=True,
+                update_steps_max=self.hopfield_update_steps,
+                update_steps_eps=self.hopfield_update_steps_eps,
+                return_raw_associations=True
+            )
+            
+            # Extract outputs and attention weights
+            retrieved = hopfield_output[0].squeeze(1)  # Remove sequence dimension
+            hopfield_attn = hopfield_output[1] if len(hopfield_output) > 1 else None
+            
+            # Apply learnable scaling to the output
+            retrieved = retrieved * self.hopfield_scaling
+            
+            # Add residual connection to help with gradient flow
+            retrieved = retrieved + transformer_features
+            
+        except RuntimeError as e:
+            print(f"Hopfield layer error: {e}")
+            # Fall back to transformer features if Hopfield fails
+            retrieved = transformer_features
+            hopfield_attn = None
+        
+        if return_intermediates:
+            intermediates['hopfield_output'] = retrieved.detach().clone()
+            
         # Apply second normalization
-        hopfield_output = self.norm2(hopfield_output)
+        retrieved = self.norm2(retrieved)
         
-        # Classification head
-        logits = self.classifier(hopfield_output)
+        # Pass through classifier to get class logits
+        logits = self.classifier(retrieved)
         
-        if return_intermediates:
-            intermediates['pre_logits'] = hopfield_output.detach().clone()
-            
-        return logits, hopfield_attention, intermediates
+        return logits, hopfield_attn, intermediates
     
     def extract_latent_representations(self, dataloader, device='cpu'):
         """
@@ -341,7 +351,7 @@ class ACHNN(nn.Module):
             for inputs, targets in dataloader:
                 inputs = inputs.to(device)
                 _, _, intermediates = self.forward(inputs, return_intermediates=True)
-                latent_vectors.append(intermediates['pre_logits'].cpu().numpy())
+                latent_vectors.append(intermediates['hopfield_output'].cpu().numpy())
                 labels.append(targets.numpy())
                 
         return np.vstack(latent_vectors), np.concatenate(labels)

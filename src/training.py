@@ -34,18 +34,20 @@ class EarlyStopping:
         self.counter = 0
         self.best_score = None
         self.early_stop = False
-        self.val_loss_min = np.Inf
+        self.val_loss_min = np.inf
         self.delta = delta
         self.path = path
         self.trace_func = trace_func
+        self.best_epoch = 0  # Track the epoch with the best score
 
-    def __call__(self, val_loss, model):
+    def __call__(self, val_loss, model, epoch=0):
 
         score = -val_loss
 
         if self.best_score is None:
             self.best_score = score
             self.save_checkpoint(val_loss, model)
+            self.best_epoch = epoch  # Update best epoch
         elif score < self.best_score + self.delta:
             self.counter += 1
             self.trace_func(f'EarlyStopping counter: {self.counter} out of {self.patience}')
@@ -55,6 +57,7 @@ class EarlyStopping:
             self.best_score = score
             self.save_checkpoint(val_loss, model)
             self.counter = 0
+            self.best_epoch = epoch  # Update best epoch
 
     def save_checkpoint(self, val_loss, model):
         """Saves model when validation loss decrease."""
@@ -66,41 +69,121 @@ class EarlyStopping:
         except Exception as e:
             self.trace_func(f"Error saving model checkpoint to {self.path}: {e}")
 
-def train_epoch(model, dataloader, criterion, optimizer, device):
+# --- CORRECTED train_epoch function ---
+def train_epoch(model, dataloader, criterion, optimizer, device, scaler=None, clip_value=1.0, scheduler=None):
     """
     Train the model for one epoch.
     
     Args:
-        model: The model to train
-        dataloader: Training DataLoader
+        model: Model to train
+        dataloader: DataLoader with training data
         criterion: Loss function
-        optimizer: Optimizer
-        device: Device to train on (cuda/cpu)
-    
+        optimizer: Optimizer to use
+        device: Device to train on
+        scaler: Optional GradScaler for mixed precision training
+        clip_value: Value for gradient clipping
+        scheduler: Optional learning rate scheduler to call after each batch
+        
     Returns:
-        float: Average loss for the epoch
+        tuple: (average_loss, accuracy) for the epoch
     """
     model.train()
-    epoch_loss = 0.0
+    running_loss = 0.0
+    correct = 0
+    total = 0
     
-    for inputs, targets in dataloader:
+    # Print progress every N batches
+    print_freq = 100
+    
+    # Initialize tracker for moving average loss
+    moving_avg_loss = None
+    ma_beta = 0.9  # Moving average decay factor
+    
+    for batch_idx, (inputs, targets) in enumerate(dataloader):
         inputs, targets = inputs.to(device), targets.to(device)
         
-        # Zero the parameter gradients
+        # Clear gradients
         optimizer.zero_grad()
         
         # Forward pass
-        outputs, _, _ = model(inputs)
-        loss = criterion(outputs, targets)
+        if scaler is not None:
+            # Mixed precision training
+            with torch.amp.autocast(device.type):
+                outputs, _, _ = model(inputs)
+                loss = criterion(outputs, targets)
+                
+            # Backpropagation with gradient scaling
+            scaler.scale(loss).backward()
+            
+            # Monitor gradients
+            total_grad_norm = 0
+            num_params_with_grad = 0
+            for p in model.parameters():
+                if p.grad is not None:
+                    param_norm = p.grad.data.norm(2)
+                    total_grad_norm += param_norm.item() ** 2
+                    num_params_with_grad += 1
+            
+            total_grad_norm = total_grad_norm ** 0.5 if num_params_with_grad > 0 else 0
+            
+            # Apply gradient clipping
+            if clip_value > 0:
+                scaler.unscale_(optimizer)
+                torch.nn.utils.clip_grad_norm_(model.parameters(), clip_value)
+                
+            # Update weights
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            # Standard precision training
+            outputs, _, _ = model(inputs)
+            loss = criterion(outputs, targets)
+            
+            # Backpropagation
+            loss.backward()
+            
+            # Monitor gradients
+            total_grad_norm = 0
+            num_params_with_grad = 0
+            for p in model.parameters():
+                if p.grad is not None:
+                    param_norm = p.grad.data.norm(2)
+                    total_grad_norm += param_norm.item() ** 2
+                    num_params_with_grad += 1
+            
+            total_grad_norm = total_grad_norm ** 0.5 if num_params_with_grad > 0 else 0
+            
+            # Apply gradient clipping
+            if clip_value > 0:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), clip_value)
+                
+            # Update weights
+            optimizer.step()
         
-        # Backward pass and optimize
-        loss.backward()
-        optimizer.step()
+        # Step LR scheduler if provided (for batch-based schedulers like OneCycleLR)
+        if scheduler is not None:
+            scheduler.step()
         
-        epoch_loss += loss.item() * inputs.size(0)
+        # Update statistics
+        running_loss += loss.item()
+        _, predicted = outputs.max(1)
+        total += targets.size(0)
+        correct += predicted.eq(targets).sum().item()
+        
+        # Calculate moving average loss for better tracking
+        if moving_avg_loss is None:
+            moving_avg_loss = loss.item()
+        else:
+            moving_avg_loss = ma_beta * moving_avg_loss + (1 - ma_beta) * loss.item()
+        
+        # Print progress
+        if (batch_idx + 1) % print_freq == 0 or (batch_idx + 1) == len(dataloader):
+            print(f"Batch {batch_idx+1}/{len(dataloader)}, Loss: {loss.item():.4f}, MA Loss: {moving_avg_loss:.4f}, Grad Norm: {total_grad_norm:.4e}")
     
-    epoch_loss = epoch_loss / len(dataloader.dataset)
-    return epoch_loss
+    epoch_loss = running_loss / len(dataloader)
+    accuracy = 100.0 * correct / total
+    
+    return epoch_loss, accuracy
 
 def validate_epoch(model, dataloader, criterion, device):
     """
@@ -122,7 +205,7 @@ def validate_epoch(model, dataloader, criterion, device):
     
     with torch.no_grad():
         for inputs, targets in dataloader:
-            inputs, targets = inputs.to(device), targets.to(device)
+            inputs, targets = inputs.to(device, non_blocking=True), targets.to(device, non_blocking=True)
             
             # Forward pass
             outputs, _, _ = model(inputs)
@@ -132,6 +215,8 @@ def validate_epoch(model, dataloader, criterion, device):
             _, preds = torch.max(outputs, 1)
             
             val_loss += loss.item() * inputs.size(0)
+            
+            # Move predictions and targets to CPU to free GPU memory
             all_preds.extend(preds.cpu().numpy())
             all_targets.extend(targets.cpu().numpy())
     
@@ -178,7 +263,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer,
     
     for epoch in range(num_epochs):
         # Train
-        train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
+        train_loss, train_accuracy = train_epoch(model, train_loader, criterion, optimizer, device)
         
         # Validate
         val_loss, val_accuracy, val_preds, val_targets = validate_epoch(
@@ -198,7 +283,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer,
                     f'Val Accuracy: {val_accuracy:.4f}')
         
         # Early stopping
-        early_stopping(val_loss, model)
+        early_stopping(val_loss, model, epoch)
         if early_stopping.early_stop:
             logging.info(f'Early stopping triggered at epoch {epoch+1}')
             break
@@ -212,7 +297,6 @@ def train_model(model, train_loader, val_loader, criterion, optimizer,
         logging.error(f"Error loading best model: {e}")
     
     return history
-
 
 def evaluate_model(model, test_loader, criterion, device, class_names=None):
     """
@@ -235,49 +319,75 @@ def evaluate_model(model, test_loader, criterion, device, class_names=None):
     
     test_loss = 0.0
     
+    # Use larger batch size for evaluation if possible
+    batch_size = test_loader.batch_size
+    
     with torch.no_grad():
-        for inputs, targets in test_loader:
-            inputs, targets = inputs.to(device), targets.to(device)
+        # Use autocast for mixed precision if on CUDA
+        if device.type == 'cuda':
+            context_manager = torch.amp.autocast('cuda')
+        else:
+            # Dummy context manager that does nothing
+            context_manager = torch.no_grad()
             
-            # Forward pass
-            outputs, hopfield_attn, _ = model(inputs)
-            loss = criterion(outputs, targets)
-            
-            # Get predictions
-            _, preds = torch.max(outputs, 1)
-            
-            test_loss += loss.item() * inputs.size(0)
-            all_preds.extend(preds.cpu().numpy())
-            all_targets.extend(targets.cpu().numpy())
-            
-            # Store Hopfield attention
-            if hopfield_attn is not None:
-                all_hopfield_attention.append(hopfield_attn.cpu().numpy())
+        with context_manager:
+            for inputs, targets in test_loader:
+                inputs = inputs.to(device, non_blocking=True)
+                targets = targets.to(device, non_blocking=True)
+                
+                # Forward pass
+                outputs, hopfield_attn, _ = model(inputs)
+                loss = criterion(outputs, targets)
+                
+                # Get predictions
+                _, preds = torch.max(outputs, 1)
+                
+                test_loss += loss.item() * inputs.size(0)
+                
+                # Move data to CPU immediately to free GPU memory
+                all_preds.extend(preds.cpu().numpy())
+                all_targets.extend(targets.cpu().numpy())
+                
+                # Store Hopfield attention
+                if hopfield_attn is not None:
+                    # Handle potential multi-head output
+                    if hopfield_attn.dim() == 3 and hopfield_attn.shape[1] > 1:  # [batch, heads, patterns]
+                        # Average over heads before appending
+                        all_hopfield_attention.append(hopfield_attn.mean(dim=1).cpu().numpy())
+                    elif hopfield_attn.dim() == 2:  # [batch, patterns]
+                        all_hopfield_attention.append(hopfield_attn.cpu().numpy())
+                    # Add handling for other potential shapes if necessary
     
     # Calculate metrics
     test_loss = test_loss / len(test_loader.dataset)
     accuracy = accuracy_score(all_targets, all_preds)
-    f1 = f1_score(all_targets, all_preds, average='weighted')
+    # Calculate weighted F1 score
+    f1 = f1_score(all_targets, all_preds, average='weighted', zero_division=0) 
     cm = confusion_matrix(all_targets, all_preds)
     
     # Compile Hopfield attention
+    final_hopfield_attention = None
     if all_hopfield_attention:
-        all_hopfield_attention = np.concatenate(all_hopfield_attention, axis=0)
-    
+        try:
+            final_hopfield_attention = np.concatenate(all_hopfield_attention, axis=0)
+        except ValueError as e:
+            logging.error(f"Could not concatenate hopfield attention arrays: {e}")
+            # Handle cases where shapes might mismatch if batches vary unexpectedly
+            final_hopfield_attention = None  # Or keep as list of arrays
+
     metrics = {
         'test_loss': test_loss,
         'accuracy': accuracy,
-        'f1_score': f1,
+        'f1_score': f1,  # Changed key name for consistency
         'confusion_matrix': cm,
         'predictions': np.array(all_preds),
         'targets': np.array(all_targets),
-        'hopfield_attention': all_hopfield_attention if all_hopfield_attention else None
+        'hopfield_attention': final_hopfield_attention
     }
     
-    logging.info(f'Test Loss: {test_loss:.4f}, Accuracy: {accuracy:.4f}, F1 Score: {f1:.4f}')
+    logging.info(f'Evaluation Results - Loss: {test_loss:.4f}, Accuracy: {accuracy:.4f}, F1 Score (Weighted): {f1:.4f}')
     
     return metrics
-
 
 def save_confusion_matrix_plot(confusion_matrix, class_names, output_path):
     """
@@ -735,3 +845,45 @@ def aggregate_cv_results(config, cv_results, aggregated_dir, label_encoder):
     logging.info(f"  Test Loss: {aggregated_metrics['test_loss_mean']:.4f} ± {aggregated_metrics['test_loss_std']:.4f}")
     
     return aggregated_metrics 
+
+
+    # Add these functions to the end of src/training.py
+
+def save_json_metrics(metrics_dict, output_path):
+    """Saves evaluation metrics dictionary to a JSON file."""
+    try:
+        # Ensure values are JSON serializable (convert numpy types if needed)
+        serializable_metrics = {}
+        for key, value in metrics_dict.items():
+            if isinstance(value, (np.generic, np.ndarray)):
+                serializable_metrics[key] = value.item() if value.size == 1 else value.tolist()
+            elif isinstance(value, (int, float, str, bool, list, dict)) or value is None:
+                 serializable_metrics[key] = value
+            else:
+                 # Attempt conversion for other types, log warning if unknown
+                 try:
+                     serializable_metrics[key] = float(value) 
+                 except (TypeError, ValueError):
+                     logging.warning(f"Could not serialize metric '{key}' of type {type(value)}. Skipping.")
+                     
+        with open(output_path, 'w') as f:
+            json.dump(serializable_metrics, f, indent=2)
+        logging.info(f"Metrics saved to {output_path}")
+    except Exception as e:
+        logging.error(f"Error saving metrics to {output_path}: {e}")
+
+def save_training_log(fold_log_dict, output_csv_path):
+    """Saves the epoch-wise training/validation logs to a CSV file."""
+    try:
+        # Ensure all lists have the same length for DataFrame creation
+        # Find the length of the shortest list to avoid errors if training stopped early
+        min_len = min(len(v) for v in fold_log_dict.values() if isinstance(v, list))
+        trimmed_log = {k: v[:min_len] for k, v in fold_log_dict.items()}
+        
+        log_df = pd.DataFrame(trimmed_log)
+        log_df.index.name = 'epoch'
+        log_df.index = log_df.index + 1 # Start epoch count from 1
+        log_df.to_csv(output_csv_path)
+        logging.info(f"Training log saved to {output_csv_path}")
+    except Exception as e:
+        logging.error(f"Error saving training log to {output_csv_path}: {e}")

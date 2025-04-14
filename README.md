@@ -1,269 +1,159 @@
-# Attentive Connectome-based Hopfield Network (ACHNN) for Pain State Classification
+# Attentive Connectome-based Hopfield Network (ACHNN) for ASD Classification
 
 ## Project Overview
 
-This project implements an Attentive Connectome-based Hopfield Network (ACHNN) designed to classify distinct brain states related to pain perception using fMRI data. The model leverages modern Hopfield networks combined with attention mechanisms to identify and learn patterns in whole-brain functional connectivity during different pain conditions.
+This project implements an Attentive Connectome-based Hopfield Network (ACHNN) designed to classify individuals with Autism Spectrum Disorder (ASD) from Typically Developing Controls (TDC) using resting-state fMRI data. The model leverages modern Hopfield networks combined with attention mechanisms to identify and learn dynamic patterns in whole-brain functional connectivity that differentiate these groups.
 
 The primary goals are:
-1. **Classification of dynamic pain states** using regional brain activity patterns
-2. **Analysis of attention mechanisms** to understand how the model identifies relevant brain regions
-3. **Exploration of latent space representations** to gain insights into neural network reconfigurations during pain
+1.  **Classification of ASD vs. TDC** based on dynamic resting-state brain activity patterns.
+2.  **Analysis of attention mechanisms** to understand how the model identifies relevant brain regions and temporal dynamics for classification.
+3.  **Exploration of latent space representations** to gain insights into potentially altered network organization in ASD.
 
-The model is applied to the ds000140 dataset, which includes fMRI recordings of participants experiencing controlled heat pain stimuli at varying intensities under different cognitive modulation conditions (passive experience, regulate UP, regulate DOWN).
+The model is applied to the **ABIDE I & II dataset**, using preprocessed timeseries data.
 
 ## Dataset Context
 
-The project uses the **ds000140 dataset** from OpenNeuro, which contains:
-- Task-based fMRI with controlled heat pain stimuli at varying intensities
-- Experimental conditions with cognitive pain modulation:
-  - **Passive experience**: Normal experience of pain stimuli
-  - **Regulate UP**: Cognitive amplification of pain perception
-  - **Regulate DOWN**: Cognitive reduction of pain perception
+The project uses the **ABIDE (Autism Brain Imaging Data Exchange) I & II dataset**, accessed via the ABIDE Preprocessed initiative. Key features:
+- Resting-state fMRI data from hundreds of participants.
+- Diagnostic labels: ASD (Group 1) vs. Typically Developing Control (TDC, Group 2).
+- Preprocessed derivatives available, including ROI timeseries.
 
-Data is preprocessed using the **RPN-Signature pipeline**, which produces:
-- Regional timeseries for 122 brain regions (MIST122 atlas)
-- Motion parameters and quality control metrics
-- Subject-level framewise displacement measures
+This project utilizes timeseries extracted using the **Craddock 200 (CC200) functional atlas** from a specific pipeline (e.g., CCS) and strategy (e.g., filt\_noglobal) provided by the ABIDE Preprocessed resource.
 
 ## Project Structure
 
-```
 project_root/
 │
 ├── configs/
-│   └── achnn_config.yaml         # Configuration for model, training, and analysis
+│ └── achnn_config_abide.yaml # Configuration for ABIDE experiment
 │
 ├── src/
-│   ├── hflayers/                 # Hopfield layer implementation
-│   ├── data_loader.py            # Data loading and processing utilities
-│   ├── models.py                 # ACHNN model implementation
-│   ├── training.py               # Training and evaluation functions
-│   └── utils.py                  # Helper functions
+│ ├── hflayers/ # Hopfield layer implementation
+│ ├── data_loader.py # Data loading (ABIDE specific)
+│ ├── models.py # ACHNN model implementation
+│ ├── training.py # Training and evaluation functions
+│ └── utils.py # Helper functions
 │
 ├── scripts/
-│   ├── run_qc_filter.py          # Quality control filtering script
-│   ├── run_achnn_training.py     # Main training script
-│   ├── run_achnn_analysis.py     # Analysis script for trained models
-│   └── test_data_access.py       # Script to test data accessibility
+│ ├── run_achnn_training.py # Main training script for ABIDE
+│ ├── run_achnn_analysis.py # Analysis script for ABIDE results
+│ └── test_data_access.py # Script to test ABIDE data access
 │
-├── results/                      # Results directory (created during execution)
-│   └── experiment_*/             # Results from each experiment
+├── results/ # Results directory (created during execution)
+│ └── abide_achnn_classification_*/ # Results from each experiment run
 │
-└── README.md                     # This file
-```
+├── Phenotypic_V1_0b_preprocessed1.csv # ABIDE Phenotypic data file
+└── README.md # This file
 
-## Data Directory Structure
+## Data Directory Structure (Expected Inputs)
 
-The expected data structure from the RPN-Signature preprocessing pipeline is:
-
-```
-/usr/project/xtmp/ds000140-proc/
-│
-├── regional-timeseries/          # Regional timeseries in tab-separated format
-│   └── sub-XX_task-pain_run-XX_timeseries.tsv
-│
-├── func_preproc/                 # Functional derivatives
-│   ├── popFD_max.txt             # Max FD values per subject
-│   ├── pop_percent_scrubbed.txt  # Percent of volumes scrubbed per subject
-│   │
-│   └── mc_fd/                    # Framewise displacement timeseries
-│       └── sub-XX_task-pain_run-XX_FD.txt
-│
-├── QC/                           # Quality check images and visualizations
-│   ├── FD/                       # Framewise displacement plots
-│   ├── regional_timeseries/      # Carpet plots of atlas-based timeseries
-│   └── ...                       # Other QC outputs
-│
-└── sub-XX/                       # Subject directories with BIDS format
-    └── func/                     # Functional data
-        └── sub-XX_task-pain_run-XX_events.tsv  # Event files
-```
+-   **Phenotypic Data:** `/home/pl217/connecto-hopfield/Phenotypic_V1_0b_preprocessed1.csv` (as specified in config)
+-   **Timeseries Data:** `/home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/` (as specified in config) containing `.1D` files named like `Pitt_0050003_rois_cc200.1D`.
 
 ## The ACHNN Model
 
-The ACHNN model architecture integrates temporal dynamics and associative memory through:
+The ACHNN model architecture integrates temporal dynamics and associative memory:
 
-1. **Linear Embedding Layer**: Projects 122 brain regions to hidden dimension
-2. **Positional Encoding**: Adds temporal position information to the sequence
-3. **Transformer Encoder Blocks**: Process dynamic temporal information using self-attention
-4. **Modern Hopfield Layer**: Implements an associative memory based on continuous modern Hopfield networks
-5. **Classification Head**: Maps retrieved patterns to pain condition classes
+1.  **Linear Embedding Layer**: Projects 200 brain regions (CC200 atlas) to hidden dimension.
+2.  **Positional Encoding**: Adds temporal position information.
+3.  **Transformer Encoder Blocks**: Process dynamics using self-attention.
+4.  **Modern Hopfield Layer**: Associative memory based on continuous modern Hopfield networks.
+5.  **Classification Head**: Maps patterns to binary class logits (ASD vs. TDC).
 
 ### Key Components:
 
-- **Self-Attention Mechanism**: Captures temporal dependencies among brain regions over time
-- **Hopfield Core**: Functions as an associative memory that learns prototype patterns of brain states
-- **Stored Patterns**: Learnable patterns that represent distinct brain states or configurations
-- **Hopfield Attention**: Attention weights over stored patterns reveal what patterns are most relevant for each condition
+-   **Self-Attention Mechanism**: Captures temporal dependencies within resting-state windows.
+-   **Hopfield Core**: Learns prototype patterns (states) potentially distinguishing groups.
+-   **Hopfield Attention**: Weights over stored patterns reveal which learned states are most relevant for classifying ASD vs. TDC.
 
 ## Setup Instructions
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- PyTorch 1.9 or higher
-- CUDA-capable GPU (recommended for training)
-- Access to the preprocessed ds000140 dataset
+-   Python 3.8+
+-   PyTorch 1.9+
+-   CUDA-capable GPU (recommended)
+-   Downloaded ABIDE CC200 timeseries data (see `download_abide.sh` script - requires verification)
+-   ABIDE Phenotypic CSV file in the project root.
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   cd [repository-directory]
-   ```
-
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Update configuration:
-   Edit `configs/achnn_config.yaml` to set your data paths and model parameters.
+1.  Clone the repository.
+2.  Create and activate a virtual environment.
+3.  Install dependencies: `pip install -r requirements.txt`
+4.  **Crucially: Update `configs/achnn_config_abide.yaml`** to set correct paths (`base_dir`, `phenotypic_file`, `regional_timeseries_dir`), ensure `num_regions: 200`, `num_classes: 2`, and adjust other parameters as needed.
 
 ## Usage
 
 ### Testing Data Access
 
-First, verify that all required data files are accessible:
+Verify paths and file access:
 
 ```bash
-python scripts/test_data_access.py configs/achnn_config.yaml
+python scripts/test_data_access.py configs/achnn_config_abide.yaml
+
 ```
 
-This script checks for existence and readability of critical data files including:
-- Regional timeseries files
-- Framewise displacement files
-- QC summary files
-- Event files
-
-### Quality Control Filtering
-
-Filter subjects based on motion metrics from RPN-Signature outputs:
-
-```bash
-python scripts/run_qc_filter.py configs/achnn_config.yaml
-```
-
-This script:
-- Loads the maximum FD and percent scrubbed values for each subject
-- Applies thresholds to exclude high-motion subjects
-- Saves a list of included subjects to `results/included_subjects.txt`
 
 ### Training the ACHNN Model
-
-Train the model with cross-validation:
+Train the model using cross-validation for ASD vs. TDC classification:
 
 ```bash
-python scripts/run_achnn_training.py configs/achnn_config.yaml
+python scripts/run_achnn_training.py configs/achnn_config_abide.yaml
 ```
 
 This script will:
-- Load data for subjects that passed QC
-- Create sliding windows from the timeseries data
-- Perform cross-validation, training the ACHNN model on each fold
-- Save model checkpoints, metrics, and visualizations
-- Generate aggregated results across all folds
+Load phenotypic data and filter subjects based on included sites.
+Load corresponding CC200 timeseries data.
+Create sliding windows.
+Perform Group K-Fold cross-validation.
+Save model checkpoints, metrics, and logs to a new timestamped directory in results/.
+
 
 ### Analyzing a Trained Model
-
-Analyze the attention patterns and latent space of a trained model:
-
 ```bash
-python scripts/run_achnn_analysis.py --experiment_dir results/experiment_name
+
+Analyze the results from a completed training run:
+
+# Replace 'experiment_name_timestamp' with the actual directory created during training
+python scripts/run_achnn_analysis.py --experiment_dir results/abide_achnn_classification_timestamp
+
 ```
 
+
 This script will:
-- Load a trained model
-- Generate attention heatmaps showing which stored patterns are activated for each condition
-- Visualize the latent space using t-SNE and PCA
-- Compare attention patterns between pain intensities and modulation conditions
+Load the best model from the cross-validation folds.
+Generate Hopfield attention heatmaps comparing ASD vs. TDC groups.
+Visualize the latent space using t-SNE and PCA, colored by group.
+Calculate final performance metrics on the validation data used during analysis.
 
-## Understanding the Results
 
-### Classification Performance
+### Understanding the Results Classification Performance
 
-The model classifies different pain states based on patterns of brain activity. Key metrics include:
-- Accuracy and F1-score for each condition
-- Confusion matrix showing classification patterns
+How well does the model distinguish ASD from TDC based on resting-state dynamics? (Accuracy, F1-Score, Confusion Matrix).
 
 ### Attention Analysis
 
-The Hopfield attention analysis reveals:
-- Which stored patterns are activated for each pain condition
-- How attention patterns differ between pain intensities (high vs. medium vs. low)
-- How pain modulation (UP vs. DOWN vs. passive) affects pattern activation
-
+Which learned Hopfield patterns are more strongly activated for ASD vs. TDC?
+Does the temporal self-attention focus differ between groups?
 ### Latent Space Analysis
 
-The latent space visualizations show:
-- Clustering of similar brain states
-- Transitions between states
-- Separation between different experimental conditions
+Do ASD and TDC form distinct clusters in the learned representation space?
+Does the structure reveal insights into heterogeneity or subtypes?
+### Customization
 
-## Customization
+Atlas/Regions: To use a different atlas (e.g., CC400), download the corresponding .1D files, update regional_timeseries_dir and num_regions in the config.
+Model Hyperparameters: Adjust dimensions, layers, dropout, learning rate etc., in the config file.
+Site Inclusion: Modify the included_sites list in the config.
+### Troubleshooting
+Import Errors: Ensure src and hflayers are accessible. Check requirements.txt.
+Data Loading Errors: Verify paths in config, CSV format, and .1D file format/delimiter. Run test_data_access.py.
+CUDA Errors: Ensure PyTorch CUDA version matches driver. Reduce batch_size if out of memory.
+Low Performance: Check data quality/filtering, consider different window lengths (seq_len), tune hyperparameters.
 
-### Modifying Event Labels
 
-To adapt the model for different experimental conditions:
-1. Update the `conditions_to_classify` in `config.yaml`
-2. Modify the `_map_condition_label` method in `data_loader.py` to properly extract labels from your events.tsv files
+### Acknowledgments
+Modern Hopfield Network implementation inspired by Ramsauer et al. (2020).
+ABIDE Dataset Initiative.
+ABIDE Preprocessed data resource.
 
-### Adjusting the Model Architecture
-
-To modify the model architecture:
-1. Adjust hyperparameters in `achnn_config.yaml`:
-   - Change the number of Hopfield stored patterns
-   - Modify transformer layers and attention heads
-   - Tune dropout rates and learning parameters
-
-### Running on Different Data
-
-To apply the model to a different dataset:
-1. Ensure your data is preprocessed into regional timeseries format
-2. Update the paths in `achnn_config.yaml`
-3. Adjust the data loading functions in `data_loader.py` to match your file structure
-
-## Troubleshooting
-
-### Common Issues
-
-1. **ImportError for HopfieldCore**: 
-   - Ensure the `hflayers` directory is in your Python path
-   - Check that PyTorch version is compatible (1.9+ recommended)
-
-2. **CUDA Out of Memory**:
-   - Reduce batch size in `achnn_config.yaml`
-   - Decrease model dimensions (hidden_dim, hopfield_pattern_dim)
-
-3. **Data Access Issues**:
-   - Run `test_data_access.py` to verify all required files are accessible
-   - Check that file paths in `achnn_config.yaml` match the actual data structure
-   - Ensure file naming patterns match between the config and actual files
-
-4. **Poor Classification Performance**:
-   - Ensure labels are correctly aligned with fMRI data considering HRF delay
-   - Verify motion scrubbing parameters and QC thresholds
-   - Adjust window size (seq_len) to better capture temporal dynamics
-
-## Acknowledgments
-
-- The Modern Hopfield Network implementation is based on "Hopfield Networks is All You Need" (Ramsauer et al., 2020)
-- The ds000140 dataset: OpenNeuro dataset (https://openneuro.org/datasets/ds000140)
-- RPN-Signature preprocessing pipeline was used for brain parcellation and denoising
-
-## Citations
-
-```
-# Add relevant citations here, including:
-# - Original ds000140 dataset paper
-# - Modern Hopfield Networks paper
-# - RPN-Signature pipeline paper
-# - Your own work when published
-```

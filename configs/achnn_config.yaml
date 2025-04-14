@@ -1,97 +1,81 @@
-# ACHNN Configuration File for dynamic connectivity analysis using the ABIDE dataset
-# (Previous ds000140-specific settings are preserved as comments)
-
-experiment_name: "ACHNN_ABIDE"
+experiment_name: abide_achnn_classification
 
 paths:
-  # Previous ds000140 paths (no longer used):
-  # base_dir: /usr/project/xtmp/ds000140-proc/  # Base directory for ds000140 processed data
-  # regional_timeseries_dir: ${paths.base_dir}/regional-timeseries/  # Regional timeseries directory
-  # fd_dir: ${paths.base_dir}/func_preproc/mc_fd/  # Framewise displacement data
-  # qc_dir: ${paths.base_dir}/QC/  # Quality control directory
-  
-  # Updated ABIDE paths:
-  base_dir: /usr/project/xtmp/results/abide_timeseries/ccs_filt_noglobal_rois_cc200  # Base directory for ABIDE timeseries files
-  results_base_dir: ./results/  # Base directory for experiment results
-  
-  # Since the ABIDE .1D files are stored directly in the base_dir:
-  regional_timeseries_dir: /usr/project/xtmp/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/ # Regional timeseries directory for ABIDE
-  
-  # FD and QC files may not be applicable for ABIDE resting state data
-  # fd_dir: ${paths.base_dir}/fd/  # Example: update if FD files become available
-  # qc_dir: ${paths.base_dir}/QC/  # Example: update if QC files are provided
-  
-  included_subjects: ${paths.results_base_dir}/included_subjects.txt  # (Optional) List of included subjects after QC
+  # Base directory where phenotypic CSV resides and results will be saved
+  base_dir: /home/pl217/connecto-hopfield 
+  # Path to the main phenotypic CSV file
+  phenotypic_file: Phenotypic_V1_0b_preprocessed1.csv 
+  # Directory containing the downloaded .1D timeseries files
+  regional_timeseries_dir: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  # Base directory for saving experiment results
+  results_base_dir: /home/pl217/connecto-hopfield/results 
+
+# Quality Control - Site selection based on QC plots
+qc:
+  included_sites:
+    - LEUVEN_1
+    - LEUVEN_2
+    - MAX_MUN
+    - NYU
+    - OHSU
+    - PITT
+    - SDSU
+    - STANFORD
+    - TRINITY
+    - UCLA_1
+    - UCLA_2
+    - UM_1
+    - UM_2
+    - USM  # Keep with caution
+    - YALE # Keep with caution
+  # Motion QC thresholds (currently unused as we load all subjects from included sites)
+  # max_fd: 0.5 
+  # max_scrub: 20.0
 
 data:
-  tr: 2.0                         # Repetition time (seconds)
-  hrf_delay_secs: 6.0             # HRF delay (may not be applicable for resting state)
-  seq_len: 10                     # Sliding window length in TRs
-  window_step: 2                  # Step size for sliding window
-  num_regions: 200                # Number of brain regions (from header: #1 ... #200)
-  baseline_label: "rest"          # Since this is resting state data, label every TR as "rest"
-  
-  apply_scrubbing: false          # Disabling scrubbing; no FD files assumed for ABIDE
-  fd_threshold: 0.5               # (Unused)
-  fd_file_suffix: "_FD.txt"       # (Unused)
-  scrub_info_file: ""             # (Unused)
-  
-  # ABIDE does not include multiple runs or task events by default.
-  included_runs: []              # Not applicable for ABIDE
-  conditions_to_classify: []      # No conditions to classify beyond "rest"
+  num_regions: 200       # Changed to match CC200 atlas
+  tr: 2.0                # IMPORTANT: Verify TR for ABIDE (varies by site!) - may need site-specific handling
+  seq_len: 30            # Example window length (e.g., 60 seconds if TR=2s)
+  window_step: 1         # Step for sliding window
+  # Removed task-specific parameters like hrf_delay_secs, included_runs, conditions_to_classify
 
 achnn_model:
-  hidden_dim: 64                  # Hidden representation dimension
-  num_classes: 1                  # Only one label ("rest")
-  
-  embedding_dropout: 0.2
-  pos_encoding_dropout: 0.1
-  encoder_dropout: 0.2
-  classifier_dropout: 0.3
-  hopfield_dropout: 0.1
-  
-  use_positional_encoding: true
-  num_encoder_layers: 2
-  num_self_attn_heads: 4
-  transformer_ff_dim: 256
-  
-  hopfield_num_heads: 1
-  hopfield_num_stored_patterns: 10
-  hopfield_scaling: 2.5
-  hopfield_pattern_dim: 64
-  hopfield_update_steps: 3
-  hopfield_update_steps_eps: 1e-4
-  normalize_patterns: true
-  
-  query_selection_method: "last"
-  return_attention: true
+  hidden_dim: 128         # Restored original hidden dimension
+  num_classes: 2         # Binary classification: ASD vs TDC
+  num_encoder_layers: 2  # Increased layers for better feature extraction
+  num_self_attn_heads: 8 # Increased from 2 to 8 heads
+  transformer_ff_dim: 512 # Increased from 256 to 512
+  embedding_dropout: 0.2  # Moderate dropout
+  encoder_dropout: 0.2    # Moderate dropout
+  classifier_dropout: 0.3 # Increased dropout for classifier
+  use_positional_encoding: True
+  query_selection_method: 'mean' # Changed from 'last' to 'mean' to capture full sequence information
+  # Hopfield specific
+  hopfield_num_heads: 2   # Increased from 1 to 2
+  hopfield_num_stored_patterns: 16 # Increased from 4 to 16
+  hopfield_pattern_dim: 128   # Match hidden_dim
+  hopfield_scaling: 2.0       # Increased from 1.0 to 2.0
+  hopfield_update_steps: 3    # Increased from 1 to 3 update steps
+  normalize_patterns: True    # Keep True for better training
 
 training:
-  num_epochs: 100
-  batch_size: 32
-  learning_rate: 0.0005
-  weight_decay: 0.01
+  seed: 1024       # Changed seed value to break symmetry
+  device: 'cuda'   # 'cuda' or 'cpu'
+  batch_size: 16   # Keep smaller batch size
+  num_epochs: 100  # Increased from 50 to 100
+  learning_rate: 0.005  # Increased from 0.003 to 0.005
+  weight_decay: 0.0001  # Increased from 0.00005 to 0.0001
+  scheduler_step_size: 5
+  scheduler_gamma: 0.8   # Less aggressive reduction
   early_stopping_patience: 15
-  seed: 42
-  device: "cuda"
-  
+  gradient_clip: 1.0     # Increased from 0.5 to 1.0
+  mixed_precision: false # Keep disabled for stability
   cv_folds: 5
-  
-  use_class_weights: false       # With only one class, class weights are not applicable
-
-qc:
-  # Quality control parameters are not used for the ABIDE resting state dataset.
-  max_fd: 5.0
-  max_scrub: 25.0
-  fd_summary_file: ""             # Not provided for ABIDE
-  percent_scrubbed_file: ""       # Not provided for ABIDE
+  patience: 20
+  num_workers: 16
+  pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 2
 
 analysis:
-  plot_dpi: 300
-  tsne_perplexity: 30
-  pca_components: 2
-  attention_heatmap_cmap: "viridis"
-  
-  # For resting state data there are no task-related intensity or modulation groups.
-  intensity_groups: {}            # Not applicable
-  modulation_groups: {}           # Not applicable
+  plot_dpi: 150
