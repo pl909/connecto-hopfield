@@ -1,0 +1,8 @@
+/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:194: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
+  warnings.warn(
+W0414 16:18:12.355000 4150457 site-packages/torch/_dynamo/convert_frame.py:906] [6/8] torch._dynamo hit config.cache_size_limit (8)
+W0414 16:18:12.355000 4150457 site-packages/torch/_dynamo/convert_frame.py:906] [6/8]    function: 'torch_dynamo_resume_in_forward_at_232' (/home/pl217/connecto-hopfield/hflayers/__init__.py:232)
+W0414 16:18:12.355000 4150457 site-packages/torch/_dynamo/convert_frame.py:906] [6/8]    last reason: 6/7: Cache line invalidated because L['___stack0'] got deallocated
+W0414 16:18:12.355000 4150457 site-packages/torch/_dynamo/convert_frame.py:906] [6/8] To log all recompilation reasons, use TORCH_LOGS="recompiles".
+W0414 16:18:12.355000 4150457 site-packages/torch/_dynamo/convert_frame.py:906] [6/8] To diagnose recompilation issues, see https://pytorch.org/docs/main/torch.compiler_troubleshooting.html.
+slurmstepd-node2: error: *** JOB 110906 ON node2 CANCELLED AT 2025-04-14T16:23:30 ***

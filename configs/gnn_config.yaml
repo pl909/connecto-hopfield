@@ -1,0 +1,85 @@
+experiment_name: abide_gnn_classification
+
+paths:
+  # Base directory where phenotypic CSV resides and results will be saved
+  base_dir: /home/pl217/connecto-hopfield
+  # Path to the main phenotypic CSV file
+  phenotypic_file: Phenotypic_V1_0b_preprocessed1.csv
+  # Directory containing the downloaded .1D timeseries files
+  regional_timeseries_dir: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  # Base directory for saving experiment results
+  results_base_dir: /home/pl217/connecto-hopfield/results
+
+# Quality Control - Site selection
+qc:
+  included_sites:
+    - NYU
+    - SDSU
+    - STANFORD
+    - TRINITY
+    - UM_1
+    - UM_2
+    - PITT
+    - OHSU
+  threshold: 0.5  # Motion threshold for subject inclusion
+
+data:
+  num_regions: 200       # Number of brain regions (nodes in the graph)
+  tr: 2.0                # TR value (repetition time in seconds)
+  seq_len: 30            # Window length for time series
+  window_step: 1         # Step size for sliding window
+  test_size: 0.2         # Proportion of data for testing
+  validation_size: 0.1   # Proportion of data for validation
+
+# GNN model configuration
+model:
+  type: 'gcn'            # Model type: 'gcn', 'gat', or 'dynamic_edge'
+  hidden_dim: 64         # Hidden dimension size
+  num_layers: 2          # Number of graph convolutional layers
+  dropout: 0.4           # Dropout rate
+  batch_norm: true       # Use batch normalization
+  pool_method: 'mean'    # Graph pooling method: 'mean', 'max', or 'sum'
+  use_edge_attr: true    # Use edge attributes (connection weights)
+  node_features: 'degree'  # Node feature type: 'degree', 'eigenvector', 'betweenness', or 'onehot'
+  edge_normalization: 'abs'  # Edge normalization: 'none', 'abs', 'scale', or 'znorm'
+  
+  # Parameters specific to GAT (used only if type='gat')
+  heads: 4               # Number of attention heads
+  concat: true           # Whether to concatenate attention heads
+  
+  # Parameters specific to dynamic edge GNN (used only if type='dynamic_edge')
+  edge_dim: 8            # Edge feature dimension
+  conv_type: 'gcn'       # Convolution type within dynamic edge model
+  update_edges: true     # Whether to update edge features during message passing
+
+training:
+  seed: 42               # Random seed for reproducibility
+  device: 'cuda'         # Device to use: 'cuda' or 'cpu'
+  batch_size: 32         # Batch size for training
+  num_epochs: 100        # Maximum number of epochs
+  learning_rate: 0.001   # Initial learning rate
+  weight_decay: 0.01     # Weight decay (L2 regularization)
+  
+  # Learning rate scheduler
+  use_lr_scheduler: true  # Whether to use learning rate scheduler
+  lr_factor: 0.5         # Factor by which to reduce learning rate
+  lr_patience: 10        # Number of epochs with no improvement after which to reduce learning rate
+  
+  # Early stopping
+  early_stopping_patience: 15  # Number of epochs with no improvement after which to stop training
+  early_stopping_delta: 0.001  # Minimum change to qualify as improvement
+  
+  # Mixed precision training
+  use_mixed_precision: true  # Use mixed precision (faster training on supported GPUs)
+  
+  # DataLoader settings
+  num_workers: 16         # Number of worker processes for data loading
+  pin_memory: true       # Pin memory for faster data transfer to GPU
+
+# Experiment settings
+experiment:
+  name: 'gnn_brain_connectivity'  # Experiment name
+  data_path: '/home/pl217/connecto-hopfield/data'  # Path to data
+  results_path: '/home/pl217/connecto-hopfield/results/gnn'  # Path to save results
+  log_level: 'INFO'      # Logging level
+  save_embeddings: true  # Whether to save node embeddings for visualization 

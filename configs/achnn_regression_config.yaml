@@ -1,0 +1,91 @@
+experiment:
+  name: achnn_regression_ados
+  data_path: /home/pl217/connecto-hopfield
+  results_path: /home/pl217/connecto-hopfield/results/regression/ados
+  save_predictions: True
+
+paths:
+  # Base directory where phenotypic CSV resides and results will be saved
+  base_dir: /home/pl217/connecto-hopfield 
+  # Path to the main phenotypic CSV file - will look for this file in base_dir
+  phenotypic_file: Phenotypic_V1_0b_preprocessed1.csv 
+  # Directory containing the downloaded .1D timeseries files
+  regional_timeseries_dir: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  # Base directory for saving experiment results
+  results_base_dir: /home/pl217/connecto-hopfield/results 
+
+quality_control:
+  min_fd_threshold: 0.5
+  min_coverage: 0.7
+  min_timepoints: 200
+  max_timepoints: null
+  motionlevel: 0.4
+  skip_high_motion: True
+
+# Quality Control - Site selection based on QC plots
+qc:
+  included_sites:
+    - NYU
+    - SDSU
+    - STANFORD
+    - TRINITY
+    - UM_1
+    - UM_2
+
+data:
+  num_regions: 200       # Changed to match CC200 atlas
+  TR: 2.0                # IMPORTANT: Verify TR for ABIDE
+  sequence_length: 30    # Example window length (e.g., 60 seconds if TR=2s)
+  window_step: 1         # Step for sliding window
+  subject_id_col: "SUB_ID"  # Column in phenotypic data for subject IDs
+  file_id_col: "FILE_ID"    # Column used for matching with timeseries files
+  clinical_data_path: /home/pl217/connecto-hopfield/Phenotypic_V1_0b_preprocessed1.csv
+  timeseries_dir: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  timeseries_ext: ".1D"   # Extension of timeseries files
+  regression_target: "ADOS_TOTAL"  # The target variable to predict
+  preprocess_data: True
+  filter_freq: [0.01, 0.1]
+  exclude_negative_values: True
+  # Add derivative name for file searching
+  derivative_name: "rois_cc200"
+  
+model:
+  embedding_dim: 128
+  hidden_dim: 256
+  num_encoder_layers: 2
+  num_attention_heads: 4
+  dropout: 0.4
+  embedding_dropout: 0.3
+  encoder_dropout: 0.3
+  classifier_dropout: 0.4
+  use_positional_encoding: True
+  hopfield_beta: 1.0
+  hopfield_alpha: 0.5
+
+training:
+  seed: 42
+  device: cuda
+  n_folds: 5
+  batch_size: 16
+  validation_batch_size: 8
+  shuffle: True
+  num_workers: 4
+  num_epochs: 150
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  early_stopping_patience: 15
+  save_every: 5
+  optimizer: adam
+  scheduler: cosine
+  mixed_precision: True
+  gradient_clip: 1.0
+  # Early Stopping 
+  early_stopping_metric: loss      # For regression, use loss instead of accuracy
+
+analysis:
+  plot_dpi: 150
+  # Regression-specific plot options
+  scatter_plot: true     # Create scatter plots of predicted vs actual values
+  error_histogram: true  # Plot histogram of prediction errors
+  residual_plot: true    # Plot residuals vs predicted values
+  bland_altman: true     # Create Bland-Altman plot for agreement analysis 

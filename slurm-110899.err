@@ -1,0 +1,8 @@
+ERROR:root:Error loading best model checkpoint: 'EarlyStopping' object has no attribute 'best_epoch'
+/home/pl217/connecto-hopfield/src/training.py:444: RuntimeWarning: invalid value encountered in divide
+  test_loss = test_loss / total if total > 0 else 0
+/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/seaborn/matrix.py:202: RuntimeWarning: All-NaN slice encountered
+  vmin = np.nanmin(calc_data)
+/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/seaborn/matrix.py:207: RuntimeWarning: All-NaN slice encountered
+  vmax = np.nanmax(calc_data)
+slurmstepd-node2: error: *** JOB 110899 ON node2 CANCELLED AT 2025-04-14T17:25:02 ***

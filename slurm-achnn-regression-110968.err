@@ -1,0 +1,1263 @@
+2025-04-15 02:24:53,185 [INFO] Starting ACHNN regression training with config from: /home/pl217/connecto-hopfield/configs/achnn_regression_config.yaml
+2025-04-15 02:24:53,185 [INFO] Results will be saved to: /home/pl217/connecto-hopfield/results/regression/ados/achnn_regression_ados_20250415_022453
+2025-04-15 02:24:53,266 [INFO] Loading timeseries data...
+2025-04-15 02:24:53,288 [INFO] Loaded clinical data from /home/pl217/connecto-hopfield/Phenotypic_V1_0b_preprocessed1.csv, shape: (1112, 106)
+2025-04-15 02:24:53,288 [WARNING] Removing 670 subjects with missing ADOS_TOTAL values
+2025-04-15 02:24:53,289 [WARNING] Removing 27 subjects with negative ADOS_TOTAL values
+2025-04-15 02:24:53,290 [INFO] Target variable (ADOS_TOTAL) stats: min=0.0, max=22.0, mean=11.06, std=4.64
+2025-04-15 02:24:53,290 [INFO] Using sequence length: 30, window step: 1
+2025-04-15 02:24:53,292 [INFO] Processing 415 subjects
+2025-04-15 02:24:53,536 [WARNING] Could not find timeseries file for 50002, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50002_rois_cc200.1D
+2025-04-15 02:24:53,536 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50002_rois_cc200.1D
+2025-04-15 02:24:53,536 [WARNING] Failed to process timeseries for subject 50002, skipping
+2025-04-15 02:24:53,543 [WARNING] Could not find timeseries file for 50003, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50003_rois_cc200.1D
+2025-04-15 02:24:53,543 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50003_rois_cc200.1D
+2025-04-15 02:24:53,543 [WARNING] Failed to process timeseries for subject 50003, skipping
+2025-04-15 02:24:53,550 [WARNING] Could not find timeseries file for 50004, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50004_rois_cc200.1D
+2025-04-15 02:24:53,550 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50004_rois_cc200.1D
+2025-04-15 02:24:53,550 [WARNING] Failed to process timeseries for subject 50004, skipping
+2025-04-15 02:24:53,558 [WARNING] Could not find timeseries file for 50005, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50005_rois_cc200.1D
+2025-04-15 02:24:53,558 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50005_rois_cc200.1D
+2025-04-15 02:24:53,558 [WARNING] Failed to process timeseries for subject 50005, skipping
+2025-04-15 02:24:53,565 [WARNING] Could not find timeseries file for 50006, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50006_rois_cc200.1D
+2025-04-15 02:24:53,565 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50006_rois_cc200.1D
+2025-04-15 02:24:53,565 [WARNING] Failed to process timeseries for subject 50006, skipping
+2025-04-15 02:24:53,572 [WARNING] Could not find timeseries file for 50007, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50007_rois_cc200.1D
+2025-04-15 02:24:53,572 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50007_rois_cc200.1D
+2025-04-15 02:24:53,572 [WARNING] Failed to process timeseries for subject 50007, skipping
+2025-04-15 02:24:53,579 [WARNING] Could not find timeseries file for 50008, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50008_rois_cc200.1D
+2025-04-15 02:24:53,579 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50008_rois_cc200.1D
+2025-04-15 02:24:53,579 [WARNING] Failed to process timeseries for subject 50008, skipping
+2025-04-15 02:24:53,586 [WARNING] Could not find timeseries file for 50009, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50009_rois_cc200.1D
+2025-04-15 02:24:53,586 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50009_rois_cc200.1D
+2025-04-15 02:24:53,586 [WARNING] Failed to process timeseries for subject 50009, skipping
+2025-04-15 02:24:53,594 [WARNING] Could not find timeseries file for 50011, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50011_rois_cc200.1D
+2025-04-15 02:24:53,594 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50011_rois_cc200.1D
+2025-04-15 02:24:53,594 [WARNING] Failed to process timeseries for subject 50011, skipping
+2025-04-15 02:24:53,601 [WARNING] Could not find timeseries file for 50012, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50012_rois_cc200.1D
+2025-04-15 02:24:53,601 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50012_rois_cc200.1D
+2025-04-15 02:24:53,601 [WARNING] Failed to process timeseries for subject 50012, skipping
+2025-04-15 02:24:53,608 [WARNING] Could not find timeseries file for 50013, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50013_rois_cc200.1D
+2025-04-15 02:24:53,608 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50013_rois_cc200.1D
+2025-04-15 02:24:53,608 [WARNING] Failed to process timeseries for subject 50013, skipping
+2025-04-15 02:24:53,615 [WARNING] Could not find timeseries file for 50014, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50014_rois_cc200.1D
+2025-04-15 02:24:53,615 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50014_rois_cc200.1D
+2025-04-15 02:24:53,615 [WARNING] Failed to process timeseries for subject 50014, skipping
+2025-04-15 02:24:53,622 [WARNING] Could not find timeseries file for 50015, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50015_rois_cc200.1D
+2025-04-15 02:24:53,622 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50015_rois_cc200.1D
+2025-04-15 02:24:53,623 [WARNING] Failed to process timeseries for subject 50015, skipping
+2025-04-15 02:24:53,630 [WARNING] Could not find timeseries file for 50016, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50016_rois_cc200.1D
+2025-04-15 02:24:53,630 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50016_rois_cc200.1D
+2025-04-15 02:24:53,630 [WARNING] Failed to process timeseries for subject 50016, skipping
+2025-04-15 02:24:53,637 [WARNING] Could not find timeseries file for 50017, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50017_rois_cc200.1D
+2025-04-15 02:24:53,637 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50017_rois_cc200.1D
+2025-04-15 02:24:53,637 [WARNING] Failed to process timeseries for subject 50017, skipping
+2025-04-15 02:24:53,644 [WARNING] Could not find timeseries file for 50019, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50019_rois_cc200.1D
+2025-04-15 02:24:53,644 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50019_rois_cc200.1D
+2025-04-15 02:24:53,644 [WARNING] Failed to process timeseries for subject 50019, skipping
+2025-04-15 02:24:53,651 [WARNING] Could not find timeseries file for 50022, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50022_rois_cc200.1D
+2025-04-15 02:24:53,651 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50022_rois_cc200.1D
+2025-04-15 02:24:53,652 [WARNING] Failed to process timeseries for subject 50022, skipping
+2025-04-15 02:24:53,659 [WARNING] Could not find timeseries file for 50024, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50024_rois_cc200.1D
+2025-04-15 02:24:53,659 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50024_rois_cc200.1D
+2025-04-15 02:24:53,659 [WARNING] Failed to process timeseries for subject 50024, skipping
+2025-04-15 02:24:53,666 [WARNING] Could not find timeseries file for 50025, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50025_rois_cc200.1D
+2025-04-15 02:24:53,667 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50025_rois_cc200.1D
+2025-04-15 02:24:53,667 [WARNING] Failed to process timeseries for subject 50025, skipping
+2025-04-15 02:24:53,674 [WARNING] Could not find timeseries file for 50026, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50026_rois_cc200.1D
+2025-04-15 02:24:53,674 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50026_rois_cc200.1D
+2025-04-15 02:24:53,674 [WARNING] Failed to process timeseries for subject 50026, skipping
+2025-04-15 02:24:53,681 [WARNING] Could not find timeseries file for 50027, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50027_rois_cc200.1D
+2025-04-15 02:24:53,681 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50027_rois_cc200.1D
+2025-04-15 02:24:53,681 [WARNING] Failed to process timeseries for subject 50027, skipping
+2025-04-15 02:24:53,689 [WARNING] Could not find timeseries file for 50029, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50029_rois_cc200.1D
+2025-04-15 02:24:53,689 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50029_rois_cc200.1D
+2025-04-15 02:24:53,689 [WARNING] Failed to process timeseries for subject 50029, skipping
+2025-04-15 02:24:53,696 [WARNING] Could not find timeseries file for 50053, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50053_rois_cc200.1D
+2025-04-15 02:24:53,696 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50053_rois_cc200.1D
+2025-04-15 02:24:53,696 [WARNING] Failed to process timeseries for subject 50053, skipping
+2025-04-15 02:24:53,703 [WARNING] Could not find timeseries file for 50055, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50055_rois_cc200.1D
+2025-04-15 02:24:53,703 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50055_rois_cc200.1D
+2025-04-15 02:24:53,704 [WARNING] Failed to process timeseries for subject 50055, skipping
+2025-04-15 02:24:53,711 [WARNING] Could not find timeseries file for 50056, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50056_rois_cc200.1D
+2025-04-15 02:24:53,711 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50056_rois_cc200.1D
+2025-04-15 02:24:53,711 [WARNING] Failed to process timeseries for subject 50056, skipping
+2025-04-15 02:24:53,718 [WARNING] Could not find timeseries file for 50057, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50057_rois_cc200.1D
+2025-04-15 02:24:53,718 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50057_rois_cc200.1D
+2025-04-15 02:24:53,718 [WARNING] Failed to process timeseries for subject 50057, skipping
+2025-04-15 02:24:53,725 [WARNING] Could not find timeseries file for 50118, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50118_rois_cc200.1D
+2025-04-15 02:24:53,726 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50118_rois_cc200.1D
+2025-04-15 02:24:53,726 [WARNING] Failed to process timeseries for subject 50118, skipping
+2025-04-15 02:24:53,733 [WARNING] Could not find timeseries file for 50119, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50119_rois_cc200.1D
+2025-04-15 02:24:53,733 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50119_rois_cc200.1D
+2025-04-15 02:24:53,733 [WARNING] Failed to process timeseries for subject 50119, skipping
+2025-04-15 02:24:53,740 [WARNING] Could not find timeseries file for 50120, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50120_rois_cc200.1D
+2025-04-15 02:24:53,740 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50120_rois_cc200.1D
+2025-04-15 02:24:53,740 [WARNING] Failed to process timeseries for subject 50120, skipping
+2025-04-15 02:24:53,748 [WARNING] Could not find timeseries file for 50121, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50121_rois_cc200.1D
+2025-04-15 02:24:53,748 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50121_rois_cc200.1D
+2025-04-15 02:24:53,748 [WARNING] Failed to process timeseries for subject 50121, skipping
+2025-04-15 02:24:53,755 [WARNING] Could not find timeseries file for 50122, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50122_rois_cc200.1D
+2025-04-15 02:24:53,755 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50122_rois_cc200.1D
+2025-04-15 02:24:53,755 [WARNING] Failed to process timeseries for subject 50122, skipping
+2025-04-15 02:24:53,763 [WARNING] Could not find timeseries file for 50123, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50123_rois_cc200.1D
+2025-04-15 02:24:53,763 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50123_rois_cc200.1D
+2025-04-15 02:24:53,763 [WARNING] Failed to process timeseries for subject 50123, skipping
+2025-04-15 02:24:53,770 [WARNING] Could not find timeseries file for 50124, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50124_rois_cc200.1D
+2025-04-15 02:24:53,770 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50124_rois_cc200.1D
+2025-04-15 02:24:53,770 [WARNING] Failed to process timeseries for subject 50124, skipping
+2025-04-15 02:24:53,777 [WARNING] Could not find timeseries file for 50125, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50125_rois_cc200.1D
+2025-04-15 02:24:53,778 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50125_rois_cc200.1D
+2025-04-15 02:24:53,778 [WARNING] Failed to process timeseries for subject 50125, skipping
+2025-04-15 02:24:53,785 [WARNING] Could not find timeseries file for 50126, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50126_rois_cc200.1D
+2025-04-15 02:24:53,785 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50126_rois_cc200.1D
+2025-04-15 02:24:53,785 [WARNING] Failed to process timeseries for subject 50126, skipping
+2025-04-15 02:24:53,792 [WARNING] Could not find timeseries file for 50127, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50127_rois_cc200.1D
+2025-04-15 02:24:53,792 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50127_rois_cc200.1D
+2025-04-15 02:24:53,792 [WARNING] Failed to process timeseries for subject 50127, skipping
+2025-04-15 02:24:53,800 [WARNING] Could not find timeseries file for 50128, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50128_rois_cc200.1D
+2025-04-15 02:24:53,800 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50128_rois_cc200.1D
+2025-04-15 02:24:53,800 [WARNING] Failed to process timeseries for subject 50128, skipping
+2025-04-15 02:24:53,807 [WARNING] Could not find timeseries file for 50129, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50129_rois_cc200.1D
+2025-04-15 02:24:53,807 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50129_rois_cc200.1D
+2025-04-15 02:24:53,807 [WARNING] Failed to process timeseries for subject 50129, skipping
+2025-04-15 02:24:53,815 [WARNING] Could not find timeseries file for 50130, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50130_rois_cc200.1D
+2025-04-15 02:24:53,815 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50130_rois_cc200.1D
+2025-04-15 02:24:53,815 [WARNING] Failed to process timeseries for subject 50130, skipping
+2025-04-15 02:24:53,822 [WARNING] Could not find timeseries file for 50131, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50131_rois_cc200.1D
+2025-04-15 02:24:53,822 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50131_rois_cc200.1D
+2025-04-15 02:24:53,822 [WARNING] Failed to process timeseries for subject 50131, skipping
+2025-04-15 02:24:53,829 [WARNING] Could not find timeseries file for 50132, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50132_rois_cc200.1D
+2025-04-15 02:24:53,830 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50132_rois_cc200.1D
+2025-04-15 02:24:53,830 [WARNING] Failed to process timeseries for subject 50132, skipping
+2025-04-15 02:24:53,837 [WARNING] Could not find timeseries file for 50133, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50133_rois_cc200.1D
+2025-04-15 02:24:53,837 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50133_rois_cc200.1D
+2025-04-15 02:24:53,837 [WARNING] Failed to process timeseries for subject 50133, skipping
+2025-04-15 02:24:53,844 [WARNING] Could not find timeseries file for 50134, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50134_rois_cc200.1D
+2025-04-15 02:24:53,844 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50134_rois_cc200.1D
+2025-04-15 02:24:53,844 [WARNING] Failed to process timeseries for subject 50134, skipping
+2025-04-15 02:24:53,852 [WARNING] Could not find timeseries file for 50135, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50135_rois_cc200.1D
+2025-04-15 02:24:53,852 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50135_rois_cc200.1D
+2025-04-15 02:24:53,852 [WARNING] Failed to process timeseries for subject 50135, skipping
+2025-04-15 02:24:53,859 [WARNING] Could not find timeseries file for 50136, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50136_rois_cc200.1D
+2025-04-15 02:24:53,859 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50136_rois_cc200.1D
+2025-04-15 02:24:53,859 [WARNING] Failed to process timeseries for subject 50136, skipping
+2025-04-15 02:24:53,867 [WARNING] Could not find timeseries file for 50137, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50137_rois_cc200.1D
+2025-04-15 02:24:53,867 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50137_rois_cc200.1D
+2025-04-15 02:24:53,867 [WARNING] Failed to process timeseries for subject 50137, skipping
+2025-04-15 02:24:53,874 [WARNING] Could not find timeseries file for 50142, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50142_rois_cc200.1D
+2025-04-15 02:24:53,874 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50142_rois_cc200.1D
+2025-04-15 02:24:53,874 [WARNING] Failed to process timeseries for subject 50142, skipping
+2025-04-15 02:24:53,882 [WARNING] Could not find timeseries file for 50143, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50143_rois_cc200.1D
+2025-04-15 02:24:53,882 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50143_rois_cc200.1D
+2025-04-15 02:24:53,882 [WARNING] Failed to process timeseries for subject 50143, skipping
+2025-04-15 02:24:53,889 [WARNING] Could not find timeseries file for 50144, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50144_rois_cc200.1D
+2025-04-15 02:24:53,889 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50144_rois_cc200.1D
+2025-04-15 02:24:53,889 [WARNING] Failed to process timeseries for subject 50144, skipping
+2025-04-15 02:24:53,897 [WARNING] Could not find timeseries file for 50145, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50145_rois_cc200.1D
+2025-04-15 02:24:53,897 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50145_rois_cc200.1D
+2025-04-15 02:24:53,897 [WARNING] Failed to process timeseries for subject 50145, skipping
+2025-04-15 02:24:53,904 [WARNING] Could not find timeseries file for 50146, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50146_rois_cc200.1D
+2025-04-15 02:24:53,904 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50146_rois_cc200.1D
+2025-04-15 02:24:53,904 [WARNING] Failed to process timeseries for subject 50146, skipping
+2025-04-15 02:24:53,911 [WARNING] Could not find timeseries file for 50147, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50147_rois_cc200.1D
+2025-04-15 02:24:53,911 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50147_rois_cc200.1D
+2025-04-15 02:24:53,911 [WARNING] Failed to process timeseries for subject 50147, skipping
+2025-04-15 02:24:53,919 [WARNING] Could not find timeseries file for 50148, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50148_rois_cc200.1D
+2025-04-15 02:24:53,919 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50148_rois_cc200.1D
+2025-04-15 02:24:53,919 [WARNING] Failed to process timeseries for subject 50148, skipping
+2025-04-15 02:24:53,926 [WARNING] Could not find timeseries file for 50149, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50149_rois_cc200.1D
+2025-04-15 02:24:53,926 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50149_rois_cc200.1D
+2025-04-15 02:24:53,926 [WARNING] Failed to process timeseries for subject 50149, skipping
+2025-04-15 02:24:53,933 [WARNING] Could not find timeseries file for 50150, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50150_rois_cc200.1D
+2025-04-15 02:24:53,933 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50150_rois_cc200.1D
+2025-04-15 02:24:53,933 [WARNING] Failed to process timeseries for subject 50150, skipping
+2025-04-15 02:24:53,941 [WARNING] Could not find timeseries file for 50152, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50152_rois_cc200.1D
+2025-04-15 02:24:53,941 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50152_rois_cc200.1D
+2025-04-15 02:24:53,941 [WARNING] Failed to process timeseries for subject 50152, skipping
+2025-04-15 02:24:53,948 [WARNING] Could not find timeseries file for 50153, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50153_rois_cc200.1D
+2025-04-15 02:24:53,948 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50153_rois_cc200.1D
+2025-04-15 02:24:53,948 [WARNING] Failed to process timeseries for subject 50153, skipping
+2025-04-15 02:24:53,955 [WARNING] Could not find timeseries file for 50155, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50155_rois_cc200.1D
+2025-04-15 02:24:53,955 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50155_rois_cc200.1D
+2025-04-15 02:24:53,956 [WARNING] Failed to process timeseries for subject 50155, skipping
+2025-04-15 02:24:53,963 [WARNING] Could not find timeseries file for 50156, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50156_rois_cc200.1D
+2025-04-15 02:24:53,963 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50156_rois_cc200.1D
+2025-04-15 02:24:53,963 [WARNING] Failed to process timeseries for subject 50156, skipping
+2025-04-15 02:24:53,970 [WARNING] Could not find timeseries file for 50182, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50182_rois_cc200.1D
+2025-04-15 02:24:53,970 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50182_rois_cc200.1D
+2025-04-15 02:24:53,970 [WARNING] Failed to process timeseries for subject 50182, skipping
+2025-04-15 02:24:53,978 [WARNING] Could not find timeseries file for 50183, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50183_rois_cc200.1D
+2025-04-15 02:24:53,978 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50183_rois_cc200.1D
+2025-04-15 02:24:53,978 [WARNING] Failed to process timeseries for subject 50183, skipping
+2025-04-15 02:24:53,985 [WARNING] Could not find timeseries file for 50184, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50184_rois_cc200.1D
+2025-04-15 02:24:53,985 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50184_rois_cc200.1D
+2025-04-15 02:24:53,985 [WARNING] Failed to process timeseries for subject 50184, skipping
+2025-04-15 02:24:53,993 [WARNING] Could not find timeseries file for 50185, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50185_rois_cc200.1D
+2025-04-15 02:24:53,993 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50185_rois_cc200.1D
+2025-04-15 02:24:53,993 [WARNING] Failed to process timeseries for subject 50185, skipping
+2025-04-15 02:24:54,000 [WARNING] Could not find timeseries file for 50186, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50186_rois_cc200.1D
+2025-04-15 02:24:54,000 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50186_rois_cc200.1D
+2025-04-15 02:24:54,000 [WARNING] Failed to process timeseries for subject 50186, skipping
+2025-04-15 02:24:54,007 [WARNING] Could not find timeseries file for 50187, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50187_rois_cc200.1D
+2025-04-15 02:24:54,007 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50187_rois_cc200.1D
+2025-04-15 02:24:54,007 [WARNING] Failed to process timeseries for subject 50187, skipping
+2025-04-15 02:24:54,015 [WARNING] Could not find timeseries file for 50188, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50188_rois_cc200.1D
+2025-04-15 02:24:54,015 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50188_rois_cc200.1D
+2025-04-15 02:24:54,015 [WARNING] Failed to process timeseries for subject 50188, skipping
+2025-04-15 02:24:54,022 [WARNING] Could not find timeseries file for 50189, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50189_rois_cc200.1D
+2025-04-15 02:24:54,022 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50189_rois_cc200.1D
+2025-04-15 02:24:54,022 [WARNING] Failed to process timeseries for subject 50189, skipping
+2025-04-15 02:24:54,030 [WARNING] Could not find timeseries file for 50190, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50190_rois_cc200.1D
+2025-04-15 02:24:54,030 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50190_rois_cc200.1D
+2025-04-15 02:24:54,030 [WARNING] Failed to process timeseries for subject 50190, skipping
+2025-04-15 02:24:54,037 [WARNING] Could not find timeseries file for 50191, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50191_rois_cc200.1D
+2025-04-15 02:24:54,037 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50191_rois_cc200.1D
+2025-04-15 02:24:54,037 [WARNING] Failed to process timeseries for subject 50191, skipping
+2025-04-15 02:24:54,044 [WARNING] Could not find timeseries file for 50192, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50192_rois_cc200.1D
+2025-04-15 02:24:54,044 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50192_rois_cc200.1D
+2025-04-15 02:24:54,044 [WARNING] Failed to process timeseries for subject 50192, skipping
+2025-04-15 02:24:54,052 [WARNING] Could not find timeseries file for 50212, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50212_rois_cc200.1D
+2025-04-15 02:24:54,052 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50212_rois_cc200.1D
+2025-04-15 02:24:54,052 [WARNING] Failed to process timeseries for subject 50212, skipping
+2025-04-15 02:24:54,059 [WARNING] Could not find timeseries file for 50216, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50216_rois_cc200.1D
+2025-04-15 02:24:54,059 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50216_rois_cc200.1D
+2025-04-15 02:24:54,059 [WARNING] Failed to process timeseries for subject 50216, skipping
+2025-04-15 02:24:54,067 [WARNING] Could not find timeseries file for 50232, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50232_rois_cc200.1D
+2025-04-15 02:24:54,067 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50232_rois_cc200.1D
+2025-04-15 02:24:54,067 [WARNING] Failed to process timeseries for subject 50232, skipping
+2025-04-15 02:24:54,074 [WARNING] Could not find timeseries file for 50233, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50233_rois_cc200.1D
+2025-04-15 02:24:54,074 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50233_rois_cc200.1D
+2025-04-15 02:24:54,074 [WARNING] Failed to process timeseries for subject 50233, skipping
+2025-04-15 02:24:54,082 [WARNING] Could not find timeseries file for 50234, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50234_rois_cc200.1D
+2025-04-15 02:24:54,082 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50234_rois_cc200.1D
+2025-04-15 02:24:54,082 [WARNING] Failed to process timeseries for subject 50234, skipping
+2025-04-15 02:24:54,089 [WARNING] Could not find timeseries file for 50235, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50235_rois_cc200.1D
+2025-04-15 02:24:54,089 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50235_rois_cc200.1D
+2025-04-15 02:24:54,089 [WARNING] Failed to process timeseries for subject 50235, skipping
+2025-04-15 02:24:54,097 [WARNING] Could not find timeseries file for 50236, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50236_rois_cc200.1D
+2025-04-15 02:24:54,097 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50236_rois_cc200.1D
+2025-04-15 02:24:54,097 [WARNING] Failed to process timeseries for subject 50236, skipping
+2025-04-15 02:24:54,104 [WARNING] Could not find timeseries file for 50237, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50237_rois_cc200.1D
+2025-04-15 02:24:54,104 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50237_rois_cc200.1D
+2025-04-15 02:24:54,104 [WARNING] Failed to process timeseries for subject 50237, skipping
+2025-04-15 02:24:54,112 [WARNING] Could not find timeseries file for 50238, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50238_rois_cc200.1D
+2025-04-15 02:24:54,112 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50238_rois_cc200.1D
+2025-04-15 02:24:54,112 [WARNING] Failed to process timeseries for subject 50238, skipping
+2025-04-15 02:24:54,119 [WARNING] Could not find timeseries file for 50239, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50239_rois_cc200.1D
+2025-04-15 02:24:54,119 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50239_rois_cc200.1D
+2025-04-15 02:24:54,119 [WARNING] Failed to process timeseries for subject 50239, skipping
+2025-04-15 02:24:54,127 [WARNING] Could not find timeseries file for 50240, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50240_rois_cc200.1D
+2025-04-15 02:24:54,127 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50240_rois_cc200.1D
+2025-04-15 02:24:54,127 [WARNING] Failed to process timeseries for subject 50240, skipping
+2025-04-15 02:24:54,134 [WARNING] Could not find timeseries file for 50241, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50241_rois_cc200.1D
+2025-04-15 02:24:54,134 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50241_rois_cc200.1D
+2025-04-15 02:24:54,134 [WARNING] Failed to process timeseries for subject 50241, skipping
+2025-04-15 02:24:54,142 [WARNING] Could not find timeseries file for 50242, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50242_rois_cc200.1D
+2025-04-15 02:24:54,142 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50242_rois_cc200.1D
+2025-04-15 02:24:54,142 [WARNING] Failed to process timeseries for subject 50242, skipping
+2025-04-15 02:24:54,149 [WARNING] Could not find timeseries file for 50243, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50243_rois_cc200.1D
+2025-04-15 02:24:54,149 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50243_rois_cc200.1D
+2025-04-15 02:24:54,149 [WARNING] Failed to process timeseries for subject 50243, skipping
+2025-04-15 02:24:54,157 [WARNING] Could not find timeseries file for 50244, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50244_rois_cc200.1D
+2025-04-15 02:24:54,157 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50244_rois_cc200.1D
+2025-04-15 02:24:54,157 [WARNING] Failed to process timeseries for subject 50244, skipping
+2025-04-15 02:24:54,164 [WARNING] Could not find timeseries file for 50245, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50245_rois_cc200.1D
+2025-04-15 02:24:54,164 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50245_rois_cc200.1D
+2025-04-15 02:24:54,164 [WARNING] Failed to process timeseries for subject 50245, skipping
+2025-04-15 02:24:54,172 [WARNING] Could not find timeseries file for 50246, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50246_rois_cc200.1D
+2025-04-15 02:24:54,172 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50246_rois_cc200.1D
+2025-04-15 02:24:54,172 [WARNING] Failed to process timeseries for subject 50246, skipping
+2025-04-15 02:24:54,179 [WARNING] Could not find timeseries file for 50247, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50247_rois_cc200.1D
+2025-04-15 02:24:54,179 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50247_rois_cc200.1D
+2025-04-15 02:24:54,179 [WARNING] Failed to process timeseries for subject 50247, skipping
+2025-04-15 02:24:54,186 [WARNING] Could not find timeseries file for 50248, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50248_rois_cc200.1D
+2025-04-15 02:24:54,186 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50248_rois_cc200.1D
+2025-04-15 02:24:54,186 [WARNING] Failed to process timeseries for subject 50248, skipping
+2025-04-15 02:24:54,194 [WARNING] Could not find timeseries file for 50249, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50249_rois_cc200.1D
+2025-04-15 02:24:54,194 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50249_rois_cc200.1D
+2025-04-15 02:24:54,194 [WARNING] Failed to process timeseries for subject 50249, skipping
+2025-04-15 02:24:54,201 [WARNING] Could not find timeseries file for 50250, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50250_rois_cc200.1D
+2025-04-15 02:24:54,201 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50250_rois_cc200.1D
+2025-04-15 02:24:54,201 [WARNING] Failed to process timeseries for subject 50250, skipping
+2025-04-15 02:24:54,209 [WARNING] Could not find timeseries file for 50251, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50251_rois_cc200.1D
+2025-04-15 02:24:54,209 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50251_rois_cc200.1D
+2025-04-15 02:24:54,209 [WARNING] Failed to process timeseries for subject 50251, skipping
+2025-04-15 02:24:54,216 [WARNING] Could not find timeseries file for 50252, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50252_rois_cc200.1D
+2025-04-15 02:24:54,216 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50252_rois_cc200.1D
+2025-04-15 02:24:54,216 [WARNING] Failed to process timeseries for subject 50252, skipping
+2025-04-15 02:24:54,223 [WARNING] Could not find timeseries file for 50253, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50253_rois_cc200.1D
+2025-04-15 02:24:54,223 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50253_rois_cc200.1D
+2025-04-15 02:24:54,223 [WARNING] Failed to process timeseries for subject 50253, skipping
+2025-04-15 02:24:54,230 [WARNING] Could not find timeseries file for 50254, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50254_rois_cc200.1D
+2025-04-15 02:24:54,230 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50254_rois_cc200.1D
+2025-04-15 02:24:54,231 [WARNING] Failed to process timeseries for subject 50254, skipping
+2025-04-15 02:24:54,238 [WARNING] Could not find timeseries file for 50255, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50255_rois_cc200.1D
+2025-04-15 02:24:54,238 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50255_rois_cc200.1D
+2025-04-15 02:24:54,238 [WARNING] Failed to process timeseries for subject 50255, skipping
+2025-04-15 02:24:54,245 [WARNING] Could not find timeseries file for 50432, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50432_rois_cc200.1D
+2025-04-15 02:24:54,245 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50432_rois_cc200.1D
+2025-04-15 02:24:54,245 [WARNING] Failed to process timeseries for subject 50432, skipping
+2025-04-15 02:24:54,252 [WARNING] Could not find timeseries file for 50433, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50433_rois_cc200.1D
+2025-04-15 02:24:54,252 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50433_rois_cc200.1D
+2025-04-15 02:24:54,252 [WARNING] Failed to process timeseries for subject 50433, skipping
+2025-04-15 02:24:54,260 [WARNING] Could not find timeseries file for 50434, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50434_rois_cc200.1D
+2025-04-15 02:24:54,260 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50434_rois_cc200.1D
+2025-04-15 02:24:54,260 [WARNING] Failed to process timeseries for subject 50434, skipping
+2025-04-15 02:24:54,267 [WARNING] Could not find timeseries file for 50435, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50435_rois_cc200.1D
+2025-04-15 02:24:54,267 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50435_rois_cc200.1D
+2025-04-15 02:24:54,267 [WARNING] Failed to process timeseries for subject 50435, skipping
+2025-04-15 02:24:54,274 [WARNING] Could not find timeseries file for 50436, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50436_rois_cc200.1D
+2025-04-15 02:24:54,274 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50436_rois_cc200.1D
+2025-04-15 02:24:54,275 [WARNING] Failed to process timeseries for subject 50436, skipping
+2025-04-15 02:24:54,282 [WARNING] Could not find timeseries file for 50437, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50437_rois_cc200.1D
+2025-04-15 02:24:54,282 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50437_rois_cc200.1D
+2025-04-15 02:24:54,282 [WARNING] Failed to process timeseries for subject 50437, skipping
+2025-04-15 02:24:54,289 [WARNING] Could not find timeseries file for 50438, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50438_rois_cc200.1D
+2025-04-15 02:24:54,289 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50438_rois_cc200.1D
+2025-04-15 02:24:54,289 [WARNING] Failed to process timeseries for subject 50438, skipping
+2025-04-15 02:24:54,297 [WARNING] Could not find timeseries file for 50439, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50439_rois_cc200.1D
+2025-04-15 02:24:54,297 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50439_rois_cc200.1D
+2025-04-15 02:24:54,297 [WARNING] Failed to process timeseries for subject 50439, skipping
+2025-04-15 02:24:54,304 [WARNING] Could not find timeseries file for 50440, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50440_rois_cc200.1D
+2025-04-15 02:24:54,304 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50440_rois_cc200.1D
+2025-04-15 02:24:54,304 [WARNING] Failed to process timeseries for subject 50440, skipping
+2025-04-15 02:24:54,311 [WARNING] Could not find timeseries file for 50441, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50441_rois_cc200.1D
+2025-04-15 02:24:54,311 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50441_rois_cc200.1D
+2025-04-15 02:24:54,311 [WARNING] Failed to process timeseries for subject 50441, skipping
+2025-04-15 02:24:54,319 [WARNING] Could not find timeseries file for 50442, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50442_rois_cc200.1D
+2025-04-15 02:24:54,319 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50442_rois_cc200.1D
+2025-04-15 02:24:54,319 [WARNING] Failed to process timeseries for subject 50442, skipping
+2025-04-15 02:24:54,326 [WARNING] Could not find timeseries file for 50443, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50443_rois_cc200.1D
+2025-04-15 02:24:54,326 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50443_rois_cc200.1D
+2025-04-15 02:24:54,326 [WARNING] Failed to process timeseries for subject 50443, skipping
+2025-04-15 02:24:54,334 [WARNING] Could not find timeseries file for 50444, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50444_rois_cc200.1D
+2025-04-15 02:24:54,334 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50444_rois_cc200.1D
+2025-04-15 02:24:54,334 [WARNING] Failed to process timeseries for subject 50444, skipping
+2025-04-15 02:24:54,341 [WARNING] Could not find timeseries file for 50445, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50445_rois_cc200.1D
+2025-04-15 02:24:54,341 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50445_rois_cc200.1D
+2025-04-15 02:24:54,341 [WARNING] Failed to process timeseries for subject 50445, skipping
+2025-04-15 02:24:54,349 [WARNING] Could not find timeseries file for 50446, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50446_rois_cc200.1D
+2025-04-15 02:24:54,349 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50446_rois_cc200.1D
+2025-04-15 02:24:54,349 [WARNING] Failed to process timeseries for subject 50446, skipping
+2025-04-15 02:24:54,356 [WARNING] Could not find timeseries file for 50447, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50447_rois_cc200.1D
+2025-04-15 02:24:54,356 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50447_rois_cc200.1D
+2025-04-15 02:24:54,356 [WARNING] Failed to process timeseries for subject 50447, skipping
+2025-04-15 02:24:54,364 [WARNING] Could not find timeseries file for 50448, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50448_rois_cc200.1D
+2025-04-15 02:24:54,364 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50448_rois_cc200.1D
+2025-04-15 02:24:54,364 [WARNING] Failed to process timeseries for subject 50448, skipping
+2025-04-15 02:24:54,371 [WARNING] Could not find timeseries file for 50449, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50449_rois_cc200.1D
+2025-04-15 02:24:54,371 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50449_rois_cc200.1D
+2025-04-15 02:24:54,371 [WARNING] Failed to process timeseries for subject 50449, skipping
+2025-04-15 02:24:54,378 [WARNING] Could not find timeseries file for 50450, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50450_rois_cc200.1D
+2025-04-15 02:24:54,378 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50450_rois_cc200.1D
+2025-04-15 02:24:54,378 [WARNING] Failed to process timeseries for subject 50450, skipping
+2025-04-15 02:24:54,386 [WARNING] Could not find timeseries file for 50451, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50451_rois_cc200.1D
+2025-04-15 02:24:54,386 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50451_rois_cc200.1D
+2025-04-15 02:24:54,386 [WARNING] Failed to process timeseries for subject 50451, skipping
+2025-04-15 02:24:54,393 [WARNING] Could not find timeseries file for 50452, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50452_rois_cc200.1D
+2025-04-15 02:24:54,393 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50452_rois_cc200.1D
+2025-04-15 02:24:54,393 [WARNING] Failed to process timeseries for subject 50452, skipping
+2025-04-15 02:24:54,401 [WARNING] Could not find timeseries file for 50454, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50454_rois_cc200.1D
+2025-04-15 02:24:54,401 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50454_rois_cc200.1D
+2025-04-15 02:24:54,401 [WARNING] Failed to process timeseries for subject 50454, skipping
+2025-04-15 02:24:54,408 [WARNING] Could not find timeseries file for 50455, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50455_rois_cc200.1D
+2025-04-15 02:24:54,408 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50455_rois_cc200.1D
+2025-04-15 02:24:54,408 [WARNING] Failed to process timeseries for subject 50455, skipping
+2025-04-15 02:24:54,416 [WARNING] Could not find timeseries file for 50456, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50456_rois_cc200.1D
+2025-04-15 02:24:54,416 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50456_rois_cc200.1D
+2025-04-15 02:24:54,416 [WARNING] Failed to process timeseries for subject 50456, skipping
+2025-04-15 02:24:54,423 [WARNING] Could not find timeseries file for 50458, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50458_rois_cc200.1D
+2025-04-15 02:24:54,423 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50458_rois_cc200.1D
+2025-04-15 02:24:54,423 [WARNING] Failed to process timeseries for subject 50458, skipping
+2025-04-15 02:24:54,430 [WARNING] Could not find timeseries file for 50459, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50459_rois_cc200.1D
+2025-04-15 02:24:54,430 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50459_rois_cc200.1D
+2025-04-15 02:24:54,430 [WARNING] Failed to process timeseries for subject 50459, skipping
+2025-04-15 02:24:54,438 [WARNING] Could not find timeseries file for 50460, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50460_rois_cc200.1D
+2025-04-15 02:24:54,438 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50460_rois_cc200.1D
+2025-04-15 02:24:54,438 [WARNING] Failed to process timeseries for subject 50460, skipping
+2025-04-15 02:24:54,445 [WARNING] Could not find timeseries file for 50461, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50461_rois_cc200.1D
+2025-04-15 02:24:54,445 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50461_rois_cc200.1D
+2025-04-15 02:24:54,445 [WARNING] Failed to process timeseries for subject 50461, skipping
+2025-04-15 02:24:54,453 [WARNING] Could not find timeseries file for 50462, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50462_rois_cc200.1D
+2025-04-15 02:24:54,453 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50462_rois_cc200.1D
+2025-04-15 02:24:54,453 [WARNING] Failed to process timeseries for subject 50462, skipping
+2025-04-15 02:24:54,460 [WARNING] Could not find timeseries file for 50463, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50463_rois_cc200.1D
+2025-04-15 02:24:54,460 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50463_rois_cc200.1D
+2025-04-15 02:24:54,460 [WARNING] Failed to process timeseries for subject 50463, skipping
+2025-04-15 02:24:54,468 [WARNING] Could not find timeseries file for 50464, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50464_rois_cc200.1D
+2025-04-15 02:24:54,468 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50464_rois_cc200.1D
+2025-04-15 02:24:54,468 [WARNING] Failed to process timeseries for subject 50464, skipping
+2025-04-15 02:24:54,475 [WARNING] Could not find timeseries file for 50467, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50467_rois_cc200.1D
+2025-04-15 02:24:54,475 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50467_rois_cc200.1D
+2025-04-15 02:24:54,475 [WARNING] Failed to process timeseries for subject 50467, skipping
+2025-04-15 02:24:54,483 [WARNING] Could not find timeseries file for 50475, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50475_rois_cc200.1D
+2025-04-15 02:24:54,483 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50475_rois_cc200.1D
+2025-04-15 02:24:54,483 [WARNING] Failed to process timeseries for subject 50475, skipping
+2025-04-15 02:24:54,490 [WARNING] Could not find timeseries file for 50476, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50476_rois_cc200.1D
+2025-04-15 02:24:54,490 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50476_rois_cc200.1D
+2025-04-15 02:24:54,491 [WARNING] Failed to process timeseries for subject 50476, skipping
+2025-04-15 02:24:54,498 [WARNING] Could not find timeseries file for 50477, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50477_rois_cc200.1D
+2025-04-15 02:24:54,498 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50477_rois_cc200.1D
+2025-04-15 02:24:54,498 [WARNING] Failed to process timeseries for subject 50477, skipping
+2025-04-15 02:24:54,505 [WARNING] Could not find timeseries file for 50478, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50478_rois_cc200.1D
+2025-04-15 02:24:54,505 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50478_rois_cc200.1D
+2025-04-15 02:24:54,505 [WARNING] Failed to process timeseries for subject 50478, skipping
+2025-04-15 02:24:54,513 [WARNING] Could not find timeseries file for 50479, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50479_rois_cc200.1D
+2025-04-15 02:24:54,513 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50479_rois_cc200.1D
+2025-04-15 02:24:54,513 [WARNING] Failed to process timeseries for subject 50479, skipping
+2025-04-15 02:24:54,520 [WARNING] Could not find timeseries file for 50480, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50480_rois_cc200.1D
+2025-04-15 02:24:54,520 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50480_rois_cc200.1D
+2025-04-15 02:24:54,520 [WARNING] Failed to process timeseries for subject 50480, skipping
+2025-04-15 02:24:54,528 [WARNING] Could not find timeseries file for 50481, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50481_rois_cc200.1D
+2025-04-15 02:24:54,528 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50481_rois_cc200.1D
+2025-04-15 02:24:54,528 [WARNING] Failed to process timeseries for subject 50481, skipping
+2025-04-15 02:24:54,536 [WARNING] Could not find timeseries file for 50482, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50482_rois_cc200.1D
+2025-04-15 02:24:54,536 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50482_rois_cc200.1D
+2025-04-15 02:24:54,536 [WARNING] Failed to process timeseries for subject 50482, skipping
+2025-04-15 02:24:54,543 [WARNING] Could not find timeseries file for 50483, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50483_rois_cc200.1D
+2025-04-15 02:24:54,543 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50483_rois_cc200.1D
+2025-04-15 02:24:54,543 [WARNING] Failed to process timeseries for subject 50483, skipping
+2025-04-15 02:24:54,550 [WARNING] Could not find timeseries file for 50484, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50484_rois_cc200.1D
+2025-04-15 02:24:54,551 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50484_rois_cc200.1D
+2025-04-15 02:24:54,551 [WARNING] Failed to process timeseries for subject 50484, skipping
+2025-04-15 02:24:54,558 [WARNING] Could not find timeseries file for 50485, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50485_rois_cc200.1D
+2025-04-15 02:24:54,558 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50485_rois_cc200.1D
+2025-04-15 02:24:54,558 [WARNING] Failed to process timeseries for subject 50485, skipping
+2025-04-15 02:24:54,566 [WARNING] Could not find timeseries file for 50486, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50486_rois_cc200.1D
+2025-04-15 02:24:54,566 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50486_rois_cc200.1D
+2025-04-15 02:24:54,566 [WARNING] Failed to process timeseries for subject 50486, skipping
+2025-04-15 02:24:54,573 [WARNING] Could not find timeseries file for 50487, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50487_rois_cc200.1D
+2025-04-15 02:24:54,573 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50487_rois_cc200.1D
+2025-04-15 02:24:54,573 [WARNING] Failed to process timeseries for subject 50487, skipping
+2025-04-15 02:24:54,581 [WARNING] Could not find timeseries file for 50488, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50488_rois_cc200.1D
+2025-04-15 02:24:54,581 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50488_rois_cc200.1D
+2025-04-15 02:24:54,581 [WARNING] Failed to process timeseries for subject 50488, skipping
+2025-04-15 02:24:54,588 [WARNING] Could not find timeseries file for 50489, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50489_rois_cc200.1D
+2025-04-15 02:24:54,588 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50489_rois_cc200.1D
+2025-04-15 02:24:54,588 [WARNING] Failed to process timeseries for subject 50489, skipping
+2025-04-15 02:24:54,595 [WARNING] Could not find timeseries file for 50490, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50490_rois_cc200.1D
+2025-04-15 02:24:54,596 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50490_rois_cc200.1D
+2025-04-15 02:24:54,596 [WARNING] Failed to process timeseries for subject 50490, skipping
+2025-04-15 02:24:54,603 [WARNING] Could not find timeseries file for 50491, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50491_rois_cc200.1D
+2025-04-15 02:24:54,603 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50491_rois_cc200.1D
+2025-04-15 02:24:54,603 [WARNING] Failed to process timeseries for subject 50491, skipping
+2025-04-15 02:24:54,610 [WARNING] Could not find timeseries file for 50492, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50492_rois_cc200.1D
+2025-04-15 02:24:54,611 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50492_rois_cc200.1D
+2025-04-15 02:24:54,611 [WARNING] Failed to process timeseries for subject 50492, skipping
+2025-04-15 02:24:54,618 [WARNING] Could not find timeseries file for 50493, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50493_rois_cc200.1D
+2025-04-15 02:24:54,618 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50493_rois_cc200.1D
+2025-04-15 02:24:54,618 [WARNING] Failed to process timeseries for subject 50493, skipping
+2025-04-15 02:24:54,626 [WARNING] Could not find timeseries file for 50494, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50494_rois_cc200.1D
+2025-04-15 02:24:54,626 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50494_rois_cc200.1D
+2025-04-15 02:24:54,626 [WARNING] Failed to process timeseries for subject 50494, skipping
+2025-04-15 02:24:54,633 [WARNING] Could not find timeseries file for 50495, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50495_rois_cc200.1D
+2025-04-15 02:24:54,633 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50495_rois_cc200.1D
+2025-04-15 02:24:54,633 [WARNING] Failed to process timeseries for subject 50495, skipping
+2025-04-15 02:24:54,640 [WARNING] Could not find timeseries file for 50496, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50496_rois_cc200.1D
+2025-04-15 02:24:54,641 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50496_rois_cc200.1D
+2025-04-15 02:24:54,641 [WARNING] Failed to process timeseries for subject 50496, skipping
+2025-04-15 02:24:54,648 [WARNING] Could not find timeseries file for 50497, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50497_rois_cc200.1D
+2025-04-15 02:24:54,648 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50497_rois_cc200.1D
+2025-04-15 02:24:54,648 [WARNING] Failed to process timeseries for subject 50497, skipping
+2025-04-15 02:24:54,655 [WARNING] Could not find timeseries file for 50498, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50498_rois_cc200.1D
+2025-04-15 02:24:54,656 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50498_rois_cc200.1D
+2025-04-15 02:24:54,656 [WARNING] Failed to process timeseries for subject 50498, skipping
+2025-04-15 02:24:54,663 [WARNING] Could not find timeseries file for 50499, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50499_rois_cc200.1D
+2025-04-15 02:24:54,663 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50499_rois_cc200.1D
+2025-04-15 02:24:54,663 [WARNING] Failed to process timeseries for subject 50499, skipping
+2025-04-15 02:24:54,670 [WARNING] Could not find timeseries file for 50500, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50500_rois_cc200.1D
+2025-04-15 02:24:54,670 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50500_rois_cc200.1D
+2025-04-15 02:24:54,670 [WARNING] Failed to process timeseries for subject 50500, skipping
+2025-04-15 02:24:54,678 [WARNING] Could not find timeseries file for 50501, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50501_rois_cc200.1D
+2025-04-15 02:24:54,678 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50501_rois_cc200.1D
+2025-04-15 02:24:54,678 [WARNING] Failed to process timeseries for subject 50501, skipping
+2025-04-15 02:24:54,685 [WARNING] Could not find timeseries file for 50502, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50502_rois_cc200.1D
+2025-04-15 02:24:54,685 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50502_rois_cc200.1D
+2025-04-15 02:24:54,685 [WARNING] Failed to process timeseries for subject 50502, skipping
+2025-04-15 02:24:54,693 [WARNING] Could not find timeseries file for 50503, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50503_rois_cc200.1D
+2025-04-15 02:24:54,693 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50503_rois_cc200.1D
+2025-04-15 02:24:54,693 [WARNING] Failed to process timeseries for subject 50503, skipping
+2025-04-15 02:24:54,700 [WARNING] Could not find timeseries file for 50504, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50504_rois_cc200.1D
+2025-04-15 02:24:54,700 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50504_rois_cc200.1D
+2025-04-15 02:24:54,700 [WARNING] Failed to process timeseries for subject 50504, skipping
+2025-04-15 02:24:54,708 [WARNING] Could not find timeseries file for 50505, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50505_rois_cc200.1D
+2025-04-15 02:24:54,708 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50505_rois_cc200.1D
+2025-04-15 02:24:54,708 [WARNING] Failed to process timeseries for subject 50505, skipping
+2025-04-15 02:24:54,715 [WARNING] Could not find timeseries file for 50506, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50506_rois_cc200.1D
+2025-04-15 02:24:54,715 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50506_rois_cc200.1D
+2025-04-15 02:24:54,715 [WARNING] Failed to process timeseries for subject 50506, skipping
+2025-04-15 02:24:54,722 [WARNING] Could not find timeseries file for 50507, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50507_rois_cc200.1D
+2025-04-15 02:24:54,722 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50507_rois_cc200.1D
+2025-04-15 02:24:54,722 [WARNING] Failed to process timeseries for subject 50507, skipping
+2025-04-15 02:24:54,730 [WARNING] Could not find timeseries file for 50508, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50508_rois_cc200.1D
+2025-04-15 02:24:54,730 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50508_rois_cc200.1D
+2025-04-15 02:24:54,730 [WARNING] Failed to process timeseries for subject 50508, skipping
+2025-04-15 02:24:54,737 [WARNING] Could not find timeseries file for 50509, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50509_rois_cc200.1D
+2025-04-15 02:24:54,737 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50509_rois_cc200.1D
+2025-04-15 02:24:54,737 [WARNING] Failed to process timeseries for subject 50509, skipping
+2025-04-15 02:24:54,745 [WARNING] Could not find timeseries file for 50510, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50510_rois_cc200.1D
+2025-04-15 02:24:54,745 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50510_rois_cc200.1D
+2025-04-15 02:24:54,745 [WARNING] Failed to process timeseries for subject 50510, skipping
+2025-04-15 02:24:54,752 [WARNING] Could not find timeseries file for 50511, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50511_rois_cc200.1D
+2025-04-15 02:24:54,752 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50511_rois_cc200.1D
+2025-04-15 02:24:54,752 [WARNING] Failed to process timeseries for subject 50511, skipping
+2025-04-15 02:24:54,759 [WARNING] Could not find timeseries file for 50512, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50512_rois_cc200.1D
+2025-04-15 02:24:54,759 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50512_rois_cc200.1D
+2025-04-15 02:24:54,760 [WARNING] Failed to process timeseries for subject 50512, skipping
+2025-04-15 02:24:54,767 [WARNING] Could not find timeseries file for 50513, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50513_rois_cc200.1D
+2025-04-15 02:24:54,767 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50513_rois_cc200.1D
+2025-04-15 02:24:54,767 [WARNING] Failed to process timeseries for subject 50513, skipping
+2025-04-15 02:24:54,774 [WARNING] Could not find timeseries file for 50514, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50514_rois_cc200.1D
+2025-04-15 02:24:54,774 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50514_rois_cc200.1D
+2025-04-15 02:24:54,775 [WARNING] Failed to process timeseries for subject 50514, skipping
+2025-04-15 02:24:54,782 [WARNING] Could not find timeseries file for 50515, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50515_rois_cc200.1D
+2025-04-15 02:24:54,782 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50515_rois_cc200.1D
+2025-04-15 02:24:54,782 [WARNING] Failed to process timeseries for subject 50515, skipping
+2025-04-15 02:24:54,789 [WARNING] Could not find timeseries file for 50516, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50516_rois_cc200.1D
+2025-04-15 02:24:54,789 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50516_rois_cc200.1D
+2025-04-15 02:24:54,789 [WARNING] Failed to process timeseries for subject 50516, skipping
+2025-04-15 02:24:54,797 [WARNING] Could not find timeseries file for 50517, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50517_rois_cc200.1D
+2025-04-15 02:24:54,797 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50517_rois_cc200.1D
+2025-04-15 02:24:54,797 [WARNING] Failed to process timeseries for subject 50517, skipping
+2025-04-15 02:24:54,804 [WARNING] Could not find timeseries file for 50518, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50518_rois_cc200.1D
+2025-04-15 02:24:54,804 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50518_rois_cc200.1D
+2025-04-15 02:24:54,804 [WARNING] Failed to process timeseries for subject 50518, skipping
+2025-04-15 02:24:54,812 [WARNING] Could not find timeseries file for 50519, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50519_rois_cc200.1D
+2025-04-15 02:24:54,812 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50519_rois_cc200.1D
+2025-04-15 02:24:54,812 [WARNING] Failed to process timeseries for subject 50519, skipping
+2025-04-15 02:24:54,819 [WARNING] Could not find timeseries file for 50520, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50520_rois_cc200.1D
+2025-04-15 02:24:54,819 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50520_rois_cc200.1D
+2025-04-15 02:24:54,819 [WARNING] Failed to process timeseries for subject 50520, skipping
+2025-04-15 02:24:54,827 [WARNING] Could not find timeseries file for 50521, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50521_rois_cc200.1D
+2025-04-15 02:24:54,827 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50521_rois_cc200.1D
+2025-04-15 02:24:54,827 [WARNING] Failed to process timeseries for subject 50521, skipping
+2025-04-15 02:24:54,834 [WARNING] Could not find timeseries file for 50522, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50522_rois_cc200.1D
+2025-04-15 02:24:54,834 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50522_rois_cc200.1D
+2025-04-15 02:24:54,834 [WARNING] Failed to process timeseries for subject 50522, skipping
+2025-04-15 02:24:54,842 [WARNING] Could not find timeseries file for 50523, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50523_rois_cc200.1D
+2025-04-15 02:24:54,842 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50523_rois_cc200.1D
+2025-04-15 02:24:54,842 [WARNING] Failed to process timeseries for subject 50523, skipping
+2025-04-15 02:24:54,849 [WARNING] Could not find timeseries file for 50524, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50524_rois_cc200.1D
+2025-04-15 02:24:54,849 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50524_rois_cc200.1D
+2025-04-15 02:24:54,849 [WARNING] Failed to process timeseries for subject 50524, skipping
+2025-04-15 02:24:54,857 [WARNING] Could not find timeseries file for 50525, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50525_rois_cc200.1D
+2025-04-15 02:24:54,857 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50525_rois_cc200.1D
+2025-04-15 02:24:54,857 [WARNING] Failed to process timeseries for subject 50525, skipping
+2025-04-15 02:24:54,864 [WARNING] Could not find timeseries file for 50526, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50526_rois_cc200.1D
+2025-04-15 02:24:54,864 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50526_rois_cc200.1D
+2025-04-15 02:24:54,864 [WARNING] Failed to process timeseries for subject 50526, skipping
+2025-04-15 02:24:54,872 [WARNING] Could not find timeseries file for 50527, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50527_rois_cc200.1D
+2025-04-15 02:24:54,872 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50527_rois_cc200.1D
+2025-04-15 02:24:54,872 [WARNING] Failed to process timeseries for subject 50527, skipping
+2025-04-15 02:24:54,879 [WARNING] Could not find timeseries file for 50528, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50528_rois_cc200.1D
+2025-04-15 02:24:54,879 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50528_rois_cc200.1D
+2025-04-15 02:24:54,879 [WARNING] Failed to process timeseries for subject 50528, skipping
+2025-04-15 02:24:54,886 [WARNING] Could not find timeseries file for 50529, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50529_rois_cc200.1D
+2025-04-15 02:24:54,887 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50529_rois_cc200.1D
+2025-04-15 02:24:54,887 [WARNING] Failed to process timeseries for subject 50529, skipping
+2025-04-15 02:24:54,894 [WARNING] Could not find timeseries file for 50530, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50530_rois_cc200.1D
+2025-04-15 02:24:54,894 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50530_rois_cc200.1D
+2025-04-15 02:24:54,894 [WARNING] Failed to process timeseries for subject 50530, skipping
+2025-04-15 02:24:54,901 [WARNING] Could not find timeseries file for 50531, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50531_rois_cc200.1D
+2025-04-15 02:24:54,901 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50531_rois_cc200.1D
+2025-04-15 02:24:54,901 [WARNING] Failed to process timeseries for subject 50531, skipping
+2025-04-15 02:24:54,909 [WARNING] Could not find timeseries file for 50532, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50532_rois_cc200.1D
+2025-04-15 02:24:54,909 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50532_rois_cc200.1D
+2025-04-15 02:24:54,909 [WARNING] Failed to process timeseries for subject 50532, skipping
+2025-04-15 02:24:54,916 [WARNING] Could not find timeseries file for 50607, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50607_rois_cc200.1D
+2025-04-15 02:24:54,916 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50607_rois_cc200.1D
+2025-04-15 02:24:54,916 [WARNING] Failed to process timeseries for subject 50607, skipping
+2025-04-15 02:24:54,924 [WARNING] Could not find timeseries file for 50642, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50642_rois_cc200.1D
+2025-04-15 02:24:54,924 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50642_rois_cc200.1D
+2025-04-15 02:24:54,924 [WARNING] Failed to process timeseries for subject 50642, skipping
+2025-04-15 02:24:54,931 [WARNING] Could not find timeseries file for 50643, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50643_rois_cc200.1D
+2025-04-15 02:24:54,931 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50643_rois_cc200.1D
+2025-04-15 02:24:54,931 [WARNING] Failed to process timeseries for subject 50643, skipping
+2025-04-15 02:24:54,939 [WARNING] Could not find timeseries file for 50644, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50644_rois_cc200.1D
+2025-04-15 02:24:54,939 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50644_rois_cc200.1D
+2025-04-15 02:24:54,939 [WARNING] Failed to process timeseries for subject 50644, skipping
+2025-04-15 02:24:54,946 [WARNING] Could not find timeseries file for 50645, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50645_rois_cc200.1D
+2025-04-15 02:24:54,946 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50645_rois_cc200.1D
+2025-04-15 02:24:54,946 [WARNING] Failed to process timeseries for subject 50645, skipping
+2025-04-15 02:24:54,954 [WARNING] Could not find timeseries file for 50646, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50646_rois_cc200.1D
+2025-04-15 02:24:54,954 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50646_rois_cc200.1D
+2025-04-15 02:24:54,954 [WARNING] Failed to process timeseries for subject 50646, skipping
+2025-04-15 02:24:54,961 [WARNING] Could not find timeseries file for 50647, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50647_rois_cc200.1D
+2025-04-15 02:24:54,961 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50647_rois_cc200.1D
+2025-04-15 02:24:54,961 [WARNING] Failed to process timeseries for subject 50647, skipping
+2025-04-15 02:24:54,968 [WARNING] Could not find timeseries file for 50648, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50648_rois_cc200.1D
+2025-04-15 02:24:54,968 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50648_rois_cc200.1D
+2025-04-15 02:24:54,969 [WARNING] Failed to process timeseries for subject 50648, skipping
+2025-04-15 02:24:54,976 [WARNING] Could not find timeseries file for 50649, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50649_rois_cc200.1D
+2025-04-15 02:24:54,976 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50649_rois_cc200.1D
+2025-04-15 02:24:54,976 [WARNING] Failed to process timeseries for subject 50649, skipping
+2025-04-15 02:24:54,983 [WARNING] Could not find timeseries file for 50650, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50650_rois_cc200.1D
+2025-04-15 02:24:54,983 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50650_rois_cc200.1D
+2025-04-15 02:24:54,983 [WARNING] Failed to process timeseries for subject 50650, skipping
+2025-04-15 02:24:54,991 [WARNING] Could not find timeseries file for 50651, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50651_rois_cc200.1D
+2025-04-15 02:24:54,991 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50651_rois_cc200.1D
+2025-04-15 02:24:54,991 [WARNING] Failed to process timeseries for subject 50651, skipping
+2025-04-15 02:24:54,998 [WARNING] Could not find timeseries file for 50652, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50652_rois_cc200.1D
+2025-04-15 02:24:54,998 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50652_rois_cc200.1D
+2025-04-15 02:24:54,998 [WARNING] Failed to process timeseries for subject 50652, skipping
+2025-04-15 02:24:55,006 [WARNING] Could not find timeseries file for 50653, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50653_rois_cc200.1D
+2025-04-15 02:24:55,006 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50653_rois_cc200.1D
+2025-04-15 02:24:55,006 [WARNING] Failed to process timeseries for subject 50653, skipping
+2025-04-15 02:24:55,013 [WARNING] Could not find timeseries file for 50654, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50654_rois_cc200.1D
+2025-04-15 02:24:55,013 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50654_rois_cc200.1D
+2025-04-15 02:24:55,013 [WARNING] Failed to process timeseries for subject 50654, skipping
+2025-04-15 02:24:55,020 [WARNING] Could not find timeseries file for 50655, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50655_rois_cc200.1D
+2025-04-15 02:24:55,020 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50655_rois_cc200.1D
+2025-04-15 02:24:55,020 [WARNING] Failed to process timeseries for subject 50655, skipping
+2025-04-15 02:24:55,028 [WARNING] Could not find timeseries file for 50791, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50791_rois_cc200.1D
+2025-04-15 02:24:55,028 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50791_rois_cc200.1D
+2025-04-15 02:24:55,028 [WARNING] Failed to process timeseries for subject 50791, skipping
+2025-04-15 02:24:55,035 [WARNING] Could not find timeseries file for 50792, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50792_rois_cc200.1D
+2025-04-15 02:24:55,035 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50792_rois_cc200.1D
+2025-04-15 02:24:55,035 [WARNING] Failed to process timeseries for subject 50792, skipping
+2025-04-15 02:24:55,042 [WARNING] Could not find timeseries file for 50793, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50793_rois_cc200.1D
+2025-04-15 02:24:55,042 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50793_rois_cc200.1D
+2025-04-15 02:24:55,042 [WARNING] Failed to process timeseries for subject 50793, skipping
+2025-04-15 02:24:55,050 [WARNING] Could not find timeseries file for 50794, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50794_rois_cc200.1D
+2025-04-15 02:24:55,050 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50794_rois_cc200.1D
+2025-04-15 02:24:55,050 [WARNING] Failed to process timeseries for subject 50794, skipping
+2025-04-15 02:24:55,057 [WARNING] Could not find timeseries file for 50795, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50795_rois_cc200.1D
+2025-04-15 02:24:55,057 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50795_rois_cc200.1D
+2025-04-15 02:24:55,057 [WARNING] Failed to process timeseries for subject 50795, skipping
+2025-04-15 02:24:55,065 [WARNING] Could not find timeseries file for 50796, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50796_rois_cc200.1D
+2025-04-15 02:24:55,065 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50796_rois_cc200.1D
+2025-04-15 02:24:55,065 [WARNING] Failed to process timeseries for subject 50796, skipping
+2025-04-15 02:24:55,072 [WARNING] Could not find timeseries file for 50797, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50797_rois_cc200.1D
+2025-04-15 02:24:55,072 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50797_rois_cc200.1D
+2025-04-15 02:24:55,072 [WARNING] Failed to process timeseries for subject 50797, skipping
+2025-04-15 02:24:55,080 [WARNING] Could not find timeseries file for 50798, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50798_rois_cc200.1D
+2025-04-15 02:24:55,080 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50798_rois_cc200.1D
+2025-04-15 02:24:55,080 [WARNING] Failed to process timeseries for subject 50798, skipping
+2025-04-15 02:24:55,087 [WARNING] Could not find timeseries file for 50799, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50799_rois_cc200.1D
+2025-04-15 02:24:55,087 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50799_rois_cc200.1D
+2025-04-15 02:24:55,087 [WARNING] Failed to process timeseries for subject 50799, skipping
+2025-04-15 02:24:55,094 [WARNING] Could not find timeseries file for 50800, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50800_rois_cc200.1D
+2025-04-15 02:24:55,094 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50800_rois_cc200.1D
+2025-04-15 02:24:55,094 [WARNING] Failed to process timeseries for subject 50800, skipping
+2025-04-15 02:24:55,102 [WARNING] Could not find timeseries file for 50801, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50801_rois_cc200.1D
+2025-04-15 02:24:55,102 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50801_rois_cc200.1D
+2025-04-15 02:24:55,102 [WARNING] Failed to process timeseries for subject 50801, skipping
+2025-04-15 02:24:55,109 [WARNING] Could not find timeseries file for 50802, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50802_rois_cc200.1D
+2025-04-15 02:24:55,109 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50802_rois_cc200.1D
+2025-04-15 02:24:55,109 [WARNING] Failed to process timeseries for subject 50802, skipping
+2025-04-15 02:24:55,117 [WARNING] Could not find timeseries file for 50803, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50803_rois_cc200.1D
+2025-04-15 02:24:55,117 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50803_rois_cc200.1D
+2025-04-15 02:24:55,117 [WARNING] Failed to process timeseries for subject 50803, skipping
+2025-04-15 02:24:55,124 [WARNING] Could not find timeseries file for 50804, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50804_rois_cc200.1D
+2025-04-15 02:24:55,124 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50804_rois_cc200.1D
+2025-04-15 02:24:55,124 [WARNING] Failed to process timeseries for subject 50804, skipping
+2025-04-15 02:24:55,131 [WARNING] Could not find timeseries file for 50805, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50805_rois_cc200.1D
+2025-04-15 02:24:55,131 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50805_rois_cc200.1D
+2025-04-15 02:24:55,131 [WARNING] Failed to process timeseries for subject 50805, skipping
+2025-04-15 02:24:55,139 [WARNING] Could not find timeseries file for 50806, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50806_rois_cc200.1D
+2025-04-15 02:24:55,139 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50806_rois_cc200.1D
+2025-04-15 02:24:55,139 [WARNING] Failed to process timeseries for subject 50806, skipping
+2025-04-15 02:24:55,146 [WARNING] Could not find timeseries file for 50807, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50807_rois_cc200.1D
+2025-04-15 02:24:55,146 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50807_rois_cc200.1D
+2025-04-15 02:24:55,146 [WARNING] Failed to process timeseries for subject 50807, skipping
+2025-04-15 02:24:55,154 [WARNING] Could not find timeseries file for 50815, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50815_rois_cc200.1D
+2025-04-15 02:24:55,154 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50815_rois_cc200.1D
+2025-04-15 02:24:55,154 [WARNING] Failed to process timeseries for subject 50815, skipping
+2025-04-15 02:24:55,161 [WARNING] Could not find timeseries file for 50823, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50823_rois_cc200.1D
+2025-04-15 02:24:55,161 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50823_rois_cc200.1D
+2025-04-15 02:24:55,161 [WARNING] Failed to process timeseries for subject 50823, skipping
+2025-04-15 02:24:55,169 [WARNING] Could not find timeseries file for 50824, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50824_rois_cc200.1D
+2025-04-15 02:24:55,169 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50824_rois_cc200.1D
+2025-04-15 02:24:55,169 [WARNING] Failed to process timeseries for subject 50824, skipping
+2025-04-15 02:24:55,176 [WARNING] Could not find timeseries file for 50825, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50825_rois_cc200.1D
+2025-04-15 02:24:55,177 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50825_rois_cc200.1D
+2025-04-15 02:24:55,177 [WARNING] Failed to process timeseries for subject 50825, skipping
+2025-04-15 02:24:55,184 [WARNING] Could not find timeseries file for 50826, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50826_rois_cc200.1D
+2025-04-15 02:24:55,184 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50826_rois_cc200.1D
+2025-04-15 02:24:55,184 [WARNING] Failed to process timeseries for subject 50826, skipping
+2025-04-15 02:24:55,191 [WARNING] Could not find timeseries file for 50952, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50952_rois_cc200.1D
+2025-04-15 02:24:55,191 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50952_rois_cc200.1D
+2025-04-15 02:24:55,191 [WARNING] Failed to process timeseries for subject 50952, skipping
+2025-04-15 02:24:55,199 [WARNING] Could not find timeseries file for 50953, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50953_rois_cc200.1D
+2025-04-15 02:24:55,199 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50953_rois_cc200.1D
+2025-04-15 02:24:55,199 [WARNING] Failed to process timeseries for subject 50953, skipping
+2025-04-15 02:24:55,206 [WARNING] Could not find timeseries file for 50954, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50954_rois_cc200.1D
+2025-04-15 02:24:55,206 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50954_rois_cc200.1D
+2025-04-15 02:24:55,207 [WARNING] Failed to process timeseries for subject 50954, skipping
+2025-04-15 02:24:55,214 [WARNING] Could not find timeseries file for 50955, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50955_rois_cc200.1D
+2025-04-15 02:24:55,214 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50955_rois_cc200.1D
+2025-04-15 02:24:55,214 [WARNING] Failed to process timeseries for subject 50955, skipping
+2025-04-15 02:24:55,221 [WARNING] Could not find timeseries file for 50956, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50956_rois_cc200.1D
+2025-04-15 02:24:55,221 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50956_rois_cc200.1D
+2025-04-15 02:24:55,221 [WARNING] Failed to process timeseries for subject 50956, skipping
+2025-04-15 02:24:55,229 [WARNING] Could not find timeseries file for 50957, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50957_rois_cc200.1D
+2025-04-15 02:24:55,229 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50957_rois_cc200.1D
+2025-04-15 02:24:55,229 [WARNING] Failed to process timeseries for subject 50957, skipping
+2025-04-15 02:24:55,236 [WARNING] Could not find timeseries file for 50958, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50958_rois_cc200.1D
+2025-04-15 02:24:55,236 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50958_rois_cc200.1D
+2025-04-15 02:24:55,236 [WARNING] Failed to process timeseries for subject 50958, skipping
+2025-04-15 02:24:55,244 [WARNING] Could not find timeseries file for 50959, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50959_rois_cc200.1D
+2025-04-15 02:24:55,244 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50959_rois_cc200.1D
+2025-04-15 02:24:55,244 [WARNING] Failed to process timeseries for subject 50959, skipping
+2025-04-15 02:24:55,251 [WARNING] Could not find timeseries file for 50960, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50960_rois_cc200.1D
+2025-04-15 02:24:55,251 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50960_rois_cc200.1D
+2025-04-15 02:24:55,251 [WARNING] Failed to process timeseries for subject 50960, skipping
+2025-04-15 02:24:55,259 [WARNING] Could not find timeseries file for 50961, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50961_rois_cc200.1D
+2025-04-15 02:24:55,259 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50961_rois_cc200.1D
+2025-04-15 02:24:55,259 [WARNING] Failed to process timeseries for subject 50961, skipping
+2025-04-15 02:24:55,266 [WARNING] Could not find timeseries file for 50962, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50962_rois_cc200.1D
+2025-04-15 02:24:55,266 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50962_rois_cc200.1D
+2025-04-15 02:24:55,266 [WARNING] Failed to process timeseries for subject 50962, skipping
+2025-04-15 02:24:55,274 [WARNING] Could not find timeseries file for 50964, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50964_rois_cc200.1D
+2025-04-15 02:24:55,274 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50964_rois_cc200.1D
+2025-04-15 02:24:55,274 [WARNING] Failed to process timeseries for subject 50964, skipping
+2025-04-15 02:24:55,281 [WARNING] Could not find timeseries file for 50965, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50965_rois_cc200.1D
+2025-04-15 02:24:55,281 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50965_rois_cc200.1D
+2025-04-15 02:24:55,281 [WARNING] Failed to process timeseries for subject 50965, skipping
+2025-04-15 02:24:55,288 [WARNING] Could not find timeseries file for 50966, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50966_rois_cc200.1D
+2025-04-15 02:24:55,288 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50966_rois_cc200.1D
+2025-04-15 02:24:55,289 [WARNING] Failed to process timeseries for subject 50966, skipping
+2025-04-15 02:24:55,296 [WARNING] Could not find timeseries file for 50967, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50967_rois_cc200.1D
+2025-04-15 02:24:55,296 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50967_rois_cc200.1D
+2025-04-15 02:24:55,296 [WARNING] Failed to process timeseries for subject 50967, skipping
+2025-04-15 02:24:55,303 [WARNING] Could not find timeseries file for 50968, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50968_rois_cc200.1D
+2025-04-15 02:24:55,304 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50968_rois_cc200.1D
+2025-04-15 02:24:55,304 [WARNING] Failed to process timeseries for subject 50968, skipping
+2025-04-15 02:24:55,311 [WARNING] Could not find timeseries file for 50969, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50969_rois_cc200.1D
+2025-04-15 02:24:55,311 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50969_rois_cc200.1D
+2025-04-15 02:24:55,311 [WARNING] Failed to process timeseries for subject 50969, skipping
+2025-04-15 02:24:55,318 [WARNING] Could not find timeseries file for 50970, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50970_rois_cc200.1D
+2025-04-15 02:24:55,318 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50970_rois_cc200.1D
+2025-04-15 02:24:55,319 [WARNING] Failed to process timeseries for subject 50970, skipping
+2025-04-15 02:24:55,326 [WARNING] Could not find timeseries file for 50971, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50971_rois_cc200.1D
+2025-04-15 02:24:55,326 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50971_rois_cc200.1D
+2025-04-15 02:24:55,326 [WARNING] Failed to process timeseries for subject 50971, skipping
+2025-04-15 02:24:55,333 [WARNING] Could not find timeseries file for 50972, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50972_rois_cc200.1D
+2025-04-15 02:24:55,333 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50972_rois_cc200.1D
+2025-04-15 02:24:55,333 [WARNING] Failed to process timeseries for subject 50972, skipping
+2025-04-15 02:24:55,341 [WARNING] Could not find timeseries file for 50973, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50973_rois_cc200.1D
+2025-04-15 02:24:55,341 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50973_rois_cc200.1D
+2025-04-15 02:24:55,341 [WARNING] Failed to process timeseries for subject 50973, skipping
+2025-04-15 02:24:55,348 [WARNING] Could not find timeseries file for 50974, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50974_rois_cc200.1D
+2025-04-15 02:24:55,348 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50974_rois_cc200.1D
+2025-04-15 02:24:55,348 [WARNING] Failed to process timeseries for subject 50974, skipping
+2025-04-15 02:24:55,356 [WARNING] Could not find timeseries file for 50975, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50975_rois_cc200.1D
+2025-04-15 02:24:55,356 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50975_rois_cc200.1D
+2025-04-15 02:24:55,356 [WARNING] Failed to process timeseries for subject 50975, skipping
+2025-04-15 02:24:55,363 [WARNING] Could not find timeseries file for 50976, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50976_rois_cc200.1D
+2025-04-15 02:24:55,363 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50976_rois_cc200.1D
+2025-04-15 02:24:55,363 [WARNING] Failed to process timeseries for subject 50976, skipping
+2025-04-15 02:24:55,371 [WARNING] Could not find timeseries file for 50977, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50977_rois_cc200.1D
+2025-04-15 02:24:55,371 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50977_rois_cc200.1D
+2025-04-15 02:24:55,371 [WARNING] Failed to process timeseries for subject 50977, skipping
+2025-04-15 02:24:55,378 [WARNING] Could not find timeseries file for 50978, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50978_rois_cc200.1D
+2025-04-15 02:24:55,378 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50978_rois_cc200.1D
+2025-04-15 02:24:55,378 [WARNING] Failed to process timeseries for subject 50978, skipping
+2025-04-15 02:24:55,386 [WARNING] Could not find timeseries file for 50979, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50979_rois_cc200.1D
+2025-04-15 02:24:55,386 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50979_rois_cc200.1D
+2025-04-15 02:24:55,386 [WARNING] Failed to process timeseries for subject 50979, skipping
+2025-04-15 02:24:55,393 [WARNING] Could not find timeseries file for 50980, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50980_rois_cc200.1D
+2025-04-15 02:24:55,393 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50980_rois_cc200.1D
+2025-04-15 02:24:55,394 [WARNING] Failed to process timeseries for subject 50980, skipping
+2025-04-15 02:24:55,401 [WARNING] Could not find timeseries file for 50981, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50981_rois_cc200.1D
+2025-04-15 02:24:55,401 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50981_rois_cc200.1D
+2025-04-15 02:24:55,401 [WARNING] Failed to process timeseries for subject 50981, skipping
+2025-04-15 02:24:55,408 [WARNING] Could not find timeseries file for 50982, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50982_rois_cc200.1D
+2025-04-15 02:24:55,408 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50982_rois_cc200.1D
+2025-04-15 02:24:55,408 [WARNING] Failed to process timeseries for subject 50982, skipping
+2025-04-15 02:24:55,416 [WARNING] Could not find timeseries file for 50983, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50983_rois_cc200.1D
+2025-04-15 02:24:55,416 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50983_rois_cc200.1D
+2025-04-15 02:24:55,416 [WARNING] Failed to process timeseries for subject 50983, skipping
+2025-04-15 02:24:55,423 [WARNING] Could not find timeseries file for 50984, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50984_rois_cc200.1D
+2025-04-15 02:24:55,423 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50984_rois_cc200.1D
+2025-04-15 02:24:55,423 [WARNING] Failed to process timeseries for subject 50984, skipping
+2025-04-15 02:24:55,431 [WARNING] Could not find timeseries file for 50985, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50985_rois_cc200.1D
+2025-04-15 02:24:55,431 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50985_rois_cc200.1D
+2025-04-15 02:24:55,431 [WARNING] Failed to process timeseries for subject 50985, skipping
+2025-04-15 02:24:55,438 [WARNING] Could not find timeseries file for 50986, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50986_rois_cc200.1D
+2025-04-15 02:24:55,438 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50986_rois_cc200.1D
+2025-04-15 02:24:55,438 [WARNING] Failed to process timeseries for subject 50986, skipping
+2025-04-15 02:24:55,446 [WARNING] Could not find timeseries file for 50987, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50987_rois_cc200.1D
+2025-04-15 02:24:55,446 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50987_rois_cc200.1D
+2025-04-15 02:24:55,446 [WARNING] Failed to process timeseries for subject 50987, skipping
+2025-04-15 02:24:55,453 [WARNING] Could not find timeseries file for 50988, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50988_rois_cc200.1D
+2025-04-15 02:24:55,453 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50988_rois_cc200.1D
+2025-04-15 02:24:55,453 [WARNING] Failed to process timeseries for subject 50988, skipping
+2025-04-15 02:24:55,461 [WARNING] Could not find timeseries file for 50989, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50989_rois_cc200.1D
+2025-04-15 02:24:55,461 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50989_rois_cc200.1D
+2025-04-15 02:24:55,461 [WARNING] Failed to process timeseries for subject 50989, skipping
+2025-04-15 02:24:55,468 [WARNING] Could not find timeseries file for 50990, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50990_rois_cc200.1D
+2025-04-15 02:24:55,468 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50990_rois_cc200.1D
+2025-04-15 02:24:55,468 [WARNING] Failed to process timeseries for subject 50990, skipping
+2025-04-15 02:24:55,475 [WARNING] Could not find timeseries file for 50991, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50991_rois_cc200.1D
+2025-04-15 02:24:55,475 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50991_rois_cc200.1D
+2025-04-15 02:24:55,475 [WARNING] Failed to process timeseries for subject 50991, skipping
+2025-04-15 02:24:55,483 [WARNING] Could not find timeseries file for 50992, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50992_rois_cc200.1D
+2025-04-15 02:24:55,483 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50992_rois_cc200.1D
+2025-04-15 02:24:55,483 [WARNING] Failed to process timeseries for subject 50992, skipping
+2025-04-15 02:24:55,490 [WARNING] Could not find timeseries file for 50993, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50993_rois_cc200.1D
+2025-04-15 02:24:55,490 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50993_rois_cc200.1D
+2025-04-15 02:24:55,490 [WARNING] Failed to process timeseries for subject 50993, skipping
+2025-04-15 02:24:55,497 [WARNING] Could not find timeseries file for 50994, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50994_rois_cc200.1D
+2025-04-15 02:24:55,498 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50994_rois_cc200.1D
+2025-04-15 02:24:55,498 [WARNING] Failed to process timeseries for subject 50994, skipping
+2025-04-15 02:24:55,505 [WARNING] Could not find timeseries file for 50995, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50995_rois_cc200.1D
+2025-04-15 02:24:55,505 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50995_rois_cc200.1D
+2025-04-15 02:24:55,505 [WARNING] Failed to process timeseries for subject 50995, skipping
+2025-04-15 02:24:55,513 [WARNING] Could not find timeseries file for 50996, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50996_rois_cc200.1D
+2025-04-15 02:24:55,513 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50996_rois_cc200.1D
+2025-04-15 02:24:55,513 [WARNING] Failed to process timeseries for subject 50996, skipping
+2025-04-15 02:24:55,520 [WARNING] Could not find timeseries file for 50997, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50997_rois_cc200.1D
+2025-04-15 02:24:55,520 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50997_rois_cc200.1D
+2025-04-15 02:24:55,520 [WARNING] Failed to process timeseries for subject 50997, skipping
+2025-04-15 02:24:55,527 [WARNING] Could not find timeseries file for 50998, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50998_rois_cc200.1D
+2025-04-15 02:24:55,527 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50998_rois_cc200.1D
+2025-04-15 02:24:55,527 [WARNING] Failed to process timeseries for subject 50998, skipping
+2025-04-15 02:24:55,535 [WARNING] Could not find timeseries file for 50999, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50999_rois_cc200.1D
+2025-04-15 02:24:55,535 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50999_rois_cc200.1D
+2025-04-15 02:24:55,535 [WARNING] Failed to process timeseries for subject 50999, skipping
+2025-04-15 02:24:55,542 [WARNING] Could not find timeseries file for 51000, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51000_rois_cc200.1D
+2025-04-15 02:24:55,542 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51000_rois_cc200.1D
+2025-04-15 02:24:55,542 [WARNING] Failed to process timeseries for subject 51000, skipping
+2025-04-15 02:24:55,550 [WARNING] Could not find timeseries file for 51001, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51001_rois_cc200.1D
+2025-04-15 02:24:55,550 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51001_rois_cc200.1D
+2025-04-15 02:24:55,550 [WARNING] Failed to process timeseries for subject 51001, skipping
+2025-04-15 02:24:55,557 [WARNING] Could not find timeseries file for 51002, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51002_rois_cc200.1D
+2025-04-15 02:24:55,557 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51002_rois_cc200.1D
+2025-04-15 02:24:55,557 [WARNING] Failed to process timeseries for subject 51002, skipping
+2025-04-15 02:24:55,564 [WARNING] Could not find timeseries file for 51003, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51003_rois_cc200.1D
+2025-04-15 02:24:55,565 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51003_rois_cc200.1D
+2025-04-15 02:24:55,565 [WARNING] Failed to process timeseries for subject 51003, skipping
+2025-04-15 02:24:55,572 [WARNING] Could not find timeseries file for 51006, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51006_rois_cc200.1D
+2025-04-15 02:24:55,572 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51006_rois_cc200.1D
+2025-04-15 02:24:55,572 [WARNING] Failed to process timeseries for subject 51006, skipping
+2025-04-15 02:24:55,579 [WARNING] Could not find timeseries file for 51007, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51007_rois_cc200.1D
+2025-04-15 02:24:55,580 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51007_rois_cc200.1D
+2025-04-15 02:24:55,580 [WARNING] Failed to process timeseries for subject 51007, skipping
+2025-04-15 02:24:55,587 [WARNING] Could not find timeseries file for 51008, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51008_rois_cc200.1D
+2025-04-15 02:24:55,587 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51008_rois_cc200.1D
+2025-04-15 02:24:55,587 [WARNING] Failed to process timeseries for subject 51008, skipping
+2025-04-15 02:24:55,594 [WARNING] Could not find timeseries file for 51009, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51009_rois_cc200.1D
+2025-04-15 02:24:55,595 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51009_rois_cc200.1D
+2025-04-15 02:24:55,595 [WARNING] Failed to process timeseries for subject 51009, skipping
+2025-04-15 02:24:55,602 [WARNING] Could not find timeseries file for 51010, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51010_rois_cc200.1D
+2025-04-15 02:24:55,602 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51010_rois_cc200.1D
+2025-04-15 02:24:55,602 [WARNING] Failed to process timeseries for subject 51010, skipping
+2025-04-15 02:24:55,609 [WARNING] Could not find timeseries file for 51011, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51011_rois_cc200.1D
+2025-04-15 02:24:55,609 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51011_rois_cc200.1D
+2025-04-15 02:24:55,609 [WARNING] Failed to process timeseries for subject 51011, skipping
+2025-04-15 02:24:55,617 [WARNING] Could not find timeseries file for 51012, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51012_rois_cc200.1D
+2025-04-15 02:24:55,617 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51012_rois_cc200.1D
+2025-04-15 02:24:55,617 [WARNING] Failed to process timeseries for subject 51012, skipping
+2025-04-15 02:24:55,624 [WARNING] Could not find timeseries file for 51013, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51013_rois_cc200.1D
+2025-04-15 02:24:55,624 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51013_rois_cc200.1D
+2025-04-15 02:24:55,624 [WARNING] Failed to process timeseries for subject 51013, skipping
+2025-04-15 02:24:55,632 [WARNING] Could not find timeseries file for 51014, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51014_rois_cc200.1D
+2025-04-15 02:24:55,632 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51014_rois_cc200.1D
+2025-04-15 02:24:55,632 [WARNING] Failed to process timeseries for subject 51014, skipping
+2025-04-15 02:24:55,639 [WARNING] Could not find timeseries file for 51015, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51015_rois_cc200.1D
+2025-04-15 02:24:55,639 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51015_rois_cc200.1D
+2025-04-15 02:24:55,639 [WARNING] Failed to process timeseries for subject 51015, skipping
+2025-04-15 02:24:55,647 [WARNING] Could not find timeseries file for 51016, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51016_rois_cc200.1D
+2025-04-15 02:24:55,647 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51016_rois_cc200.1D
+2025-04-15 02:24:55,647 [WARNING] Failed to process timeseries for subject 51016, skipping
+2025-04-15 02:24:55,654 [WARNING] Could not find timeseries file for 51017, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51017_rois_cc200.1D
+2025-04-15 02:24:55,654 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51017_rois_cc200.1D
+2025-04-15 02:24:55,654 [WARNING] Failed to process timeseries for subject 51017, skipping
+2025-04-15 02:24:55,662 [WARNING] Could not find timeseries file for 51018, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51018_rois_cc200.1D
+2025-04-15 02:24:55,662 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51018_rois_cc200.1D
+2025-04-15 02:24:55,662 [WARNING] Failed to process timeseries for subject 51018, skipping
+2025-04-15 02:24:55,669 [WARNING] Could not find timeseries file for 51019, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51019_rois_cc200.1D
+2025-04-15 02:24:55,669 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51019_rois_cc200.1D
+2025-04-15 02:24:55,669 [WARNING] Failed to process timeseries for subject 51019, skipping
+2025-04-15 02:24:55,677 [WARNING] Could not find timeseries file for 51020, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51020_rois_cc200.1D
+2025-04-15 02:24:55,677 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51020_rois_cc200.1D
+2025-04-15 02:24:55,677 [WARNING] Failed to process timeseries for subject 51020, skipping
+2025-04-15 02:24:55,684 [WARNING] Could not find timeseries file for 51021, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51021_rois_cc200.1D
+2025-04-15 02:24:55,684 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51021_rois_cc200.1D
+2025-04-15 02:24:55,684 [WARNING] Failed to process timeseries for subject 51021, skipping
+2025-04-15 02:24:55,691 [WARNING] Could not find timeseries file for 51023, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51023_rois_cc200.1D
+2025-04-15 02:24:55,691 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51023_rois_cc200.1D
+2025-04-15 02:24:55,691 [WARNING] Failed to process timeseries for subject 51023, skipping
+2025-04-15 02:24:55,699 [WARNING] Could not find timeseries file for 51024, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51024_rois_cc200.1D
+2025-04-15 02:24:55,699 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51024_rois_cc200.1D
+2025-04-15 02:24:55,699 [WARNING] Failed to process timeseries for subject 51024, skipping
+2025-04-15 02:24:55,706 [WARNING] Could not find timeseries file for 51025, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51025_rois_cc200.1D
+2025-04-15 02:24:55,706 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51025_rois_cc200.1D
+2025-04-15 02:24:55,706 [WARNING] Failed to process timeseries for subject 51025, skipping
+2025-04-15 02:24:55,714 [WARNING] Could not find timeseries file for 51026, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51026_rois_cc200.1D
+2025-04-15 02:24:55,714 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51026_rois_cc200.1D
+2025-04-15 02:24:55,714 [WARNING] Failed to process timeseries for subject 51026, skipping
+2025-04-15 02:24:55,721 [WARNING] Could not find timeseries file for 51027, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51027_rois_cc200.1D
+2025-04-15 02:24:55,721 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51027_rois_cc200.1D
+2025-04-15 02:24:55,721 [WARNING] Failed to process timeseries for subject 51027, skipping
+2025-04-15 02:24:55,729 [WARNING] Could not find timeseries file for 51028, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51028_rois_cc200.1D
+2025-04-15 02:24:55,729 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51028_rois_cc200.1D
+2025-04-15 02:24:55,729 [WARNING] Failed to process timeseries for subject 51028, skipping
+2025-04-15 02:24:55,736 [WARNING] Could not find timeseries file for 51029, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51029_rois_cc200.1D
+2025-04-15 02:24:55,736 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51029_rois_cc200.1D
+2025-04-15 02:24:55,736 [WARNING] Failed to process timeseries for subject 51029, skipping
+2025-04-15 02:24:55,744 [WARNING] Could not find timeseries file for 51030, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51030_rois_cc200.1D
+2025-04-15 02:24:55,744 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51030_rois_cc200.1D
+2025-04-15 02:24:55,744 [WARNING] Failed to process timeseries for subject 51030, skipping
+2025-04-15 02:24:55,751 [WARNING] Could not find timeseries file for 51032, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51032_rois_cc200.1D
+2025-04-15 02:24:55,751 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51032_rois_cc200.1D
+2025-04-15 02:24:55,751 [WARNING] Failed to process timeseries for subject 51032, skipping
+2025-04-15 02:24:55,758 [WARNING] Could not find timeseries file for 51033, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51033_rois_cc200.1D
+2025-04-15 02:24:55,759 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51033_rois_cc200.1D
+2025-04-15 02:24:55,759 [WARNING] Failed to process timeseries for subject 51033, skipping
+2025-04-15 02:24:55,766 [WARNING] Could not find timeseries file for 51034, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51034_rois_cc200.1D
+2025-04-15 02:24:55,766 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51034_rois_cc200.1D
+2025-04-15 02:24:55,766 [WARNING] Failed to process timeseries for subject 51034, skipping
+2025-04-15 02:24:55,773 [WARNING] Could not find timeseries file for 51035, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51035_rois_cc200.1D
+2025-04-15 02:24:55,774 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51035_rois_cc200.1D
+2025-04-15 02:24:55,774 [WARNING] Failed to process timeseries for subject 51035, skipping
+2025-04-15 02:24:55,781 [WARNING] Could not find timeseries file for 51160, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51160_rois_cc200.1D
+2025-04-15 02:24:55,781 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51160_rois_cc200.1D
+2025-04-15 02:24:55,781 [WARNING] Failed to process timeseries for subject 51160, skipping
+2025-04-15 02:24:55,788 [WARNING] Could not find timeseries file for 51161, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51161_rois_cc200.1D
+2025-04-15 02:24:55,789 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51161_rois_cc200.1D
+2025-04-15 02:24:55,789 [WARNING] Failed to process timeseries for subject 51161, skipping
+2025-04-15 02:24:55,796 [WARNING] Could not find timeseries file for 51162, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51162_rois_cc200.1D
+2025-04-15 02:24:55,796 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51162_rois_cc200.1D
+2025-04-15 02:24:55,796 [WARNING] Failed to process timeseries for subject 51162, skipping
+2025-04-15 02:24:55,803 [WARNING] Could not find timeseries file for 51163, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51163_rois_cc200.1D
+2025-04-15 02:24:55,803 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51163_rois_cc200.1D
+2025-04-15 02:24:55,803 [WARNING] Failed to process timeseries for subject 51163, skipping
+2025-04-15 02:24:55,811 [WARNING] Could not find timeseries file for 51164, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51164_rois_cc200.1D
+2025-04-15 02:24:55,811 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51164_rois_cc200.1D
+2025-04-15 02:24:55,811 [WARNING] Failed to process timeseries for subject 51164, skipping
+2025-04-15 02:24:55,818 [WARNING] Could not find timeseries file for 51165, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51165_rois_cc200.1D
+2025-04-15 02:24:55,818 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51165_rois_cc200.1D
+2025-04-15 02:24:55,818 [WARNING] Failed to process timeseries for subject 51165, skipping
+2025-04-15 02:24:55,826 [WARNING] Could not find timeseries file for 51167, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51167_rois_cc200.1D
+2025-04-15 02:24:55,826 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51167_rois_cc200.1D
+2025-04-15 02:24:55,826 [WARNING] Failed to process timeseries for subject 51167, skipping
+2025-04-15 02:24:55,833 [WARNING] Could not find timeseries file for 51168, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51168_rois_cc200.1D
+2025-04-15 02:24:55,833 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51168_rois_cc200.1D
+2025-04-15 02:24:55,833 [WARNING] Failed to process timeseries for subject 51168, skipping
+2025-04-15 02:24:55,841 [WARNING] Could not find timeseries file for 51169, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51169_rois_cc200.1D
+2025-04-15 02:24:55,841 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51169_rois_cc200.1D
+2025-04-15 02:24:55,841 [WARNING] Failed to process timeseries for subject 51169, skipping
+2025-04-15 02:24:55,848 [WARNING] Could not find timeseries file for 51170, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51170_rois_cc200.1D
+2025-04-15 02:24:55,848 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51170_rois_cc200.1D
+2025-04-15 02:24:55,848 [WARNING] Failed to process timeseries for subject 51170, skipping
+2025-04-15 02:24:55,856 [WARNING] Could not find timeseries file for 51171, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51171_rois_cc200.1D
+2025-04-15 02:24:55,856 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51171_rois_cc200.1D
+2025-04-15 02:24:55,856 [WARNING] Failed to process timeseries for subject 51171, skipping
+2025-04-15 02:24:55,863 [WARNING] Could not find timeseries file for 51172, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51172_rois_cc200.1D
+2025-04-15 02:24:55,863 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51172_rois_cc200.1D
+2025-04-15 02:24:55,863 [WARNING] Failed to process timeseries for subject 51172, skipping
+2025-04-15 02:24:55,871 [WARNING] Could not find timeseries file for 51173, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51173_rois_cc200.1D
+2025-04-15 02:24:55,871 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51173_rois_cc200.1D
+2025-04-15 02:24:55,871 [WARNING] Failed to process timeseries for subject 51173, skipping
+2025-04-15 02:24:55,878 [WARNING] Could not find timeseries file for 51174, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51174_rois_cc200.1D
+2025-04-15 02:24:55,878 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51174_rois_cc200.1D
+2025-04-15 02:24:55,878 [WARNING] Failed to process timeseries for subject 51174, skipping
+2025-04-15 02:24:55,886 [WARNING] Could not find timeseries file for 51175, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51175_rois_cc200.1D
+2025-04-15 02:24:55,886 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51175_rois_cc200.1D
+2025-04-15 02:24:55,886 [WARNING] Failed to process timeseries for subject 51175, skipping
+2025-04-15 02:24:55,893 [WARNING] Could not find timeseries file for 51176, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51176_rois_cc200.1D
+2025-04-15 02:24:55,893 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51176_rois_cc200.1D
+2025-04-15 02:24:55,893 [WARNING] Failed to process timeseries for subject 51176, skipping
+2025-04-15 02:24:55,901 [WARNING] Could not find timeseries file for 51177, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51177_rois_cc200.1D
+2025-04-15 02:24:55,901 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51177_rois_cc200.1D
+2025-04-15 02:24:55,901 [WARNING] Failed to process timeseries for subject 51177, skipping
+2025-04-15 02:24:55,908 [WARNING] Could not find timeseries file for 51178, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51178_rois_cc200.1D
+2025-04-15 02:24:55,908 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51178_rois_cc200.1D
+2025-04-15 02:24:55,908 [WARNING] Failed to process timeseries for subject 51178, skipping
+2025-04-15 02:24:55,917 [WARNING] Could not find timeseries file for 51179, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51179_rois_cc200.1D
+2025-04-15 02:24:55,918 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51179_rois_cc200.1D
+2025-04-15 02:24:55,918 [WARNING] Failed to process timeseries for subject 51179, skipping
+2025-04-15 02:24:55,925 [WARNING] Could not find timeseries file for 51201, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51201_rois_cc200.1D
+2025-04-15 02:24:55,925 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51201_rois_cc200.1D
+2025-04-15 02:24:55,925 [WARNING] Failed to process timeseries for subject 51201, skipping
+2025-04-15 02:24:55,932 [WARNING] Could not find timeseries file for 51202, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51202_rois_cc200.1D
+2025-04-15 02:24:55,933 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51202_rois_cc200.1D
+2025-04-15 02:24:55,933 [WARNING] Failed to process timeseries for subject 51202, skipping
+2025-04-15 02:24:55,940 [WARNING] Could not find timeseries file for 51203, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51203_rois_cc200.1D
+2025-04-15 02:24:55,940 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51203_rois_cc200.1D
+2025-04-15 02:24:55,940 [WARNING] Failed to process timeseries for subject 51203, skipping
+2025-04-15 02:24:55,947 [WARNING] Could not find timeseries file for 51204, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51204_rois_cc200.1D
+2025-04-15 02:24:55,948 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51204_rois_cc200.1D
+2025-04-15 02:24:55,948 [WARNING] Failed to process timeseries for subject 51204, skipping
+2025-04-15 02:24:55,955 [WARNING] Could not find timeseries file for 51205, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51205_rois_cc200.1D
+2025-04-15 02:24:55,955 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51205_rois_cc200.1D
+2025-04-15 02:24:55,955 [WARNING] Failed to process timeseries for subject 51205, skipping
+2025-04-15 02:24:55,962 [WARNING] Could not find timeseries file for 51206, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51206_rois_cc200.1D
+2025-04-15 02:24:55,962 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51206_rois_cc200.1D
+2025-04-15 02:24:55,963 [WARNING] Failed to process timeseries for subject 51206, skipping
+2025-04-15 02:24:55,970 [WARNING] Could not find timeseries file for 51207, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51207_rois_cc200.1D
+2025-04-15 02:24:55,970 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51207_rois_cc200.1D
+2025-04-15 02:24:55,970 [WARNING] Failed to process timeseries for subject 51207, skipping
+2025-04-15 02:24:55,977 [WARNING] Could not find timeseries file for 51208, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51208_rois_cc200.1D
+2025-04-15 02:24:55,977 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51208_rois_cc200.1D
+2025-04-15 02:24:55,977 [WARNING] Failed to process timeseries for subject 51208, skipping
+2025-04-15 02:24:55,985 [WARNING] Could not find timeseries file for 51209, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51209_rois_cc200.1D
+2025-04-15 02:24:55,985 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51209_rois_cc200.1D
+2025-04-15 02:24:55,985 [WARNING] Failed to process timeseries for subject 51209, skipping
+2025-04-15 02:24:55,992 [WARNING] Could not find timeseries file for 51210, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51210_rois_cc200.1D
+2025-04-15 02:24:55,992 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51210_rois_cc200.1D
+2025-04-15 02:24:55,992 [WARNING] Failed to process timeseries for subject 51210, skipping
+2025-04-15 02:24:56,000 [WARNING] Could not find timeseries file for 51211, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51211_rois_cc200.1D
+2025-04-15 02:24:56,000 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51211_rois_cc200.1D
+2025-04-15 02:24:56,000 [WARNING] Failed to process timeseries for subject 51211, skipping
+2025-04-15 02:24:56,007 [WARNING] Could not find timeseries file for 51212, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51212_rois_cc200.1D
+2025-04-15 02:24:56,007 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51212_rois_cc200.1D
+2025-04-15 02:24:56,007 [WARNING] Failed to process timeseries for subject 51212, skipping
+2025-04-15 02:24:56,015 [WARNING] Could not find timeseries file for 51213, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51213_rois_cc200.1D
+2025-04-15 02:24:56,015 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51213_rois_cc200.1D
+2025-04-15 02:24:56,015 [WARNING] Failed to process timeseries for subject 51213, skipping
+2025-04-15 02:24:56,022 [WARNING] Could not find timeseries file for 51214, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51214_rois_cc200.1D
+2025-04-15 02:24:56,022 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51214_rois_cc200.1D
+2025-04-15 02:24:56,022 [WARNING] Failed to process timeseries for subject 51214, skipping
+2025-04-15 02:24:56,030 [WARNING] Could not find timeseries file for 51215, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51215_rois_cc200.1D
+2025-04-15 02:24:56,030 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51215_rois_cc200.1D
+2025-04-15 02:24:56,030 [WARNING] Failed to process timeseries for subject 51215, skipping
+2025-04-15 02:24:56,037 [WARNING] Could not find timeseries file for 51216, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51216_rois_cc200.1D
+2025-04-15 02:24:56,037 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51216_rois_cc200.1D
+2025-04-15 02:24:56,037 [WARNING] Failed to process timeseries for subject 51216, skipping
+2025-04-15 02:24:56,045 [WARNING] Could not find timeseries file for 51217, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51217_rois_cc200.1D
+2025-04-15 02:24:56,045 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51217_rois_cc200.1D
+2025-04-15 02:24:56,045 [WARNING] Failed to process timeseries for subject 51217, skipping
+2025-04-15 02:24:56,052 [WARNING] Could not find timeseries file for 51218, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51218_rois_cc200.1D
+2025-04-15 02:24:56,052 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51218_rois_cc200.1D
+2025-04-15 02:24:56,052 [WARNING] Failed to process timeseries for subject 51218, skipping
+2025-04-15 02:24:56,060 [WARNING] Could not find timeseries file for 51219, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51219_rois_cc200.1D
+2025-04-15 02:24:56,060 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51219_rois_cc200.1D
+2025-04-15 02:24:56,060 [WARNING] Failed to process timeseries for subject 51219, skipping
+2025-04-15 02:24:56,067 [WARNING] Could not find timeseries file for 51220, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51220_rois_cc200.1D
+2025-04-15 02:24:56,067 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51220_rois_cc200.1D
+2025-04-15 02:24:56,067 [WARNING] Failed to process timeseries for subject 51220, skipping
+2025-04-15 02:24:56,075 [WARNING] Could not find timeseries file for 51221, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51221_rois_cc200.1D
+2025-04-15 02:24:56,075 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51221_rois_cc200.1D
+2025-04-15 02:24:56,075 [WARNING] Failed to process timeseries for subject 51221, skipping
+2025-04-15 02:24:56,082 [WARNING] Could not find timeseries file for 51222, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51222_rois_cc200.1D
+2025-04-15 02:24:56,082 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51222_rois_cc200.1D
+2025-04-15 02:24:56,082 [WARNING] Failed to process timeseries for subject 51222, skipping
+2025-04-15 02:24:56,089 [WARNING] Could not find timeseries file for 51223, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51223_rois_cc200.1D
+2025-04-15 02:24:56,089 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51223_rois_cc200.1D
+2025-04-15 02:24:56,090 [WARNING] Failed to process timeseries for subject 51223, skipping
+2025-04-15 02:24:56,097 [WARNING] Could not find timeseries file for 51224, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51224_rois_cc200.1D
+2025-04-15 02:24:56,097 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51224_rois_cc200.1D
+2025-04-15 02:24:56,097 [WARNING] Failed to process timeseries for subject 51224, skipping
+2025-04-15 02:24:56,104 [WARNING] Could not find timeseries file for 51225, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51225_rois_cc200.1D
+2025-04-15 02:24:56,104 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51225_rois_cc200.1D
+2025-04-15 02:24:56,104 [WARNING] Failed to process timeseries for subject 51225, skipping
+2025-04-15 02:24:56,112 [WARNING] Could not find timeseries file for 51226, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51226_rois_cc200.1D
+2025-04-15 02:24:56,112 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51226_rois_cc200.1D
+2025-04-15 02:24:56,112 [WARNING] Failed to process timeseries for subject 51226, skipping
+2025-04-15 02:24:56,119 [WARNING] Could not find timeseries file for 51227, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51227_rois_cc200.1D
+2025-04-15 02:24:56,119 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51227_rois_cc200.1D
+2025-04-15 02:24:56,119 [WARNING] Failed to process timeseries for subject 51227, skipping
+2025-04-15 02:24:56,126 [WARNING] Could not find timeseries file for 51228, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51228_rois_cc200.1D
+2025-04-15 02:24:56,126 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51228_rois_cc200.1D
+2025-04-15 02:24:56,126 [WARNING] Failed to process timeseries for subject 51228, skipping
+2025-04-15 02:24:56,134 [WARNING] Could not find timeseries file for 51229, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51229_rois_cc200.1D
+2025-04-15 02:24:56,134 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51229_rois_cc200.1D
+2025-04-15 02:24:56,134 [WARNING] Failed to process timeseries for subject 51229, skipping
+2025-04-15 02:24:56,141 [WARNING] Could not find timeseries file for 51230, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51230_rois_cc200.1D
+2025-04-15 02:24:56,141 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51230_rois_cc200.1D
+2025-04-15 02:24:56,141 [WARNING] Failed to process timeseries for subject 51230, skipping
+2025-04-15 02:24:56,149 [WARNING] Could not find timeseries file for 51231, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51231_rois_cc200.1D
+2025-04-15 02:24:56,149 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51231_rois_cc200.1D
+2025-04-15 02:24:56,149 [WARNING] Failed to process timeseries for subject 51231, skipping
+2025-04-15 02:24:56,156 [WARNING] Could not find timeseries file for 51232, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51232_rois_cc200.1D
+2025-04-15 02:24:56,156 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51232_rois_cc200.1D
+2025-04-15 02:24:56,156 [WARNING] Failed to process timeseries for subject 51232, skipping
+2025-04-15 02:24:56,163 [WARNING] Could not find timeseries file for 51233, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51233_rois_cc200.1D
+2025-04-15 02:24:56,163 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51233_rois_cc200.1D
+2025-04-15 02:24:56,163 [WARNING] Failed to process timeseries for subject 51233, skipping
+2025-04-15 02:24:56,171 [WARNING] Could not find timeseries file for 51234, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51234_rois_cc200.1D
+2025-04-15 02:24:56,171 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51234_rois_cc200.1D
+2025-04-15 02:24:56,171 [WARNING] Failed to process timeseries for subject 51234, skipping
+2025-04-15 02:24:56,178 [WARNING] Could not find timeseries file for 51235, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51235_rois_cc200.1D
+2025-04-15 02:24:56,178 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51235_rois_cc200.1D
+2025-04-15 02:24:56,178 [WARNING] Failed to process timeseries for subject 51235, skipping
+2025-04-15 02:24:56,185 [WARNING] Could not find timeseries file for 51236, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51236_rois_cc200.1D
+2025-04-15 02:24:56,185 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51236_rois_cc200.1D
+2025-04-15 02:24:56,185 [WARNING] Failed to process timeseries for subject 51236, skipping
+2025-04-15 02:24:56,193 [WARNING] Could not find timeseries file for 51237, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51237_rois_cc200.1D
+2025-04-15 02:24:56,193 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51237_rois_cc200.1D
+2025-04-15 02:24:56,193 [WARNING] Failed to process timeseries for subject 51237, skipping
+2025-04-15 02:24:56,200 [WARNING] Could not find timeseries file for 51238, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51238_rois_cc200.1D
+2025-04-15 02:24:56,200 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51238_rois_cc200.1D
+2025-04-15 02:24:56,200 [WARNING] Failed to process timeseries for subject 51238, skipping
+2025-04-15 02:24:56,208 [WARNING] Could not find timeseries file for 51239, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51239_rois_cc200.1D
+2025-04-15 02:24:56,208 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51239_rois_cc200.1D
+2025-04-15 02:24:56,208 [WARNING] Failed to process timeseries for subject 51239, skipping
+2025-04-15 02:24:56,215 [WARNING] Could not find timeseries file for 51240, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51240_rois_cc200.1D
+2025-04-15 02:24:56,215 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51240_rois_cc200.1D
+2025-04-15 02:24:56,215 [WARNING] Failed to process timeseries for subject 51240, skipping
+2025-04-15 02:24:56,223 [WARNING] Could not find timeseries file for 51241, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51241_rois_cc200.1D
+2025-04-15 02:24:56,223 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51241_rois_cc200.1D
+2025-04-15 02:24:56,223 [WARNING] Failed to process timeseries for subject 51241, skipping
+2025-04-15 02:24:56,230 [WARNING] Could not find timeseries file for 51242, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51242_rois_cc200.1D
+2025-04-15 02:24:56,230 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51242_rois_cc200.1D
+2025-04-15 02:24:56,230 [WARNING] Failed to process timeseries for subject 51242, skipping
+2025-04-15 02:24:56,238 [WARNING] Could not find timeseries file for 51243, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51243_rois_cc200.1D
+2025-04-15 02:24:56,238 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51243_rois_cc200.1D
+2025-04-15 02:24:56,238 [WARNING] Failed to process timeseries for subject 51243, skipping
+2025-04-15 02:24:56,245 [WARNING] Could not find timeseries file for 51244, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51244_rois_cc200.1D
+2025-04-15 02:24:56,245 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51244_rois_cc200.1D
+2025-04-15 02:24:56,245 [WARNING] Failed to process timeseries for subject 51244, skipping
+2025-04-15 02:24:56,252 [WARNING] Could not find timeseries file for 51245, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51245_rois_cc200.1D
+2025-04-15 02:24:56,253 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51245_rois_cc200.1D
+2025-04-15 02:24:56,253 [WARNING] Failed to process timeseries for subject 51245, skipping
+2025-04-15 02:24:56,260 [WARNING] Could not find timeseries file for 51246, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51246_rois_cc200.1D
+2025-04-15 02:24:56,260 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51246_rois_cc200.1D
+2025-04-15 02:24:56,260 [WARNING] Failed to process timeseries for subject 51246, skipping
+2025-04-15 02:24:56,267 [WARNING] Could not find timeseries file for 51247, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51247_rois_cc200.1D
+2025-04-15 02:24:56,267 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51247_rois_cc200.1D
+2025-04-15 02:24:56,267 [WARNING] Failed to process timeseries for subject 51247, skipping
+2025-04-15 02:24:56,275 [WARNING] Could not find timeseries file for 51248, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51248_rois_cc200.1D
+2025-04-15 02:24:56,275 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51248_rois_cc200.1D
+2025-04-15 02:24:56,275 [WARNING] Failed to process timeseries for subject 51248, skipping
+2025-04-15 02:24:56,282 [WARNING] Could not find timeseries file for 51249, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51249_rois_cc200.1D
+2025-04-15 02:24:56,282 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51249_rois_cc200.1D
+2025-04-15 02:24:56,282 [WARNING] Failed to process timeseries for subject 51249, skipping
+2025-04-15 02:24:56,290 [WARNING] Could not find timeseries file for 51291, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51291_rois_cc200.1D
+2025-04-15 02:24:56,290 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51291_rois_cc200.1D
+2025-04-15 02:24:56,290 [WARNING] Failed to process timeseries for subject 51291, skipping
+2025-04-15 02:24:56,297 [WARNING] Could not find timeseries file for 51292, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51292_rois_cc200.1D
+2025-04-15 02:24:56,297 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51292_rois_cc200.1D
+2025-04-15 02:24:56,297 [WARNING] Failed to process timeseries for subject 51292, skipping
+2025-04-15 02:24:56,304 [WARNING] Could not find timeseries file for 51293, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51293_rois_cc200.1D
+2025-04-15 02:24:56,304 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51293_rois_cc200.1D
+2025-04-15 02:24:56,304 [WARNING] Failed to process timeseries for subject 51293, skipping
+2025-04-15 02:24:56,312 [WARNING] Could not find timeseries file for 51294, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51294_rois_cc200.1D
+2025-04-15 02:24:56,312 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51294_rois_cc200.1D
+2025-04-15 02:24:56,312 [WARNING] Failed to process timeseries for subject 51294, skipping
+2025-04-15 02:24:56,319 [WARNING] Could not find timeseries file for 51295, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51295_rois_cc200.1D
+2025-04-15 02:24:56,319 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51295_rois_cc200.1D
+2025-04-15 02:24:56,319 [WARNING] Failed to process timeseries for subject 51295, skipping
+2025-04-15 02:24:56,327 [WARNING] Could not find timeseries file for 51296, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51296_rois_cc200.1D
+2025-04-15 02:24:56,327 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51296_rois_cc200.1D
+2025-04-15 02:24:56,327 [WARNING] Failed to process timeseries for subject 51296, skipping
+2025-04-15 02:24:56,334 [WARNING] Could not find timeseries file for 51297, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51297_rois_cc200.1D
+2025-04-15 02:24:56,334 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51297_rois_cc200.1D
+2025-04-15 02:24:56,334 [WARNING] Failed to process timeseries for subject 51297, skipping
+2025-04-15 02:24:56,341 [WARNING] Could not find timeseries file for 51298, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51298_rois_cc200.1D
+2025-04-15 02:24:56,341 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51298_rois_cc200.1D
+2025-04-15 02:24:56,342 [WARNING] Failed to process timeseries for subject 51298, skipping
+2025-04-15 02:24:56,349 [WARNING] Could not find timeseries file for 51299, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51299_rois_cc200.1D
+2025-04-15 02:24:56,349 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51299_rois_cc200.1D
+2025-04-15 02:24:56,349 [WARNING] Failed to process timeseries for subject 51299, skipping
+2025-04-15 02:24:56,356 [WARNING] Could not find timeseries file for 51300, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51300_rois_cc200.1D
+2025-04-15 02:24:56,356 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51300_rois_cc200.1D
+2025-04-15 02:24:56,356 [WARNING] Failed to process timeseries for subject 51300, skipping
+2025-04-15 02:24:56,364 [WARNING] Could not find timeseries file for 51301, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51301_rois_cc200.1D
+2025-04-15 02:24:56,364 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51301_rois_cc200.1D
+2025-04-15 02:24:56,364 [WARNING] Failed to process timeseries for subject 51301, skipping
+2025-04-15 02:24:56,371 [WARNING] Could not find timeseries file for 51302, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51302_rois_cc200.1D
+2025-04-15 02:24:56,371 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51302_rois_cc200.1D
+2025-04-15 02:24:56,372 [WARNING] Failed to process timeseries for subject 51302, skipping
+2025-04-15 02:24:56,379 [WARNING] Could not find timeseries file for 51348, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51348_rois_cc200.1D
+2025-04-15 02:24:56,379 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51348_rois_cc200.1D
+2025-04-15 02:24:56,379 [WARNING] Failed to process timeseries for subject 51348, skipping
+2025-04-15 02:24:56,386 [WARNING] Could not find timeseries file for 51349, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51349_rois_cc200.1D
+2025-04-15 02:24:56,386 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51349_rois_cc200.1D
+2025-04-15 02:24:56,386 [WARNING] Failed to process timeseries for subject 51349, skipping
+2025-04-15 02:24:56,394 [WARNING] Could not find timeseries file for 51352, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51352_rois_cc200.1D
+2025-04-15 02:24:56,394 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51352_rois_cc200.1D
+2025-04-15 02:24:56,394 [WARNING] Failed to process timeseries for subject 51352, skipping
+2025-04-15 02:24:56,401 [WARNING] Could not find timeseries file for 51353, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51353_rois_cc200.1D
+2025-04-15 02:24:56,401 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51353_rois_cc200.1D
+2025-04-15 02:24:56,401 [WARNING] Failed to process timeseries for subject 51353, skipping
+2025-04-15 02:24:56,408 [WARNING] Could not find timeseries file for 51354, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51354_rois_cc200.1D
+2025-04-15 02:24:56,409 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51354_rois_cc200.1D
+2025-04-15 02:24:56,409 [WARNING] Failed to process timeseries for subject 51354, skipping
+2025-04-15 02:24:56,416 [WARNING] Could not find timeseries file for 51355, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51355_rois_cc200.1D
+2025-04-15 02:24:56,416 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51355_rois_cc200.1D
+2025-04-15 02:24:56,416 [WARNING] Failed to process timeseries for subject 51355, skipping
+2025-04-15 02:24:56,423 [WARNING] Could not find timeseries file for 51456, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51456_rois_cc200.1D
+2025-04-15 02:24:56,423 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51456_rois_cc200.1D
+2025-04-15 02:24:56,423 [WARNING] Failed to process timeseries for subject 51456, skipping
+2025-04-15 02:24:56,431 [WARNING] Could not find timeseries file for 51457, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51457_rois_cc200.1D
+2025-04-15 02:24:56,431 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51457_rois_cc200.1D
+2025-04-15 02:24:56,431 [WARNING] Failed to process timeseries for subject 51457, skipping
+2025-04-15 02:24:56,438 [WARNING] Could not find timeseries file for 51458, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51458_rois_cc200.1D
+2025-04-15 02:24:56,438 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51458_rois_cc200.1D
+2025-04-15 02:24:56,438 [WARNING] Failed to process timeseries for subject 51458, skipping
+2025-04-15 02:24:56,446 [WARNING] Could not find timeseries file for 51459, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51459_rois_cc200.1D
+2025-04-15 02:24:56,446 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51459_rois_cc200.1D
+2025-04-15 02:24:56,446 [WARNING] Failed to process timeseries for subject 51459, skipping
+2025-04-15 02:24:56,453 [WARNING] Could not find timeseries file for 51460, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51460_rois_cc200.1D
+2025-04-15 02:24:56,453 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51460_rois_cc200.1D
+2025-04-15 02:24:56,453 [WARNING] Failed to process timeseries for subject 51460, skipping
+2025-04-15 02:24:56,460 [WARNING] Could not find timeseries file for 51461, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51461_rois_cc200.1D
+2025-04-15 02:24:56,461 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51461_rois_cc200.1D
+2025-04-15 02:24:56,461 [WARNING] Failed to process timeseries for subject 51461, skipping
+2025-04-15 02:24:56,468 [WARNING] Could not find timeseries file for 51462, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51462_rois_cc200.1D
+2025-04-15 02:24:56,468 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51462_rois_cc200.1D
+2025-04-15 02:24:56,468 [WARNING] Failed to process timeseries for subject 51462, skipping
+2025-04-15 02:24:56,475 [WARNING] Could not find timeseries file for 51463, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51463_rois_cc200.1D
+2025-04-15 02:24:56,476 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51463_rois_cc200.1D
+2025-04-15 02:24:56,476 [WARNING] Failed to process timeseries for subject 51463, skipping
+2025-04-15 02:24:56,483 [WARNING] Could not find timeseries file for 51464, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51464_rois_cc200.1D
+2025-04-15 02:24:56,483 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51464_rois_cc200.1D
+2025-04-15 02:24:56,483 [WARNING] Failed to process timeseries for subject 51464, skipping
+2025-04-15 02:24:56,490 [WARNING] Could not find timeseries file for 51465, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51465_rois_cc200.1D
+2025-04-15 02:24:56,490 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51465_rois_cc200.1D
+2025-04-15 02:24:56,490 [WARNING] Failed to process timeseries for subject 51465, skipping
+2025-04-15 02:24:56,498 [WARNING] Could not find timeseries file for 51466, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51466_rois_cc200.1D
+2025-04-15 02:24:56,498 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51466_rois_cc200.1D
+2025-04-15 02:24:56,498 [WARNING] Failed to process timeseries for subject 51466, skipping
+2025-04-15 02:24:56,505 [WARNING] Could not find timeseries file for 51467, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51467_rois_cc200.1D
+2025-04-15 02:24:56,505 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51467_rois_cc200.1D
+2025-04-15 02:24:56,505 [WARNING] Failed to process timeseries for subject 51467, skipping
+2025-04-15 02:24:56,513 [WARNING] Could not find timeseries file for 51468, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51468_rois_cc200.1D
+2025-04-15 02:24:56,513 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51468_rois_cc200.1D
+2025-04-15 02:24:56,513 [WARNING] Failed to process timeseries for subject 51468, skipping
+2025-04-15 02:24:56,520 [WARNING] Could not find timeseries file for 51469, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51469_rois_cc200.1D
+2025-04-15 02:24:56,520 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51469_rois_cc200.1D
+2025-04-15 02:24:56,520 [WARNING] Failed to process timeseries for subject 51469, skipping
+2025-04-15 02:24:56,528 [WARNING] Could not find timeseries file for 51470, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51470_rois_cc200.1D
+2025-04-15 02:24:56,528 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51470_rois_cc200.1D
+2025-04-15 02:24:56,528 [WARNING] Failed to process timeseries for subject 51470, skipping
+2025-04-15 02:24:56,535 [WARNING] Could not find timeseries file for 51471, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51471_rois_cc200.1D
+2025-04-15 02:24:56,535 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51471_rois_cc200.1D
+2025-04-15 02:24:56,535 [WARNING] Failed to process timeseries for subject 51471, skipping
+2025-04-15 02:24:56,543 [WARNING] Could not find timeseries file for 51472, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51472_rois_cc200.1D
+2025-04-15 02:24:56,543 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51472_rois_cc200.1D
+2025-04-15 02:24:56,543 [WARNING] Failed to process timeseries for subject 51472, skipping
+2025-04-15 02:24:56,550 [WARNING] Could not find timeseries file for 51473, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51473_rois_cc200.1D
+2025-04-15 02:24:56,550 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51473_rois_cc200.1D
+2025-04-15 02:24:56,550 [WARNING] Failed to process timeseries for subject 51473, skipping
+2025-04-15 02:24:56,557 [WARNING] Could not find timeseries file for 51474, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51474_rois_cc200.1D
+2025-04-15 02:24:56,557 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51474_rois_cc200.1D
+2025-04-15 02:24:56,557 [WARNING] Failed to process timeseries for subject 51474, skipping
+2025-04-15 02:24:56,565 [WARNING] Could not find timeseries file for 51571, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51571_rois_cc200.1D
+2025-04-15 02:24:56,565 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51571_rois_cc200.1D
+2025-04-15 02:24:56,565 [WARNING] Failed to process timeseries for subject 51571, skipping
+2025-04-15 02:24:56,572 [WARNING] Could not find timeseries file for 51572, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51572_rois_cc200.1D
+2025-04-15 02:24:56,572 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51572_rois_cc200.1D
+2025-04-15 02:24:56,572 [WARNING] Failed to process timeseries for subject 51572, skipping
+2025-04-15 02:24:56,580 [WARNING] Could not find timeseries file for 51573, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51573_rois_cc200.1D
+2025-04-15 02:24:56,580 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51573_rois_cc200.1D
+2025-04-15 02:24:56,580 [WARNING] Failed to process timeseries for subject 51573, skipping
+2025-04-15 02:24:56,587 [WARNING] Could not find timeseries file for 51574, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51574_rois_cc200.1D
+2025-04-15 02:24:56,587 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51574_rois_cc200.1D
+2025-04-15 02:24:56,587 [WARNING] Failed to process timeseries for subject 51574, skipping
+2025-04-15 02:24:56,595 [WARNING] Could not find timeseries file for 51575, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51575_rois_cc200.1D
+2025-04-15 02:24:56,595 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51575_rois_cc200.1D
+2025-04-15 02:24:56,595 [WARNING] Failed to process timeseries for subject 51575, skipping
+2025-04-15 02:24:56,602 [WARNING] Could not find timeseries file for 51580, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51580_rois_cc200.1D
+2025-04-15 02:24:56,602 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51580_rois_cc200.1D
+2025-04-15 02:24:56,602 [WARNING] Failed to process timeseries for subject 51580, skipping
+2025-04-15 02:24:56,610 [WARNING] Could not find timeseries file for 51582, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51582_rois_cc200.1D
+2025-04-15 02:24:56,610 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51582_rois_cc200.1D
+2025-04-15 02:24:56,610 [WARNING] Failed to process timeseries for subject 51582, skipping
+2025-04-15 02:24:56,617 [WARNING] Could not find timeseries file for 51584, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51584_rois_cc200.1D
+2025-04-15 02:24:56,617 [ERROR] Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51584_rois_cc200.1D
+2025-04-15 02:24:56,617 [WARNING] Failed to process timeseries for subject 51584, skipping
+2025-04-15 02:24:56,617 [INFO] Successfully loaded data for 0 subjects, skipped 415 subjects
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 159, in <module>
+    main() 
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 65, in main
+    subject_data_dict, clinical_data = load_timeseries_data(config, task_type='regression')
+  File "/home/pl217/connecto-hopfield/src/data_loader.py", line 640, in load_timeseries_data
+    raise ValueError("No subjects were successfully processed. Check your timeseries paths and configuration.")
+ValueError: No subjects were successfully processed. Check your timeseries paths and configuration.

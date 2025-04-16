@@ -15,7 +15,14 @@ import pickle
 import yaml
 import matplotlib.pyplot as plt
 import seaborn as sns
-from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, OneCycleLR
+from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, OneCycleLR, ReduceLROnPlateau
+from torch.cuda.amp import autocast
+from contextlib import nullcontext
+from datetime import datetime
+from sklearn.metrics import f1_score, confusion_matrix
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import StratifiedKFold
+import tqdm
 
 # Add src directory to Python path to allow importing modules
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -58,6 +65,84 @@ def get_device(device_name):
         device = torch.device('cpu')
         logging.info("Using CPU.")
     return device
+
+def validate_safely(model, dataloader, criterion, device, max_batch_size=None):
+    """
+    Validate the model with safety features to prevent OOM errors.
+    This function will use smaller sub-batches if needed.
+    
+    Args:
+        model: Model to validate
+        dataloader: Validation DataLoader
+        criterion: Loss function
+        device: Device to run validation on
+        max_batch_size: Maximum batch size to use (if None, uses the dataloader's batch size)
+        
+    Returns:
+        tuple: (val_loss, accuracy, predictions, true_labels)
+    """
+    original_batch_size = dataloader.batch_size
+    
+    # If max_batch_size is specified and smaller than the dataloader batch size,
+    # we'll validate in sub-batches
+    if max_batch_size is not None and max_batch_size < original_batch_size:
+        print(f"Using reduced batch size for validation: {max_batch_size} (original: {original_batch_size})")
+        
+        model.eval()
+        val_loss = 0.0
+        correct = 0
+        total = 0
+        
+        import time
+        start_time = time.time()
+        
+        with torch.no_grad():
+            for inputs, targets in dataloader:
+                batch_size = inputs.size(0)
+                
+                # Process in sub-batches
+                for i in range(0, batch_size, max_batch_size):
+                    try:
+                        end_idx = min(i + max_batch_size, batch_size)
+                        sub_inputs = inputs[i:end_idx].to(device, non_blocking=True)
+                        sub_targets = targets[i:end_idx].to(device, non_blocking=True)
+                        
+                        # Forward pass
+                        outputs = model(sub_inputs)
+                        loss = criterion(outputs, sub_targets)
+                        
+                        # Calculate accuracy
+                        _, preds = torch.max(outputs, 1)
+                        sub_batch_size = sub_targets.size(0)
+                        sub_correct = preds.eq(sub_targets).sum().item()
+                        
+                        # Update metrics
+                        val_loss += loss.item() * sub_batch_size
+                        correct += sub_correct
+                        total += sub_batch_size
+                        
+                        # Clean up memory
+                        del outputs, preds, sub_inputs, sub_targets, loss
+                        torch.cuda.empty_cache() if device.type == 'cuda' else None
+                        
+                    except RuntimeError as e:
+                        if "CUDA out of memory" in str(e):
+                            print(f"CUDA OOM error even with sub-batch size {max_batch_size}. Try a smaller value.")
+                        print(f"Error in sub-batch validation: {e}")
+                        continue
+        
+        # Calculate final metrics
+        val_loss = val_loss / total if total > 0 else float('inf')
+        accuracy = correct / total if total > 0 else 0
+        
+        validation_time = time.time() - start_time
+        print(f"Sub-batch validation complete in {validation_time:.2f}s - "
+              f"Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
+        
+        return val_loss, accuracy, np.array([]), np.array([])
+    else:
+        # Use the regular validation function
+        return validate_epoch(model, dataloader, criterion, device)
 
 def main(config_path):
     """
@@ -144,6 +229,7 @@ def main(config_path):
     # Cross-Validation Loop
     for fold, (train_idx, val_idx) in enumerate(group_kfold.split(X_all, y_all, groups=groups_all)):
         logging.info(f"==== Fold {fold+1}/{n_folds} ====")
+        print(f"\n==== Starting fold {fold+1}/{n_folds} ====")
         
         # Create fold directory
         fold_dir = os.path.join(experiment_dir, f"fold_{fold}")
@@ -155,6 +241,7 @@ def main(config_path):
         
         logging.info(f"Train split: {X_train.shape[0]} windows from {len(np.unique(groups_all[train_idx]))} subjects")
         logging.info(f"Validation split: {X_val.shape[0]} windows from {len(np.unique(groups_all[val_idx]))} subjects")
+        print(f"Train: {X_train.shape[0]} windows, Validation: {X_val.shape[0]} windows")
         
         # Create datasets and dataloaders
         train_dataset = FMRIWindowDataset(X_train, y_train)
@@ -210,42 +297,31 @@ def main(config_path):
         class_weights = class_weights.to(device)
         criterion = nn.CrossEntropyLoss(weight=class_weights)
         
-        # Set up optimizer with layer-specific parameters
-        # Apply higher learning rate to classifier and lower rate to the rest
-        base_lr = config['training']['learning_rate']
-        params = [
-            {'params': model.module.hopfield.parameters() if hasattr(model, 'module') else model.hopfield.parameters(), 
-             'lr': base_lr * 1.5},  # Higher LR for Hopfield
-            {'params': model.module.classifier.parameters() if hasattr(model, 'module') else model.classifier.parameters(), 
-             'lr': base_lr * 2.0},  # Higher LR for classifier
-            {'params': model.module.embed.parameters() if hasattr(model, 'module') else model.embed.parameters(), 
-             'lr': base_lr},  # Base LR for embedding
-            {'params': model.module.transformer_encoder.parameters() if hasattr(model, 'module') else model.transformer_encoder.parameters(), 
-             'lr': base_lr * 0.8},  # Slightly lower LR for transformer
-        ]
-        
-        # AdamW optimizer with parameter-specific learning rates
+        # Revert to standard optimizer setup without layer-specific LRs
         optimizer = optim.AdamW(
-            params,
-            lr=base_lr,
-            weight_decay=config['training']['weight_decay'],
-            betas=(0.9, 0.999),
-            eps=1e-8
+            model.parameters(), # Apply to all parameters
+            lr=config['training']['learning_rate'], 
+            weight_decay=config['training']['weight_decay']
+            # Using default betas and eps
         )
         
-        # Use OneCycleLR scheduler with warmup
-        steps_per_epoch = len(train_loader)
-        total_steps = steps_per_epoch * config['training']['num_epochs']
-        
-        scheduler = OneCycleLR(
-            optimizer,
-            max_lr=[base_lr * 1.5, base_lr * 2.0, base_lr, base_lr * 0.8],
-            total_steps=total_steps,
-            pct_start=0.1,  # Use first 10% of training for warmup
-            div_factor=25,  # Initial lr is max_lr/25
-            final_div_factor=10000,  # Final lr is max_lr/10000
-            anneal_strategy='cos'  # Use cosine annealing
-        )
+        # Initialize OneCycleLR scheduler
+        if config['training'].get('scheduler_type') == 'OneCycleLR':
+            steps_per_epoch = len(train_loader)
+            total_steps = steps_per_epoch * config['training']['num_epochs']
+            scheduler = OneCycleLR(
+                optimizer,
+                max_lr=config['training']['max_lr'],
+                total_steps=total_steps,
+                pct_start=0.2,  # Warmup for 20% of steps
+                anneal_strategy='cos', # Cosine annealing
+                div_factor=10,          # Initial LR = max_lr / div_factor
+                final_div_factor=1000   # Min LR = Initial LR / final_div_factor
+            )
+            print(f"Using OneCycleLR scheduler with max_lr={config['training']['max_lr']}")
+        else:
+            scheduler = None # Fallback if type is not OneCycleLR or not specified
+            print("Scheduler type not set to OneCycleLR or not specified. No scheduler used.")
         
         checkpoint_path = os.path.join(fold_dir, 'best_model.pt')
         early_stopping = EarlyStopping(
@@ -258,65 +334,63 @@ def main(config_path):
         # Training logs for this fold
         fold_log = {
             'train_loss': [],
+            'train_acc': [],
             'val_loss': [],
-            'val_acc': [] # Store val accuracy per epoch
+            'val_acc': [],
+            'grad_norms': [],
+            'learning_rates': [],
+            'batch_losses': [],
+            'batch_accuracies': []
         }
         
         # Training loop for the fold
         for epoch in range(config['training']['num_epochs']):
+            print(f"\n==== Epoch {epoch+1}/{config['training']['num_epochs']} ====")
+            
             # Train for one epoch
-            if device.type == 'cuda' and use_mixed_precision:
-                # Use mixed precision training
-                with torch.amp.autocast('cuda'):
-                    train_loss, train_acc = train_epoch(
-                        model, 
-                        train_loader, 
-                        criterion, 
-                        optimizer, 
-                        device, 
-                        scaler=scaler,
-                        clip_value=config['training'].get('gradient_clip', 1.0),
-                        scheduler=scheduler
-                    ) 
-                # Evaluate on validation set with mixed precision
-                with torch.amp.autocast('cuda'):
-                    val_loss, val_accuracy, _, _ = validate_epoch(model, val_loader, criterion, device)
-            else:
-                # Regular training without mixed precision
-                train_loss, train_acc = train_epoch(
-                    model, 
-                    train_loader, 
-                    criterion, 
-                    optimizer, 
-                    device,
-                    scaler=None,  # Explicitly set to None when not using mixed precision
-                    clip_value=config['training'].get('gradient_clip', 1.0),
-                    scheduler=scheduler
-                ) 
-                val_loss, val_accuracy, _, _ = validate_epoch(model, val_loader, criterion, device)
+            train_metrics = train_epoch(
+                model, 
+                train_loader, 
+                criterion, 
+                optimizer, 
+                device, 
+                scaler=scaler if use_mixed_precision else None,
+                clip_value=config['training'].get('gradient_clip', 1.0),
+                scheduler=scheduler # Pass scheduler back to train_epoch
+            )
+            
+            # Evaluate on validation set
+            with torch.no_grad():
+                # IMPORTANT: Don't use autocast for validation due to potential data type issues
+                val_loss, val_accuracy, _, _ = validate_epoch(
+                    model, val_loader, criterion, device # Removed max_batch_size argument
+                )
             
             # Update log
-            fold_log['train_loss'].append(train_loss)
+            fold_log['train_loss'].append(train_metrics['loss'])
+            fold_log['train_acc'].append(train_metrics['accuracy'])
             fold_log['val_loss'].append(val_loss)
-            fold_log['val_acc'].append(val_accuracy) # Log val accuracy
-            
-            # Don't update scheduler here - it's now updated in the train_epoch function
-            current_lr = optimizer.param_groups[0]['lr']
+            fold_log['val_acc'].append(val_accuracy)
+            fold_log['grad_norms'].append(np.mean(train_metrics['grad_norms']))
+            fold_log['learning_rates'].extend(train_metrics['learning_rates'])
             
             # Log progress
             logging.info(
                 f"Epoch {epoch+1}/{config['training']['num_epochs']} - "
-                f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, " # Log train accuracy
-                f"Val Loss: {val_loss:.4f}, Val Acc: {val_accuracy:.4f}, "
-                f"LR: {current_lr:.6f}"
+                f"Train Loss: {train_metrics['loss']:.4f}, Train Acc: {100 * train_metrics['accuracy']:.2f}%, "
+                f"Val Loss: {val_loss:.4f}, Val Acc: {100 * val_accuracy:.2f}%, "
+                f"Grad Norm: {np.mean(train_metrics['grad_norms']):.4f}, "
+                f"LR: {train_metrics['learning_rates'][-1]:.6f}"
             )
             
             # Check early stopping based on validation loss
-            early_stopping(val_loss, model, epoch)
+            early_stopping(val_loss, val_accuracy, model, epoch)
             if early_stopping.early_stop:
                 logging.info(f"Early stopping triggered at epoch {epoch+1}")
+                print(f"Early stopping triggered at epoch {epoch+1}")
                 break
         
+        print(f"\n==== Fold {fold+1} training complete, evaluating best model ====")
         # Save training log (epoch-wise metrics) for this fold
         log_csv_path = os.path.join(fold_dir, 'epoch_log.csv')
         save_training_log(fold_log, log_csv_path) # Use updated function name

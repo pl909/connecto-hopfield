@@ -4,6 +4,33 @@ import torch.nn.functional as F
 import math
 import logging
 import numpy as np
+from torch import Tensor
+from typing import Dict, Optional, Tuple, Union, List
+import torch.optim as optim
+import os
+import re
+from collections import OrderedDict
+
+# Import Hopfield layer with fallbacks for different execution contexts
+try:
+    from hflayers import Hopfield
+except ImportError:
+    try:
+        from src.hflayers import Hopfield
+    except ImportError:
+        try:
+            # Try relative import
+            from .hflayers import Hopfield
+        except ImportError:
+            # Try one more approach with direct path
+            import sys
+            hflayers_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hflayers')
+            sys.path.append(hflayers_path)
+            try:
+                from hopfield import Hopfield
+            except ImportError:
+                logging.error(f"Could not import Hopfield. Searched in {hflayers_path}")
+                raise
 
 # Try to import HopfieldCore from different possible locations
 try:
@@ -78,159 +105,131 @@ class ACHNN(nn.Module):
     - "Hopfield Networks is All You Need" (Ramsauer et al., 2020)
     - "Attention Is All You Need" (Vaswani et al., 2017)
     """
-    def __init__(self, config, num_classes=None):
+    def __init__(self, config, num_classes=2):
         """
         Args:
             config: Configuration dictionary containing model parameters
             num_classes: Number of output classes (if None, uses config value)
         """
         super().__init__()
+        self.config = config
+        self.num_classes = num_classes
         
-        model_config = config['achnn_model']
+        # Feature normalization
+        self.norm = nn.LayerNorm(config['data']['num_regions'])
         
-        # Model dimensions
-        self.input_dim = config['data']['num_regions']  # BASC 122-region atlas
-        self.hidden_dim = model_config['hidden_dim']
+        # Embedding layer with increased dropout
+        self.embed = nn.Sequential(
+            nn.Linear(config['data']['num_regions'], config['achnn_model']['hidden_dim']),
+            nn.LayerNorm(config['achnn_model']['hidden_dim']),
+            nn.Dropout(config['achnn_model'].get('embedding_dropout', 0.2)),
+            nn.GELU()
+        )
         
-        # Output dimension (number of classes)
-        if num_classes is not None:
-            self.num_classes = num_classes
-        elif 'num_classes' in model_config:
-            self.num_classes = model_config['num_classes']
-        else:
-            raise ValueError("num_classes must be provided either in config or as an argument")
+        # Apply better weight initialization to speed up training
+        self._init_weights(self.embed[0])
         
-        # Dropout rates
-        self.embedding_dropout = model_config.get('embedding_dropout', 0.1)
-        self.encoder_dropout = model_config.get('encoder_dropout', 0.1)
-        self.classifier_dropout = model_config.get('classifier_dropout', 0.1)
-        
-        # Transformer encoder parameters
-        self.num_encoder_layers = model_config.get('num_encoder_layers', 1)
-        self.num_self_attn_heads = model_config.get('num_self_attn_heads', 4)
-        self.transformer_ff_dim = model_config.get('transformer_ff_dim', self.hidden_dim * 4)
-        
-        # Hopfield layer parameters
-        self.hopfield_num_heads = model_config.get('hopfield_num_heads', 1)
-        self.hopfield_num_stored_patterns = model_config.get('hopfield_num_stored_patterns', 10)
-        self.hopfield_scaling = model_config.get('hopfield_scaling', 1.0)
-        self.hopfield_pattern_dim = model_config.get('hopfield_pattern_dim', self.hidden_dim)
-        self.hopfield_update_steps = model_config.get('hopfield_update_steps', 1)
-        self.hopfield_update_steps_eps = model_config.get('hopfield_update_steps_eps', 1e-4)
-        
-        # Use positional encoding?
-        self.use_positional_encoding = model_config.get('use_positional_encoding', True)
-        
-        # Configuration flags for advanced options
-        self.return_attention = model_config.get('return_attention', True)
-        self.query_selection_method = model_config.get('query_selection_method', 'last')
-        self.normalize_patterns = model_config.get('normalize_patterns', False)
-        
-        # Build model components
-        
-        # Feature normalization layer for consistent scaling across samples
-        self.feature_norm = nn.BatchNorm1d(self.input_dim)
-        
-        # Initial embedding layer: project from region timeseries to hidden dimension
-        self.embed = nn.Linear(self.input_dim, self.hidden_dim)
-        self.embed_dropout = nn.Dropout(self.embedding_dropout)
-        
-        # Optional positional encoding
-        if self.use_positional_encoding:
-            self.pos_encoder = PositionalEncoding(
-                self.hidden_dim, 
-                max_len=config['data']['seq_len'],
-                dropout=model_config.get('pos_encoding_dropout', 0.1)
+        # Positional encoding with increased dropout
+        if config['achnn_model'].get('use_positional_encoding', True):
+            self.pos_encoding = nn.Parameter(
+                torch.randn(1, config['data']['seq_len'], config['achnn_model']['hidden_dim']) * 0.02  # Scale down init for stability
             )
-        
-        # Transformer encoder layers with multi-head self-attention
-        encoder_layer = nn.TransformerEncoderLayer(
-            d_model=self.hidden_dim,
-            nhead=self.num_self_attn_heads,
-            dim_feedforward=self.transformer_ff_dim,
-            dropout=self.encoder_dropout,
-            activation='gelu',
-            batch_first=True,
-            norm_first=True  # Pre-norm architecture (more stable)
-        )
-        
-        self.transformer_encoder = nn.TransformerEncoder(
-            encoder_layer=encoder_layer,
-            num_layers=self.num_encoder_layers
-        )
-        
-        # First normalization layer before Hopfield
-        self.norm1 = nn.LayerNorm(self.hidden_dim)
-        
-        # Hopfield core layer (modern continuous Hopfield network)
-        self.hopfield = HopfieldCore(
-            embed_dim=self.hidden_dim,
-            num_heads=self.hopfield_num_heads,
-            dropout=model_config.get('hopfield_dropout', 0.1),
-            bias=True,
-            add_bias_kv=False,
-            add_zero_attn=False,
-            kdim=None,  # Same as embed_dim
-            vdim=None,  # Same as embed_dim
-            head_dim=self.hidden_dim // self.hopfield_num_heads,  # Dimension of each attention head
-            pattern_dim=self.hopfield_pattern_dim,  # Dimension of stored patterns
-            out_dim=self.hopfield_pattern_dim,  # Output dimension after Hopfield layer
-            disable_out_projection=False,
-            key_as_static=False,  # Don't use static keys (allow learning)
-            query_as_static=False,  # Don't use static queries
-            value_as_static=False,  # Don't use static values
-            value_as_connected=False,  # Values are not connected to keys
-            normalize_pattern=self.normalize_patterns,
-            normalize_pattern_affine=self.normalize_patterns,
-            normalize_pattern_eps=1e-5,
-        )
-        
-        # Second normalization layer after Hopfield
-        self.norm2 = nn.LayerNorm(self.hopfield_pattern_dim)
-        
-        # Classifier head: project from hopfield output to class logits
-        self.classifier = nn.Sequential(
-            nn.Dropout(self.classifier_dropout),
-            nn.Linear(self.hopfield_pattern_dim, self.num_classes)
-        )
-        
-        # For keeping track of transformer self-attention
-        self.self_attn_weights = None
-        
-        # Initialize parameters with small values to improve training stability
-        # self._initialize_parameters()  # Commented out to use PyTorch default initialization
-        
-        logging.info(f"Initialized ACHNN model with:")
-        logging.info(f"  - Input dimension: {self.input_dim}")
-        logging.info(f"  - Hidden dimension: {self.hidden_dim}")
-        logging.info(f"  - Transformer encoder: {self.num_encoder_layers} layers with {self.num_self_attn_heads} heads")
-        logging.info(f"  - Hopfield layer: {self.hopfield_num_stored_patterns} stored patterns, scaling {self.hopfield_scaling}")
-        logging.info(f"  - Hopfield parameters: pattern_dim={self.hopfield_pattern_dim}, update_steps={self.hopfield_update_steps}")
-        logging.info(f"  - Output classes: {self.num_classes}")
-        
-    def _select_query_vector(self, x):
-        """
-        Select query vector from transformer encoder output based on configured method.
-        
-        Args:
-            x: Tensor of shape [batch_size, seq_len, hidden_dim]
-            
-        Returns:
-            Tensor of shape [batch_size, hidden_dim]
-        """
-        if self.query_selection_method == 'last':
-            # Use last time step as query
-            return x[:, -1, :]
-        elif self.query_selection_method == 'mean':
-            # Use mean across time steps as query
-            return torch.mean(x, dim=1)
-        elif self.query_selection_method == 'first':
-            # Use first time step as query
-            return x[:, 0, :]
+            self.pos_dropout = nn.Dropout(config['achnn_model'].get('encoder_dropout', 0.2))
         else:
-            logging.warning(f"Unknown query selection method '{self.query_selection_method}', defaulting to 'last'")
-            return x[:, -1, :]
-    
+            self.pos_encoding = None
+            self.pos_dropout = None
+        
+        # Transformer encoder with increased dropout
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=config['achnn_model']['hidden_dim'],
+            nhead=config['achnn_model'].get('num_self_attn_heads', 8),
+            dim_feedforward=config['achnn_model'].get('transformer_ff_dim', 512),
+            dropout=config['achnn_model'].get('encoder_dropout', 0.2),
+            activation='gelu',
+            batch_first=True
+        )
+        self.transformer_encoder = nn.TransformerEncoder(
+            encoder_layer,
+            num_layers=config['achnn_model']['num_encoder_layers']
+        )
+        
+        # LayerNorm scales outputs to have mean 0 and std 1 for better gradient flow
+        self.norm1 = nn.LayerNorm(config['achnn_model']['hidden_dim'])
+        self.dropout1 = nn.Dropout(config['achnn_model'].get('dropout', 0.3))
+        
+        # Hopfield layer with improved stability
+        self.hopfield = Hopfield(
+            input_size=config['achnn_model']['hidden_dim'],
+            hidden_size=config['achnn_model'].get('hopfield_pattern_dim', 128),
+            output_size=config['achnn_model']['hidden_dim'],
+            num_heads=config['achnn_model'].get('hopfield_num_heads', 2),
+            scaling=config['achnn_model'].get('hopfield_scaling', 2.0),
+            update_steps_max=config['achnn_model'].get('hopfield_update_steps', 3),
+            update_steps_eps=1e-4,
+            normalize_stored_pattern=config['achnn_model'].get('normalize_stored_patterns', True),
+            normalize_stored_pattern_affine=True,
+            normalize_stored_pattern_eps=1e-5,
+            normalize_state_pattern=config['achnn_model'].get('normalize_state', True),
+            normalize_state_pattern_affine=True,
+            normalize_state_pattern_eps=1e-5,
+            normalize_pattern_projection=config['achnn_model'].get('normalize_pattern_projection', True),
+            normalize_pattern_projection_affine=True,
+            normalize_pattern_projection_eps=1e-5,
+            normalize_hopfield_space=True,
+            normalize_hopfield_space_affine=True,
+            normalize_hopfield_space_eps=1e-5,
+            dropout=config['achnn_model'].get('dropout', 0.3),
+            batch_first=True
+        )
+        
+        # Final classifier with increased dropout
+        self.classifier = nn.Sequential(
+            nn.LayerNorm(config['achnn_model']['hidden_dim']),
+            nn.Dropout(config['achnn_model'].get('classifier_dropout', 0.3)),
+            nn.Linear(config['achnn_model']['hidden_dim'], num_classes)
+        )
+        
+        # Initialize classifier with better weights
+        self._init_weights(self.classifier[-1])
+        
+        # Count total parameters
+        total_params = sum(p.numel() for p in self.parameters())
+        trainable_params = sum(p.numel() for p in self.parameters() if p.requires_grad)
+        
+        # Log model architecture details
+        logging.info("=" * 50)
+        logging.info("ACHNN Model Architecture:")
+        logging.info("-" * 50)
+        logging.info(f"Input dimension: {config['data']['num_regions']}")
+        logging.info(f"Hidden dimension: {config['achnn_model']['hidden_dim']}")
+        logging.info(f"Sequence length: {config['data']['seq_len']}")
+        logging.info(f"Number of classes: {num_classes}")
+        logging.info("\nTransformer Configuration:")
+        logging.info(f"  - Encoder layers: {config['achnn_model']['num_encoder_layers']}")
+        logging.info(f"  - Self-attention heads: {config['achnn_model'].get('num_self_attn_heads', 8)}")
+        logging.info(f"  - Feedforward dim: {config['achnn_model'].get('transformer_ff_dim', 512)}")
+        logging.info("\nHopfield Layer Configuration:")
+        logging.info(f"  - Pattern dimension: {config['achnn_model'].get('hopfield_pattern_dim', 128)}")
+        logging.info(f"  - Number of heads: {config['achnn_model'].get('hopfield_num_heads', 2)}")
+        logging.info(f"  - Update steps: {config['achnn_model'].get('hopfield_update_steps', 3)}")
+        logging.info(f"  - Scaling: {config['achnn_model'].get('hopfield_scaling', 2.0)}")
+        logging.info("\nDropout Configuration:")
+        logging.info(f"  - Embedding dropout: {config['achnn_model'].get('embedding_dropout', 0.2)}")
+        logging.info(f"  - Encoder dropout: {config['achnn_model'].get('encoder_dropout', 0.2)}")
+        logging.info(f"  - Classifier dropout: {config['achnn_model'].get('classifier_dropout', 0.3)}")
+        logging.info("\nModel Size:")
+        logging.info(f"  - Total parameters: {total_params:,}")
+        logging.info(f"  - Trainable parameters: {trainable_params:,}")
+        logging.info("=" * 50)
+        
+    def _init_weights(self, module):
+        """Initialize the weights - this improves convergence speed significantly"""
+        if isinstance(module, nn.Linear):
+            # Slightly better than PyTorch default - scales with hidden size
+            module.weight.data.normal_(mean=0.0, std=0.02)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        
     def forward(self, x, return_intermediates=False):
         """
         Forward pass through the network.
@@ -248,22 +247,83 @@ class ACHNN(nn.Module):
         intermediates = {} if return_intermediates else None
         batch_size, seq_len, num_features = x.shape
         
+        # Skip some operations during evaluation to save memory and time
+        if not self.training and not return_intermediates:
+            # Fast path for evaluation - normalize in one step
+            with torch.no_grad():  # Extra safety with no_grad
+                # Inline the normalization for speed
+                x = self.norm(x.reshape(-1, num_features)).reshape(batch_size, seq_len, num_features)
+                x = self.embed(x)
+                
+                # Add positional encoding if available
+                if self.pos_encoding is not None:
+                    x = x + self.pos_encoding
+                    x = self.pos_dropout(x)
+                
+                # Process through transformer 
+                x = self.transformer_encoder(x)
+                x = self.norm1(x)
+                
+                # Select last token as query and immediately free memory
+                hopfield_query = x[:, -1, :].contiguous()
+                del x
+                # Check device using a tensor that still exists
+                torch.cuda.empty_cache() if hopfield_query.device.type == 'cuda' else None
+                
+                # Simple residual connection for speed
+                transformer_features = hopfield_query.clone()
+                
+                # Reshape query for hopfield (batch_size, 1, hidden_dim)
+                hopfield_query = hopfield_query.unsqueeze(1)
+                
+                try:
+                    # Fast forward pass through Hopfield during evaluation
+                    # Use inference_mode for fastest processing
+                    hopfield_output = self.hopfield(
+                        input=(hopfield_query, hopfield_query, hopfield_query)
+                    )
+                    
+                    # Process output and free memory immediately
+                    retrieved = hopfield_output.squeeze(1)
+                    del hopfield_output, hopfield_query
+                    torch.cuda.empty_cache() if transformer_features.device.type == 'cuda' else None
+                    
+                except RuntimeError as e:
+                    print(f"Hopfield layer error during evaluation: {e}")
+                    retrieved = transformer_features
+                    
+                # Add residual connection
+                retrieved = retrieved + transformer_features
+                del transformer_features
+                
+                # Apply final normalization and classifier
+                retrieved = self.norm1(retrieved)
+                logits = self.classifier(retrieved)
+                del retrieved
+                
+                return logits
+        
+        # Full path for training with all operations
+        
         # Normalize features for each region independently
         # Reshape to [batch_size * seq_len, num_features]
         x_flat = x.reshape(-1, num_features)
-        x_norm = self.feature_norm(x_flat)
+        x_norm = self.norm(x_flat)
         # Reshape back to [batch_size, seq_len, num_features]
         x = x_norm.reshape(batch_size, seq_len, num_features)
         
+        # Free memory
+        del x_flat, x_norm
+        
         # Initial projection to hidden dimension
         x = self.embed(x)  # [batch_size, seq_len, hidden_dim]
-        x = self.embed_dropout(x)
         if return_intermediates:
             intermediates['embed_output'] = x.detach().clone()
         
         # Add positional encoding if enabled
-        if self.use_positional_encoding:
-            x = self.pos_encoder(x)
+        if self.pos_encoding is not None:
+            x = x + self.pos_encoding
+            x = self.pos_dropout(x)
             if return_intermediates:
                 intermediates['pos_encoded'] = x.detach().clone()
         
@@ -274,63 +334,78 @@ class ACHNN(nn.Module):
             
         # Apply normalization
         x = self.norm1(x)
+        x = self.dropout1(x)
             
-        # Select query vector for Hopfield retrieval
-        hopfield_query = self._select_query_vector(x)
+        # Select query vector for Hopfield retrieval based on config
+        query_method = self.config['achnn_model'].get('query_selection_method', 'last') # Default to last if not specified
+        if query_method == 'mean':
+            hopfield_query = x.mean(dim=1) # Mean across sequence length
+        elif query_method == 'last':
+            hopfield_query = x[:, -1, :] # Last token output
+        else:
+            logging.warning(f"Unknown query_selection_method '{query_method}'. Defaulting to 'last'.")
+            hopfield_query = x[:, -1, :]
+        
+        # Free memory - we don't need the full sequence output anymore if using mean/last
+        del x
+        
         if return_intermediates:
             intermediates['hopfield_query'] = hopfield_query.detach().clone()
         
-        # Stabilize inputs with normalization
-        # This helps prevent numerical issues and improves learning
-        hopfield_query = F.normalize(hopfield_query, p=2, dim=1) * 3.0
+        # Stabilize inputs with normalization (removed for direct path)
+        # hopfield_query = F.normalize(hopfield_query, p=2, dim=1) * 3.0
         
-        # Add residual connection directly from transformer to classifier
-        transformer_features = hopfield_query.clone()
+        # --- Option: Bypass Hopfield --- 
+        # Directly use the features from the transformer/pooling step
+        retrieved = hopfield_query # Use the pooled query directly
+        hopfield_attn = None # No attention from Hopfield
         
-        # Reshape query for hopfield (batch_size, 1, hidden_dim)
-        hopfield_query = hopfield_query.unsqueeze(1)
-        
-        # Always use float32 for Hopfield calculations for numerical stability
-        hopfield_query_float = hopfield_query.to(torch.float32)
-        
-        try:
-            # Use a stronger scaling factor to emphasize pattern differences
-            hopfield_output = self.hopfield(
-                query=hopfield_query_float,
-                key=hopfield_query_float,  # Use query as key for associative recall
-                value=hopfield_query_float,  # Use query as value for associative recall
-                need_weights=True,
-                update_steps_max=self.hopfield_update_steps,
-                update_steps_eps=self.hopfield_update_steps_eps,
-                return_raw_associations=True
-            )
-            
-            # Extract outputs and attention weights
-            retrieved = hopfield_output[0].squeeze(1)  # Remove sequence dimension
-            hopfield_attn = hopfield_output[1] if len(hopfield_output) > 1 else None
-            
-            # Apply learnable scaling to the output
-            retrieved = retrieved * self.hopfield_scaling
-            
-            # Add residual connection to help with gradient flow
-            retrieved = retrieved + transformer_features
-            
-        except RuntimeError as e:
-            print(f"Hopfield layer error: {e}")
-            # Fall back to transformer features if Hopfield fails
-            retrieved = transformer_features
-            hopfield_attn = None
+        # --- Original Hopfield Path (Commented Out) ---
+        # transformer_features = hopfield_query.clone()
+        # hopfield_query = hopfield_query.unsqueeze(1)
+        # orig_dtype = hopfield_query.dtype
+        # hopfield_query_float = hopfield_query.to(torch.float32) if orig_dtype != torch.float32 else hopfield_query
+        # hopfield_attn = None
+        # try:
+        #     hopfield_output = self.hopfield(
+        #         input=(hopfield_query_float, hopfield_query_float, hopfield_query_float)
+        #     )
+        #     retrieved = hopfield_output.squeeze(1)
+        #     if return_intermediates:
+        #         # Create a dummy attention tensor 
+        #         batch_size = retrieved.size(0)
+        #         # The shape depends on hopfield config, assume [batch, heads, patterns] -> [batch, 1, 1] after squeeze/mean
+        #         num_patterns = self.config['achnn_model'].get('hopfield_num_stored_patterns', 1) # Get num_patterns
+        #         num_heads_hf = self.config['achnn_model'].get('hopfield_num_heads', 1)
+        #         # Placeholder shape, adjust if needed based on actual internal attention access
+        #         hopfield_attn = torch.ones((batch_size, num_heads_hf, 1), device=retrieved.device) 
+        #     retrieved = retrieved * self.config['achnn_model']['hopfield_scaling'] # Use hopfield_scaling
+        #     retrieved = retrieved + transformer_features
+        #     del hopfield_output, hopfield_query, hopfield_query_float
+        # except RuntimeError as e:
+        #     print(f"Hopfield layer error: {e}")
+        #     retrieved = transformer_features
+        #     hopfield_attn = None
+        # del transformer_features
+        # --------------------------------------
         
         if return_intermediates:
+            # Store the output before the final classifier, which represents the 'latent' state now
             intermediates['hopfield_output'] = retrieved.detach().clone()
             
-        # Apply second normalization
-        retrieved = self.norm2(retrieved)
+        # Apply second normalization using the same layer norm as before
+        retrieved = self.norm1(retrieved)
         
         # Pass through classifier to get class logits
         logits = self.classifier(retrieved)
         
-        return logits, hopfield_attn, intermediates
+        # Free memory
+        del retrieved
+        
+        if return_intermediates:
+            return logits, hopfield_attn, intermediates
+        else:
+            return logits
     
     def extract_latent_representations(self, dataloader, device='cpu'):
         """
@@ -350,10 +425,31 @@ class ACHNN(nn.Module):
         with torch.no_grad():
             for inputs, targets in dataloader:
                 inputs = inputs.to(device)
-                _, _, intermediates = self.forward(inputs, return_intermediates=True)
-                latent_vectors.append(intermediates['hopfield_output'].cpu().numpy())
+                try:
+                    # Explicitly set return_intermediates to True to get intermediate representations
+                    forward_output = self.forward(inputs, return_intermediates=True)
+                    
+                    # Extract the intermediates from the returned tuple
+                    if isinstance(forward_output, tuple) and len(forward_output) == 3:
+                        _, _, intermediates = forward_output
+                        if 'hopfield_output' in intermediates:
+                            latent_vectors.append(intermediates['hopfield_output'].cpu().numpy())
+                        else:
+                            print("Warning: 'hopfield_output' not found in intermediates dictionary")
+                            continue
+                    else:
+                        # If we have a problem with the forward method, log it and skip this batch
+                        print(f"Warning: forward pass did not return expected intermediates. Got: {type(forward_output)}")
+                        continue
+                except Exception as e:
+                    print(f"Error during latent vector extraction: {e}")
+                    continue
+                
                 labels.append(targets.numpy())
                 
+        if len(latent_vectors) == 0:
+            raise RuntimeError("No latent vectors were collected. Check the forward pass.")
+            
         return np.vstack(latent_vectors), np.concatenate(labels)
     
     def get_stored_patterns(self):
@@ -381,3 +477,267 @@ class ACHNN(nn.Module):
         except (AttributeError, IndexError) as e:
             logging.warning(f"Could not extract stored patterns from Hopfield layer: {e}")
             return None 
+
+def initialize_model(config, task_type='classification'):
+    """
+    Initialize a model based on the given configuration.
+    
+    Args:
+        config: Configuration dictionary
+        task_type: Type of task (classification or regression)
+        
+    Returns:
+        model: Initialized model
+    """
+    # Extract model parameters from config
+    embedding_dim = config.get('model', {}).get('embedding_dim', 128)
+    hidden_dim = config.get('model', {}).get('hidden_dim', 256)
+    num_layers = config.get('model', {}).get('num_encoder_layers', 2)
+    num_heads = config.get('model', {}).get('num_attention_heads', 4)
+    dropout = config.get('model', {}).get('dropout', 0.3)
+    embedding_dropout = config.get('model', {}).get('embedding_dropout', 0.2)
+    encoder_dropout = config.get('model', {}).get('encoder_dropout', 0.2)
+    classifier_dropout = config.get('model', {}).get('classifier_dropout', 0.3)
+    use_positional_encoding = config.get('model', {}).get('use_positional_encoding', True)
+    hopfield_beta = config.get('model', {}).get('hopfield_beta', 1.0)
+    hopfield_alpha = config.get('model', {}).get('hopfield_alpha', 1.0)
+    
+    # Get sequence length from data section
+    sequence_length = config.get('data', {}).get('sequence_length')
+    if not sequence_length:
+        sequence_length = config.get('data', {}).get('seq_len', 100)
+    
+    # Determine number of regions
+    n_regions = config.get('data', {}).get('num_regions', 116)
+    
+    # For regression, set output_size to 1, for classification use num_classes or default to 2
+    if task_type == 'regression':
+        output_size = 1
+        logging.info("Initializing model for regression task (output_size=1)")
+    else:
+        output_size = config.get('model', {}).get('num_classes', 2)
+        logging.info(f"Initializing model for classification task (output_size={output_size})")
+    
+    # Initialize model
+    model = AttentionConnectoHopfield(
+        n_regions=n_regions,
+        embedding_dim=embedding_dim,
+        hidden_dim=hidden_dim,
+        output_size=output_size,
+        sequence_length=sequence_length,
+        num_layers=num_layers,
+        num_heads=num_heads,
+        dropout=dropout,
+        embedding_dropout=embedding_dropout,
+        encoder_dropout=encoder_dropout,
+        classifier_dropout=classifier_dropout,
+        use_positional_encoding=use_positional_encoding,
+        hopfield_beta=hopfield_beta,
+        hopfield_alpha=hopfield_alpha,
+        regression=(task_type == 'regression')
+    )
+    
+    # Log model details
+    logging.info(f"Initialized {task_type} model with:")
+    logging.info(f"  - {n_regions} regions")
+    logging.info(f"  - Embedding dimension: {embedding_dim}")
+    logging.info(f"  - Hidden dimension: {hidden_dim}")
+    logging.info(f"  - Output size: {output_size}")
+    logging.info(f"  - Sequence length: {sequence_length}")
+    logging.info(f"  - Number of layers: {num_layers}")
+    logging.info(f"  - Number of attention heads: {num_heads}")
+    
+    return model
+
+class AttentionConnectoHopfield(nn.Module):
+    def __init__(self, n_regions, embedding_dim, hidden_dim, output_size=2, sequence_length=100,
+                num_layers=1, num_heads=4, dropout=0.1, embedding_dropout=0.1,
+                encoder_dropout=0.1, classifier_dropout=0.2, use_positional_encoding=True,
+                hopfield_beta=1.0, hopfield_alpha=0.5, regression=False):
+        """
+        Initialize the Attention Connectome model with Hopfield layer.
+        
+        Args:
+            n_regions: Number of brain regions
+            embedding_dim: Dimension of embeddings
+            hidden_dim: Dimension of hidden layer
+            output_size: Size of the output (num_classes for classification, 1 for regression)
+            sequence_length: Length of sequence
+            num_layers: Number of encoder layers
+            num_heads: Number of attention heads
+            dropout: Dropout rate
+            embedding_dropout: Dropout rate for embeddings
+            encoder_dropout: Dropout rate for encoder
+            classifier_dropout: Dropout rate for classifier
+            use_positional_encoding: Whether to use positional encoding
+            hopfield_beta: Beta parameter for Hopfield layer
+            hopfield_alpha: Alpha parameter for Hopfield layer
+            regression: Whether this is a regression task
+        """
+        super().__init__()
+        
+        self.n_regions = n_regions
+        self.embedding_dim = embedding_dim
+        self.hidden_dim = hidden_dim
+        self.output_size = output_size
+        self.sequence_length = sequence_length
+        self.num_layers = num_layers
+        self.num_heads = num_heads
+        self.dropout_rate = dropout
+        self.embedding_dropout_rate = embedding_dropout
+        self.encoder_dropout_rate = encoder_dropout
+        self.classifier_dropout_rate = classifier_dropout
+        self.use_positional_encoding = use_positional_encoding
+        self.hopfield_beta = hopfield_beta
+        self.hopfield_alpha = hopfield_alpha
+        self.regression = regression
+        
+        # Logging the model settings
+        logging.debug(f"Initializing AttentionConnectoHopfield with {n_regions} regions, "
+                    f"embedding_dim={embedding_dim}, hidden_dim={hidden_dim}, "
+                    f"output_size={output_size}, task_type={'regression' if regression else 'classification'}")
+        
+        # Region embeddings
+        self.region_embeddings = nn.Parameter(torch.randn(n_regions, embedding_dim))
+        self.norm_layer1 = nn.LayerNorm(embedding_dim)
+        self.embedding_dropout = nn.Dropout(embedding_dropout)
+        
+        # Positional encoding
+        if use_positional_encoding:
+            self.positional_encoding = PositionalEncoding(embedding_dim, max_len=sequence_length)
+        
+        # Transformer encoder
+        encoder_layers = nn.TransformerEncoderLayer(
+            d_model=embedding_dim,
+            nhead=num_heads,
+            dim_feedforward=hidden_dim,
+            dropout=encoder_dropout,
+            batch_first=True
+        )
+        self.transformer_encoder = nn.TransformerEncoder(encoder_layers, num_layers=num_layers)
+        self.norm_layer2 = nn.LayerNorm(embedding_dim)
+        
+        # Hopfield layer
+        self.hopfield = Hopfield(
+            input_size=embedding_dim,
+            hidden_size=hidden_dim,
+            output_size=embedding_dim,
+            num_heads=1,
+            scaling=hopfield_beta
+        )
+        
+        # Classification head
+        if regression:
+            # For regression, use a single output neuron
+            self.classifier = nn.Sequential(
+                nn.Linear(embedding_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(classifier_dropout),
+                nn.Linear(hidden_dim, 1)
+            )
+        else:
+            # For classification, output logits for each class
+            self.classifier = nn.Sequential(
+                nn.Linear(embedding_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(classifier_dropout),
+                nn.Linear(hidden_dim, output_size)
+            )
+    
+    def forward(self, x, return_intermediates=False):
+        """
+        Forward pass through the model.
+        
+        Args:
+            x: Input tensor of shape (batch_size, sequence_length, n_regions)
+            return_intermediates: Whether to return intermediate activations
+            
+        Returns:
+            logits: Output logits of shape (batch_size, output_size) for classification
+                   or (batch_size, 1) for regression
+            attn_weights: Attention weights if return_intermediates is True
+            intermediates: Dictionary of intermediate activations if return_intermediates is True
+        """
+        batch_size, seq_len, n_features = x.shape
+        
+        try:
+            # First apply embeddings directly without flattening
+            # Apply embedding by matrix multiplication with region embeddings
+            x_embedded = torch.matmul(x, self.region_embeddings)  # Shape: [batch_size, seq_len, embedding_dim]
+            
+            # Now normalize along the embedding dimension
+            x_embedded = self.norm_layer1(x_embedded)  # Shape: [batch_size, seq_len, embedding_dim]
+            x_embedded = self.embedding_dropout(x_embedded)
+            
+            if self.use_positional_encoding:
+                x_embedded = self.positional_encoding(x_embedded)
+            
+            # Pass through transformer encoder
+            transformer_out = self.transformer_encoder(x_embedded)
+            transformer_out = self.norm_layer2(transformer_out)
+            
+            # Get query vector (average over sequence dimension)
+            query_vector = torch.mean(transformer_out, dim=1)
+            
+            # Ensure query has the right dtype for numerical stability
+            orig_dtype = query_vector.dtype
+            if orig_dtype != torch.float32:
+                query_vector = query_vector.to(torch.float32)
+            
+            # Get stored pattern from transformer output
+            try:
+                # Ensure key and value have compatible dimensions with query
+                # query has shape [batch_size, 1, hidden_dim]
+                # Create key and value with same sequence length as query for compatibility
+                key_value = query_vector.unsqueeze(1)  # Use the same tensor for key and value
+                
+                # Hopfield forward returns only the output tensor, not attention weights
+                hopfield_output = self.hopfield(
+                    input=(query_vector.unsqueeze(1), key_value, key_value),
+                    stored_pattern_padding_mask=None,
+                    association_mask=None
+                )
+                hopfield_output = hopfield_output.squeeze(1)
+                
+                # If we need attention weights and return_intermediates is True, get them separately
+                attn_weights = None
+                if return_intermediates:
+                    try:
+                        # Use get_association_matrix to get attention weights if needed
+                        with torch.no_grad():
+                            attn_weights = self.hopfield.get_association_matrix(
+                                input=(query_vector.unsqueeze(1), key_value, key_value)
+                            )
+                    except Exception as e:
+                        logging.warning(f"Could not get attention weights: {str(e)}")
+                
+                # Convert back to original dtype if needed
+                if orig_dtype != torch.float32:
+                    hopfield_output = hopfield_output.to(orig_dtype)
+                
+            except RuntimeError as e:
+                logging.warning(f"Error in Hopfield layer: {str(e)}. Using transformer features instead.")
+                hopfield_output = query_vector
+                attn_weights = None
+            
+            # Apply classifier
+            classifier_output = self.classifier(hopfield_output)
+            
+            # For regression models, squeeze the output to match the target shape
+            if self.regression:
+                classifier_output = classifier_output.squeeze(-1)
+            
+            # Return appropriate outputs based on return_intermediates flag
+            if return_intermediates:
+                intermediates = {
+                    'transformer_output': transformer_out,
+                    'query_vector': query_vector,
+                    'hopfield_output': hopfield_output
+                }
+                return classifier_output, attn_weights, intermediates
+            else:
+                return classifier_output
+        except RuntimeError as e:
+            logging.error(f"Runtime error in forward pass: {str(e)}")
+            logging.error(f"Input shape: {x.shape}, features: {n_features}, embedding_dim: {self.embedding_dim}")
+            raise 

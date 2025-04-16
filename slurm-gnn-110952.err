@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_gnn_training.py", line 27, in <module>
+    from gnn_utils import GraphDataLoader
+  File "/home/pl217/connecto-hopfield/src/gnn_utils.py", line 584, in <module>
+    class GraphDataLoader:
+  File "/home/pl217/connecto-hopfield/src/gnn_utils.py", line 684, in GraphDataLoader
+    def get_loaders(self) -> Tuple[DataLoader, DataLoader, DataLoader]:
+NameError: name 'DataLoader' is not defined. Did you mean: 'PyGDataLoader'?

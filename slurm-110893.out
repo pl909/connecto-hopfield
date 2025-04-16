@@ -1,0 +1,7 @@
+Starting ACHNN training with 16 CPUs and 1 GPU at Mon Apr 14 01:56:57 PM EDT 2025
+
+==== Starting fold 1/5 ====
+Train: 114235 windows, Validation: 28524 windows
+
+==== Epoch 1/100 ====
+Training completed at Mon Apr 14 01:58:49 PM EDT 2025

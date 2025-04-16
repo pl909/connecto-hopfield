@@ -1,0 +1,402 @@
+WARNING:root:Removing 670 subjects with missing ADOS_TOTAL values
+WARNING:root:Removing 27 subjects with negative ADOS_TOTAL values
+WARNING:root:Could not find timeseries file for 50002, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50002_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50002_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50002, skipping
+WARNING:root:Could not find timeseries file for Olin_0050118, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050118_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050118_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50118, skipping
+WARNING:root:Could not find timeseries file for Olin_0050119, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050119_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050119_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50119, skipping
+WARNING:root:Could not find timeseries file for Olin_0050120, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050120_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050120_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50120, skipping
+WARNING:root:Could not find timeseries file for Olin_0050121, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050121_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050121_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50121, skipping
+WARNING:root:Could not find timeseries file for Olin_0050122, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050122_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050122_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50122, skipping
+WARNING:root:Could not find timeseries file for Olin_0050123, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050123_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050123_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50123, skipping
+WARNING:root:Could not find timeseries file for Olin_0050124, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050124_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050124_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50124, skipping
+WARNING:root:Could not find timeseries file for Olin_0050125, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050125_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050125_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50125, skipping
+WARNING:root:Could not find timeseries file for Olin_0050126, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050126_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050126_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50126, skipping
+WARNING:root:Could not find timeseries file for Olin_0050127, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050127_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050127_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50127, skipping
+WARNING:root:Could not find timeseries file for Olin_0050128, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050128_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050128_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50128, skipping
+WARNING:root:Could not find timeseries file for Olin_0050129, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050129_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050129_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50129, skipping
+WARNING:root:Could not find timeseries file for Olin_0050130, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050130_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050130_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50130, skipping
+WARNING:root:Could not find timeseries file for Olin_0050131, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050131_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050131_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50131, skipping
+WARNING:root:Could not find timeseries file for Olin_0050132, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050132_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050132_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50132, skipping
+WARNING:root:Could not find timeseries file for Olin_0050133, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050133_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050133_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50133, skipping
+WARNING:root:Could not find timeseries file for Olin_0050134, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050134_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050134_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50134, skipping
+WARNING:root:Could not find timeseries file for Olin_0050135, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050135_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050135_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50135, skipping
+WARNING:root:Could not find timeseries file for Olin_0050136, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050136_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Olin_0050136_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50136, skipping
+WARNING:root:Could not find timeseries file for 50137, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50137_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50137_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50137, skipping
+WARNING:root:Could not find timeseries file for 50155, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50155_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50155_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50155, skipping
+WARNING:root:Could not find timeseries file for 50238, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50238_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50238_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50238, skipping
+WARNING:root:Could not find timeseries file for 50244, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50244_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50244_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50244, skipping
+WARNING:root:Could not find timeseries file for 50432, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50432_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50432_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50432, skipping
+WARNING:root:Could not find timeseries file for 50450, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50450_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50450_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50450, skipping
+WARNING:root:Could not find timeseries file for 50451, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50451_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50451_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50451, skipping
+WARNING:root:Could not find timeseries file for 50452, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50452_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50452_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50452, skipping
+WARNING:root:Could not find timeseries file for 50454, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50454_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50454_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50454, skipping
+WARNING:root:Could not find timeseries file for 50456, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50456_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50456_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50456, skipping
+WARNING:root:Could not find timeseries file for 50458, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50458_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50458_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50458, skipping
+WARNING:root:Could not find timeseries file for 50459, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50459_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50459_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50459, skipping
+WARNING:root:Could not find timeseries file for 50460, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50460_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50460_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50460, skipping
+WARNING:root:Could not find timeseries file for 50461, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50461_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50461_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50461, skipping
+WARNING:root:Could not find timeseries file for 50462, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50462_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50462_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50462, skipping
+WARNING:root:Could not find timeseries file for 50464, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50464_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50464_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50464, skipping
+WARNING:root:Could not find timeseries file for 50475, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50475_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50475_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50475, skipping
+WARNING:root:Could not find timeseries file for 50476, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50476_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50476_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50476, skipping
+WARNING:root:Could not find timeseries file for 50478, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50478_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50478_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50478, skipping
+WARNING:root:Could not find timeseries file for 50479, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50479_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50479_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50479, skipping
+WARNING:root:Could not find timeseries file for 50484, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50484_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50484_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50484, skipping
+WARNING:root:Could not find timeseries file for 50495, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50495_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50495_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50495, skipping
+WARNING:root:Could not find timeseries file for 50506, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50506_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50506_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50506, skipping
+WARNING:root:Could not find timeseries file for 50508, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50508_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50508_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50508, skipping
+WARNING:root:Could not find timeseries file for 50512, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50512_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50512_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50512, skipping
+WARNING:root:Could not find timeseries file for 50513, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50513_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50513_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50513, skipping
+WARNING:root:Could not find timeseries file for 50517, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50517_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50517_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50517, skipping
+WARNING:root:Could not find timeseries file for 50522, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50522_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50522_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50522, skipping
+WARNING:root:Could not find timeseries file for CMU_a_0050642, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050642_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050642_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50642, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050643, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050643_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050643_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50643, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050644, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050644_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050644_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50644, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050645, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050645_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050645_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50645, skipping
+WARNING:root:Could not find timeseries file for CMU_a_0050646, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050646_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050646_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50646, skipping
+WARNING:root:Could not find timeseries file for CMU_a_0050647, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050647_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050647_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50647, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050648, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050648_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050648_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50648, skipping
+WARNING:root:Could not find timeseries file for CMU_a_0050649, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050649_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050649_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50649, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050650, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050650_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050650_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50650, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050651, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050651_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050651_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50651, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050652, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050652_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050652_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50652, skipping
+WARNING:root:Could not find timeseries file for CMU_a_0050653, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050653_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050653_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50653, skipping
+WARNING:root:Could not find timeseries file for CMU_a_0050654, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050654_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_a_0050654_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50654, skipping
+WARNING:root:Could not find timeseries file for CMU_b_0050655, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050655_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/CMU_b_0050655_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50655, skipping
+WARNING:root:Could not find timeseries file for KKI_0050791, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050791_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050791_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50791, skipping
+WARNING:root:Could not find timeseries file for KKI_0050792, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050792_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050792_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50792, skipping
+WARNING:root:Could not find timeseries file for KKI_0050793, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050793_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050793_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50793, skipping
+WARNING:root:Could not find timeseries file for KKI_0050794, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050794_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050794_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50794, skipping
+WARNING:root:Could not find timeseries file for KKI_0050795, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050795_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050795_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50795, skipping
+WARNING:root:Could not find timeseries file for KKI_0050796, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050796_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050796_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50796, skipping
+WARNING:root:Could not find timeseries file for KKI_0050797, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050797_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050797_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50797, skipping
+WARNING:root:Could not find timeseries file for KKI_0050798, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050798_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050798_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50798, skipping
+WARNING:root:Could not find timeseries file for KKI_0050799, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050799_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050799_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50799, skipping
+WARNING:root:Could not find timeseries file for KKI_0050800, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050800_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050800_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50800, skipping
+WARNING:root:Could not find timeseries file for KKI_0050801, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050801_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050801_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50801, skipping
+WARNING:root:Could not find timeseries file for KKI_0050802, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050802_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050802_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50802, skipping
+WARNING:root:Could not find timeseries file for KKI_0050803, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050803_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050803_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50803, skipping
+WARNING:root:Could not find timeseries file for KKI_0050804, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050804_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050804_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50804, skipping
+WARNING:root:Could not find timeseries file for 50805, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50805_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50805_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50805, skipping
+WARNING:root:Could not find timeseries file for 50806, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50806_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50806_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50806, skipping
+WARNING:root:Could not find timeseries file for KKI_0050807, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050807_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050807_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50807, skipping
+WARNING:root:Could not find timeseries file for KKI_0050815, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050815_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050815_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50815, skipping
+WARNING:root:Could not find timeseries file for KKI_0050823, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050823_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050823_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50823, skipping
+WARNING:root:Could not find timeseries file for KKI_0050824, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050824_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050824_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50824, skipping
+WARNING:root:Could not find timeseries file for KKI_0050825, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050825_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050825_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50825, skipping
+WARNING:root:Could not find timeseries file for KKI_0050826, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050826_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/KKI_0050826_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50826, skipping
+WARNING:root:Could not find timeseries file for 50953, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50953_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50953_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50953, skipping
+WARNING:root:Could not find timeseries file for 50971, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50971_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50971_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50971, skipping
+WARNING:root:Could not find timeseries file for 50975, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50975_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50975_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50975, skipping
+WARNING:root:Could not find timeseries file for 50980, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50980_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50980_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50980, skipping
+WARNING:root:Could not find timeseries file for 51176, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51176_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51176_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51176, skipping
+WARNING:root:Could not find timeseries file for 51232, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51232_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51232_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51232, skipping
+WARNING:root:Could not find timeseries file for 51233, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51233_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51233_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51233, skipping
+WARNING:root:Could not find timeseries file for 51242, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51242_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51242_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51242, skipping
+WARNING:root:Could not find timeseries file for 51243, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51243_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51243_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51243, skipping
+WARNING:root:Could not find timeseries file for 51244, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51244_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51244_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51244, skipping
+WARNING:root:Could not find timeseries file for 51245, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51245_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51245_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51245, skipping
+WARNING:root:Could not find timeseries file for 51246, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51246_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51246_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51246, skipping
+WARNING:root:Could not find timeseries file for 51247, tried 79 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51247_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51247_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51247, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051456, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051456_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051456_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51456, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051457, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051457_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051457_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51457, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051458, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051458_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051458_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51458, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051459, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051459_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051459_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51459, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051460, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051460_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051460_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51460, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051461, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051461_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051461_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51461, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051462, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051462_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051462_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51462, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051463, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051463_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051463_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51463, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051464, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051464_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051464_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51464, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051465, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051465_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051465_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51465, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051466, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051466_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051466_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51466, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051467, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051467_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051467_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51467, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051468, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051468_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051468_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51468, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051469, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051469_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051469_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51469, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051470, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051470_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051470_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51470, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051471, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051471_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051471_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51471, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051472, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051472_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051472_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51472, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051473, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051473_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051473_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51473, skipping
+WARNING:root:Could not find timeseries file for Caltech_0051474, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051474_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/Caltech_0051474_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51474, skipping
+WARNING:root:Could not find timeseries file for SBL_0051571, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051571_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051571_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51571, skipping
+WARNING:root:Could not find timeseries file for SBL_0051572, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051572_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051572_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51572, skipping
+WARNING:root:Could not find timeseries file for SBL_0051573, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051573_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051573_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51573, skipping
+WARNING:root:Could not find timeseries file for SBL_0051574, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051574_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051574_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51574, skipping
+WARNING:root:Could not find timeseries file for SBL_0051575, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051575_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051575_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51575, skipping
+WARNING:root:Could not find timeseries file for SBL_0051580, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051580_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051580_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51580, skipping
+WARNING:root:Could not find timeseries file for SBL_0051582, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051582_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051582_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51582, skipping
+WARNING:root:Could not find timeseries file for SBL_0051584, tried 4 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051584_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/SBL_0051584_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51584, skipping
+/home/pl217/connecto-hopfield/src/training.py:1598: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler() if device.type == 'cuda' else None
+/home/pl217/connecto-hopfield/src/training.py:1610: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 287, in <module>
+    main() 
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 234, in main
+    test_results = train_model_regression(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 1471, in train_model_regression
+    train_loss = train_epoch_regression(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 1611, in train_epoch_regression
+    outputs = model(inputs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/models.py", line 665, in forward
+    x_norm = self.norm_layer1(x_flat)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/normalization.py", line 217, in forward
+    return F.layer_norm(
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/functional.py", line 2910, in layer_norm
+    return torch.layer_norm(
+RuntimeError: Given normalized_shape=[128], expected input with shape [*, 128], but got input of size[480, 200]

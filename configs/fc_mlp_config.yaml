@@ -1,0 +1,83 @@
+experiment_name: abide_fc_mlp_classification
+
+paths:
+  # Base directory where phenotypic CSV resides and results will be saved
+  base_dir: /home/pl217/connecto-hopfield
+  # Path to the main phenotypic CSV file
+  phenotypic_file: Phenotypic_V1_0b_preprocessed1.csv
+  # Directory containing the downloaded .1D timeseries files
+  regional_timeseries_dir: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  # Base directory for saving experiment results
+  results_base_dir: /home/pl217/connecto-hopfield/results
+
+# Quality Control - Site selection
+qc:
+  included_sites: # Using more sites is recommended for generalization
+    - NYU
+    - PITT
+    - OHSU
+    - SDSU
+    - STANFORD
+    - TRINITY
+    - UCLA_1
+    - UCLA_2
+    - UM_1
+    - UM_2
+    # Maybe add these if you need more data, check their quality/parameters:
+    # - CALTECH
+    # - CMU
+    # - KKI
+    # - LEUVEN_1 # Often different TR/params
+    # - LEUVEN_2 # Often different TR/params
+    # - MAX_MUN  # Often different TR/params
+    # - OLIN
+    # - SBL
+    # - USM
+    # - YALE
+
+data:
+  num_regions: 200       # Should match the atlas used for time series extraction (e.g., CC200)
+  tr: 2.0                # TR value (used mainly for windowing, less critical for static FC)
+  seq_len: 30            # Window length for FC calculation (experiment with this)
+  window_step: 1         # Step for sliding window
+
+fc_mlp_model:
+  hidden_layers: [256, 128, 64] # MLP hidden layer sizes
+  dropout_rate: 0.4            # Dropout rate for MLP
+  use_batch_norm: true         # Use BatchNorm in MLP
+  num_classes: 2               # ASD vs TDC
+
+training:
+  seed: 42
+  device: cuda
+  batch_size: 128              # Can often use larger batch size for MLP vs Transformer
+  num_epochs: 100
+  learning_rate: 0.001         # Initial learning rate for AdamW
+  weight_decay: 0.01
+
+  # Scheduler: ReduceLROnPlateau is a good default for MLPs
+  scheduler_type: ReduceLROnPlateau
+  scheduler_mode: max          # Monitor validation accuracy
+  scheduler_metric: val_accuracy
+  scheduler_factor: 0.2
+  scheduler_patience: 7       # Reduce LR if no improvement for 7 epochs
+  scheduler_threshold: 0.001
+  scheduler_min_lr: 0.00001
+
+  # Early Stopping
+  early_stopping_patience: 15 # Stop if no improvement 15 epochs after LR reduction starts
+  early_stopping_metric: accuracy
+  patience: 15 # Keep consistent
+
+  gradient_clip: 1.0
+  mixed_precision: false # Generally not needed/less effective for MLPs
+
+  # DataLoader settings
+  num_workers: 8           # Adjust based on your system
+  pin_memory: true
+  persistent_workers: false # Often not needed for simple MLP loading
+  prefetch_factor: 2
+  cv_folds: 5
+
+analysis:
+  plot_dpi: 150

@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 429, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 279, in main
+    train_metrics = train_epoch(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 125, in train_epoch
+    output = model(data)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/models.py", line 336, in forward
+    hopfield_output = self.hopfield(
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+TypeError: Hopfield.forward() got an unexpected keyword argument 'query'

@@ -13,21 +13,21 @@ paths:
 # Quality Control - Site selection based on QC plots
 qc:
   included_sites:
-    - LEUVEN_1
-    - LEUVEN_2
-    - MAX_MUN
+    #- LEUVEN_1
+    #- LEUVEN_2
+    #- MAX_MUN
     - NYU
-    - OHSU
-    - PITT
+    #- OHSU
+    #- PITT
     - SDSU
     - STANFORD
     - TRINITY
-    - UCLA_1
-    - UCLA_2
+    #- UCLA_1
+    #- UCLA_2
     - UM_1
     - UM_2
-    - USM  # Keep with caution
-    - YALE # Keep with caution
+    #- USM  # Keep with caution
+    #- YALE # Keep with caution
   # Motion QC thresholds (currently unused as we load all subjects from included sites)
   # max_fd: 0.5 
   # max_scrub: 20.0
@@ -40,42 +40,62 @@ data:
   # Removed task-specific parameters like hrf_delay_secs, included_runs, conditions_to_classify
 
 achnn_model:
-  hidden_dim: 128         # Restored original hidden dimension
-  num_classes: 2         # Binary classification: ASD vs TDC
-  num_encoder_layers: 2  # Increased layers for better feature extraction
-  num_self_attn_heads: 8 # Increased from 2 to 8 heads
-  transformer_ff_dim: 512 # Increased from 256 to 512
-  embedding_dropout: 0.2  # Moderate dropout
-  encoder_dropout: 0.2    # Moderate dropout
-  classifier_dropout: 0.3 # Increased dropout for classifier
-  use_positional_encoding: True
-  query_selection_method: 'mean' # Changed from 'last' to 'mean' to capture full sequence information
+  hidden_dim: 64
+  num_encoder_layers: 1
+  num_heads: 2
+  dropout: 0.3
+  update_steps_max: 3
+  scaling: 0.5
+  use_positional_encoding: true
+  return_attention: true
+  normalize_patterns: true
+  normalize_stored_patterns: true
+  normalize_pattern_projection: true
+  normalize_state: true
+  num_classes: 2
+  num_self_attn_heads: 2
+  transformer_ff_dim: 128
+  embedding_dropout: 0.2
+  encoder_dropout: 0.2
+  classifier_dropout: 0.3
+  query_selection_method: 'mean'
   # Hopfield specific
-  hopfield_num_heads: 2   # Increased from 1 to 2
-  hopfield_num_stored_patterns: 16 # Increased from 4 to 16
-  hopfield_pattern_dim: 128   # Match hidden_dim
-  hopfield_scaling: 2.0       # Increased from 1.0 to 2.0
-  hopfield_update_steps: 3    # Increased from 1 to 3 update steps
-  normalize_patterns: True    # Keep True for better training
+  hopfield_num_heads: 1
+  hopfield_num_stored_patterns: 8
+  hopfield_pattern_dim: 32
+  hopfield_scaling: 2.0
+  hopfield_update_steps: 1
 
 training:
-  seed: 1024       # Changed seed value to break symmetry
-  device: 'cuda'   # 'cuda' or 'cpu'
-  batch_size: 16   # Keep smaller batch size
-  num_epochs: 100  # Increased from 50 to 100
-  learning_rate: 0.005  # Increased from 0.003 to 0.005
-  weight_decay: 0.0001  # Increased from 0.00005 to 0.0001
-  scheduler_step_size: 5
-  scheduler_gamma: 0.8   # Less aggressive reduction
-  early_stopping_patience: 15
-  gradient_clip: 1.0     # Increased from 0.5 to 1.0
-  mixed_precision: false # Keep disabled for stability
-  cv_folds: 5
-  patience: 20
-  num_workers: 16
+  seed: 42
+  device: cuda
+  batch_size: 16
+  num_epochs: 100
+  
+  # Revert to OneCycleLR settings
+  scheduler_type: OneCycleLR
+  learning_rate: 0.001             # Base learning rate (AdamW default will use this)
+  max_lr: 0.003                    # Max LR for OneCycleLR
+  weight_decay: 0.01
+  
+  # Early Stopping 
+  early_stopping_patience: 10
+  early_stopping_metric: accuracy 
+  patience: 10 # Keep consistent
+
+  gradient_clip: 1.0
+  mixed_precision: false
+  
+  # DataLoader settings
+  num_workers: 4
   pin_memory: true
   persistent_workers: true
   prefetch_factor: 2
+  cv_folds: 5
+
+# Removed ReduceLROnPlateau specific parameters
+# Removed scheduler_step_size (not needed for OneCycleLR with total_steps)
+# Kept warmup_epochs implicitly via pct_start in OneCycleLR setup script
 
 analysis:
   plot_dpi: 150

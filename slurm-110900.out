@@ -1,0 +1,25 @@
+Starting ACHNN training with 16 CPUs and 1 GPU at Mon Apr 14 03:36:51 PM EDT 2025
+
+==== Starting fold 1/5 ====
+Train: 20440 windows, Validation: 5110 windows
+
+==== Epoch 1/100 ====
+Starting training phase...
+Training on 20440 samples...
+Training: 100/1278 batches (7.8%), Batch Acc: 43.75%, Running Acc: 48.81%, Loss: 0.9227
+Training: 200/1278 batches (15.7%), Batch Acc: 43.75%, Running Acc: 49.50%, Loss: 0.9357
+Training: 300/1278 batches (23.5%), Batch Acc: 25.00%, Running Acc: 49.52%, Loss: 1.0157
+Training: 400/1278 batches (31.3%), Batch Acc: 31.25%, Running Acc: 50.64%, Loss: 0.9289
+Training: 500/1278 batches (39.1%), Batch Acc: 68.75%, Running Acc: 50.92%, Loss: 0.6765
+Training: 600/1278 batches (47.0%), Batch Acc: 37.50%, Running Acc: 50.50%, Loss: 0.8438
+Training: 700/1278 batches (54.8%), Batch Acc: 50.00%, Running Acc: 50.74%, Loss: 0.7995
+Training: 800/1278 batches (62.6%), Batch Acc: 50.00%, Running Acc: 50.96%, Loss: 0.8031
+Training: 900/1278 batches (70.5%), Batch Acc: 56.25%, Running Acc: 51.21%, Loss: 0.7811
+Training: 1000/1278 batches (78.3%), Batch Acc: 37.50%, Running Acc: 51.22%, Loss: 0.7796
+Training: 1100/1278 batches (86.1%), Batch Acc: 56.25%, Running Acc: 51.24%, Loss: 0.7287
+Training: 1200/1278 batches (93.9%), Batch Acc: 62.50%, Running Acc: 51.22%, Loss: 0.6325
+Training: 1278/1278 batches (100.0%), Batch Acc: 50.00%, Running Acc: 51.19%, Loss: 0.6731
+Training phase complete
+Starting validation phase...
+Starting validation on 5110 samples...
+Entering no_grad block for validation

@@ -1,0 +1,55 @@
+WARNING:root:Removing 316 subjects with missing ADOS_TOTAL values
+WARNING:root:Removing 3 subjects with negative ADOS_TOTAL values
+WARNING:root:Could not find timeseries file for 50238, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50238_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50238_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50238, skipping
+WARNING:root:Could not find timeseries file for 50244, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50244_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50244_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50244, skipping
+WARNING:root:Could not find timeseries file for 50953, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50953_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50953_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50953, skipping
+WARNING:root:Could not find timeseries file for 50971, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50971_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50971_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50971, skipping
+WARNING:root:Could not find timeseries file for 50975, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50975_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50975_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50975, skipping
+WARNING:root:Could not find timeseries file for 50980, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50980_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/50980_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 50980, skipping
+WARNING:root:Could not find timeseries file for 51176, tried 182 patterns, will use path: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51176_rois_cc200.1D
+ERROR:root:Timeseries file not found: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/51176_rois_cc200.1D
+WARNING:root:Failed to process timeseries for subject 51176, skipping
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 287, in <module>
+    main() 
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 234, in main
+    test_results = train_model_regression(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 1471, in train_model_regression
+    train_loss = train_epoch_regression(
+  File "/home/pl217/connecto-hopfield/src/training.py", line 1611, in train_epoch_regression
+    outputs = model(inputs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/models.py", line 689, in forward
+    hopfield_output, attn_weights = self.hopfield(
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/hflayers/__init__.py", line 232, in forward
+    association_output = self._maybe_transpose(self._associate(
+  File "/home/pl217/connecto-hopfield/src/hflayers/__init__.py", line 215, in _associate
+    return self.association_core(
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/hflayers/activation.py", line 326, in forward
+    return hopfield_core_forward(
+  File "/home/pl217/connecto-hopfield/src/hflayers/functional.py", line 144, in hopfield_core_forward
+    assert key.size(0) == value.size(0) and key.size(1) == value.size(1)
+AssertionError

@@ -1,0 +1,10 @@
+2025-04-15 01:07:44,015 - __main__ - INFO - Using device: cuda
+2025-04-15 01:07:44,015 - __main__ - INFO - Loading data...
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_gnn_training.py", line 453, in <module>
+    main(args.config) 
+  File "/home/pl217/connecto-hopfield/scripts/run_gnn_training.py", line 247, in main
+    from data_loader import load_abide_timeseries
+  File "/home/pl217/connecto-hopfield/src/data_loader.py", line 13, in <module>
+    from .utils import get_subject_id_from_path 
+ImportError: attempted relative import with no known parent package

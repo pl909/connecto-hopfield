@@ -1,0 +1,1056 @@
+2025-04-15 01:11:05,306 - __main__ - INFO - Using device: cuda
+2025-04-15 01:11:05,306 - __main__ - INFO - Loading data...
+2025-04-15 01:11:05,330 - root - INFO - Loaded phenotypic data for 1112 subjects from /home/pl217/connecto-hopfield/Phenotypic_V1_0b_preprocessed1.csv
+2025-04-15 01:11:05,331 - root - INFO - Filtered by site: 539 subjects remaining from included sites.
+2025-04-15 01:11:05,333 - root - INFO - Filtered by valid FILE_ID: 519 subjects remaining.
+2025-04-15 01:11:05,334 - root - INFO - Filtered by valid DX_GROUP (1 or 2): 519 subjects remaining.
+2025-04-15 01:11:15,537 - root - INFO - Successfully processed 519 subjects, failed to process 0 subjects.
+2025-04-15 01:11:16,312 - root - INFO - Total windows created: 91053
+2025-04-15 01:11:16,312 - root - INFO - Window shape: (30, 200)
+2025-04-15 01:11:16,313 - root - INFO - Unique DX_GROUP labels found: [1 2]
+2025-04-15 01:11:16,316 - root - INFO - LabelEncoder mapping:
+2025-04-15 01:11:16,317 - root - INFO -   Original DX_GROUP 1 -> Encoded 0
+2025-04-15 01:11:16,317 - root - INFO -   Original DX_GROUP 2 -> Encoded 1
+2025-04-15 01:11:16,320 - root - INFO - LabelEncoder saved to /home/pl217/connecto-hopfield/results/label_encoder.pkl
+2025-04-15 01:11:16,432 - root - INFO - Computing connectivity matrices for 91053 subjects...
+2025-04-15 01:11:17,135 - root - WARNING - Subject 1328 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,154 - root - WARNING - Subject 1329 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,172 - root - WARNING - Subject 1330 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,191 - root - WARNING - Subject 1331 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,210 - root - WARNING - Subject 1332 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,228 - root - WARNING - Subject 1333 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,247 - root - WARNING - Subject 1334 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,265 - root - WARNING - Subject 1335 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,284 - root - WARNING - Subject 1336 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,302 - root - WARNING - Subject 1337 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,321 - root - WARNING - Subject 1338 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,339 - root - WARNING - Subject 1339 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,358 - root - WARNING - Subject 1340 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,377 - root - WARNING - Subject 1341 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,395 - root - WARNING - Subject 1342 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,414 - root - WARNING - Subject 1343 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,432 - root - WARNING - Subject 1344 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,451 - root - WARNING - Subject 1345 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,470 - root - WARNING - Subject 1346 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,488 - root - WARNING - Subject 1347 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,506 - root - WARNING - Subject 1348 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,525 - root - WARNING - Subject 1349 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,543 - root - WARNING - Subject 1350 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,561 - root - WARNING - Subject 1351 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,580 - root - WARNING - Subject 1352 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,598 - root - WARNING - Subject 1353 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,616 - root - WARNING - Subject 1354 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,635 - root - WARNING - Subject 1355 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,653 - root - WARNING - Subject 1356 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,671 - root - WARNING - Subject 1357 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,689 - root - WARNING - Subject 1358 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,708 - root - WARNING - Subject 1359 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,726 - root - WARNING - Subject 1360 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,745 - root - WARNING - Subject 1361 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,763 - root - WARNING - Subject 1362 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,781 - root - WARNING - Subject 1363 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,800 - root - WARNING - Subject 1364 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,818 - root - WARNING - Subject 1365 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,836 - root - WARNING - Subject 1366 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,855 - root - WARNING - Subject 1367 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,873 - root - WARNING - Subject 1368 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,891 - root - WARNING - Subject 1369 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,909 - root - WARNING - Subject 1370 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,928 - root - WARNING - Subject 1371 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,946 - root - WARNING - Subject 1372 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,965 - root - WARNING - Subject 1373 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:17,983 - root - WARNING - Subject 1374 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,001 - root - WARNING - Subject 1375 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,019 - root - WARNING - Subject 1376 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,038 - root - WARNING - Subject 1377 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,056 - root - WARNING - Subject 1378 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,074 - root - WARNING - Subject 1379 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,092 - root - WARNING - Subject 1380 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,110 - root - WARNING - Subject 1381 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,129 - root - WARNING - Subject 1382 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,147 - root - WARNING - Subject 1383 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,165 - root - WARNING - Subject 1384 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,184 - root - WARNING - Subject 1385 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,202 - root - WARNING - Subject 1386 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,220 - root - WARNING - Subject 1387 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,239 - root - WARNING - Subject 1388 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,257 - root - WARNING - Subject 1389 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,275 - root - WARNING - Subject 1390 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,294 - root - WARNING - Subject 1391 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,312 - root - WARNING - Subject 1392 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,330 - root - WARNING - Subject 1393 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,348 - root - WARNING - Subject 1394 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,366 - root - WARNING - Subject 1395 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,385 - root - WARNING - Subject 1396 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,403 - root - WARNING - Subject 1397 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,421 - root - WARNING - Subject 1398 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,439 - root - WARNING - Subject 1399 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,457 - root - WARNING - Subject 1400 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,476 - root - WARNING - Subject 1401 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,494 - root - WARNING - Subject 1402 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,512 - root - WARNING - Subject 1403 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,530 - root - WARNING - Subject 1404 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,549 - root - WARNING - Subject 1405 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,567 - root - WARNING - Subject 1406 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,586 - root - WARNING - Subject 1407 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,604 - root - WARNING - Subject 1408 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,622 - root - WARNING - Subject 1409 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,640 - root - WARNING - Subject 1410 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,658 - root - WARNING - Subject 1411 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,677 - root - WARNING - Subject 1412 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,695 - root - WARNING - Subject 1413 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,714 - root - WARNING - Subject 1414 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,732 - root - WARNING - Subject 1415 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,750 - root - WARNING - Subject 1416 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,769 - root - WARNING - Subject 1417 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,787 - root - WARNING - Subject 1418 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,805 - root - WARNING - Subject 1419 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,824 - root - WARNING - Subject 1420 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,842 - root - WARNING - Subject 1421 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,860 - root - WARNING - Subject 1422 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,879 - root - WARNING - Subject 1423 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,899 - root - WARNING - Subject 1424 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,919 - root - WARNING - Subject 1425 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,939 - root - WARNING - Subject 1426 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,960 - root - WARNING - Subject 1427 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:18,982 - root - WARNING - Subject 1428 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,002 - root - WARNING - Subject 1429 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,023 - root - WARNING - Subject 1430 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,044 - root - WARNING - Subject 1431 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,065 - root - WARNING - Subject 1432 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,086 - root - WARNING - Subject 1433 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,107 - root - WARNING - Subject 1434 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,129 - root - WARNING - Subject 1435 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,150 - root - WARNING - Subject 1436 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,170 - root - WARNING - Subject 1437 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,191 - root - WARNING - Subject 1438 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,212 - root - WARNING - Subject 1439 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,233 - root - WARNING - Subject 1440 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,254 - root - WARNING - Subject 1441 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,273 - root - WARNING - Subject 1442 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,292 - root - WARNING - Subject 1443 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,310 - root - WARNING - Subject 1444 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,328 - root - WARNING - Subject 1445 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,347 - root - WARNING - Subject 1446 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,365 - root - WARNING - Subject 1447 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,383 - root - WARNING - Subject 1448 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,402 - root - WARNING - Subject 1449 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,420 - root - WARNING - Subject 1450 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,439 - root - WARNING - Subject 1451 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,458 - root - WARNING - Subject 1452 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,476 - root - WARNING - Subject 1453 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,495 - root - WARNING - Subject 1454 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,513 - root - WARNING - Subject 1455 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,532 - root - WARNING - Subject 1456 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,550 - root - WARNING - Subject 1457 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,569 - root - WARNING - Subject 1458 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,587 - root - WARNING - Subject 1459 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,605 - root - WARNING - Subject 1460 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,624 - root - WARNING - Subject 1461 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,642 - root - WARNING - Subject 1462 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,660 - root - WARNING - Subject 1463 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,679 - root - WARNING - Subject 1464 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,697 - root - WARNING - Subject 1465 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,715 - root - WARNING - Subject 1466 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,733 - root - WARNING - Subject 1467 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,752 - root - WARNING - Subject 1468 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,770 - root - WARNING - Subject 1469 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,789 - root - WARNING - Subject 1470 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,807 - root - WARNING - Subject 1471 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,826 - root - WARNING - Subject 1472 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,844 - root - WARNING - Subject 1473 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,862 - root - WARNING - Subject 1474 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,881 - root - WARNING - Subject 1475 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,899 - root - WARNING - Subject 1476 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,917 - root - WARNING - Subject 1477 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,935 - root - WARNING - Subject 1478 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,954 - root - WARNING - Subject 1479 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,972 - root - WARNING - Subject 1480 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:19,991 - root - WARNING - Subject 1481 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,009 - root - WARNING - Subject 1482 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,028 - root - WARNING - Subject 1483 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,046 - root - WARNING - Subject 1484 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,064 - root - WARNING - Subject 1485 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,083 - root - WARNING - Subject 1486 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,101 - root - WARNING - Subject 1487 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,119 - root - WARNING - Subject 1488 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,138 - root - WARNING - Subject 1489 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,156 - root - WARNING - Subject 1490 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,175 - root - WARNING - Subject 1491 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,193 - root - WARNING - Subject 1492 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:20,211 - root - WARNING - Subject 1493 has regions with zero variance (indices: [51 79]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,163 - root - WARNING - Subject 4980 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,181 - root - WARNING - Subject 4981 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,200 - root - WARNING - Subject 4982 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,219 - root - WARNING - Subject 4983 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,237 - root - WARNING - Subject 4984 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,256 - root - WARNING - Subject 4985 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,274 - root - WARNING - Subject 4986 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,293 - root - WARNING - Subject 4987 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,312 - root - WARNING - Subject 4988 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,330 - root - WARNING - Subject 4989 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,348 - root - WARNING - Subject 4990 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,367 - root - WARNING - Subject 4991 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,386 - root - WARNING - Subject 4992 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,404 - root - WARNING - Subject 4993 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,422 - root - WARNING - Subject 4994 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,441 - root - WARNING - Subject 4995 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,460 - root - WARNING - Subject 4996 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,478 - root - WARNING - Subject 4997 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,497 - root - WARNING - Subject 4998 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,515 - root - WARNING - Subject 4999 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,534 - root - WARNING - Subject 5000 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,553 - root - WARNING - Subject 5001 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,571 - root - WARNING - Subject 5002 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,590 - root - WARNING - Subject 5003 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,609 - root - WARNING - Subject 5004 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,627 - root - WARNING - Subject 5005 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,646 - root - WARNING - Subject 5006 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,664 - root - WARNING - Subject 5007 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,683 - root - WARNING - Subject 5008 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,702 - root - WARNING - Subject 5009 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,720 - root - WARNING - Subject 5010 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,739 - root - WARNING - Subject 5011 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,758 - root - WARNING - Subject 5012 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,776 - root - WARNING - Subject 5013 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,795 - root - WARNING - Subject 5014 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,813 - root - WARNING - Subject 5015 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,832 - root - WARNING - Subject 5016 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,850 - root - WARNING - Subject 5017 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,869 - root - WARNING - Subject 5018 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,887 - root - WARNING - Subject 5019 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,906 - root - WARNING - Subject 5020 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,924 - root - WARNING - Subject 5021 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,943 - root - WARNING - Subject 5022 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,961 - root - WARNING - Subject 5023 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,980 - root - WARNING - Subject 5024 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:22,998 - root - WARNING - Subject 5025 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,017 - root - WARNING - Subject 5026 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,035 - root - WARNING - Subject 5027 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,054 - root - WARNING - Subject 5028 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,072 - root - WARNING - Subject 5029 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,091 - root - WARNING - Subject 5030 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,109 - root - WARNING - Subject 5031 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,128 - root - WARNING - Subject 5032 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,146 - root - WARNING - Subject 5033 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,165 - root - WARNING - Subject 5034 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,183 - root - WARNING - Subject 5035 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,202 - root - WARNING - Subject 5036 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,221 - root - WARNING - Subject 5037 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,239 - root - WARNING - Subject 5038 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,257 - root - WARNING - Subject 5039 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,276 - root - WARNING - Subject 5040 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,295 - root - WARNING - Subject 5041 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,314 - root - WARNING - Subject 5042 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,332 - root - WARNING - Subject 5043 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,351 - root - WARNING - Subject 5044 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,370 - root - WARNING - Subject 5045 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,389 - root - WARNING - Subject 5046 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,407 - root - WARNING - Subject 5047 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,426 - root - WARNING - Subject 5048 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,445 - root - WARNING - Subject 5049 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,463 - root - WARNING - Subject 5050 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,482 - root - WARNING - Subject 5051 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,500 - root - WARNING - Subject 5052 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,519 - root - WARNING - Subject 5053 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,538 - root - WARNING - Subject 5054 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,556 - root - WARNING - Subject 5055 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,575 - root - WARNING - Subject 5056 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,593 - root - WARNING - Subject 5057 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,612 - root - WARNING - Subject 5058 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,631 - root - WARNING - Subject 5059 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,649 - root - WARNING - Subject 5060 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,668 - root - WARNING - Subject 5061 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,686 - root - WARNING - Subject 5062 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,705 - root - WARNING - Subject 5063 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,724 - root - WARNING - Subject 5064 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,742 - root - WARNING - Subject 5065 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,761 - root - WARNING - Subject 5066 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,780 - root - WARNING - Subject 5067 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,798 - root - WARNING - Subject 5068 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,817 - root - WARNING - Subject 5069 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,835 - root - WARNING - Subject 5070 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,854 - root - WARNING - Subject 5071 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,872 - root - WARNING - Subject 5072 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,891 - root - WARNING - Subject 5073 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,910 - root - WARNING - Subject 5074 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,929 - root - WARNING - Subject 5075 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,948 - root - WARNING - Subject 5076 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,966 - root - WARNING - Subject 5077 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:23,985 - root - WARNING - Subject 5078 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,004 - root - WARNING - Subject 5079 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,023 - root - WARNING - Subject 5080 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,042 - root - WARNING - Subject 5081 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,060 - root - WARNING - Subject 5082 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,079 - root - WARNING - Subject 5083 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,097 - root - WARNING - Subject 5084 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,116 - root - WARNING - Subject 5085 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,134 - root - WARNING - Subject 5086 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,153 - root - WARNING - Subject 5087 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,172 - root - WARNING - Subject 5088 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,190 - root - WARNING - Subject 5089 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,209 - root - WARNING - Subject 5090 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,228 - root - WARNING - Subject 5091 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,247 - root - WARNING - Subject 5092 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,266 - root - WARNING - Subject 5093 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,284 - root - WARNING - Subject 5094 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,303 - root - WARNING - Subject 5095 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,322 - root - WARNING - Subject 5096 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,341 - root - WARNING - Subject 5097 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,359 - root - WARNING - Subject 5098 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,378 - root - WARNING - Subject 5099 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,397 - root - WARNING - Subject 5100 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,416 - root - WARNING - Subject 5101 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,434 - root - WARNING - Subject 5102 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,453 - root - WARNING - Subject 5103 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,472 - root - WARNING - Subject 5104 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,490 - root - WARNING - Subject 5105 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,509 - root - WARNING - Subject 5106 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,528 - root - WARNING - Subject 5107 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,546 - root - WARNING - Subject 5108 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,565 - root - WARNING - Subject 5109 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,583 - root - WARNING - Subject 5110 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,602 - root - WARNING - Subject 5111 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,621 - root - WARNING - Subject 5112 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,639 - root - WARNING - Subject 5113 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,658 - root - WARNING - Subject 5114 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,676 - root - WARNING - Subject 5115 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,695 - root - WARNING - Subject 5116 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,714 - root - WARNING - Subject 5117 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,733 - root - WARNING - Subject 5118 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,751 - root - WARNING - Subject 5119 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,770 - root - WARNING - Subject 5120 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,789 - root - WARNING - Subject 5121 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,808 - root - WARNING - Subject 5122 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,826 - root - WARNING - Subject 5123 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,845 - root - WARNING - Subject 5124 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,864 - root - WARNING - Subject 5125 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,883 - root - WARNING - Subject 5126 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,901 - root - WARNING - Subject 5127 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,920 - root - WARNING - Subject 5128 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,939 - root - WARNING - Subject 5129 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,958 - root - WARNING - Subject 5130 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,977 - root - WARNING - Subject 5131 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:24,996 - root - WARNING - Subject 5132 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,015 - root - WARNING - Subject 5133 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,033 - root - WARNING - Subject 5134 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,052 - root - WARNING - Subject 5135 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,070 - root - WARNING - Subject 5136 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,089 - root - WARNING - Subject 5137 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,108 - root - WARNING - Subject 5138 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,126 - root - WARNING - Subject 5139 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,145 - root - WARNING - Subject 5140 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,164 - root - WARNING - Subject 5141 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,183 - root - WARNING - Subject 5142 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,201 - root - WARNING - Subject 5143 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,220 - root - WARNING - Subject 5144 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:25,239 - root - WARNING - Subject 5145 has regions with zero variance (indices: [51]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,156 - root - WARNING - Subject 6640 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,175 - root - WARNING - Subject 6641 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,193 - root - WARNING - Subject 6642 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,211 - root - WARNING - Subject 6643 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,229 - root - WARNING - Subject 6644 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,247 - root - WARNING - Subject 6645 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,265 - root - WARNING - Subject 6646 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,283 - root - WARNING - Subject 6647 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,302 - root - WARNING - Subject 6648 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,320 - root - WARNING - Subject 6649 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,338 - root - WARNING - Subject 6650 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,356 - root - WARNING - Subject 6651 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,375 - root - WARNING - Subject 6652 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,393 - root - WARNING - Subject 6653 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,411 - root - WARNING - Subject 6654 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,430 - root - WARNING - Subject 6655 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,448 - root - WARNING - Subject 6656 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,466 - root - WARNING - Subject 6657 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,485 - root - WARNING - Subject 6658 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,503 - root - WARNING - Subject 6659 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,521 - root - WARNING - Subject 6660 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,539 - root - WARNING - Subject 6661 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,557 - root - WARNING - Subject 6662 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,576 - root - WARNING - Subject 6663 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,594 - root - WARNING - Subject 6664 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,612 - root - WARNING - Subject 6665 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,630 - root - WARNING - Subject 6666 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,648 - root - WARNING - Subject 6667 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,666 - root - WARNING - Subject 6668 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,685 - root - WARNING - Subject 6669 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,703 - root - WARNING - Subject 6670 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,721 - root - WARNING - Subject 6671 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,739 - root - WARNING - Subject 6672 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,757 - root - WARNING - Subject 6673 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,775 - root - WARNING - Subject 6674 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,793 - root - WARNING - Subject 6675 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,812 - root - WARNING - Subject 6676 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,830 - root - WARNING - Subject 6677 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,848 - root - WARNING - Subject 6678 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,866 - root - WARNING - Subject 6679 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,884 - root - WARNING - Subject 6680 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,902 - root - WARNING - Subject 6681 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,921 - root - WARNING - Subject 6682 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,939 - root - WARNING - Subject 6683 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,957 - root - WARNING - Subject 6684 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,976 - root - WARNING - Subject 6685 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:26,994 - root - WARNING - Subject 6686 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,012 - root - WARNING - Subject 6687 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,030 - root - WARNING - Subject 6688 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,048 - root - WARNING - Subject 6689 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,066 - root - WARNING - Subject 6690 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,084 - root - WARNING - Subject 6691 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,102 - root - WARNING - Subject 6692 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,120 - root - WARNING - Subject 6693 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,138 - root - WARNING - Subject 6694 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,156 - root - WARNING - Subject 6695 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,175 - root - WARNING - Subject 6696 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,193 - root - WARNING - Subject 6697 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,211 - root - WARNING - Subject 6698 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,229 - root - WARNING - Subject 6699 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,247 - root - WARNING - Subject 6700 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,265 - root - WARNING - Subject 6701 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,283 - root - WARNING - Subject 6702 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,301 - root - WARNING - Subject 6703 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,319 - root - WARNING - Subject 6704 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,337 - root - WARNING - Subject 6705 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,355 - root - WARNING - Subject 6706 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,374 - root - WARNING - Subject 6707 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,392 - root - WARNING - Subject 6708 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,410 - root - WARNING - Subject 6709 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,428 - root - WARNING - Subject 6710 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,446 - root - WARNING - Subject 6711 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,464 - root - WARNING - Subject 6712 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,482 - root - WARNING - Subject 6713 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,500 - root - WARNING - Subject 6714 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,518 - root - WARNING - Subject 6715 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,537 - root - WARNING - Subject 6716 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,555 - root - WARNING - Subject 6717 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,573 - root - WARNING - Subject 6718 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,591 - root - WARNING - Subject 6719 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,609 - root - WARNING - Subject 6720 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,627 - root - WARNING - Subject 6721 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,645 - root - WARNING - Subject 6722 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,664 - root - WARNING - Subject 6723 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,682 - root - WARNING - Subject 6724 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,700 - root - WARNING - Subject 6725 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,718 - root - WARNING - Subject 6726 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,736 - root - WARNING - Subject 6727 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,754 - root - WARNING - Subject 6728 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,772 - root - WARNING - Subject 6729 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,791 - root - WARNING - Subject 6730 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,809 - root - WARNING - Subject 6731 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,827 - root - WARNING - Subject 6732 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,845 - root - WARNING - Subject 6733 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,863 - root - WARNING - Subject 6734 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,882 - root - WARNING - Subject 6735 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,900 - root - WARNING - Subject 6736 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,918 - root - WARNING - Subject 6737 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,936 - root - WARNING - Subject 6738 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,954 - root - WARNING - Subject 6739 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,972 - root - WARNING - Subject 6740 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:27,991 - root - WARNING - Subject 6741 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,008 - root - WARNING - Subject 6742 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,027 - root - WARNING - Subject 6743 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,045 - root - WARNING - Subject 6744 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,063 - root - WARNING - Subject 6745 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,082 - root - WARNING - Subject 6746 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,100 - root - WARNING - Subject 6747 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,118 - root - WARNING - Subject 6748 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,136 - root - WARNING - Subject 6749 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,155 - root - WARNING - Subject 6750 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,173 - root - WARNING - Subject 6751 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,191 - root - WARNING - Subject 6752 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,209 - root - WARNING - Subject 6753 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,227 - root - WARNING - Subject 6754 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,246 - root - WARNING - Subject 6755 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,264 - root - WARNING - Subject 6756 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,282 - root - WARNING - Subject 6757 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,300 - root - WARNING - Subject 6758 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,318 - root - WARNING - Subject 6759 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,337 - root - WARNING - Subject 6760 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,355 - root - WARNING - Subject 6761 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,373 - root - WARNING - Subject 6762 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,391 - root - WARNING - Subject 6763 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,409 - root - WARNING - Subject 6764 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,427 - root - WARNING - Subject 6765 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,445 - root - WARNING - Subject 6766 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,463 - root - WARNING - Subject 6767 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,481 - root - WARNING - Subject 6768 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,500 - root - WARNING - Subject 6769 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,518 - root - WARNING - Subject 6770 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,536 - root - WARNING - Subject 6771 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,554 - root - WARNING - Subject 6772 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,573 - root - WARNING - Subject 6773 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,591 - root - WARNING - Subject 6774 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,609 - root - WARNING - Subject 6775 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,627 - root - WARNING - Subject 6776 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,645 - root - WARNING - Subject 6777 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,664 - root - WARNING - Subject 6778 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,682 - root - WARNING - Subject 6779 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,700 - root - WARNING - Subject 6780 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,719 - root - WARNING - Subject 6781 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,737 - root - WARNING - Subject 6782 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,755 - root - WARNING - Subject 6783 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,774 - root - WARNING - Subject 6784 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,792 - root - WARNING - Subject 6785 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,811 - root - WARNING - Subject 6786 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,829 - root - WARNING - Subject 6787 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,847 - root - WARNING - Subject 6788 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,866 - root - WARNING - Subject 6789 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,884 - root - WARNING - Subject 6790 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,902 - root - WARNING - Subject 6791 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,920 - root - WARNING - Subject 6792 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,938 - root - WARNING - Subject 6793 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:28,956 - root - WARNING - Subject 6794 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,822 - root - WARNING - Subject 6795 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,840 - root - WARNING - Subject 6796 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,858 - root - WARNING - Subject 6797 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,876 - root - WARNING - Subject 6798 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,893 - root - WARNING - Subject 6799 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,911 - root - WARNING - Subject 6800 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,929 - root - WARNING - Subject 6801 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,946 - root - WARNING - Subject 6802 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,964 - root - WARNING - Subject 6803 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:32,982 - root - WARNING - Subject 6804 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,000 - root - WARNING - Subject 6805 has regions with zero variance (indices: [ 29  51  85 175]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,629 - root - WARNING - Subject 7802 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,645 - root - WARNING - Subject 7803 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,661 - root - WARNING - Subject 7804 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,677 - root - WARNING - Subject 7805 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,693 - root - WARNING - Subject 7806 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,709 - root - WARNING - Subject 7807 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,725 - root - WARNING - Subject 7808 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,741 - root - WARNING - Subject 7809 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,757 - root - WARNING - Subject 7810 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,773 - root - WARNING - Subject 7811 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,789 - root - WARNING - Subject 7812 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,805 - root - WARNING - Subject 7813 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,821 - root - WARNING - Subject 7814 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,837 - root - WARNING - Subject 7815 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,853 - root - WARNING - Subject 7816 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,869 - root - WARNING - Subject 7817 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,885 - root - WARNING - Subject 7818 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,901 - root - WARNING - Subject 7819 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,917 - root - WARNING - Subject 7820 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,934 - root - WARNING - Subject 7821 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,950 - root - WARNING - Subject 7822 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,966 - root - WARNING - Subject 7823 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,982 - root - WARNING - Subject 7824 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:33,998 - root - WARNING - Subject 7825 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,014 - root - WARNING - Subject 7826 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,030 - root - WARNING - Subject 7827 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,046 - root - WARNING - Subject 7828 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,062 - root - WARNING - Subject 7829 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,196 - root - WARNING - Subject 7830 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,212 - root - WARNING - Subject 7831 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,228 - root - WARNING - Subject 7832 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,244 - root - WARNING - Subject 7833 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,260 - root - WARNING - Subject 7834 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,276 - root - WARNING - Subject 7835 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,292 - root - WARNING - Subject 7836 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,308 - root - WARNING - Subject 7837 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,324 - root - WARNING - Subject 7838 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,340 - root - WARNING - Subject 7839 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,356 - root - WARNING - Subject 7840 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,372 - root - WARNING - Subject 7841 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,388 - root - WARNING - Subject 7842 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,404 - root - WARNING - Subject 7843 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,420 - root - WARNING - Subject 7844 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,436 - root - WARNING - Subject 7845 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,452 - root - WARNING - Subject 7846 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,468 - root - WARNING - Subject 7847 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,484 - root - WARNING - Subject 7848 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,500 - root - WARNING - Subject 7849 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,516 - root - WARNING - Subject 7850 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,532 - root - WARNING - Subject 7851 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,547 - root - WARNING - Subject 7852 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,563 - root - WARNING - Subject 7853 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,579 - root - WARNING - Subject 7854 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,595 - root - WARNING - Subject 7855 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,611 - root - WARNING - Subject 7856 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,627 - root - WARNING - Subject 7857 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,643 - root - WARNING - Subject 7858 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,659 - root - WARNING - Subject 7859 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,675 - root - WARNING - Subject 7860 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,690 - root - WARNING - Subject 7861 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,706 - root - WARNING - Subject 7862 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,722 - root - WARNING - Subject 7863 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,738 - root - WARNING - Subject 7864 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,754 - root - WARNING - Subject 7865 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,770 - root - WARNING - Subject 7866 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,785 - root - WARNING - Subject 7867 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,801 - root - WARNING - Subject 7868 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,817 - root - WARNING - Subject 7869 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,833 - root - WARNING - Subject 7870 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,849 - root - WARNING - Subject 7871 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,865 - root - WARNING - Subject 7872 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,881 - root - WARNING - Subject 7873 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,897 - root - WARNING - Subject 7874 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,913 - root - WARNING - Subject 7875 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,929 - root - WARNING - Subject 7876 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,945 - root - WARNING - Subject 7877 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,961 - root - WARNING - Subject 7878 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,976 - root - WARNING - Subject 7879 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:34,992 - root - WARNING - Subject 7880 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,008 - root - WARNING - Subject 7881 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,024 - root - WARNING - Subject 7882 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,040 - root - WARNING - Subject 7883 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,056 - root - WARNING - Subject 7884 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,072 - root - WARNING - Subject 7885 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,088 - root - WARNING - Subject 7886 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,104 - root - WARNING - Subject 7887 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,120 - root - WARNING - Subject 7888 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,136 - root - WARNING - Subject 7889 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,152 - root - WARNING - Subject 7890 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,168 - root - WARNING - Subject 7891 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,184 - root - WARNING - Subject 7892 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,200 - root - WARNING - Subject 7893 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,216 - root - WARNING - Subject 7894 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,232 - root - WARNING - Subject 7895 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,248 - root - WARNING - Subject 7896 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,264 - root - WARNING - Subject 7897 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,280 - root - WARNING - Subject 7898 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,296 - root - WARNING - Subject 7899 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,312 - root - WARNING - Subject 7900 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,328 - root - WARNING - Subject 7901 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,344 - root - WARNING - Subject 7902 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,360 - root - WARNING - Subject 7903 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,376 - root - WARNING - Subject 7904 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,391 - root - WARNING - Subject 7905 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,408 - root - WARNING - Subject 7906 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,424 - root - WARNING - Subject 7907 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,439 - root - WARNING - Subject 7908 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,455 - root - WARNING - Subject 7909 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,471 - root - WARNING - Subject 7910 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,487 - root - WARNING - Subject 7911 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,503 - root - WARNING - Subject 7912 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,519 - root - WARNING - Subject 7913 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,535 - root - WARNING - Subject 7914 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,551 - root - WARNING - Subject 7915 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,567 - root - WARNING - Subject 7916 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,584 - root - WARNING - Subject 7917 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,600 - root - WARNING - Subject 7918 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,615 - root - WARNING - Subject 7919 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,631 - root - WARNING - Subject 7920 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,647 - root - WARNING - Subject 7921 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,663 - root - WARNING - Subject 7922 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,679 - root - WARNING - Subject 7923 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,695 - root - WARNING - Subject 7924 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,711 - root - WARNING - Subject 7925 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,726 - root - WARNING - Subject 7926 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,742 - root - WARNING - Subject 7927 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,758 - root - WARNING - Subject 7928 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,774 - root - WARNING - Subject 7929 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,790 - root - WARNING - Subject 7930 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,806 - root - WARNING - Subject 7931 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,822 - root - WARNING - Subject 7932 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,838 - root - WARNING - Subject 7933 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,854 - root - WARNING - Subject 7934 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,870 - root - WARNING - Subject 7935 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,886 - root - WARNING - Subject 7936 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,902 - root - WARNING - Subject 7937 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,918 - root - WARNING - Subject 7938 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,934 - root - WARNING - Subject 7939 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,950 - root - WARNING - Subject 7940 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,966 - root - WARNING - Subject 7941 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,982 - root - WARNING - Subject 7942 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:35,998 - root - WARNING - Subject 7943 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,014 - root - WARNING - Subject 7944 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,030 - root - WARNING - Subject 7945 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,046 - root - WARNING - Subject 7946 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,062 - root - WARNING - Subject 7947 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,078 - root - WARNING - Subject 7948 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,094 - root - WARNING - Subject 7949 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,110 - root - WARNING - Subject 7950 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,126 - root - WARNING - Subject 7951 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,142 - root - WARNING - Subject 7952 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,158 - root - WARNING - Subject 7953 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,174 - root - WARNING - Subject 7954 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,190 - root - WARNING - Subject 7955 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,206 - root - WARNING - Subject 7956 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,222 - root - WARNING - Subject 7957 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,238 - root - WARNING - Subject 7958 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,254 - root - WARNING - Subject 7959 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,270 - root - WARNING - Subject 7960 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,285 - root - WARNING - Subject 7961 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,301 - root - WARNING - Subject 7962 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,317 - root - WARNING - Subject 7963 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,333 - root - WARNING - Subject 7964 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,350 - root - WARNING - Subject 7965 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,366 - root - WARNING - Subject 7966 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:36,382 - root - WARNING - Subject 7967 has regions with zero variance (indices: [  8   9  25  35  40  51  76  79  85 117 119 125 157 174 175 191 194]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,008 - root - WARNING - Subject 19976 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,026 - root - WARNING - Subject 19977 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,044 - root - WARNING - Subject 19978 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,061 - root - WARNING - Subject 19979 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,079 - root - WARNING - Subject 19980 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,097 - root - WARNING - Subject 19981 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,114 - root - WARNING - Subject 19982 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,132 - root - WARNING - Subject 19983 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,149 - root - WARNING - Subject 19984 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,167 - root - WARNING - Subject 19985 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,184 - root - WARNING - Subject 19986 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,202 - root - WARNING - Subject 19987 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,219 - root - WARNING - Subject 19988 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,237 - root - WARNING - Subject 19989 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,254 - root - WARNING - Subject 19990 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,271 - root - WARNING - Subject 19991 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,289 - root - WARNING - Subject 19992 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,306 - root - WARNING - Subject 19993 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,323 - root - WARNING - Subject 19994 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,341 - root - WARNING - Subject 19995 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,358 - root - WARNING - Subject 19996 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,376 - root - WARNING - Subject 19997 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,393 - root - WARNING - Subject 19998 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,411 - root - WARNING - Subject 19999 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,428 - root - WARNING - Subject 20000 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,446 - root - WARNING - Subject 20001 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,463 - root - WARNING - Subject 20002 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,480 - root - WARNING - Subject 20003 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,498 - root - WARNING - Subject 20004 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,515 - root - WARNING - Subject 20005 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,533 - root - WARNING - Subject 20006 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,551 - root - WARNING - Subject 20007 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,568 - root - WARNING - Subject 20008 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,586 - root - WARNING - Subject 20009 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,604 - root - WARNING - Subject 20010 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,621 - root - WARNING - Subject 20011 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,639 - root - WARNING - Subject 20012 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,656 - root - WARNING - Subject 20013 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,674 - root - WARNING - Subject 20014 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,692 - root - WARNING - Subject 20015 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,709 - root - WARNING - Subject 20016 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,727 - root - WARNING - Subject 20017 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,745 - root - WARNING - Subject 20018 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,762 - root - WARNING - Subject 20019 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,780 - root - WARNING - Subject 20020 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,797 - root - WARNING - Subject 20021 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,815 - root - WARNING - Subject 20022 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,832 - root - WARNING - Subject 20023 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,850 - root - WARNING - Subject 20024 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,867 - root - WARNING - Subject 20025 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,885 - root - WARNING - Subject 20026 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,902 - root - WARNING - Subject 20027 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,920 - root - WARNING - Subject 20028 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,937 - root - WARNING - Subject 20029 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,955 - root - WARNING - Subject 20030 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,973 - root - WARNING - Subject 20031 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:44,990 - root - WARNING - Subject 20032 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,008 - root - WARNING - Subject 20033 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,025 - root - WARNING - Subject 20034 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,043 - root - WARNING - Subject 20035 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,061 - root - WARNING - Subject 20036 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,078 - root - WARNING - Subject 20037 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,096 - root - WARNING - Subject 20038 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,113 - root - WARNING - Subject 20039 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,131 - root - WARNING - Subject 20040 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,148 - root - WARNING - Subject 20041 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,166 - root - WARNING - Subject 20042 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,183 - root - WARNING - Subject 20043 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,201 - root - WARNING - Subject 20044 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,219 - root - WARNING - Subject 20045 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,236 - root - WARNING - Subject 20046 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,254 - root - WARNING - Subject 20047 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,271 - root - WARNING - Subject 20048 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,289 - root - WARNING - Subject 20049 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,306 - root - WARNING - Subject 20050 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,324 - root - WARNING - Subject 20051 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,342 - root - WARNING - Subject 20052 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,359 - root - WARNING - Subject 20053 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,377 - root - WARNING - Subject 20054 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,394 - root - WARNING - Subject 20055 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,412 - root - WARNING - Subject 20056 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,429 - root - WARNING - Subject 20057 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,446 - root - WARNING - Subject 20058 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,464 - root - WARNING - Subject 20059 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,482 - root - WARNING - Subject 20060 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,499 - root - WARNING - Subject 20061 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,517 - root - WARNING - Subject 20062 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,534 - root - WARNING - Subject 20063 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,552 - root - WARNING - Subject 20064 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,569 - root - WARNING - Subject 20065 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,586 - root - WARNING - Subject 20066 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,604 - root - WARNING - Subject 20067 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,621 - root - WARNING - Subject 20068 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,639 - root - WARNING - Subject 20069 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,656 - root - WARNING - Subject 20070 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,674 - root - WARNING - Subject 20071 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,692 - root - WARNING - Subject 20072 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,709 - root - WARNING - Subject 20073 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,727 - root - WARNING - Subject 20074 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,744 - root - WARNING - Subject 20075 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,762 - root - WARNING - Subject 20076 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,779 - root - WARNING - Subject 20077 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,797 - root - WARNING - Subject 20078 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,814 - root - WARNING - Subject 20079 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,832 - root - WARNING - Subject 20080 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,850 - root - WARNING - Subject 20081 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,867 - root - WARNING - Subject 20082 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,885 - root - WARNING - Subject 20083 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,903 - root - WARNING - Subject 20084 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,920 - root - WARNING - Subject 20085 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,938 - root - WARNING - Subject 20086 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,955 - root - WARNING - Subject 20087 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,973 - root - WARNING - Subject 20088 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:45,991 - root - WARNING - Subject 20089 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,008 - root - WARNING - Subject 20090 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,026 - root - WARNING - Subject 20091 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,044 - root - WARNING - Subject 20092 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,061 - root - WARNING - Subject 20093 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,079 - root - WARNING - Subject 20094 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,096 - root - WARNING - Subject 20095 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,114 - root - WARNING - Subject 20096 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,131 - root - WARNING - Subject 20097 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,149 - root - WARNING - Subject 20098 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,166 - root - WARNING - Subject 20099 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,184 - root - WARNING - Subject 20100 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,202 - root - WARNING - Subject 20101 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,219 - root - WARNING - Subject 20102 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,237 - root - WARNING - Subject 20103 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,254 - root - WARNING - Subject 20104 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,272 - root - WARNING - Subject 20105 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,290 - root - WARNING - Subject 20106 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,307 - root - WARNING - Subject 20107 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,325 - root - WARNING - Subject 20108 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,342 - root - WARNING - Subject 20109 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,360 - root - WARNING - Subject 20110 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,377 - root - WARNING - Subject 20111 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,395 - root - WARNING - Subject 20112 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,412 - root - WARNING - Subject 20113 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,430 - root - WARNING - Subject 20114 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,447 - root - WARNING - Subject 20115 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,465 - root - WARNING - Subject 20116 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,482 - root - WARNING - Subject 20117 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,500 - root - WARNING - Subject 20118 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,517 - root - WARNING - Subject 20119 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,535 - root - WARNING - Subject 20120 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,552 - root - WARNING - Subject 20121 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,570 - root - WARNING - Subject 20122 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,587 - root - WARNING - Subject 20123 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,604 - root - WARNING - Subject 20124 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,621 - root - WARNING - Subject 20125 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,639 - root - WARNING - Subject 20126 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,657 - root - WARNING - Subject 20127 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,674 - root - WARNING - Subject 20128 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,692 - root - WARNING - Subject 20129 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,709 - root - WARNING - Subject 20130 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,727 - root - WARNING - Subject 20131 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,744 - root - WARNING - Subject 20132 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,762 - root - WARNING - Subject 20133 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,779 - root - WARNING - Subject 20134 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,797 - root - WARNING - Subject 20135 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,814 - root - WARNING - Subject 20136 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,832 - root - WARNING - Subject 20137 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,849 - root - WARNING - Subject 20138 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,867 - root - WARNING - Subject 20139 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,884 - root - WARNING - Subject 20140 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,902 - root - WARNING - Subject 20141 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,919 - root - WARNING - Subject 20142 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,937 - root - WARNING - Subject 20143 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,954 - root - WARNING - Subject 20144 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,972 - root - WARNING - Subject 20145 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:46,989 - root - WARNING - Subject 20146 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,006 - root - WARNING - Subject 20147 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,024 - root - WARNING - Subject 20148 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,041 - root - WARNING - Subject 20149 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,059 - root - WARNING - Subject 20150 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,077 - root - WARNING - Subject 20151 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,094 - root - WARNING - Subject 20152 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,112 - root - WARNING - Subject 20153 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,129 - root - WARNING - Subject 20154 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,146 - root - WARNING - Subject 20155 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,164 - root - WARNING - Subject 20156 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,181 - root - WARNING - Subject 20157 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,199 - root - WARNING - Subject 20158 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,216 - root - WARNING - Subject 20159 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,234 - root - WARNING - Subject 20160 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,252 - root - WARNING - Subject 20161 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,269 - root - WARNING - Subject 20162 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,287 - root - WARNING - Subject 20163 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,304 - root - WARNING - Subject 20164 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,322 - root - WARNING - Subject 20165 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,339 - root - WARNING - Subject 20166 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,357 - root - WARNING - Subject 20167 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,374 - root - WARNING - Subject 20168 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,392 - root - WARNING - Subject 20169 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,409 - root - WARNING - Subject 20170 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,426 - root - WARNING - Subject 20171 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,444 - root - WARNING - Subject 20172 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,461 - root - WARNING - Subject 20173 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,478 - root - WARNING - Subject 20174 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,495 - root - WARNING - Subject 20175 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,513 - root - WARNING - Subject 20176 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,530 - root - WARNING - Subject 20177 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,548 - root - WARNING - Subject 20178 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,565 - root - WARNING - Subject 20179 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,582 - root - WARNING - Subject 20180 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,600 - root - WARNING - Subject 20181 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,617 - root - WARNING - Subject 20182 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,635 - root - WARNING - Subject 20183 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,652 - root - WARNING - Subject 20184 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,669 - root - WARNING - Subject 20185 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,687 - root - WARNING - Subject 20186 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,704 - root - WARNING - Subject 20187 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,722 - root - WARNING - Subject 20188 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,739 - root - WARNING - Subject 20189 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,757 - root - WARNING - Subject 20190 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,774 - root - WARNING - Subject 20191 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,792 - root - WARNING - Subject 20192 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,809 - root - WARNING - Subject 20193 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,826 - root - WARNING - Subject 20194 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,844 - root - WARNING - Subject 20195 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,861 - root - WARNING - Subject 20196 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,879 - root - WARNING - Subject 20197 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,896 - root - WARNING - Subject 20198 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,914 - root - WARNING - Subject 20199 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,931 - root - WARNING - Subject 20200 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,949 - root - WARNING - Subject 20201 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,966 - root - WARNING - Subject 20202 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:47,984 - root - WARNING - Subject 20203 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,001 - root - WARNING - Subject 20204 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,019 - root - WARNING - Subject 20205 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,036 - root - WARNING - Subject 20206 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,054 - root - WARNING - Subject 20207 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,071 - root - WARNING - Subject 20208 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,089 - root - WARNING - Subject 20209 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,107 - root - WARNING - Subject 20210 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,124 - root - WARNING - Subject 20211 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,142 - root - WARNING - Subject 20212 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,160 - root - WARNING - Subject 20213 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,177 - root - WARNING - Subject 20214 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,195 - root - WARNING - Subject 20215 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,213 - root - WARNING - Subject 20216 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,230 - root - WARNING - Subject 20217 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,248 - root - WARNING - Subject 20218 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,265 - root - WARNING - Subject 20219 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,282 - root - WARNING - Subject 20220 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,300 - root - WARNING - Subject 20221 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,317 - root - WARNING - Subject 20222 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,334 - root - WARNING - Subject 20223 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,352 - root - WARNING - Subject 20224 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,369 - root - WARNING - Subject 20225 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,387 - root - WARNING - Subject 20226 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,404 - root - WARNING - Subject 20227 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,421 - root - WARNING - Subject 20228 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,439 - root - WARNING - Subject 20229 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,456 - root - WARNING - Subject 20230 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,474 - root - WARNING - Subject 20231 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,491 - root - WARNING - Subject 20232 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,509 - root - WARNING - Subject 20233 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,527 - root - WARNING - Subject 20234 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,545 - root - WARNING - Subject 20235 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,562 - root - WARNING - Subject 20236 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,580 - root - WARNING - Subject 20237 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,597 - root - WARNING - Subject 20238 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,615 - root - WARNING - Subject 20239 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,633 - root - WARNING - Subject 20240 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,650 - root - WARNING - Subject 20241 has regions with zero variance (indices: [ 16  37  97 114 126 127 156 163]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,668 - root - WARNING - Subject 20242 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,683 - root - WARNING - Subject 20243 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,698 - root - WARNING - Subject 20244 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,713 - root - WARNING - Subject 20245 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,729 - root - WARNING - Subject 20246 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,744 - root - WARNING - Subject 20247 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,760 - root - WARNING - Subject 20248 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,775 - root - WARNING - Subject 20249 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,790 - root - WARNING - Subject 20250 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,806 - root - WARNING - Subject 20251 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,821 - root - WARNING - Subject 20252 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,836 - root - WARNING - Subject 20253 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,852 - root - WARNING - Subject 20254 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,867 - root - WARNING - Subject 20255 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,882 - root - WARNING - Subject 20256 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,898 - root - WARNING - Subject 20257 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,914 - root - WARNING - Subject 20258 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,929 - root - WARNING - Subject 20259 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,944 - root - WARNING - Subject 20260 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,960 - root - WARNING - Subject 20261 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,975 - root - WARNING - Subject 20262 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:48,991 - root - WARNING - Subject 20263 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,006 - root - WARNING - Subject 20264 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,021 - root - WARNING - Subject 20265 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,037 - root - WARNING - Subject 20266 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,052 - root - WARNING - Subject 20267 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,068 - root - WARNING - Subject 20268 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,084 - root - WARNING - Subject 20269 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,099 - root - WARNING - Subject 20270 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,115 - root - WARNING - Subject 20271 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,130 - root - WARNING - Subject 20272 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,146 - root - WARNING - Subject 20273 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,162 - root - WARNING - Subject 20274 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,177 - root - WARNING - Subject 20275 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,193 - root - WARNING - Subject 20276 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,209 - root - WARNING - Subject 20277 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,224 - root - WARNING - Subject 20278 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,239 - root - WARNING - Subject 20279 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,254 - root - WARNING - Subject 20280 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,269 - root - WARNING - Subject 20281 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,284 - root - WARNING - Subject 20282 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,299 - root - WARNING - Subject 20283 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,315 - root - WARNING - Subject 20284 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,330 - root - WARNING - Subject 20285 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,346 - root - WARNING - Subject 20286 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,361 - root - WARNING - Subject 20287 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,377 - root - WARNING - Subject 20288 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,393 - root - WARNING - Subject 20289 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,408 - root - WARNING - Subject 20290 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,424 - root - WARNING - Subject 20291 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,439 - root - WARNING - Subject 20292 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,454 - root - WARNING - Subject 20293 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,469 - root - WARNING - Subject 20294 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,484 - root - WARNING - Subject 20295 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+2025-04-15 01:11:49,500 - root - WARNING - Subject 20296 has regions with zero variance (indices: [ 11  24  37  74  90  97 103 105 112 114 123 124 126 132 138 143 163 166
+ 167 182 185 192]). Setting correlations for these regions to 0.
+slurmstepd-node2: error: *** JOB 110956 ON node2 CANCELLED AT 2025-04-15T01:11:49 ***

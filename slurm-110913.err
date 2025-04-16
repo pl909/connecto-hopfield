@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 514, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 376, in main
+    val_loss, val_accuracy, _, _ = validate_safely(
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 111, in validate_safely
+    outputs = model(sub_inputs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pl217/miniconda3/envs/connecto/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/pl217/connecto-hopfield/src/models.py", line 248, in forward
+    torch.cuda.empty_cache() if x.device.type == 'cuda' else None
+UnboundLocalError: local variable 'x' referenced before assignment
+slurmstepd-node2: error: *** JOB 110913 ON node2 CANCELLED AT 2025-04-14T17:21:38 ***

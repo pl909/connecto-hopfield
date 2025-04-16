@@ -1,0 +1,11 @@
+ERROR:root:Error loading config from configs/achnn_config.yaml: Training parameter 'min_lr' must be of type <class 'float'>
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 437, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 70, in main
+    config = load_config(config_path)
+  File "/home/pl217/connecto-hopfield/src/utils.py", line 23, in load_config
+    validate_config(config)
+  File "/home/pl217/connecto-hopfield/src/utils.py", line 141, in validate_config
+    raise ValueError(f"Training parameter '{param}' must be of type {param_type}")
+ValueError: Training parameter 'min_lr' must be of type <class 'float'>

@@ -1,0 +1,11 @@
+ERROR:root:Error loading config from configs/fc_mlp_config.yaml: Missing required section 'achnn_model' in config
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_fc_mlp_training.py", line 397, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_fc_mlp_training.py", line 69, in main
+    config = load_config(config_path)
+  File "/home/pl217/connecto-hopfield/src/utils.py", line 23, in load_config
+    validate_config(config)
+  File "/home/pl217/connecto-hopfield/src/utils.py", line 74, in validate_config
+    raise ValueError(f"Missing required section '{section}' in config")
+ValueError: Missing required section 'achnn_model' in config

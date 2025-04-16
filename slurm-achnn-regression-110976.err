@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_regression.py", line 23, in <module>
+    from training import train_model_regression
+  File "/home/pl217/connecto-hopfield/src/training.py", line 22, in <module>
+    from models import initialize_model
+  File "/home/pl217/connecto-hopfield/src/models.py", line 11, in <module>
+    from .hflayers import Hopfield
+ImportError: attempted relative import with no known parent package

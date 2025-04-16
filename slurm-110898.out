@@ -1,0 +1,9 @@
+Starting ACHNN training with 16 CPUs and 1 GPU at Mon Apr 14 02:08:19 PM EDT 2025
+
+==== Starting fold 1/5 ====
+Train: 114235 windows, Validation: 28524 windows
+
+==== Epoch 1/100 ====
+Starting validation phase...
+Starting validation on 28524 samples...
+Entering no_grad block for validation

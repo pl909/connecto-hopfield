@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 437, in <module>
+    main(args.config)
+  File "/home/pl217/connecto-hopfield/scripts/run_achnn_training.py", line 305, in main
+    fold_log['train_acc'].append(train_metrics['accuracy'])
+KeyError: 'train_acc'
+slurmstepd-node2: error: *** JOB 110902 ON node2 CANCELLED AT 2025-04-14T15:46:15 ***

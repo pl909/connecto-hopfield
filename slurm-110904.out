@@ -1,0 +1,70 @@
+Starting ACHNN training with 16 CPUs and 1 GPU at Mon Apr 14 03:46:49 PM EDT 2025
+
+==== Starting fold 1/5 ====
+Train: 20440 windows, Validation: 5110 windows
+
+==== Epoch 1/100 ====
+Starting training phase...
+Training on 20440 samples...
+Training: 100/1278 batches (7.8%)
+  - Batch Acc: 43.75%, Running Acc: 50.19%
+  - Loss: 0.8697, Grad Norm: 5.3497
+  - Learning Rate: 0.000030
+Training: 200/1278 batches (15.7%)
+  - Batch Acc: 50.00%, Running Acc: 52.00%
+  - Loss: 0.8148, Grad Norm: 4.9160
+  - Learning Rate: 0.000030
+Training: 300/1278 batches (23.5%)
+  - Batch Acc: 50.00%, Running Acc: 52.25%
+  - Loss: 0.8690, Grad Norm: 5.8068
+  - Learning Rate: 0.000031
+Training: 400/1278 batches (31.3%)
+  - Batch Acc: 43.75%, Running Acc: 52.12%
+  - Loss: 0.8318, Grad Norm: 8.2244
+  - Learning Rate: 0.000032
+Training: 500/1278 batches (39.1%)
+  - Batch Acc: 62.50%, Running Acc: 52.45%
+  - Loss: 0.7322, Grad Norm: 5.1329
+  - Learning Rate: 0.000033
+Training: 600/1278 batches (47.0%)
+  - Batch Acc: 68.75%, Running Acc: 52.27%
+  - Loss: 0.6260, Grad Norm: 3.2901
+  - Learning Rate: 0.000034
+Training: 700/1278 batches (54.8%)
+  - Batch Acc: 50.00%, Running Acc: 52.18%
+  - Loss: 0.6849, Grad Norm: 3.2360
+  - Learning Rate: 0.000035
+Training: 800/1278 batches (62.6%)
+  - Batch Acc: 75.00%, Running Acc: 52.52%
+  - Loss: 0.5679, Grad Norm: 3.7367
+  - Learning Rate: 0.000037
+Training: 900/1278 batches (70.5%)
+  - Batch Acc: 50.00%, Running Acc: 52.95%
+  - Loss: 0.6484, Grad Norm: 2.9038
+  - Learning Rate: 0.000039
+Training: 1000/1278 batches (78.3%)
+  - Batch Acc: 50.00%, Running Acc: 53.17%
+  - Loss: 0.6478, Grad Norm: 3.6220
+  - Learning Rate: 0.000041
+Training: 1100/1278 batches (86.1%)
+  - Batch Acc: 68.75%, Running Acc: 53.90%
+  - Loss: 0.6658, Grad Norm: 4.9709
+  - Learning Rate: 0.000043
+Training: 1200/1278 batches (93.9%)
+  - Batch Acc: 75.00%, Running Acc: 54.75%
+  - Loss: 0.5985, Grad Norm: 3.5313
+  - Learning Rate: 0.000046
+Training: 1278/1278 batches (100.0%)
+  - Batch Acc: 62.50%, Running Acc: 55.55%
+  - Loss: 0.5346, Grad Norm: 5.6005
+  - Learning Rate: 0.000048
+
+Training phase complete
+Epoch Summary:
+  - Average Loss: 0.7036
+  - Average Accuracy: 55.55%
+  - Average Grad Norm: 4.9780
+  - Final Learning Rate: 0.000048
+Starting validation phase...
+Starting validation on 5110 samples...
+Entering no_grad block for validation
