@@ -1,0 +1,148 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 03:07:17 AM EDT 2025
+Loading configuration from config.yaml...
+
+--- Configuration Used ---
+data_params:
+  exclude_cols:
+  - 'Unnamed: 0'
+  - X
+  - subject
+  - FILE_ID
+  - qc_rater_1
+  - qc_notes_rater_1
+  - qc_anat_rater_2
+  - qc_anat_notes_rater_2
+  - qc_func_rater_2
+  - qc_func_notes_rater_2
+  - qc_anat_rater_3
+  - qc_anat_notes_rater_3
+  - qc_func_rater_3
+  - qc_func_notes_rater_3
+  max_ts_length: -1
+  num_regions: 200
+  phenotype_cols_categorical:
+  - SEX
+  - SITE_ID
+  - EYE_STATUS_AT_SCAN
+  phenotype_cols_numerical:
+  - AGE_AT_SCAN
+  - FIQ
+  - func_mean_fd
+  phenotype_file: Phenotypic_V1_0b_preprocessed1.csv
+  region_dir: /home/pl217/frankensteins_model/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  site_id_col: SITE_ID
+  sub_id_col: SUB_ID
+  target_col: DX_GROUP
+graph_params:
+  k_neighbors: 20
+model_params:
+  dropout_rate: 0.6
+  gnn_heads: 4
+  gnn_hidden_dim: 128
+  gnn_output_dim: 2
+  pheno_embedding_dim: 64
+  pheno_hidden_dim: 128
+  ts_embedding_dim: 128
+  ts_transformer_d_model: 128
+  ts_transformer_dim_feedforward: 512
+  ts_transformer_nhead: 4
+  ts_transformer_num_layers: 2
+run_params:
+  device: cuda
+  early_stopping_patience: 30
+  encoder_batch_size: 32
+  epochs: 200
+  learning_rate: 0.0005
+  n_splits: 10
+  seed: 42
+  weight_decay: 0.0005
+
+--------------------------
+
+Using configured max_ts_length setting: -1 (-1 means use max in fold)
+Using configured num_regions: 200
+Using configured encoder_batch_size: 32
+Random seed set to 42
+Using GPU: NVIDIA RTX A5000
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Original selected data shape: (1112, 8)
+Using target column: 'DX_GROUP'
+Filtered out 0 rows with invalid/missing target values.
+Phenotype data shape after target filtering: (1112, 8)
+Processing specified numerical features...
+ Processing numerical columns: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+Processing specified categorical features...
+ Processing categorical columns: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  Encoded categorical columns: ['SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE', 'EYE_STATUS_AT_SCAN_1', 'EYE_STATUS_AT_SCAN_2']
+Final phenotype features identified (27): ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd', 'SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE', 'EYE_STATUS_AT_SCAN_1', 'EYE_STATUS_AT_SCAN_2']
+Checking for corresponding TS files in: /home/pl217/frankensteins_model/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+Processed 1112 subjects from phenotype data.
+Found existing, non-empty TS files for 624 subjects.
+Skipped 488 subjects (missing file or invalid ID/Site).
+Skipped 0 subjects (empty file).
+Total subjects available for K-Fold analysis: 624
+
+--- Fold 1/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 1 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 1 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 1... Train samples: 561, Test samples: 63
+F1 E001 | Loss: 0.7759 | Tr Acc: 0.4831 | Te Acc: 0.4921 | Te AUC: 0.3649 | Te F1: 0.3246
+F1 E005 | Loss: 0.7508 | Tr Acc: 0.4848 | Te Acc: 0.4762 | Te AUC: 0.5706 | Te F1: 0.3175
+F1 E010 | Loss: 0.7343 | Tr Acc: 0.4831 | Te Acc: 0.4921 | Te AUC: 0.5716 | Te F1: 0.3246
+F1 E015 | Loss: 0.7236 | Tr Acc: 0.5758 | Te Acc: 0.6032 | Te AUC: 0.5595 | Te F1: 0.5506
+F1 E020 | Loss: 0.7260 | Tr Acc: 0.5508 | Te Acc: 0.5873 | Te AUC: 0.5736 | Te F1: 0.5133
+F1 E025 | Loss: 0.7305 | Tr Acc: 0.5793 | Te Acc: 0.5238 | Te AUC: 0.6028 | Te F1: 0.4737
+F1 E030 | Loss: 0.7084 | Tr Acc: 0.4902 | Te Acc: 0.4921 | Te AUC: 0.6149 | Te F1: 0.3246
+F1 E035 | Loss: 0.7297 | Tr Acc: 0.4831 | Te Acc: 0.4921 | Te AUC: 0.6502 | Te F1: 0.3246
+F1 E040 | Loss: 0.7156 | Tr Acc: 0.4902 | Te Acc: 0.4921 | Te AUC: 0.6593 | Te F1: 0.3246
+F1 E045 | Loss: 0.7106 | Tr Acc: 0.5383 | Te Acc: 0.5556 | Te AUC: 0.6512 | Te F1: 0.4974
+F1 E050 | Loss: 0.7027 | Tr Acc: 0.6096 | Te Acc: 0.5714 | Te AUC: 0.6472 | Te F1: 0.5400
+F1 E055 | Loss: 0.6956 | Tr Acc: 0.5080 | Te Acc: 0.5397 | Te AUC: 0.6321 | Te F1: 0.4223
+F1 E060 | Loss: 0.6917 | Tr Acc: 0.5455 | Te Acc: 0.5714 | Te AUC: 0.6482 | Te F1: 0.4956
+F1 E065 | Loss: 0.7087 | Tr Acc: 0.6061 | Te Acc: 0.6032 | Te AUC: 0.6512 | Te F1: 0.6012
+F1 E070 | Loss: 0.6928 | Tr Acc: 0.6061 | Te Acc: 0.5873 | Te AUC: 0.6341 | Te F1: 0.5871
+F1 E075 | Loss: 0.6888 | Tr Acc: 0.6078 | Te Acc: 0.5556 | Te AUC: 0.6280 | Te F1: 0.5473
+F1 E080 | Loss: 0.6854 | Tr Acc: 0.5918 | Te Acc: 0.6032 | Te AUC: 0.6331 | Te F1: 0.5699
+F1 E085 | Loss: 0.7113 | Tr Acc: 0.6150 | Te Acc: 0.5873 | Te AUC: 0.6401 | Te F1: 0.5829
+F1 E090 | Loss: 0.7029 | Tr Acc: 0.6185 | Te Acc: 0.5714 | Te AUC: 0.6310 | Te F1: 0.5592
+F1 E095 | Loss: 0.6804 | Tr Acc: 0.6061 | Te Acc: 0.5873 | Te AUC: 0.6381 | Te F1: 0.5608
+F1 E100 | Loss: 0.6822 | Tr Acc: 0.6239 | Te Acc: 0.5556 | Te AUC: 0.6401 | Te F1: 0.5343
+F1 E105 | Loss: 0.6901 | Tr Acc: 0.6168 | Te Acc: 0.5714 | Te AUC: 0.6442 | Te F1: 0.5476
+F1 E110 | Loss: 0.6816 | Tr Acc: 0.6168 | Te Acc: 0.5873 | Te AUC: 0.6502 | Te F1: 0.5608
+F1 E115 | Loss: 0.6816 | Tr Acc: 0.6221 | Te Acc: 0.5873 | Te AUC: 0.6472 | Te F1: 0.5608
+F1 E120 | Loss: 0.6810 | Tr Acc: 0.6257 | Te Acc: 0.5873 | Te AUC: 0.6482 | Te F1: 0.5731
+F1 E125 | Loss: 0.6856 | Tr Acc: 0.6239 | Te Acc: 0.6032 | Te AUC: 0.6512 | Te F1: 0.5959
+F1 E130 | Loss: 0.6917 | Tr Acc: 0.6364 | Te Acc: 0.6032 | Te AUC: 0.6492 | Te F1: 0.6012
+F1 E135 | Loss: 0.6961 | Tr Acc: 0.6257 | Te Acc: 0.6032 | Te AUC: 0.6482 | Te F1: 0.6012
+F1 E140 | Loss: 0.6871 | Tr Acc: 0.6185 | Te Acc: 0.6032 | Te AUC: 0.6502 | Te F1: 0.6032
+F1 E145 | Loss: 0.6841 | Tr Acc: 0.6221 | Te Acc: 0.6032 | Te AUC: 0.6562 | Te F1: 0.6032
+F1 E150 | Loss: 0.6917 | Tr Acc: 0.6328 | Te Acc: 0.6032 | Te AUC: 0.6492 | Te F1: 0.6012
+F1 E155 | Loss: 0.6776 | Tr Acc: 0.6399 | Te Acc: 0.6032 | Te AUC: 0.6512 | Te F1: 0.6012
+F1 E160 | Loss: 0.6775 | Tr Acc: 0.6381 | Te Acc: 0.6032 | Te AUC: 0.6502 | Te F1: 0.6012
+F1 E165 | Loss: 0.6873 | Tr Acc: 0.6364 | Te Acc: 0.6032 | Te AUC: 0.6472 | Te F1: 0.5989
+F1 E170 | Loss: 0.6811 | Tr Acc: 0.6364 | Te Acc: 0.5873 | Te AUC: 0.6492 | Te F1: 0.5842
+F1 E175 | Loss: 0.6870 | Tr Acc: 0.6399 | Te Acc: 0.6032 | Te AUC: 0.6472 | Te F1: 0.6012
+F1 E180 | Loss: 0.6893 | Tr Acc: 0.6364 | Te Acc: 0.6032 | Te AUC: 0.6472 | Te F1: 0.5989
+F1 E185 | Loss: 0.6919 | Tr Acc: 0.6346 | Te Acc: 0.6032 | Te AUC: 0.6492 | Te F1: 0.5989
+F1 E190 | Loss: 0.6920 | Tr Acc: 0.6346 | Te Acc: 0.6032 | Te AUC: 0.6522 | Te F1: 0.5989
+Early stopping triggered at epoch 190 due to lack of improvement in Test AUC.
+Fold 1 - Training finished. Best Test Accuracy: 0.4921, AUC: 0.6593
+Fold 1 elapsed time: 91.62 seconds.
+
+--- Fold 2/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 2 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.

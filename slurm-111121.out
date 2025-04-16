@@ -1,0 +1,602 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 03:16:38 AM EDT 2025
+Loading configuration from config.yaml...
+
+--- Configuration Used ---
+data_params:
+  exclude_cols:
+  - 'Unnamed: 0'
+  - X
+  - subject
+  - FILE_ID
+  - qc_rater_1
+  - qc_notes_rater_1
+  - qc_anat_rater_2
+  - qc_anat_notes_rater_2
+  - qc_func_rater_2
+  - qc_func_notes_rater_2
+  - qc_anat_rater_3
+  - qc_anat_notes_rater_3
+  - qc_func_rater_3
+  - qc_func_notes_rater_3
+  max_ts_length: -1
+  num_regions: 200
+  phenotype_cols_categorical:
+  - SEX
+  - SITE_ID
+  - EYE_STATUS_AT_SCAN
+  phenotype_cols_numerical:
+  - AGE_AT_SCAN
+  - FIQ
+  - func_mean_fd
+  phenotype_file: Phenotypic_V1_0b_preprocessed1.csv
+  region_dir: /home/pl217/frankensteins_model/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+  site_id_col: SITE_ID
+  sub_id_col: SUB_ID
+  target_col: DX_GROUP
+graph_params:
+  k_neighbors: 20
+model_params:
+  dropout_rate: 0.2
+  gnn_heads: 4
+  gnn_hidden_dim: 128
+  gnn_output_dim: 2
+  pheno_embedding_dim: 64
+  pheno_hidden_dim: 128
+  ts_embedding_dim: 128
+  ts_transformer_d_model: 128
+  ts_transformer_dim_feedforward: 512
+  ts_transformer_nhead: 4
+  ts_transformer_num_layers: 2
+run_params:
+  device: cuda
+  early_stopping_patience: 25
+  encoder_batch_size: 32
+  epochs: 200
+  learning_rate: 0.0001
+  lr_scheduler_factor: 0.5
+  lr_scheduler_patience: 15
+  n_splits: 10
+  seed: 42
+  weight_decay: 0.0005
+
+--------------------------
+
+Using configured max_ts_length setting: -1 (-1 means use max in fold)
+Using configured num_regions: 200
+Using configured encoder_batch_size: 32
+Random seed set to 42
+Using GPU: NVIDIA RTX A5000
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Original selected data shape: (1112, 8)
+Using target column: 'DX_GROUP'
+Filtered out 0 rows with invalid/missing target values.
+Phenotype data shape after target filtering: (1112, 8)
+Processing specified numerical features...
+ Processing numerical columns: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+Processing specified categorical features...
+ Processing categorical columns: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  Encoded categorical columns: ['SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE', 'EYE_STATUS_AT_SCAN_1', 'EYE_STATUS_AT_SCAN_2']
+Final phenotype features identified (27): ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd', 'SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE', 'EYE_STATUS_AT_SCAN_1', 'EYE_STATUS_AT_SCAN_2']
+Checking for corresponding TS files in: /home/pl217/frankensteins_model/results/abide_timeseries/ccs_filt_noglobal_rois_cc200
+Processed 1112 subjects from phenotype data.
+Found existing, non-empty TS files for 624 subjects.
+Skipped 488 subjects (missing file or invalid ID/Site).
+Skipped 0 subjects (empty file).
+Total subjects available for K-Fold analysis: 624
+
+--- Fold 1/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 1 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 1 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 1... Train samples: 561, Test samples: 63
+F1 E001 | Loss: 0.7103 | Tr Acc: 0.4831 | Te Acc: 0.4921 | Te AUC: 0.4204 | Te F1: 0.3246
+F1 E005 | Loss: 0.7029 | Tr Acc: 0.4866 | Te Acc: 0.4921 | Te AUC: 0.5323 | Te F1: 0.3246
+F1 E010 | Loss: 0.6803 | Tr Acc: 0.6114 | Te Acc: 0.5556 | Te AUC: 0.6300 | Te F1: 0.5533
+F1 E015 | Loss: 0.6694 | Tr Acc: 0.5954 | Te Acc: 0.5873 | Te AUC: 0.6603 | Te F1: 0.5382
+F1 E020 | Loss: 0.6703 | Tr Acc: 0.5989 | Te Acc: 0.5873 | Te AUC: 0.6764 | Te F1: 0.5482
+F1 E025 | Loss: 0.6464 | Tr Acc: 0.6257 | Te Acc: 0.6190 | Te AUC: 0.6986 | Te F1: 0.6136
+F1 E030 | Loss: 0.6441 | Tr Acc: 0.6132 | Te Acc: 0.6032 | Te AUC: 0.7107 | Te F1: 0.5811
+F1 E035 | Loss: 0.6436 | Tr Acc: 0.6203 | Te Acc: 0.6032 | Te AUC: 0.6895 | Te F1: 0.5811
+F1 E040 | Loss: 0.6461 | Tr Acc: 0.6007 | Te Acc: 0.6032 | Te AUC: 0.6915 | Te F1: 0.5741
+F1 E045 | Loss: 0.6427 | Tr Acc: 0.5847 | Te Acc: 0.5714 | Te AUC: 0.6925 | Te F1: 0.5092
+F1 E050 | Loss: 0.6232 | Tr Acc: 0.6078 | Te Acc: 0.6032 | Te AUC: 0.7006 | Te F1: 0.5741
+F1 E055 | Loss: 0.6281 | Tr Acc: 0.6578 | Te Acc: 0.6508 | Te AUC: 0.7067 | Te F1: 0.6481
+F1 E060 | Loss: 0.6193 | Tr Acc: 0.6613 | Te Acc: 0.6508 | Te AUC: 0.7036 | Te F1: 0.6506
+F1 E065 | Loss: 0.6059 | Tr Acc: 0.6720 | Te Acc: 0.6508 | Te AUC: 0.6956 | Te F1: 0.6458
+F1 E070 | Loss: 0.6041 | Tr Acc: 0.6720 | Te Acc: 0.6508 | Te AUC: 0.6905 | Te F1: 0.6458
+F1 E075 | Loss: 0.6085 | Tr Acc: 0.6667 | Te Acc: 0.6032 | Te AUC: 0.6905 | Te F1: 0.5919
+F1 E080 | Loss: 0.5998 | Tr Acc: 0.6417 | Te Acc: 0.5556 | Te AUC: 0.6835 | Te F1: 0.5271
+F1 E085 | Loss: 0.5869 | Tr Acc: 0.7130 | Te Acc: 0.6508 | Te AUC: 0.6885 | Te F1: 0.6481
+F1 E090 | Loss: 0.5944 | Tr Acc: 0.7148 | Te Acc: 0.6349 | Te AUC: 0.6915 | Te F1: 0.6310
+F1 E095 | Loss: 0.5933 | Tr Acc: 0.7094 | Te Acc: 0.6349 | Te AUC: 0.6946 | Te F1: 0.6310
+F1 E100 | Loss: 0.5894 | Tr Acc: 0.7094 | Te Acc: 0.6349 | Te AUC: 0.6956 | Te F1: 0.6310
+F1 E105 | Loss: 0.5866 | Tr Acc: 0.7112 | Te Acc: 0.6349 | Te AUC: 0.6986 | Te F1: 0.6310
+F1 E110 | Loss: 0.5800 | Tr Acc: 0.7023 | Te Acc: 0.6349 | Te AUC: 0.6976 | Te F1: 0.6310
+F1 E115 | Loss: 0.5960 | Tr Acc: 0.6988 | Te Acc: 0.6349 | Te AUC: 0.6986 | Te F1: 0.6310
+F1 E120 | Loss: 0.5778 | Tr Acc: 0.7023 | Te Acc: 0.6349 | Te AUC: 0.7016 | Te F1: 0.6310
+F1 E125 | Loss: 0.5778 | Tr Acc: 0.7041 | Te Acc: 0.6349 | Te AUC: 0.7006 | Te F1: 0.6310
+F1 E130 | Loss: 0.5876 | Tr Acc: 0.7023 | Te Acc: 0.6349 | Te AUC: 0.6986 | Te F1: 0.6310
+F1 E135 | Loss: 0.5781 | Tr Acc: 0.7059 | Te Acc: 0.6349 | Te AUC: 0.7026 | Te F1: 0.6310
+F1 E140 | Loss: 0.5808 | Tr Acc: 0.7130 | Te Acc: 0.6349 | Te AUC: 0.7036 | Te F1: 0.6310
+F1 E145 | Loss: 0.5843 | Tr Acc: 0.7112 | Te Acc: 0.6349 | Te AUC: 0.7036 | Te F1: 0.6310
+F1 E150 | Loss: 0.5840 | Tr Acc: 0.7112 | Te Acc: 0.6349 | Te AUC: 0.7036 | Te F1: 0.6310
+F1 E155 | Loss: 0.5803 | Tr Acc: 0.7094 | Te Acc: 0.6349 | Te AUC: 0.7036 | Te F1: 0.6310
+Early stopping triggered at epoch 155 due to lack of improvement in Test AUC.
+Fold 1 - Training finished. Best Test Accuracy: 0.6032, AUC: 0.7107
+Fold 1 elapsed time: 39.36 seconds.
+
+--- Fold 2/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 2 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 2 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 2... Train samples: 561, Test samples: 63
+F2 E001 | Loss: 0.7118 | Tr Acc: 0.5169 | Te Acc: 0.5079 | Te AUC: 0.4304 | Te F1: 0.3422
+F2 E005 | Loss: 0.6884 | Tr Acc: 0.5472 | Te Acc: 0.5556 | Te AUC: 0.4194 | Te F1: 0.4593
+F2 E010 | Loss: 0.6844 | Tr Acc: 0.5882 | Te Acc: 0.5238 | Te AUC: 0.4234 | Te F1: 0.4671
+F2 E015 | Loss: 0.6747 | Tr Acc: 0.5918 | Te Acc: 0.4921 | Te AUC: 0.4294 | Te F1: 0.4636
+F2 E020 | Loss: 0.6740 | Tr Acc: 0.5793 | Te Acc: 0.4603 | Te AUC: 0.4254 | Te F1: 0.4449
+F2 E025 | Loss: 0.6682 | Tr Acc: 0.6061 | Te Acc: 0.3810 | Te AUC: 0.4325 | Te F1: 0.3778
+F2 E030 | Loss: 0.6600 | Tr Acc: 0.6203 | Te Acc: 0.4286 | Te AUC: 0.4244 | Te F1: 0.4268
+F2 E035 | Loss: 0.6486 | Tr Acc: 0.6185 | Te Acc: 0.4921 | Te AUC: 0.4375 | Te F1: 0.4866
+F2 E040 | Loss: 0.6483 | Tr Acc: 0.6364 | Te Acc: 0.5238 | Te AUC: 0.4466 | Te F1: 0.4886
+F2 E045 | Loss: 0.6423 | Tr Acc: 0.6221 | Te Acc: 0.5556 | Te AUC: 0.4264 | Te F1: 0.5026
+F2 E050 | Loss: 0.6370 | Tr Acc: 0.6346 | Te Acc: 0.5238 | Te AUC: 0.4214 | Te F1: 0.4787
+F2 E055 | Loss: 0.6364 | Tr Acc: 0.6399 | Te Acc: 0.4444 | Te AUC: 0.4204 | Te F1: 0.4315
+F2 E060 | Loss: 0.6272 | Tr Acc: 0.6578 | Te Acc: 0.4444 | Te AUC: 0.4365 | Te F1: 0.4365
+F2 E065 | Loss: 0.6284 | Tr Acc: 0.6453 | Te Acc: 0.4603 | Te AUC: 0.4556 | Te F1: 0.4300
+F2 E070 | Loss: 0.6232 | Tr Acc: 0.6435 | Te Acc: 0.5238 | Te AUC: 0.4567 | Te F1: 0.4787
+F2 E075 | Loss: 0.6122 | Tr Acc: 0.6684 | Te Acc: 0.4762 | Te AUC: 0.4607 | Te F1: 0.4581
+F2 E080 | Loss: 0.6101 | Tr Acc: 0.6667 | Te Acc: 0.4603 | Te AUC: 0.4375 | Te F1: 0.4545
+F2 E085 | Loss: 0.5978 | Tr Acc: 0.6738 | Te Acc: 0.4444 | Te AUC: 0.4194 | Te F1: 0.4402
+F2 E090 | Loss: 0.6023 | Tr Acc: 0.7112 | Te Acc: 0.4286 | Te AUC: 0.4315 | Te F1: 0.4242
+F2 E095 | Loss: 0.5951 | Tr Acc: 0.6595 | Te Acc: 0.4762 | Te AUC: 0.4264 | Te F1: 0.4270
+F2 E100 | Loss: 0.5661 | Tr Acc: 0.7237 | Te Acc: 0.4444 | Te AUC: 0.4244 | Te F1: 0.4444
+F2 E105 | Loss: 0.5819 | Tr Acc: 0.6061 | Te Acc: 0.5397 | Te AUC: 0.4194 | Te F1: 0.4488
+F2 E110 | Loss: 0.5671 | Tr Acc: 0.6381 | Te Acc: 0.5238 | Te AUC: 0.4204 | Te F1: 0.4384
+F2 E115 | Loss: 0.5676 | Tr Acc: 0.6150 | Te Acc: 0.4762 | Te AUC: 0.4738 | Te F1: 0.4001
+F2 E120 | Loss: 0.5684 | Tr Acc: 0.6560 | Te Acc: 0.5397 | Te AUC: 0.4899 | Te F1: 0.5141
+F2 E125 | Loss: 0.5619 | Tr Acc: 0.7308 | Te Acc: 0.4603 | Te AUC: 0.4889 | Te F1: 0.4603
+F2 E130 | Loss: 0.5460 | Tr Acc: 0.6934 | Te Acc: 0.4444 | Te AUC: 0.4647 | Te F1: 0.4365
+F2 E135 | Loss: 0.5432 | Tr Acc: 0.7184 | Te Acc: 0.4444 | Te AUC: 0.4556 | Te F1: 0.4402
+F2 E140 | Loss: 0.5480 | Tr Acc: 0.5615 | Te Acc: 0.4603 | Te AUC: 0.5071 | Te F1: 0.3344
+F2 E145 | Loss: 0.5386 | Tr Acc: 0.7504 | Te Acc: 0.4762 | Te AUC: 0.4970 | Te F1: 0.4762
+F2 E150 | Loss: 0.5219 | Tr Acc: 0.5686 | Te Acc: 0.5556 | Te AUC: 0.4627 | Te F1: 0.4402
+F2 E155 | Loss: 0.5222 | Tr Acc: 0.7665 | Te Acc: 0.4444 | Te AUC: 0.4889 | Te F1: 0.4428
+F2 E160 | Loss: 0.5197 | Tr Acc: 0.5455 | Te Acc: 0.4762 | Te AUC: 0.5111 | Te F1: 0.3426
+F2 E165 | Loss: 0.5078 | Tr Acc: 0.7166 | Te Acc: 0.4444 | Te AUC: 0.4798 | Te F1: 0.4365
+F2 E170 | Loss: 0.5102 | Tr Acc: 0.7558 | Te Acc: 0.4444 | Te AUC: 0.4839 | Te F1: 0.4428
+F2 E175 | Loss: 0.5007 | Tr Acc: 0.7219 | Te Acc: 0.4921 | Te AUC: 0.4970 | Te F1: 0.4803
+F2 E180 | Loss: 0.4853 | Tr Acc: 0.7504 | Te Acc: 0.4921 | Te AUC: 0.4899 | Te F1: 0.4882
+F2 E185 | Loss: 0.4880 | Tr Acc: 0.6970 | Te Acc: 0.5397 | Te AUC: 0.5030 | Te F1: 0.5141
+F2 E190 | Loss: 0.4683 | Tr Acc: 0.7077 | Te Acc: 0.5556 | Te AUC: 0.4889 | Te F1: 0.5403
+F2 E195 | Loss: 0.4643 | Tr Acc: 0.7094 | Te Acc: 0.5079 | Te AUC: 0.4808 | Te F1: 0.4879
+F2 E200 | Loss: 0.4760 | Tr Acc: 0.8111 | Te Acc: 0.4762 | Te AUC: 0.4597 | Te F1: 0.4762
+Fold 2 - Training finished. Best Test Accuracy: 0.4762, AUC: 0.5111
+Fold 2 elapsed time: 46.82 seconds.
+
+--- Fold 3/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 3 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 3 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 3... Train samples: 561, Test samples: 63
+F3 E001 | Loss: 0.7204 | Tr Acc: 0.4848 | Te Acc: 0.4762 | Te AUC: 0.6131 | Te F1: 0.3072
+F3 E005 | Loss: 0.6990 | Tr Acc: 0.4795 | Te Acc: 0.4444 | Te AUC: 0.6121 | Te F1: 0.3383
+F3 E010 | Loss: 0.6720 | Tr Acc: 0.5793 | Te Acc: 0.5556 | Te AUC: 0.6333 | Te F1: 0.5535
+F3 E015 | Loss: 0.6702 | Tr Acc: 0.6043 | Te Acc: 0.5556 | Te AUC: 0.6475 | Te F1: 0.5535
+F3 E020 | Loss: 0.6668 | Tr Acc: 0.6096 | Te Acc: 0.5397 | Te AUC: 0.6667 | Te F1: 0.5180
+F3 E025 | Loss: 0.6548 | Tr Acc: 0.6096 | Te Acc: 0.5556 | Te AUC: 0.6707 | Te F1: 0.5312
+F3 E030 | Loss: 0.6425 | Tr Acc: 0.6025 | Te Acc: 0.5873 | Te AUC: 0.6586 | Te F1: 0.5647
+F3 E035 | Loss: 0.6507 | Tr Acc: 0.5865 | Te Acc: 0.5714 | Te AUC: 0.6697 | Te F1: 0.5444
+F3 E040 | Loss: 0.6279 | Tr Acc: 0.5989 | Te Acc: 0.5714 | Te AUC: 0.6667 | Te F1: 0.5513
+F3 E045 | Loss: 0.6272 | Tr Acc: 0.6221 | Te Acc: 0.5873 | Te AUC: 0.6626 | Te F1: 0.5708
+F3 E050 | Loss: 0.6132 | Tr Acc: 0.6488 | Te Acc: 0.5714 | Te AUC: 0.6677 | Te F1: 0.5570
+F3 E055 | Loss: 0.6124 | Tr Acc: 0.6417 | Te Acc: 0.6825 | Te AUC: 0.6697 | Te F1: 0.6827
+F3 E060 | Loss: 0.6036 | Tr Acc: 0.6328 | Te Acc: 0.5556 | Te AUC: 0.6535 | Te F1: 0.5404
+F3 E065 | Loss: 0.6098 | Tr Acc: 0.6078 | Te Acc: 0.5873 | Te AUC: 0.6525 | Te F1: 0.5431
+F3 E070 | Loss: 0.6038 | Tr Acc: 0.6524 | Te Acc: 0.6667 | Te AUC: 0.6697 | Te F1: 0.6663
+F3 E075 | Loss: 0.5994 | Tr Acc: 0.6185 | Te Acc: 0.5556 | Te AUC: 0.6576 | Te F1: 0.5312
+F3 E080 | Loss: 0.5882 | Tr Acc: 0.5740 | Te Acc: 0.4762 | Te AUC: 0.6525 | Te F1: 0.4087
+F3 E085 | Loss: 0.5845 | Tr Acc: 0.6435 | Te Acc: 0.5714 | Te AUC: 0.6505 | Te F1: 0.5513
+F3 E090 | Loss: 0.5899 | Tr Acc: 0.6898 | Te Acc: 0.6032 | Te AUC: 0.6495 | Te F1: 0.5942
+F3 E095 | Loss: 0.5850 | Tr Acc: 0.7077 | Te Acc: 0.6667 | Te AUC: 0.6535 | Te F1: 0.6658
+F3 E100 | Loss: 0.5887 | Tr Acc: 0.6845 | Te Acc: 0.6825 | Te AUC: 0.6606 | Te F1: 0.6827
+F3 E105 | Loss: 0.5775 | Tr Acc: 0.6827 | Te Acc: 0.6825 | Te AUC: 0.6626 | Te F1: 0.6825
+F3 E110 | Loss: 0.5884 | Tr Acc: 0.6863 | Te Acc: 0.6825 | Te AUC: 0.6626 | Te F1: 0.6825
+F3 E115 | Loss: 0.5926 | Tr Acc: 0.6898 | Te Acc: 0.6825 | Te AUC: 0.6626 | Te F1: 0.6825
+F3 E120 | Loss: 0.5932 | Tr Acc: 0.6898 | Te Acc: 0.6825 | Te AUC: 0.6616 | Te F1: 0.6825
+F3 E125 | Loss: 0.5862 | Tr Acc: 0.6791 | Te Acc: 0.6667 | Te AUC: 0.6657 | Te F1: 0.6663
+F3 E130 | Loss: 0.5858 | Tr Acc: 0.6774 | Te Acc: 0.6667 | Te AUC: 0.6677 | Te F1: 0.6663
+F3 E135 | Loss: 0.5845 | Tr Acc: 0.6774 | Te Acc: 0.6667 | Te AUC: 0.6657 | Te F1: 0.6663
+F3 E140 | Loss: 0.5849 | Tr Acc: 0.6881 | Te Acc: 0.6825 | Te AUC: 0.6626 | Te F1: 0.6825
+F3 E145 | Loss: 0.5717 | Tr Acc: 0.6952 | Te Acc: 0.6825 | Te AUC: 0.6606 | Te F1: 0.6825
+F3 E150 | Loss: 0.5790 | Tr Acc: 0.6934 | Te Acc: 0.6984 | Te AUC: 0.6616 | Te F1: 0.6986
+Early stopping triggered at epoch 150 due to lack of improvement in Test AUC.
+Fold 3 - Training finished. Best Test Accuracy: 0.5556, AUC: 0.6707
+Fold 3 elapsed time: 38.12 seconds.
+
+--- Fold 4/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 4 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 4 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 4... Train samples: 561, Test samples: 63
+F4 E001 | Loss: 0.7007 | Tr Acc: 0.5152 | Te Acc: 0.5238 | Te AUC: 0.5990 | Te F1: 0.3601
+F4 E005 | Loss: 0.6882 | Tr Acc: 0.5152 | Te Acc: 0.5238 | Te AUC: 0.6394 | Te F1: 0.3601
+F4 E010 | Loss: 0.6723 | Tr Acc: 0.5508 | Te Acc: 0.5556 | Te AUC: 0.6152 | Te F1: 0.4273
+F4 E015 | Loss: 0.6603 | Tr Acc: 0.5740 | Te Acc: 0.5714 | Te AUC: 0.5828 | Te F1: 0.5306
+F4 E020 | Loss: 0.6549 | Tr Acc: 0.6025 | Te Acc: 0.5714 | Te AUC: 0.5636 | Te F1: 0.5637
+F4 E025 | Loss: 0.6550 | Tr Acc: 0.6221 | Te Acc: 0.5556 | Te AUC: 0.5747 | Te F1: 0.5556
+F4 E030 | Loss: 0.6413 | Tr Acc: 0.5989 | Te Acc: 0.5079 | Te AUC: 0.5667 | Te F1: 0.4914
+F4 E035 | Loss: 0.6429 | Tr Acc: 0.6132 | Te Acc: 0.5238 | Te AUC: 0.5646 | Te F1: 0.5190
+F4 E040 | Loss: 0.6280 | Tr Acc: 0.6417 | Te Acc: 0.5397 | Te AUC: 0.5636 | Te F1: 0.5399
+F4 E045 | Loss: 0.6440 | Tr Acc: 0.6292 | Te Acc: 0.5238 | Te AUC: 0.5535 | Te F1: 0.5238
+F4 E050 | Loss: 0.6277 | Tr Acc: 0.6542 | Te Acc: 0.5079 | Te AUC: 0.5434 | Te F1: 0.4990
+F4 E055 | Loss: 0.6274 | Tr Acc: 0.6560 | Te Acc: 0.4921 | Te AUC: 0.5364 | Te F1: 0.4804
+F4 E060 | Loss: 0.6192 | Tr Acc: 0.6631 | Te Acc: 0.5079 | Te AUC: 0.5515 | Te F1: 0.4940
+F4 E065 | Loss: 0.6184 | Tr Acc: 0.6578 | Te Acc: 0.4921 | Te AUC: 0.5364 | Te F1: 0.4804
+F4 E070 | Loss: 0.6178 | Tr Acc: 0.6631 | Te Acc: 0.4921 | Te AUC: 0.5323 | Te F1: 0.4804
+F4 E075 | Loss: 0.6084 | Tr Acc: 0.6684 | Te Acc: 0.5079 | Te AUC: 0.5343 | Te F1: 0.4940
+F4 E080 | Loss: 0.6229 | Tr Acc: 0.6649 | Te Acc: 0.4762 | Te AUC: 0.5394 | Te F1: 0.4548
+F4 E085 | Loss: 0.6249 | Tr Acc: 0.6702 | Te Acc: 0.4762 | Te AUC: 0.5414 | Te F1: 0.4548
+F4 E090 | Loss: 0.6263 | Tr Acc: 0.6649 | Te Acc: 0.4921 | Te AUC: 0.5394 | Te F1: 0.4747
+F4 E095 | Loss: 0.6261 | Tr Acc: 0.6684 | Te Acc: 0.4921 | Te AUC: 0.5374 | Te F1: 0.4747
+F4 E100 | Loss: 0.6205 | Tr Acc: 0.6631 | Te Acc: 0.5079 | Te AUC: 0.5374 | Te F1: 0.4940
+F4 E105 | Loss: 0.6154 | Tr Acc: 0.6649 | Te Acc: 0.5238 | Te AUC: 0.5313 | Te F1: 0.5172
+F4 E110 | Loss: 0.6149 | Tr Acc: 0.6720 | Te Acc: 0.5238 | Te AUC: 0.5333 | Te F1: 0.5172
+F4 E115 | Loss: 0.6256 | Tr Acc: 0.6720 | Te Acc: 0.5397 | Te AUC: 0.5303 | Te F1: 0.5350
+F4 E120 | Loss: 0.6128 | Tr Acc: 0.6738 | Te Acc: 0.5238 | Te AUC: 0.5323 | Te F1: 0.5172
+F4 E125 | Loss: 0.6253 | Tr Acc: 0.6756 | Te Acc: 0.5238 | Te AUC: 0.5313 | Te F1: 0.5172
+F4 E130 | Loss: 0.6087 | Tr Acc: 0.6738 | Te Acc: 0.5238 | Te AUC: 0.5343 | Te F1: 0.5172
+Early stopping triggered at epoch 130 due to lack of improvement in Test AUC.
+Fold 4 - Training finished. Best Test Accuracy: 0.5238, AUC: 0.6394
+Fold 4 elapsed time: 34.70 seconds.
+
+--- Fold 5/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 5 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 5 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 5... Train samples: 562, Test samples: 62
+F5 E001 | Loss: 0.6865 | Tr Acc: 0.5160 | Te Acc: 0.5161 | Te AUC: 0.6312 | Te F1: 0.3514
+F5 E005 | Loss: 0.6964 | Tr Acc: 0.5285 | Te Acc: 0.5161 | Te AUC: 0.7521 | Te F1: 0.3514
+F5 E010 | Loss: 0.6848 | Tr Acc: 0.5641 | Te Acc: 0.5968 | Te AUC: 0.7531 | Te F1: 0.5247
+F5 E015 | Loss: 0.6755 | Tr Acc: 0.5801 | Te Acc: 0.6613 | Te AUC: 0.7438 | Te F1: 0.6600
+F5 E020 | Loss: 0.6693 | Tr Acc: 0.5587 | Te Acc: 0.6290 | Te AUC: 0.7219 | Te F1: 0.5953
+F5 E025 | Loss: 0.6595 | Tr Acc: 0.5907 | Te Acc: 0.6452 | Te AUC: 0.6885 | Te F1: 0.6290
+F5 E030 | Loss: 0.6626 | Tr Acc: 0.6139 | Te Acc: 0.5968 | Te AUC: 0.6500 | Te F1: 0.5952
+F5 E035 | Loss: 0.6400 | Tr Acc: 0.6299 | Te Acc: 0.5806 | Te AUC: 0.6438 | Te F1: 0.5754
+F5 E040 | Loss: 0.6386 | Tr Acc: 0.6299 | Te Acc: 0.5806 | Te AUC: 0.6438 | Te F1: 0.5754
+F5 E045 | Loss: 0.6358 | Tr Acc: 0.6299 | Te Acc: 0.5806 | Te AUC: 0.6354 | Te F1: 0.5780
+F5 E050 | Loss: 0.6295 | Tr Acc: 0.6477 | Te Acc: 0.5484 | Te AUC: 0.6219 | Te F1: 0.5484
+F5 E055 | Loss: 0.6252 | Tr Acc: 0.6566 | Te Acc: 0.5484 | Te AUC: 0.6083 | Te F1: 0.5484
+F5 E060 | Loss: 0.6132 | Tr Acc: 0.6317 | Te Acc: 0.5484 | Te AUC: 0.5865 | Te F1: 0.5484
+F5 E065 | Loss: 0.6092 | Tr Acc: 0.6103 | Te Acc: 0.6452 | Te AUC: 0.5969 | Te F1: 0.6234
+F5 E070 | Loss: 0.6163 | Tr Acc: 0.6406 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5780
+F5 E075 | Loss: 0.6183 | Tr Acc: 0.6512 | Te Acc: 0.5323 | Te AUC: 0.6188 | Te F1: 0.5319
+F5 E080 | Loss: 0.6124 | Tr Acc: 0.6690 | Te Acc: 0.5484 | Te AUC: 0.6250 | Te F1: 0.5484
+F5 E085 | Loss: 0.6179 | Tr Acc: 0.6833 | Te Acc: 0.5484 | Te AUC: 0.6240 | Te F1: 0.5484
+F5 E090 | Loss: 0.6126 | Tr Acc: 0.6637 | Te Acc: 0.5323 | Te AUC: 0.6208 | Te F1: 0.5324
+F5 E095 | Loss: 0.6170 | Tr Acc: 0.6566 | Te Acc: 0.5484 | Te AUC: 0.6219 | Te F1: 0.5474
+F5 E100 | Loss: 0.6137 | Tr Acc: 0.6619 | Te Acc: 0.5645 | Te AUC: 0.6198 | Te F1: 0.5642
+F5 E105 | Loss: 0.6107 | Tr Acc: 0.6619 | Te Acc: 0.5645 | Te AUC: 0.6188 | Te F1: 0.5642
+F5 E110 | Loss: 0.6162 | Tr Acc: 0.6690 | Te Acc: 0.5323 | Te AUC: 0.6177 | Te F1: 0.5324
+F5 E115 | Loss: 0.6147 | Tr Acc: 0.6851 | Te Acc: 0.5484 | Te AUC: 0.6146 | Te F1: 0.5484
+F5 E120 | Loss: 0.6046 | Tr Acc: 0.6851 | Te Acc: 0.5484 | Te AUC: 0.6156 | Te F1: 0.5484
+F5 E125 | Loss: 0.6108 | Tr Acc: 0.6851 | Te Acc: 0.5484 | Te AUC: 0.6146 | Te F1: 0.5484
+F5 E130 | Loss: 0.6086 | Tr Acc: 0.6851 | Te Acc: 0.5484 | Te AUC: 0.6125 | Te F1: 0.5484
+F5 E135 | Loss: 0.6068 | Tr Acc: 0.6868 | Te Acc: 0.5484 | Te AUC: 0.6146 | Te F1: 0.5484
+Early stopping triggered at epoch 135 due to lack of improvement in Test AUC.
+Fold 5 - Training finished. Best Test Accuracy: 0.5968, AUC: 0.7531
+Fold 5 elapsed time: 35.57 seconds.
+
+--- Fold 6/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 6 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 6 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 6... Train samples: 562, Test samples: 62
+F6 E001 | Loss: 0.7059 | Tr Acc: 0.4840 | Te Acc: 0.4839 | Te AUC: 0.6469 | Te F1: 0.3156
+F6 E005 | Loss: 0.6965 | Tr Acc: 0.4751 | Te Acc: 0.5000 | Te AUC: 0.6521 | Te F1: 0.3503
+F6 E010 | Loss: 0.6881 | Tr Acc: 0.5765 | Te Acc: 0.6613 | Te AUC: 0.6635 | Te F1: 0.6614
+F6 E015 | Loss: 0.6755 | Tr Acc: 0.5676 | Te Acc: 0.5484 | Te AUC: 0.6021 | Te F1: 0.4594
+F6 E020 | Loss: 0.6620 | Tr Acc: 0.5872 | Te Acc: 0.5323 | Te AUC: 0.5781 | Te F1: 0.4641
+F6 E025 | Loss: 0.6612 | Tr Acc: 0.5979 | Te Acc: 0.5484 | Te AUC: 0.5656 | Te F1: 0.5012
+F6 E030 | Loss: 0.6489 | Tr Acc: 0.6085 | Te Acc: 0.5645 | Te AUC: 0.5312 | Te F1: 0.5476
+F6 E035 | Loss: 0.6430 | Tr Acc: 0.6388 | Te Acc: 0.5645 | Te AUC: 0.5083 | Te F1: 0.5605
+F6 E040 | Loss: 0.6397 | Tr Acc: 0.6246 | Te Acc: 0.4355 | Te AUC: 0.4937 | Te F1: 0.4303
+F6 E045 | Loss: 0.6321 | Tr Acc: 0.6174 | Te Acc: 0.4355 | Te AUC: 0.5031 | Te F1: 0.3957
+F6 E050 | Loss: 0.6280 | Tr Acc: 0.5801 | Te Acc: 0.4516 | Te AUC: 0.5146 | Te F1: 0.3654
+F6 E055 | Loss: 0.6209 | Tr Acc: 0.6085 | Te Acc: 0.4194 | Te AUC: 0.5156 | Te F1: 0.3452
+F6 E060 | Loss: 0.6213 | Tr Acc: 0.6495 | Te Acc: 0.5161 | Te AUC: 0.5062 | Te F1: 0.5131
+F6 E065 | Loss: 0.6193 | Tr Acc: 0.6530 | Te Acc: 0.5806 | Te AUC: 0.5125 | Te F1: 0.5780
+F6 E070 | Loss: 0.6206 | Tr Acc: 0.6708 | Te Acc: 0.5806 | Te AUC: 0.5135 | Te F1: 0.5780
+F6 E075 | Loss: 0.6189 | Tr Acc: 0.6673 | Te Acc: 0.5645 | Te AUC: 0.5187 | Te F1: 0.5605
+F6 E080 | Loss: 0.6131 | Tr Acc: 0.6726 | Te Acc: 0.5645 | Te AUC: 0.5177 | Te F1: 0.5605
+F6 E085 | Loss: 0.6159 | Tr Acc: 0.6744 | Te Acc: 0.5484 | Te AUC: 0.5146 | Te F1: 0.5455
+F6 E090 | Loss: 0.6105 | Tr Acc: 0.6797 | Te Acc: 0.5645 | Te AUC: 0.5125 | Te F1: 0.5628
+F6 E095 | Loss: 0.6193 | Tr Acc: 0.6797 | Te Acc: 0.5484 | Te AUC: 0.5094 | Te F1: 0.5474
+F6 E100 | Loss: 0.6146 | Tr Acc: 0.6815 | Te Acc: 0.5806 | Te AUC: 0.5104 | Te F1: 0.5806
+F6 E105 | Loss: 0.6145 | Tr Acc: 0.6833 | Te Acc: 0.5645 | Te AUC: 0.5135 | Te F1: 0.5646
+F6 E110 | Loss: 0.6137 | Tr Acc: 0.6868 | Te Acc: 0.5806 | Te AUC: 0.5125 | Te F1: 0.5806
+F6 E115 | Loss: 0.6074 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.5115 | Te F1: 0.5806
+F6 E120 | Loss: 0.6163 | Tr Acc: 0.6797 | Te Acc: 0.5806 | Te AUC: 0.5125 | Te F1: 0.5806
+F6 E125 | Loss: 0.5995 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.5135 | Te F1: 0.5806
+F6 E130 | Loss: 0.6076 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.5125 | Te F1: 0.5806
+F6 E135 | Loss: 0.6114 | Tr Acc: 0.6851 | Te Acc: 0.5806 | Te AUC: 0.5135 | Te F1: 0.5806
+Early stopping triggered at epoch 135 due to lack of improvement in Test AUC.
+Fold 6 - Training finished. Best Test Accuracy: 0.6613, AUC: 0.6635
+Fold 6 elapsed time: 35.76 seconds.
+
+--- Fold 7/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 7 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 7 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 7... Train samples: 562, Test samples: 62
+F7 E001 | Loss: 0.7059 | Tr Acc: 0.5196 | Te Acc: 0.5161 | Te AUC: 0.5854 | Te F1: 0.3514
+F7 E005 | Loss: 0.6988 | Tr Acc: 0.5178 | Te Acc: 0.5161 | Te AUC: 0.6260 | Te F1: 0.3514
+F7 E010 | Loss: 0.6820 | Tr Acc: 0.5231 | Te Acc: 0.5161 | Te AUC: 0.6229 | Te F1: 0.3514
+F7 E015 | Loss: 0.6840 | Tr Acc: 0.5463 | Te Acc: 0.5484 | Te AUC: 0.6312 | Te F1: 0.4409
+F7 E020 | Loss: 0.6652 | Tr Acc: 0.5480 | Te Acc: 0.5645 | Te AUC: 0.6271 | Te F1: 0.4701
+F7 E025 | Loss: 0.6523 | Tr Acc: 0.5516 | Te Acc: 0.5484 | Te AUC: 0.6229 | Te F1: 0.4409
+F7 E030 | Loss: 0.6545 | Tr Acc: 0.5641 | Te Acc: 0.5484 | Te AUC: 0.6198 | Te F1: 0.4594
+F7 E035 | Loss: 0.6585 | Tr Acc: 0.5819 | Te Acc: 0.5000 | Te AUC: 0.6135 | Te F1: 0.4641
+F7 E040 | Loss: 0.6520 | Tr Acc: 0.6050 | Te Acc: 0.5806 | Te AUC: 0.6104 | Te F1: 0.5753
+F7 E045 | Loss: 0.6428 | Tr Acc: 0.6228 | Te Acc: 0.5968 | Te AUC: 0.6115 | Te F1: 0.5965
+F7 E050 | Loss: 0.6445 | Tr Acc: 0.6228 | Te Acc: 0.5968 | Te AUC: 0.6125 | Te F1: 0.5931
+F7 E055 | Loss: 0.6435 | Tr Acc: 0.6317 | Te Acc: 0.5806 | Te AUC: 0.6229 | Te F1: 0.5806
+F7 E060 | Loss: 0.6360 | Tr Acc: 0.6459 | Te Acc: 0.5968 | Te AUC: 0.6260 | Te F1: 0.5965
+F7 E065 | Loss: 0.6353 | Tr Acc: 0.6530 | Te Acc: 0.5968 | Te AUC: 0.6375 | Te F1: 0.5969
+F7 E070 | Loss: 0.6299 | Tr Acc: 0.6815 | Te Acc: 0.6129 | Te AUC: 0.6406 | Te F1: 0.6005
+F7 E075 | Loss: 0.6259 | Tr Acc: 0.6406 | Te Acc: 0.5645 | Te AUC: 0.6427 | Te F1: 0.5249
+F7 E080 | Loss: 0.6189 | Tr Acc: 0.6370 | Te Acc: 0.5484 | Te AUC: 0.6354 | Te F1: 0.4907
+F7 E085 | Loss: 0.6318 | Tr Acc: 0.6566 | Te Acc: 0.5806 | Te AUC: 0.6312 | Te F1: 0.5549
+F7 E090 | Loss: 0.6238 | Tr Acc: 0.6601 | Te Acc: 0.5806 | Te AUC: 0.6052 | Te F1: 0.5780
+F7 E095 | Loss: 0.6155 | Tr Acc: 0.6566 | Te Acc: 0.5645 | Te AUC: 0.6031 | Te F1: 0.5628
+F7 E100 | Loss: 0.6125 | Tr Acc: 0.6744 | Te Acc: 0.5806 | Te AUC: 0.6052 | Te F1: 0.5672
+F7 E105 | Loss: 0.6021 | Tr Acc: 0.6851 | Te Acc: 0.5806 | Te AUC: 0.6031 | Te F1: 0.5718
+F7 E110 | Loss: 0.5992 | Tr Acc: 0.6975 | Te Acc: 0.5484 | Te AUC: 0.6031 | Te F1: 0.5427
+F7 E115 | Loss: 0.5915 | Tr Acc: 0.6655 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5670
+F7 E120 | Loss: 0.5953 | Tr Acc: 0.6904 | Te Acc: 0.5645 | Te AUC: 0.6062 | Te F1: 0.5628
+F7 E125 | Loss: 0.5834 | Tr Acc: 0.7117 | Te Acc: 0.5968 | Te AUC: 0.6021 | Te F1: 0.5969
+F7 E130 | Loss: 0.5796 | Tr Acc: 0.6886 | Te Acc: 0.5806 | Te AUC: 0.6115 | Te F1: 0.5717
+F7 E135 | Loss: 0.5761 | Tr Acc: 0.7082 | Te Acc: 0.5484 | Te AUC: 0.6115 | Te F1: 0.5474
+F7 E140 | Loss: 0.5733 | Tr Acc: 0.7224 | Te Acc: 0.5484 | Te AUC: 0.6135 | Te F1: 0.5474
+F7 E145 | Loss: 0.5703 | Tr Acc: 0.7278 | Te Acc: 0.5968 | Te AUC: 0.6104 | Te F1: 0.5952
+F7 E150 | Loss: 0.5860 | Tr Acc: 0.7242 | Te Acc: 0.6129 | Te AUC: 0.6115 | Te F1: 0.6105
+F7 E155 | Loss: 0.5754 | Tr Acc: 0.7260 | Te Acc: 0.6290 | Te AUC: 0.6115 | Te F1: 0.6256
+F7 E160 | Loss: 0.5850 | Tr Acc: 0.7331 | Te Acc: 0.6129 | Te AUC: 0.6073 | Te F1: 0.6105
+F7 E165 | Loss: 0.5651 | Tr Acc: 0.7313 | Te Acc: 0.6129 | Te AUC: 0.6062 | Te F1: 0.6105
+F7 E170 | Loss: 0.5757 | Tr Acc: 0.7313 | Te Acc: 0.6129 | Te AUC: 0.6052 | Te F1: 0.6105
+F7 E175 | Loss: 0.5902 | Tr Acc: 0.7295 | Te Acc: 0.6290 | Te AUC: 0.6052 | Te F1: 0.6256
+F7 E180 | Loss: 0.5746 | Tr Acc: 0.7278 | Te Acc: 0.5806 | Te AUC: 0.6031 | Te F1: 0.5718
+F7 E185 | Loss: 0.5582 | Tr Acc: 0.7260 | Te Acc: 0.6290 | Te AUC: 0.6052 | Te F1: 0.6256
+F7 E190 | Loss: 0.5706 | Tr Acc: 0.7349 | Te Acc: 0.6129 | Te AUC: 0.6052 | Te F1: 0.6105
+F7 E195 | Loss: 0.5770 | Tr Acc: 0.7367 | Te Acc: 0.6129 | Te AUC: 0.6052 | Te F1: 0.6105
+F7 E200 | Loss: 0.5557 | Tr Acc: 0.7367 | Te Acc: 0.5323 | Te AUC: 0.6062 | Te F1: 0.5324
+Early stopping triggered at epoch 200 due to lack of improvement in Test AUC.
+Fold 7 - Training finished. Best Test Accuracy: 0.5645, AUC: 0.6427
+Fold 7 elapsed time: 48.04 seconds.
+
+--- Fold 8/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 8 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 8 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 8... Train samples: 562, Test samples: 62
+F8 E001 | Loss: 0.7002 | Tr Acc: 0.5160 | Te Acc: 0.5161 | Te AUC: 0.5833 | Te F1: 0.3514
+F8 E005 | Loss: 0.6825 | Tr Acc: 0.5160 | Te Acc: 0.5161 | Te AUC: 0.4750 | Te F1: 0.3514
+F8 E010 | Loss: 0.6740 | Tr Acc: 0.5356 | Te Acc: 0.5161 | Te AUC: 0.4062 | Te F1: 0.3514
+F8 E015 | Loss: 0.6698 | Tr Acc: 0.5534 | Te Acc: 0.5000 | Te AUC: 0.4260 | Te F1: 0.3696
+F8 E020 | Loss: 0.6534 | Tr Acc: 0.5819 | Te Acc: 0.5323 | Te AUC: 0.4437 | Te F1: 0.4309
+F8 E025 | Loss: 0.6514 | Tr Acc: 0.5836 | Te Acc: 0.5000 | Te AUC: 0.4729 | Te F1: 0.4107
+F8 E030 | Loss: 0.6589 | Tr Acc: 0.5872 | Te Acc: 0.5161 | Te AUC: 0.4875 | Te F1: 0.4528
+F8 E035 | Loss: 0.6482 | Tr Acc: 0.5961 | Te Acc: 0.5323 | Te AUC: 0.4958 | Te F1: 0.4889
+F8 E040 | Loss: 0.6468 | Tr Acc: 0.6157 | Te Acc: 0.4839 | Te AUC: 0.4729 | Te F1: 0.4601
+F8 E045 | Loss: 0.6367 | Tr Acc: 0.6441 | Te Acc: 0.4516 | Te AUC: 0.4604 | Te F1: 0.4338
+F8 E050 | Loss: 0.6250 | Tr Acc: 0.6352 | Te Acc: 0.4839 | Te AUC: 0.4510 | Te F1: 0.4806
+F8 E055 | Loss: 0.6363 | Tr Acc: 0.6406 | Te Acc: 0.4516 | Te AUC: 0.4583 | Te F1: 0.4482
+F8 E060 | Loss: 0.6365 | Tr Acc: 0.6530 | Te Acc: 0.4516 | Te AUC: 0.4677 | Te F1: 0.4399
+F8 E065 | Loss: 0.6400 | Tr Acc: 0.6459 | Te Acc: 0.5161 | Te AUC: 0.4781 | Te F1: 0.4938
+F8 E070 | Loss: 0.6356 | Tr Acc: 0.6370 | Te Acc: 0.5323 | Te AUC: 0.4813 | Te F1: 0.5071
+F8 E075 | Loss: 0.6235 | Tr Acc: 0.6370 | Te Acc: 0.5323 | Te AUC: 0.4781 | Te F1: 0.5071
+F8 E080 | Loss: 0.6264 | Tr Acc: 0.6370 | Te Acc: 0.5323 | Te AUC: 0.4760 | Te F1: 0.5071
+F8 E085 | Loss: 0.6348 | Tr Acc: 0.6246 | Te Acc: 0.5000 | Te AUC: 0.4760 | Te F1: 0.4536
+F8 E090 | Loss: 0.6245 | Tr Acc: 0.6210 | Te Acc: 0.4839 | Te AUC: 0.4740 | Te F1: 0.4299
+F8 E095 | Loss: 0.6221 | Tr Acc: 0.6228 | Te Acc: 0.4839 | Te AUC: 0.4792 | Te F1: 0.4299
+F8 E100 | Loss: 0.6268 | Tr Acc: 0.6210 | Te Acc: 0.4839 | Te AUC: 0.4792 | Te F1: 0.4299
+F8 E105 | Loss: 0.6300 | Tr Acc: 0.6228 | Te Acc: 0.5161 | Te AUC: 0.4781 | Te F1: 0.4765
+F8 E110 | Loss: 0.6281 | Tr Acc: 0.6335 | Te Acc: 0.5161 | Te AUC: 0.4792 | Te F1: 0.4859
+F8 E115 | Loss: 0.6238 | Tr Acc: 0.6335 | Te Acc: 0.5323 | Te AUC: 0.4781 | Te F1: 0.5071
+F8 E120 | Loss: 0.6318 | Tr Acc: 0.6352 | Te Acc: 0.5323 | Te AUC: 0.4771 | Te F1: 0.5071
+F8 E125 | Loss: 0.6282 | Tr Acc: 0.6352 | Te Acc: 0.5323 | Te AUC: 0.4760 | Te F1: 0.5071
+Early stopping triggered at epoch 125 due to lack of improvement in Test AUC.
+Fold 8 - Training finished. Best Test Accuracy: 0.5161, AUC: 0.5833
+Fold 8 elapsed time: 33.07 seconds.
+
+--- Fold 9/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 9 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 9 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 9... Train samples: 562, Test samples: 62
+F9 E001 | Loss: 0.6994 | Tr Acc: 0.5160 | Te Acc: 0.5161 | Te AUC: 0.4729 | Te F1: 0.3514
+F9 E005 | Loss: 0.6864 | Tr Acc: 0.5160 | Te Acc: 0.5161 | Te AUC: 0.5104 | Te F1: 0.3514
+F9 E010 | Loss: 0.6763 | Tr Acc: 0.5409 | Te Acc: 0.5161 | Te AUC: 0.5708 | Te F1: 0.3781
+F9 E015 | Loss: 0.6717 | Tr Acc: 0.5605 | Te Acc: 0.5000 | Te AUC: 0.6219 | Te F1: 0.4107
+F9 E020 | Loss: 0.6599 | Tr Acc: 0.5943 | Te Acc: 0.4839 | Te AUC: 0.6219 | Te F1: 0.4416
+F9 E025 | Loss: 0.6644 | Tr Acc: 0.6174 | Te Acc: 0.5000 | Te AUC: 0.5802 | Te F1: 0.4731
+F9 E030 | Loss: 0.6662 | Tr Acc: 0.6246 | Te Acc: 0.5323 | Te AUC: 0.5792 | Te F1: 0.5071
+F9 E035 | Loss: 0.6631 | Tr Acc: 0.6121 | Te Acc: 0.5161 | Te AUC: 0.5875 | Te F1: 0.5004
+F9 E040 | Loss: 0.6544 | Tr Acc: 0.6192 | Te Acc: 0.5806 | Te AUC: 0.6000 | Te F1: 0.5806
+F9 E045 | Loss: 0.6469 | Tr Acc: 0.5996 | Te Acc: 0.5645 | Te AUC: 0.6031 | Te F1: 0.5573
+F9 E050 | Loss: 0.6490 | Tr Acc: 0.5730 | Te Acc: 0.6129 | Te AUC: 0.5802 | Te F1: 0.5733
+F9 E055 | Loss: 0.6400 | Tr Acc: 0.6032 | Te Acc: 0.5806 | Te AUC: 0.5781 | Te F1: 0.5672
+F9 E060 | Loss: 0.6385 | Tr Acc: 0.6317 | Te Acc: 0.5323 | Te AUC: 0.5698 | Te F1: 0.5319
+F9 E065 | Loss: 0.6403 | Tr Acc: 0.6459 | Te Acc: 0.5484 | Te AUC: 0.5521 | Te F1: 0.5474
+F9 E070 | Loss: 0.6324 | Tr Acc: 0.6423 | Te Acc: 0.5323 | Te AUC: 0.5187 | Te F1: 0.5319
+F9 E075 | Loss: 0.6274 | Tr Acc: 0.6548 | Te Acc: 0.5323 | Te AUC: 0.5271 | Te F1: 0.5319
+F9 E080 | Loss: 0.6205 | Tr Acc: 0.6601 | Te Acc: 0.5161 | Te AUC: 0.5396 | Te F1: 0.5161
+F9 E085 | Loss: 0.6231 | Tr Acc: 0.6530 | Te Acc: 0.4677 | Te AUC: 0.5490 | Te F1: 0.4679
+F9 E090 | Loss: 0.6341 | Tr Acc: 0.6512 | Te Acc: 0.4677 | Te AUC: 0.5479 | Te F1: 0.4679
+F9 E095 | Loss: 0.6290 | Tr Acc: 0.6584 | Te Acc: 0.5161 | Te AUC: 0.5396 | Te F1: 0.5151
+F9 E100 | Loss: 0.6242 | Tr Acc: 0.6566 | Te Acc: 0.5000 | Te AUC: 0.5333 | Te F1: 0.4954
+F9 E105 | Loss: 0.6207 | Tr Acc: 0.6619 | Te Acc: 0.4839 | Te AUC: 0.5292 | Te F1: 0.4806
+F9 E110 | Loss: 0.6210 | Tr Acc: 0.6619 | Te Acc: 0.4839 | Te AUC: 0.5292 | Te F1: 0.4806
+F9 E115 | Loss: 0.6371 | Tr Acc: 0.6584 | Te Acc: 0.5161 | Te AUC: 0.5312 | Te F1: 0.5131
+F9 E120 | Loss: 0.6239 | Tr Acc: 0.6530 | Te Acc: 0.5161 | Te AUC: 0.5229 | Te F1: 0.5100
+F9 E125 | Loss: 0.6204 | Tr Acc: 0.6601 | Te Acc: 0.5000 | Te AUC: 0.5271 | Te F1: 0.4980
+F9 E130 | Loss: 0.6208 | Tr Acc: 0.6566 | Te Acc: 0.4677 | Te AUC: 0.5375 | Te F1: 0.4673
+F9 E135 | Loss: 0.6358 | Tr Acc: 0.6566 | Te Acc: 0.4839 | Te AUC: 0.5354 | Te F1: 0.4839
+F9 E140 | Loss: 0.6193 | Tr Acc: 0.6584 | Te Acc: 0.4677 | Te AUC: 0.5344 | Te F1: 0.4679
+Early stopping triggered at epoch 140 due to lack of improvement in Test AUC.
+Fold 9 - Training finished. Best Test Accuracy: 0.5000, AUC: 0.6219
+Fold 9 elapsed time: 35.97 seconds.
+
+--- Fold 10/10 ---
+Calculating max TS length for Positional Encoding (624 subjects)...
+Determined max TS length 295 from 624 valid files for Positional Encoding.
+Fold 10 using dynamic max length (up to 295 for PE).
+Loading time series for 624 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 624 time series to final length: 295
+Proceeding with 624 subjects for Fold 10 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=20)...
+Graph built with 624 nodes and 12480 edges.
+Starting training for Fold 10... Train samples: 562, Test samples: 62
+F10 E001 | Loss: 0.7011 | Tr Acc: 0.4840 | Te Acc: 0.4839 | Te AUC: 0.3552 | Te F1: 0.3156
+F10 E005 | Loss: 0.6756 | Tr Acc: 0.4840 | Te Acc: 0.4839 | Te AUC: 0.5396 | Te F1: 0.3156
+F10 E010 | Loss: 0.6674 | Tr Acc: 0.5961 | Te Acc: 0.5161 | Te AUC: 0.5750 | Te F1: 0.5131
+F10 E015 | Loss: 0.6621 | Tr Acc: 0.6085 | Te Acc: 0.5161 | Te AUC: 0.5531 | Te F1: 0.5100
+F10 E020 | Loss: 0.6648 | Tr Acc: 0.5943 | Te Acc: 0.5323 | Te AUC: 0.5906 | Te F1: 0.4898
+F10 E025 | Loss: 0.6579 | Tr Acc: 0.6281 | Te Acc: 0.5484 | Te AUC: 0.6208 | Te F1: 0.5474
+F10 E030 | Loss: 0.6554 | Tr Acc: 0.6103 | Te Acc: 0.5968 | Te AUC: 0.6437 | Te F1: 0.5679
+F10 E035 | Loss: 0.6448 | Tr Acc: 0.6032 | Te Acc: 0.5806 | Te AUC: 0.6604 | Te F1: 0.5463
+F10 E040 | Loss: 0.6435 | Tr Acc: 0.6281 | Te Acc: 0.6290 | Te AUC: 0.6292 | Te F1: 0.6090
+F10 E045 | Loss: 0.6355 | Tr Acc: 0.6406 | Te Acc: 0.5645 | Te AUC: 0.6344 | Te F1: 0.5642
+F10 E050 | Loss: 0.6378 | Tr Acc: 0.6423 | Te Acc: 0.5645 | Te AUC: 0.6312 | Te F1: 0.5642
+F10 E055 | Loss: 0.6347 | Tr Acc: 0.6423 | Te Acc: 0.6452 | Te AUC: 0.6427 | Te F1: 0.6234
+F10 E060 | Loss: 0.6192 | Tr Acc: 0.6512 | Te Acc: 0.5645 | Te AUC: 0.6271 | Te F1: 0.5411
+F10 E065 | Loss: 0.6068 | Tr Acc: 0.6477 | Te Acc: 0.5806 | Te AUC: 0.6156 | Te F1: 0.5463
+F10 E070 | Loss: 0.6157 | Tr Acc: 0.6530 | Te Acc: 0.5645 | Te AUC: 0.6146 | Te F1: 0.5241
+F10 E075 | Loss: 0.6021 | Tr Acc: 0.6601 | Te Acc: 0.5645 | Te AUC: 0.6042 | Te F1: 0.5333
+F10 E080 | Loss: 0.6141 | Tr Acc: 0.6335 | Te Acc: 0.5484 | Te AUC: 0.6240 | Te F1: 0.5012
+F10 E085 | Loss: 0.5854 | Tr Acc: 0.6744 | Te Acc: 0.5645 | Te AUC: 0.6469 | Te F1: 0.5642
+F10 E090 | Loss: 0.5927 | Tr Acc: 0.5463 | Te Acc: 0.5161 | Te AUC: 0.6375 | Te F1: 0.4049
+F10 E095 | Loss: 0.5934 | Tr Acc: 0.6210 | Te Acc: 0.5484 | Te AUC: 0.6354 | Te F1: 0.5022
+F10 E100 | Loss: 0.5913 | Tr Acc: 0.6815 | Te Acc: 0.5806 | Te AUC: 0.6219 | Te F1: 0.5672
+F10 E105 | Loss: 0.5894 | Tr Acc: 0.7153 | Te Acc: 0.5645 | Te AUC: 0.6177 | Te F1: 0.5642
+F10 E110 | Loss: 0.5897 | Tr Acc: 0.6833 | Te Acc: 0.5968 | Te AUC: 0.6156 | Te F1: 0.5861
+F10 E115 | Loss: 0.5851 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5670
+F10 E120 | Loss: 0.5821 | Tr Acc: 0.6779 | Te Acc: 0.5806 | Te AUC: 0.6156 | Te F1: 0.5670
+F10 E125 | Loss: 0.5869 | Tr Acc: 0.6779 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5670
+F10 E130 | Loss: 0.5792 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.6125 | Te F1: 0.5670
+F10 E135 | Loss: 0.5753 | Tr Acc: 0.6797 | Te Acc: 0.5806 | Te AUC: 0.6167 | Te F1: 0.5670
+F10 E140 | Loss: 0.5759 | Tr Acc: 0.6815 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5670
+F10 E145 | Loss: 0.5794 | Tr Acc: 0.6868 | Te Acc: 0.5806 | Te AUC: 0.6167 | Te F1: 0.5670
+F10 E150 | Loss: 0.5838 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5670
+F10 E155 | Loss: 0.5781 | Tr Acc: 0.6833 | Te Acc: 0.5806 | Te AUC: 0.6146 | Te F1: 0.5670
+F10 E160 | Loss: 0.5824 | Tr Acc: 0.6868 | Te Acc: 0.5806 | Te AUC: 0.6135 | Te F1: 0.5717
+Early stopping triggered at epoch 160 due to lack of improvement in Test AUC.
+Fold 10 - Training finished. Best Test Accuracy: 0.5806, AUC: 0.6604
+Fold 10 elapsed time: 40.00 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds with valid metrics: 10/10
+Average Accuracy:  0.5578 +/- 0.0527
+Average F1-Score:  0.4835
+Average Precision: 0.5225
+Average Recall:    0.5578
+Average AUC:       0.6457
+
+Total elapsed time: 387.73 seconds.
+--- Run Finished ---
+Frankenstein Training completed at Wed Apr 16 03:23:14 AM EDT 2025

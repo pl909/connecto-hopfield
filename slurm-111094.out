@@ -1,0 +1,77 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 02:01:35 AM EDT 2025
+Loading configuration from config.yaml...
+Using configured max_ts_length: 1000
+Using configured num_regions: 169
+Using configured encoder_batch_size: 64
+Random seed set to 42
+Using GPU: NVIDIA L40S
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Original selected data shape: (1112, 6)
+Using target column: 'DX_GROUP'
+Filtered out 0 rows with invalid/missing target values.
+Phenotype data shape after filtering: (1112, 6)
+Processing specified numerical features...
+ Processing numerical columns: ['AGE_AT_SCAN', 'FIQ']
+Processing specified categorical features...
+ Processing categorical columns: ['SEX', 'SITE_ID']
+  Encoded categorical columns: ['SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE']
+Final phenotype features being used (24): ['AGE_AT_SCAN', 'FIQ', 'SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE']
+Processed 1112 subjects from phenotype data with valid IDs and selected columns.
+Matching time series files in: regions/
+Found 866 potential TS files in directory.
+Parsed 866 potential subject IDs from filenames.
+Matched 866 subjects with both phenotype and time series data.
+Total subjects available for K-Fold analysis: 866
+
+--- Fold 1/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 1... Train samples: 779, Test samples: 87
+F1 E005 | Loss: 0.7307 | Tr Acc: 0.5456 | Te Acc: 0.4598 | Te AUC: 0.4682 | Te F1: 0.4245
+F1 E010 | Loss: 0.7142 | Tr Acc: 0.5417 | Te Acc: 0.4713 | Te AUC: 0.4480 | Te F1: 0.3703
+F1 E015 | Loss: 0.7047 | Tr Acc: 0.4891 | Te Acc: 0.4253 | Te AUC: 0.4539 | Te F1: 0.3632
+F1 E020 | Loss: 0.7099 | Tr Acc: 0.4647 | Te Acc: 0.4483 | Te AUC: 0.4666 | Te F1: 0.2917
+F1 E025 | Loss: 0.7070 | Tr Acc: 0.4673 | Te Acc: 0.4598 | Te AUC: 0.4783 | Te F1: 0.2969
+F1 E030 | Loss: 0.6988 | Tr Acc: 0.5071 | Te Acc: 0.4598 | Te AUC: 0.4751 | Te F1: 0.3862
+F1 E035 | Loss: 0.6919 | Tr Acc: 0.5623 | Te Acc: 0.5172 | Te AUC: 0.4571 | Te F1: 0.5149
+F1 E040 | Loss: 0.7047 | Tr Acc: 0.4750 | Te Acc: 0.4253 | Te AUC: 0.4602 | Te F1: 0.2985
+F1 E045 | Loss: 0.6957 | Tr Acc: 0.4673 | Te Acc: 0.4713 | Te AUC: 0.4624 | Te F1: 0.3019
+F1 E050 | Loss: 0.6989 | Tr Acc: 0.4737 | Te Acc: 0.4483 | Te AUC: 0.4464 | Te F1: 0.3100
+Fold 1 - Training finished. Best Test Accuracy: 0.4598, AUC: 0.4783
+Fold 1 elapsed time: 62.03 seconds.
+
+--- Fold 2/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 2... Train samples: 779, Test samples: 87
+F2 E005 | Loss: 0.7284 | Tr Acc: 0.4634 | Te Acc: 0.4713 | Te AUC: 0.4512 | Te F1: 0.3019
+F2 E010 | Loss: 0.7283 | Tr Acc: 0.4634 | Te Acc: 0.4713 | Te AUC: 0.4719 | Te F1: 0.3019
+F2 E015 | Loss: 0.7014 | Tr Acc: 0.4634 | Te Acc: 0.4713 | Te AUC: 0.4852 | Te F1: 0.3019
+F2 E020 | Loss: 0.7127 | Tr Acc: 0.4840 | Te Acc: 0.4598 | Te AUC: 0.4639 | Te F1: 0.3157
+F2 E025 | Loss: 0.7032 | Tr Acc: 0.5430 | Te Acc: 0.5172 | Te AUC: 0.4555 | Te F1: 0.4114
+F2 E030 | Loss: 0.6902 | Tr Acc: 0.5379 | Te Acc: 0.5172 | Te AUC: 0.4544 | Te F1: 0.3793
+F2 E035 | Loss: 0.7085 | Tr Acc: 0.5430 | Te Acc: 0.4943 | Te AUC: 0.4639 | Te F1: 0.3834
+F2 E040 | Loss: 0.6932 | Tr Acc: 0.5507 | Te Acc: 0.4713 | Te AUC: 0.4751 | Te F1: 0.3703
+F2 E045 | Loss: 0.7082 | Tr Acc: 0.5443 | Te Acc: 0.4943 | Te AUC: 0.4677 | Te F1: 0.3834
+F2 E050 | Loss: 0.6866 | Tr Acc: 0.5956 | Te Acc: 0.4828 | Te AUC: 0.4565 | Te F1: 0.4828
+Fold 2 - Training finished. Best Test Accuracy: 0.4713, AUC: 0.4852
+Fold 2 elapsed time: 60.42 seconds.
+
+--- Fold 3/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...

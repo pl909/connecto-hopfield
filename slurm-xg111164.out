@@ -1,0 +1,113 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 05:08:05 AM EDT 2025
+Loading configuration from config_baseline_xgboost.yaml...
+Loading preprocessed features and labels...
+ Feature shape: (546, 19927), Label shape: (546,)
+ Label distribution: [279 267]
+
+--- Fold 1/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 1 Results: Acc=0.6545, AUC=0.7222, F1=0.6539
+Fold 1 elapsed time: 18.33 seconds.
+
+--- Fold 2/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 2 Results: Acc=0.6000, AUC=0.6892, F1=0.5992
+Fold 2 elapsed time: 17.07 seconds.
+
+--- Fold 3/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 3 Results: Acc=0.6727, AUC=0.7976, F1=0.6705
+Fold 3 elapsed time: 17.20 seconds.
+
+--- Fold 4/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 4 Results: Acc=0.6545, AUC=0.7566, F1=0.6511
+Fold 4 elapsed time: 17.08 seconds.
+
+--- Fold 5/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 5 Results: Acc=0.5818, AUC=0.6627, F1=0.5776
+Fold 5 elapsed time: 17.08 seconds.
+
+--- Fold 6/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 6 Results: Acc=0.6909, AUC=0.7500, F1=0.6903
+Fold 6 elapsed time: 17.15 seconds.
+
+--- Fold 7/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 7 Results: Acc=0.6481, AUC=0.7243, F1=0.6480
+Fold 7 elapsed time: 17.07 seconds.
+
+--- Fold 8/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 8 Results: Acc=0.6481, AUC=0.7253, F1=0.6478
+Fold 8 elapsed time: 16.97 seconds.
+
+--- Fold 9/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 9 Results: Acc=0.7037, AUC=0.7734, F1=0.7037
+Fold 9 elapsed time: 17.11 seconds.
+
+--- Fold 10/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Evaluating on test set...
+Fold 10 Results: Acc=0.7407, AUC=0.7734, F1=0.7400
+Fold 10 elapsed time: 17.14 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds: 10/10
+Average Accuracy:  0.6595 +/- 0.0443
+Average F1-Score:  0.6582
+Average Precision: 0.6612
+Average Recall:    0.6595
+Average AUC:       0.7375
+
+--- Average Feature Importances (from XGBoost) ---
+
+Top 20 Most Important Features Overall:
+ 1. FC between regions (np.int64(4), np.int64(45)) - Importance: 0.0025
+ 2. FC between regions (np.int64(108), np.int64(173)) - Importance: 0.0021
+ 3. FC between regions (np.int64(28), np.int64(108)) - Importance: 0.0020
+ 4. FC between regions (np.int64(45), np.int64(108)) - Importance: 0.0018
+ 5. FC between regions (np.int64(116), np.int64(147)) - Importance: 0.0017
+ 6. FC between regions (np.int64(130), np.int64(173)) - Importance: 0.0017
+ 7. FC between regions (np.int64(4), np.int64(139)) - Importance: 0.0016
+ 8. FC between regions (np.int64(81), np.int64(130)) - Importance: 0.0016
+ 9. FC between regions (np.int64(62), np.int64(166)) - Importance: 0.0016
+ 10. FC between regions (np.int64(5), np.int64(31)) - Importance: 0.0015
+ 11. FC between regions (np.int64(85), np.int64(129)) - Importance: 0.0015
+ 12. FC between regions (np.int64(139), np.int64(173)) - Importance: 0.0015
+ 13. FC between regions (np.int64(45), np.int64(114)) - Importance: 0.0014
+ 14. FC between regions (np.int64(62), np.int64(115)) - Importance: 0.0013
+ 15. FC between regions (np.int64(2), np.int64(194)) - Importance: 0.0013
+ 16. FC between regions (np.int64(6), np.int64(135)) - Importance: 0.0013
+ 17. FC between regions (np.int64(37), np.int64(98)) - Importance: 0.0013
+ 18. FC between regions (np.int64(55), np.int64(62)) - Importance: 0.0013
+ 19. FC between regions (np.int64(4), np.int64(173)) - Importance: 0.0013
+ 20. FC between regions (np.int64(108), np.int64(118)) - Importance: 0.0012
+
+(Note: Mapping FC indices back to region pairs provides interpretability)
+
+Total elapsed time: 172.30 seconds.
+--- Baseline XGBoost Run Finished ---
+Frankenstein Training completed at Wed Apr 16 05:11:01 AM EDT 2025

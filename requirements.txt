@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn
+torch>=1.9.0
+torch_geometric>=2.0.0
+PyYAML>=5.4
+tqdm
+matplotlib
+seaborn
+xgboost

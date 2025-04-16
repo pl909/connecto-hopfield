@@ -1,0 +1,105 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 04:21:59 AM EDT 2025
+Loading configuration from config_baseline_logreg.yaml...
+Loading preprocessed features and labels...
+ Feature shape: (546, 19927), Label shape: (546,)
+ Label distribution: [279 267]
+Attempting to retrieve feature names...
+
+--- Fold 1/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 1 Results: Acc=0.5818, AUC=0.7222, F1=0.5810
+Fold 1 elapsed time: 0.88 seconds.
+
+--- Fold 2/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 2 Results: Acc=0.7091, AUC=0.7857, F1=0.7089
+Fold 2 elapsed time: 0.89 seconds.
+
+--- Fold 3/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 3 Results: Acc=0.7273, AUC=0.8082, F1=0.7267
+Fold 3 elapsed time: 0.90 seconds.
+
+--- Fold 4/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 4 Results: Acc=0.6182, AUC=0.7130, F1=0.6179
+Fold 4 elapsed time: 1.15 seconds.
+
+--- Fold 5/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 5 Results: Acc=0.6182, AUC=0.6733, F1=0.6179
+Fold 5 elapsed time: 0.93 seconds.
+
+--- Fold 6/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 6 Results: Acc=0.7818, AUC=0.8624, F1=0.7796
+Fold 6 elapsed time: 0.88 seconds.
+
+--- Fold 7/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 7 Results: Acc=0.6667, AUC=0.7325, F1=0.6662
+Fold 7 elapsed time: 0.90 seconds.
+
+--- Fold 8/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 8 Results: Acc=0.6296, AUC=0.7129, F1=0.6286
+Fold 8 elapsed time: 0.90 seconds.
+
+--- Fold 9/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 9 Results: Acc=0.7407, AUC=0.8063, F1=0.7407
+Fold 9 elapsed time: 0.90 seconds.
+
+--- Fold 10/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 10 Results: Acc=0.6852, AUC=0.7830, F1=0.6849
+Fold 10 elapsed time: 0.90 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds: 10/10
+Average Accuracy:  0.6759 +/- 0.0608
+Average F1-Score:  0.6753
+Average Precision: 0.6782
+Average Recall:    0.6759
+Average AUC:       0.7600
+
+--- Average Feature Importances (Logistic Regression Coefficients) ---
+Total features: 19927, FC features: 19900, Pheno features: 27
+
+Top 20 Most Important Features (Absolute Coefficient):
+ 1. Phenotype: FIQ (Index: 19901) - Coef: -0.6960
+ 2. FC between regions (np.int64(30), np.int64(193)) (Index: 5697) - Coef: 0.3173
+ 3. FC between regions (np.int64(35), np.int64(107)) (Index: 6441) - Coef: -0.3061
+ 4. FC between regions (np.int64(86), np.int64(173)) (Index: 13545) - Coef: -0.2713
+ 5. FC between regions (np.int64(48), np.int64(108)) (Index: 8483) - Coef: -0.2644
+ 6. FC between regions (np.int64(44), np.int64(77)) (Index: 7842) - Coef: 0.2629
+ 7. FC between regions (np.int64(45), np.int64(108)) (Index: 8027) - Coef: -0.2588
+ 8. FC between regions (np.int64(61), np.int64(140)) (Index: 10387) - Coef: 0.2572
+ 9. FC between regions (np.int64(64), np.int64(143)) (Index: 10798) - Coef: 0.2444
+ 10. FC between regions (np.int64(29), np.int64(38)) (Index: 5373) - Coef: 0.2311
+ 11. FC between regions (np.int64(68), np.int64(121)) (Index: 11306) - Coef: 0.2262
+ 12. FC between regions (np.int64(0), np.int64(74)) (Index: 73) - Coef: -0.2253
+ 13. FC between regions (np.int64(31), np.int64(172)) (Index: 5844) - Coef: -0.2253
+ 14. FC between regions (np.int64(77), np.int64(197)) (Index: 12516) - Coef: 0.2245
+ 15. FC between regions (np.int64(150), np.int64(190)) (Index: 18714) - Coef: 0.2197
+ 16. FC between regions (np.int64(10), np.int64(41)) (Index: 1975) - Coef: -0.2184
+ 17. FC between regions (np.int64(56), np.int64(197)) (Index: 9744) - Coef: -0.2175
+ 18. FC between regions (np.int64(38), np.int64(90)) (Index: 6910) - Coef: 0.2150
+ 19. FC between regions (np.int64(28), np.int64(192)) (Index: 5357) - Coef: -0.2150
+ 20. FC between regions (np.int64(5), np.int64(132)) (Index: 1111) - Coef: -0.2149
+
+Number of features with non-zero average coefficient (L1 Selection): 3032 / 19927
+
+Total elapsed time: 9.29 seconds.
+--- Baseline Logistic Regression Run Finished ---
+Frankenstein Training completed at Wed Apr 16 04:22:10 AM EDT 2025

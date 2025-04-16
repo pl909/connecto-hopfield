@@ -1,0 +1,22 @@
+# --- Configuration for Baseline (Static FC + Logistic Regression) ---
+run_params:
+  seed: 42
+  n_splits: 10
+
+data_params:
+  phenotype_file: 'Phenotypic_V1_0b_preprocessed1.csv'
+  region_dir: '/home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200'
+  output_feature_dir: 'processed_features_baseline' # Load features saved by preprocess_baseline.py
+  num_regions: 200
+  phenotype_cols_numerical: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+  phenotype_cols_categorical: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  target_col: 'DX_GROUP'
+  sub_id_col: 'SUB_ID'
+  site_id_col: 'SITE_ID'
+
+# --- Logistic Regression Hyperparameters (Tune C!) ---
+logreg_params:
+  C: 10          # Inverse of regularization strength; smaller values specify stronger regularization (tune this: e.g., 0.01, 0.1, 1, 10)
+  max_iter: 2000  # Increase iterations for convergence with L1
+  # penalty: 'l1' # Hardcoded in script for interpretability
+  # solver: 'liblinear' # Hardcoded in script

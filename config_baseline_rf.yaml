@@ -1,0 +1,33 @@
+# --- Configuration for Baseline (Static FC + Random Forest) ---
+run_params:
+  seed: 42
+  n_splits: 10   # Number of folds for cross-validation
+
+data_params:
+  phenotype_file: 'Phenotypic_V1_0b_preprocessed1.csv' # Check filename
+  # Directory where preprocess_baseline.py saved features
+  output_feature_dir: 'processed_features_baseline'
+  # These are just for reference
+  num_regions: 200
+  phenotype_cols_numerical: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+  phenotype_cols_categorical: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  target_col: 'DX_GROUP'
+  sub_id_col: 'SUB_ID'
+  site_id_col: 'SITE_ID'
+
+feature_selection_params:
+  use_rfe: True          # RFE can be used, but often less necessary for RF
+  n_features_to_select: 1000 # Or set use_rfe: False
+
+# --- Random Forest Hyperparameters (Tune these!) ---
+random_forest_params:
+  n_estimators: 200            # Number of trees in the forest
+  max_depth: 7                # Maximum depth of the tree (controls complexity)
+  min_samples_split: 5         # Minimum number of samples required to split an internal node
+  min_samples_leaf: 3          # Minimum number of samples required to be at a leaf node
+  max_features: 'sqrt'         # Number of features to consider when looking for the best split ('sqrt', 'log2', or fraction)
+  criterion: 'gini'            # Function to measure the quality of a split ('gini' or 'entropy')
+  class_weight: 'balanced'     # Adjust weights inversely proportional to class frequencies
+  random_state: 42             # Use run_params.seed
+  n_jobs: -1                   # Use all available CPU cores
+  # oob_score: False           # Whether to use out-of-bag samples to estimate generalization error

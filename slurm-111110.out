@@ -1,0 +1,887 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 02:57:16 AM EDT 2025
+Loading configuration from config.yaml...
+
+--- Configuration Used ---
+data_params:
+  exclude_cols:
+  - 'Unnamed: 0'
+  - X
+  - subject
+  - FILE_ID
+  - qc_rater_1
+  - qc_notes_rater_1
+  - qc_anat_rater_2
+  - qc_anat_notes_rater_2
+  - qc_func_rater_2
+  - qc_func_notes_rater_2
+  - qc_anat_rater_3
+  - qc_anat_notes_rater_3
+  - qc_func_rater_3
+  - qc_func_notes_rater_3
+  max_ts_length: -1
+  num_regions: 200
+  phenotype_cols_categorical:
+  - SEX
+  - SITE_ID
+  - EYE_STATUS_AT_SCAN
+  phenotype_cols_numerical:
+  - AGE_AT_SCAN
+  - FIQ
+  - func_mean_fd
+  phenotype_file: Phenotypic_V1_0b_preprocessed1.csv
+  region_dir: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/
+  site_id_col: SITE_ID
+  sub_id_col: SUB_ID
+  target_col: DX_GROUP
+graph_params:
+  k_neighbors: 15
+model_params:
+  dropout_rate: 0.5
+  gnn_heads: 4
+  gnn_hidden_dim: 128
+  gnn_output_dim: 2
+  pheno_embedding_dim: 64
+  pheno_hidden_dim: 128
+  ts_embedding_dim: 128
+  ts_transformer_d_model: 256
+  ts_transformer_dim_feedforward: 1024
+  ts_transformer_nhead: 4
+  ts_transformer_num_layers: 4
+run_params:
+  device: cuda
+  early_stopping_patience: 25
+  encoder_batch_size: 32
+  epochs: 150
+  learning_rate: 0.0002
+  n_splits: 10
+  seed: 42
+  weight_decay: 0.0005
+
+--------------------------
+
+Using configured max_ts_length setting: -1 (-1 means use max in fold)
+Using configured num_regions: 200
+Using configured encoder_batch_size: 32
+Random seed set to 42
+Using GPU: NVIDIA RTX A5000
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Original selected data shape: (1112, 8)
+Using target column: 'DX_GROUP'
+Filtered out 0 rows with invalid/missing target values.
+Phenotype data shape after target filtering: (1112, 8)
+Processing specified numerical features...
+ Processing numerical columns: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+Processing specified categorical features...
+ Processing categorical columns: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  Encoded categorical columns: ['SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE', 'EYE_STATUS_AT_SCAN_1', 'EYE_STATUS_AT_SCAN_2']
+Final phenotype features identified (27): ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd', 'SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE', 'EYE_STATUS_AT_SCAN_1', 'EYE_STATUS_AT_SCAN_2']
+Checking for corresponding TS files in: /home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200/
+Processed 1112 subjects from phenotype data.
+Found existing, non-empty TS files for 546 subjects.
+Skipped 566 subjects (missing file or invalid ID/Site).
+Skipped 0 subjects (empty file).
+Total subjects available for K-Fold analysis: 546
+
+--- Fold 1/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 1 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 1 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 1... Train samples: 491, Test samples: 55
+  Epoch 1, Grad Norm: 0.8505
+F1 E001 | Loss: 0.7275 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.6627 | Te F1: 0.3233
+  Epoch 5, Grad Norm: 0.9041
+F1 E005 | Loss: 0.7287 | Tr Acc: 0.5479 | Te Acc: 0.6182 | Te AUC: 0.6468 | Te F1: 0.5488
+  Epoch 10, Grad Norm: 0.8163
+F1 E010 | Loss: 0.7279 | Tr Acc: 0.5153 | Te Acc: 0.5455 | Te AUC: 0.6693 | Te F1: 0.4197
+  Epoch 15, Grad Norm: 0.8229
+F1 E015 | Loss: 0.7347 | Tr Acc: 0.5295 | Te Acc: 0.5636 | Te AUC: 0.7235 | Te F1: 0.4545
+  Epoch 20, Grad Norm: 0.7408
+F1 E020 | Loss: 0.6983 | Tr Acc: 0.5866 | Te Acc: 0.6727 | Te AUC: 0.7077 | Te F1: 0.6721
+  Epoch 25, Grad Norm: 0.7371
+F1 E025 | Loss: 0.7182 | Tr Acc: 0.5886 | Te Acc: 0.7273 | Te AUC: 0.7103 | Te F1: 0.7189
+  Epoch 30, Grad Norm: 0.6425
+F1 E030 | Loss: 0.6897 | Tr Acc: 0.5988 | Te Acc: 0.7273 | Te AUC: 0.7130 | Te F1: 0.7189
+  Epoch 35, Grad Norm: 0.6951
+F1 E035 | Loss: 0.6971 | Tr Acc: 0.5784 | Te Acc: 0.6909 | Te AUC: 0.7156 | Te F1: 0.6897
+  Epoch 40, Grad Norm: 0.6743
+F1 E040 | Loss: 0.7083 | Tr Acc: 0.5377 | Te Acc: 0.5636 | Te AUC: 0.7130 | Te F1: 0.5262
+  Epoch 45, Grad Norm: 0.6741
+F1 E045 | Loss: 0.6985 | Tr Acc: 0.5886 | Te Acc: 0.7273 | Te AUC: 0.7037 | Te F1: 0.7189
+  Epoch 50, Grad Norm: 0.6416
+F1 E050 | Loss: 0.6966 | Tr Acc: 0.5804 | Te Acc: 0.6727 | Te AUC: 0.6944 | Te F1: 0.6482
+  Epoch 55, Grad Norm: 0.6157
+F1 E055 | Loss: 0.6823 | Tr Acc: 0.5866 | Te Acc: 0.6909 | Te AUC: 0.6944 | Te F1: 0.6710
+  Epoch 60, Grad Norm: 0.6520
+F1 E060 | Loss: 0.6974 | Tr Acc: 0.5804 | Te Acc: 0.6909 | Te AUC: 0.6878 | Te F1: 0.6814
+  Epoch 65, Grad Norm: 0.6399
+F1 E065 | Loss: 0.7155 | Tr Acc: 0.5866 | Te Acc: 0.7091 | Te AUC: 0.6839 | Te F1: 0.6981
+  Epoch 70, Grad Norm: 0.5870
+F1 E070 | Loss: 0.6769 | Tr Acc: 0.5886 | Te Acc: 0.7091 | Te AUC: 0.6905 | Te F1: 0.6981
+  Epoch 75, Grad Norm: 0.6693
+F1 E075 | Loss: 0.7122 | Tr Acc: 0.5866 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.6981
+  Epoch 80, Grad Norm: 0.5993
+F1 E080 | Loss: 0.6890 | Tr Acc: 0.5845 | Te Acc: 0.7091 | Te AUC: 0.6852 | Te F1: 0.6981
+  Epoch 85, Grad Norm: 0.6483
+F1 E085 | Loss: 0.7117 | Tr Acc: 0.5825 | Te Acc: 0.7091 | Te AUC: 0.6944 | Te F1: 0.6981
+  Epoch 90, Grad Norm: 0.6102
+F1 E090 | Loss: 0.6763 | Tr Acc: 0.5825 | Te Acc: 0.7091 | Te AUC: 0.6918 | Te F1: 0.6981
+  Epoch 95, Grad Norm: 0.6658
+F1 E095 | Loss: 0.7061 | Tr Acc: 0.5804 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.6981
+  Epoch 100, Grad Norm: 0.7668
+F1 E100 | Loss: 0.7036 | Tr Acc: 0.5825 | Te Acc: 0.7091 | Te AUC: 0.6918 | Te F1: 0.6981
+  Epoch 105, Grad Norm: 0.6599
+F1 E105 | Loss: 0.6936 | Tr Acc: 0.5784 | Te Acc: 0.7091 | Te AUC: 0.6878 | Te F1: 0.6981
+  Epoch 110, Grad Norm: 0.6517
+F1 E110 | Loss: 0.6926 | Tr Acc: 0.5906 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.6981
+  Epoch 115, Grad Norm: 0.5828
+F1 E115 | Loss: 0.6838 | Tr Acc: 0.5866 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.6981
+  Epoch 120, Grad Norm: 0.6496
+F1 E120 | Loss: 0.7092 | Tr Acc: 0.5825 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.6981
+  Epoch 125, Grad Norm: 0.6320
+F1 E125 | Loss: 0.6849 | Tr Acc: 0.5845 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.6981
+  Epoch 130, Grad Norm: 0.6327
+F1 E130 | Loss: 0.6915 | Tr Acc: 0.5866 | Te Acc: 0.7091 | Te AUC: 0.6918 | Te F1: 0.6981
+  Epoch 135, Grad Norm: 0.6802
+F1 E135 | Loss: 0.7069 | Tr Acc: 0.5825 | Te Acc: 0.7091 | Te AUC: 0.6905 | Te F1: 0.6981
+  Epoch 140, Grad Norm: 0.6798
+F1 E140 | Loss: 0.6912 | Tr Acc: 0.5825 | Te Acc: 0.7091 | Te AUC: 0.6905 | Te F1: 0.6981
+Early stopping triggered at epoch 140 due to lack of improvement in Test AUC.
+Fold 1 - Training finished. Best Test Accuracy: 0.5636, AUC: 0.7235
+Fold 1 elapsed time: 87.55 seconds.
+
+--- Fold 2/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 2 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 2 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 2... Train samples: 491, Test samples: 55
+  Epoch 1, Grad Norm: 0.9360
+F2 E001 | Loss: 0.7235 | Tr Acc: 0.4847 | Te Acc: 0.5091 | Te AUC: 0.4153 | Te F1: 0.3624
+  Epoch 5, Grad Norm: 0.8983
+F2 E005 | Loss: 0.7242 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.3783 | Te F1: 0.3233
+  Epoch 10, Grad Norm: 0.8187
+F2 E010 | Loss: 0.7090 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.4087 | Te F1: 0.3233
+  Epoch 15, Grad Norm: 0.6813
+F2 E015 | Loss: 0.6976 | Tr Acc: 0.4908 | Te Acc: 0.4909 | Te AUC: 0.5794 | Te F1: 0.3233
+  Epoch 20, Grad Norm: 0.8231
+F2 E020 | Loss: 0.7304 | Tr Acc: 0.5906 | Te Acc: 0.6545 | Te AUC: 0.6561 | Te F1: 0.6522
+  Epoch 25, Grad Norm: 0.6536
+F2 E025 | Loss: 0.6880 | Tr Acc: 0.5804 | Te Acc: 0.5636 | Te AUC: 0.6574 | Te F1: 0.5203
+  Epoch 30, Grad Norm: 0.7260
+F2 E030 | Loss: 0.7084 | Tr Acc: 0.5967 | Te Acc: 0.6000 | Te AUC: 0.6587 | Te F1: 0.5782
+  Epoch 35, Grad Norm: 0.7377
+F2 E035 | Loss: 0.6983 | Tr Acc: 0.4929 | Te Acc: 0.5273 | Te AUC: 0.6587 | Te F1: 0.4598
+  Epoch 40, Grad Norm: 0.6575
+F2 E040 | Loss: 0.7016 | Tr Acc: 0.5071 | Te Acc: 0.5091 | Te AUC: 0.6601 | Te F1: 0.4469
+  Epoch 45, Grad Norm: 0.6675
+F2 E045 | Loss: 0.7125 | Tr Acc: 0.5336 | Te Acc: 0.6000 | Te AUC: 0.6601 | Te F1: 0.5745
+  Epoch 50, Grad Norm: 0.6829
+F2 E050 | Loss: 0.7001 | Tr Acc: 0.4908 | Te Acc: 0.4727 | Te AUC: 0.6574 | Te F1: 0.3435
+  Epoch 55, Grad Norm: 0.6542
+F2 E055 | Loss: 0.6983 | Tr Acc: 0.4949 | Te Acc: 0.4909 | Te AUC: 0.6653 | Te F1: 0.3530
+  Epoch 60, Grad Norm: 0.6629
+F2 E060 | Loss: 0.6973 | Tr Acc: 0.4929 | Te Acc: 0.4727 | Te AUC: 0.6786 | Te F1: 0.3152
+  Epoch 65, Grad Norm: 0.6542
+F2 E065 | Loss: 0.7063 | Tr Acc: 0.4969 | Te Acc: 0.4727 | Te AUC: 0.6693 | Te F1: 0.3152
+  Epoch 70, Grad Norm: 0.6521
+F2 E070 | Loss: 0.7124 | Tr Acc: 0.5010 | Te Acc: 0.4909 | Te AUC: 0.6706 | Te F1: 0.3530
+  Epoch 75, Grad Norm: 0.5981
+F2 E075 | Loss: 0.6912 | Tr Acc: 0.5275 | Te Acc: 0.5273 | Te AUC: 0.6746 | Te F1: 0.4227
+  Epoch 80, Grad Norm: 0.6587
+F2 E080 | Loss: 0.6877 | Tr Acc: 0.5621 | Te Acc: 0.5455 | Te AUC: 0.6892 | Te F1: 0.4879
+  Epoch 85, Grad Norm: 0.6357
+F2 E085 | Loss: 0.6848 | Tr Acc: 0.5295 | Te Acc: 0.5273 | Te AUC: 0.6825 | Te F1: 0.4227
+  Epoch 90, Grad Norm: 0.6689
+F2 E090 | Loss: 0.6917 | Tr Acc: 0.5153 | Te Acc: 0.4909 | Te AUC: 0.6918 | Te F1: 0.3530
+  Epoch 95, Grad Norm: 0.5928
+F2 E095 | Loss: 0.6755 | Tr Acc: 0.5112 | Te Acc: 0.4909 | Te AUC: 0.6878 | Te F1: 0.3530
+  Epoch 100, Grad Norm: 0.6167
+F2 E100 | Loss: 0.6734 | Tr Acc: 0.5295 | Te Acc: 0.5091 | Te AUC: 0.6944 | Te F1: 0.3888
+  Epoch 105, Grad Norm: 0.6347
+F2 E105 | Loss: 0.6736 | Tr Acc: 0.6151 | Te Acc: 0.6364 | Te AUC: 0.6918 | Te F1: 0.6295
+  Epoch 110, Grad Norm: 0.6606
+F2 E110 | Loss: 0.6821 | Tr Acc: 0.6049 | Te Acc: 0.5818 | Te AUC: 0.6852 | Te F1: 0.5627
+  Epoch 115, Grad Norm: 0.6278
+F2 E115 | Loss: 0.6827 | Tr Acc: 0.5947 | Te Acc: 0.6000 | Te AUC: 0.6825 | Te F1: 0.5700
+  Epoch 120, Grad Norm: 0.5834
+F2 E120 | Loss: 0.6841 | Tr Acc: 0.6395 | Te Acc: 0.6727 | Te AUC: 0.6944 | Te F1: 0.6714
+  Epoch 125, Grad Norm: 0.6432
+F2 E125 | Loss: 0.6505 | Tr Acc: 0.5377 | Te Acc: 0.5091 | Te AUC: 0.6852 | Te F1: 0.3888
+  Epoch 130, Grad Norm: 0.6009
+F2 E130 | Loss: 0.6780 | Tr Acc: 0.5295 | Te Acc: 0.4909 | Te AUC: 0.6931 | Te F1: 0.3530
+  Epoch 135, Grad Norm: 0.5976
+F2 E135 | Loss: 0.6758 | Tr Acc: 0.5295 | Te Acc: 0.4909 | Te AUC: 0.6997 | Te F1: 0.3530
+  Epoch 140, Grad Norm: 0.6002
+F2 E140 | Loss: 0.6443 | Tr Acc: 0.5601 | Te Acc: 0.5091 | Te AUC: 0.6905 | Te F1: 0.4113
+  Epoch 145, Grad Norm: 0.5722
+F2 E145 | Loss: 0.6767 | Tr Acc: 0.6884 | Te Acc: 0.7091 | Te AUC: 0.6812 | Te F1: 0.7079
+  Epoch 150, Grad Norm: 0.5526
+F2 E150 | Loss: 0.6448 | Tr Acc: 0.6884 | Te Acc: 0.7091 | Te AUC: 0.6892 | Te F1: 0.7062
+Fold 2 - Training finished. Best Test Accuracy: 0.4909, AUC: 0.6997
+Fold 2 elapsed time: 93.41 seconds.
+
+--- Fold 3/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 3 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 3 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 3... Train samples: 491, Test samples: 55
+  Epoch 1, Grad Norm: 0.9346
+F3 E001 | Loss: 0.7374 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.3413 | Te F1: 0.3435
+  Epoch 5, Grad Norm: 0.9459
+F3 E005 | Loss: 0.7264 | Tr Acc: 0.5682 | Te Acc: 0.5818 | Te AUC: 0.5939 | Te F1: 0.5344
+  Epoch 10, Grad Norm: 0.8971
+F3 E010 | Loss: 0.7279 | Tr Acc: 0.5642 | Te Acc: 0.6364 | Te AUC: 0.5992 | Te F1: 0.5773
+  Epoch 15, Grad Norm: 0.7465
+F3 E015 | Loss: 0.6990 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.6310 | Te F1: 0.3435
+  Epoch 20, Grad Norm: 0.7526
+F3 E020 | Loss: 0.7086 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.6151 | Te F1: 0.3435
+  Epoch 25, Grad Norm: 0.7838
+F3 E025 | Loss: 0.7048 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.6243 | Te F1: 0.3435
+  Epoch 30, Grad Norm: 0.7666
+F3 E030 | Loss: 0.7043 | Tr Acc: 0.5642 | Te Acc: 0.6000 | Te AUC: 0.6111 | Te F1: 0.5189
+  Epoch 35, Grad Norm: 0.7850
+F3 E035 | Loss: 0.7098 | Tr Acc: 0.5927 | Te Acc: 0.5455 | Te AUC: 0.6005 | Te F1: 0.5246
+  Epoch 40, Grad Norm: 0.7212
+F3 E040 | Loss: 0.7001 | Tr Acc: 0.6090 | Te Acc: 0.5455 | Te AUC: 0.5926 | Te F1: 0.5315
+  Epoch 45, Grad Norm: 0.7507
+F3 E045 | Loss: 0.6964 | Tr Acc: 0.6253 | Te Acc: 0.5273 | Te AUC: 0.6019 | Te F1: 0.5241
+  Epoch 50, Grad Norm: 0.7269
+F3 E050 | Loss: 0.6889 | Tr Acc: 0.5825 | Te Acc: 0.5818 | Te AUC: 0.5952 | Te F1: 0.5456
+  Epoch 55, Grad Norm: 0.6208
+F3 E055 | Loss: 0.6690 | Tr Acc: 0.5723 | Te Acc: 0.6000 | Te AUC: 0.5926 | Te F1: 0.5350
+  Epoch 60, Grad Norm: 0.6643
+F3 E060 | Loss: 0.6791 | Tr Acc: 0.5927 | Te Acc: 0.5636 | Te AUC: 0.5979 | Te F1: 0.5398
+  Epoch 65, Grad Norm: 0.6396
+F3 E065 | Loss: 0.6749 | Tr Acc: 0.5356 | Te Acc: 0.5455 | Te AUC: 0.5926 | Te F1: 0.4549
+  Epoch 70, Grad Norm: 0.7086
+F3 E070 | Loss: 0.6842 | Tr Acc: 0.4949 | Te Acc: 0.4909 | Te AUC: 0.5873 | Te F1: 0.3233
+  Epoch 75, Grad Norm: 0.7613
+F3 E075 | Loss: 0.6947 | Tr Acc: 0.5193 | Te Acc: 0.4909 | Te AUC: 0.5794 | Te F1: 0.3233
+  Epoch 80, Grad Norm: 0.7776
+F3 E080 | Loss: 0.6960 | Tr Acc: 0.5906 | Te Acc: 0.5091 | Te AUC: 0.5767 | Te F1: 0.4469
+  Epoch 85, Grad Norm: 0.6680
+F3 E085 | Loss: 0.6650 | Tr Acc: 0.6415 | Te Acc: 0.5818 | Te AUC: 0.5794 | Te F1: 0.5592
+  Epoch 90, Grad Norm: 0.7379
+F3 E090 | Loss: 0.6793 | Tr Acc: 0.6558 | Te Acc: 0.5455 | Te AUC: 0.5807 | Te F1: 0.5424
+  Epoch 95, Grad Norm: 0.6320
+F3 E095 | Loss: 0.6779 | Tr Acc: 0.6436 | Te Acc: 0.5091 | Te AUC: 0.5767 | Te F1: 0.5071
+  Epoch 100, Grad Norm: 0.6644
+F3 E100 | Loss: 0.6518 | Tr Acc: 0.6253 | Te Acc: 0.5273 | Te AUC: 0.5741 | Te F1: 0.5206
+  Epoch 105, Grad Norm: 0.7138
+F3 E105 | Loss: 0.6642 | Tr Acc: 0.6171 | Te Acc: 0.5273 | Te AUC: 0.5741 | Te F1: 0.5157
+  Epoch 110, Grad Norm: 0.6671
+F3 E110 | Loss: 0.6623 | Tr Acc: 0.6171 | Te Acc: 0.5273 | Te AUC: 0.5714 | Te F1: 0.5157
+  Epoch 115, Grad Norm: 0.6839
+F3 E115 | Loss: 0.6668 | Tr Acc: 0.6151 | Te Acc: 0.5273 | Te AUC: 0.5661 | Te F1: 0.5157
+  Epoch 120, Grad Norm: 0.6581
+F3 E120 | Loss: 0.6649 | Tr Acc: 0.6171 | Te Acc: 0.5273 | Te AUC: 0.5661 | Te F1: 0.5157
+  Epoch 125, Grad Norm: 0.6993
+F3 E125 | Loss: 0.6687 | Tr Acc: 0.6415 | Te Acc: 0.4909 | Te AUC: 0.5714 | Te F1: 0.4875
+  Epoch 130, Grad Norm: 0.6745
+F3 E130 | Loss: 0.6755 | Tr Acc: 0.6395 | Te Acc: 0.5091 | Te AUC: 0.5741 | Te F1: 0.5071
+  Epoch 135, Grad Norm: 0.7141
+F3 E135 | Loss: 0.6650 | Tr Acc: 0.6497 | Te Acc: 0.5091 | Te AUC: 0.5741 | Te F1: 0.5071
+  Epoch 140, Grad Norm: 0.7225
+F3 E140 | Loss: 0.6751 | Tr Acc: 0.6538 | Te Acc: 0.5091 | Te AUC: 0.5728 | Te F1: 0.5071
+Early stopping triggered at epoch 140 due to lack of improvement in Test AUC.
+Fold 3 - Training finished. Best Test Accuracy: 0.5091, AUC: 0.6310
+Fold 3 elapsed time: 87.74 seconds.
+
+--- Fold 4/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 4 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 4 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 4... Train samples: 491, Test samples: 55
+  Epoch 1, Grad Norm: 0.9018
+F4 E001 | Loss: 0.7003 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.4127 | Te F1: 0.3435
+  Epoch 5, Grad Norm: 0.7560
+F4 E005 | Loss: 0.7144 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.4683 | Te F1: 0.3435
+  Epoch 10, Grad Norm: 0.7558
+F4 E010 | Loss: 0.7223 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.4907 | Te F1: 0.3435
+  Epoch 15, Grad Norm: 0.6738
+F4 E015 | Loss: 0.7182 | Tr Acc: 0.5397 | Te Acc: 0.5455 | Te AUC: 0.5304 | Te F1: 0.4197
+  Epoch 20, Grad Norm: 0.7018
+F4 E020 | Loss: 0.7063 | Tr Acc: 0.5560 | Te Acc: 0.5636 | Te AUC: 0.5423 | Te F1: 0.4545
+  Epoch 25, Grad Norm: 0.7567
+F4 E025 | Loss: 0.7137 | Tr Acc: 0.5560 | Te Acc: 0.5455 | Te AUC: 0.5595 | Te F1: 0.4628
+  Epoch 30, Grad Norm: 0.6560
+F4 E030 | Loss: 0.7106 | Tr Acc: 0.5804 | Te Acc: 0.5455 | Te AUC: 0.5569 | Te F1: 0.4628
+  Epoch 35, Grad Norm: 0.6127
+F4 E035 | Loss: 0.6901 | Tr Acc: 0.5967 | Te Acc: 0.5636 | Te AUC: 0.5503 | Te F1: 0.5203
+  Epoch 40, Grad Norm: 0.6242
+F4 E040 | Loss: 0.7127 | Tr Acc: 0.5764 | Te Acc: 0.5273 | Te AUC: 0.5582 | Te F1: 0.5254
+  Epoch 45, Grad Norm: 0.6034
+F4 E045 | Loss: 0.7149 | Tr Acc: 0.4969 | Te Acc: 0.4182 | Te AUC: 0.5569 | Te F1: 0.3142
+  Epoch 50, Grad Norm: 0.6836
+F4 E050 | Loss: 0.7007 | Tr Acc: 0.5092 | Te Acc: 0.4364 | Te AUC: 0.5648 | Te F1: 0.3462
+  Epoch 55, Grad Norm: 0.6447
+F4 E055 | Loss: 0.6934 | Tr Acc: 0.4847 | Te Acc: 0.4545 | Te AUC: 0.5754 | Te F1: 0.3068
+  Epoch 60, Grad Norm: 0.6626
+F4 E060 | Loss: 0.6832 | Tr Acc: 0.5397 | Te Acc: 0.5091 | Te AUC: 0.5701 | Te F1: 0.4906
+  Epoch 65, Grad Norm: 0.6209
+F4 E065 | Loss: 0.6949 | Tr Acc: 0.6049 | Te Acc: 0.5455 | Te AUC: 0.5688 | Te F1: 0.5424
+  Epoch 70, Grad Norm: 0.6183
+F4 E070 | Loss: 0.6857 | Tr Acc: 0.6130 | Te Acc: 0.6182 | Te AUC: 0.5714 | Te F1: 0.6110
+  Epoch 75, Grad Norm: 0.6437
+F4 E075 | Loss: 0.6981 | Tr Acc: 0.6110 | Te Acc: 0.5636 | Te AUC: 0.5754 | Te F1: 0.5076
+  Epoch 80, Grad Norm: 0.6079
+F4 E080 | Loss: 0.6940 | Tr Acc: 0.6151 | Te Acc: 0.6000 | Te AUC: 0.6098 | Te F1: 0.5602
+  Epoch 85, Grad Norm: 0.6199
+F4 E085 | Loss: 0.6739 | Tr Acc: 0.6212 | Te Acc: 0.5091 | Te AUC: 0.6138 | Te F1: 0.5081
+  Epoch 90, Grad Norm: 0.5795
+F4 E090 | Loss: 0.6716 | Tr Acc: 0.5479 | Te Acc: 0.5636 | Te AUC: 0.6177 | Te F1: 0.5148
+  Epoch 95, Grad Norm: 0.6245
+F4 E095 | Loss: 0.6874 | Tr Acc: 0.5540 | Te Acc: 0.5818 | Te AUC: 0.6521 | Te F1: 0.5289
+  Epoch 100, Grad Norm: 0.6409
+F4 E100 | Loss: 0.6724 | Tr Acc: 0.5173 | Te Acc: 0.5273 | Te AUC: 0.6376 | Te F1: 0.3992
+  Epoch 105, Grad Norm: 0.5833
+F4 E105 | Loss: 0.6640 | Tr Acc: 0.5621 | Te Acc: 0.6182 | Te AUC: 0.6653 | Te F1: 0.5698
+  Epoch 110, Grad Norm: 0.6382
+F4 E110 | Loss: 0.6455 | Tr Acc: 0.6293 | Te Acc: 0.6000 | Te AUC: 0.6931 | Te F1: 0.5878
+  Epoch 115, Grad Norm: 0.6561
+F4 E115 | Loss: 0.6658 | Tr Acc: 0.5743 | Te Acc: 0.6000 | Te AUC: 0.6931 | Te F1: 0.5429
+  Epoch 120, Grad Norm: 0.5677
+F4 E120 | Loss: 0.6476 | Tr Acc: 0.6497 | Te Acc: 0.6727 | Te AUC: 0.7235 | Te F1: 0.6666
+  Epoch 125, Grad Norm: 0.5456
+F4 E125 | Loss: 0.6467 | Tr Acc: 0.5886 | Te Acc: 0.6000 | Te AUC: 0.7130 | Te F1: 0.5429
+  Epoch 130, Grad Norm: 0.5816
+F4 E130 | Loss: 0.6276 | Tr Acc: 0.6619 | Te Acc: 0.6727 | Te AUC: 0.7235 | Te F1: 0.6666
+  Epoch 135, Grad Norm: 0.5664
+F4 E135 | Loss: 0.6483 | Tr Acc: 0.6680 | Te Acc: 0.6364 | Te AUC: 0.7196 | Te F1: 0.6356
+  Epoch 140, Grad Norm: 0.5303
+F4 E140 | Loss: 0.6346 | Tr Acc: 0.6843 | Te Acc: 0.6909 | Te AUC: 0.7090 | Te F1: 0.6909
+  Epoch 145, Grad Norm: 0.5823
+F4 E145 | Loss: 0.6265 | Tr Acc: 0.5132 | Te Acc: 0.5273 | Te AUC: 0.6931 | Te F1: 0.3992
+  Epoch 150, Grad Norm: 0.6677
+F4 E150 | Loss: 0.6391 | Tr Acc: 0.7026 | Te Acc: 0.6364 | Te AUC: 0.6984 | Te F1: 0.6275
+Fold 4 - Training finished. Best Test Accuracy: 0.6727, AUC: 0.7235
+Fold 4 elapsed time: 93.21 seconds.
+
+--- Fold 5/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 5 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 5 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 5... Train samples: 491, Test samples: 55
+  Epoch 1, Grad Norm: 0.9800
+F5 E001 | Loss: 0.7350 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.5172 | Te F1: 0.3233
+  Epoch 5, Grad Norm: 0.8659
+F5 E005 | Loss: 0.7332 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.5119 | Te F1: 0.3435
+  Epoch 10, Grad Norm: 0.8788
+F5 E010 | Loss: 0.7071 | Tr Acc: 0.5112 | Te Acc: 0.5091 | Te AUC: 0.5648 | Te F1: 0.3435
+  Epoch 15, Grad Norm: 0.8024
+F5 E015 | Loss: 0.7095 | Tr Acc: 0.5173 | Te Acc: 0.5091 | Te AUC: 0.5899 | Te F1: 0.3435
+  Epoch 20, Grad Norm: 0.7603
+F5 E020 | Loss: 0.6857 | Tr Acc: 0.6069 | Te Acc: 0.5636 | Te AUC: 0.5714 | Te F1: 0.5607
+  Epoch 25, Grad Norm: 0.7285
+F5 E025 | Loss: 0.7162 | Tr Acc: 0.5479 | Te Acc: 0.5455 | Te AUC: 0.5661 | Te F1: 0.4549
+  Epoch 30, Grad Norm: 0.7219
+F5 E030 | Loss: 0.6855 | Tr Acc: 0.5804 | Te Acc: 0.5091 | Te AUC: 0.5622 | Te F1: 0.4609
+  Epoch 35, Grad Norm: 0.6740
+F5 E035 | Loss: 0.7044 | Tr Acc: 0.5764 | Te Acc: 0.5636 | Te AUC: 0.5661 | Te F1: 0.5076
+  Epoch 40, Grad Norm: 0.6485
+F5 E040 | Loss: 0.6890 | Tr Acc: 0.5743 | Te Acc: 0.5636 | Te AUC: 0.5608 | Te F1: 0.5076
+  Epoch 45, Grad Norm: 0.7225
+F5 E045 | Loss: 0.7124 | Tr Acc: 0.6151 | Te Acc: 0.4545 | Te AUC: 0.5595 | Te F1: 0.4298
+  Epoch 50, Grad Norm: 0.6033
+F5 E050 | Loss: 0.6962 | Tr Acc: 0.5479 | Te Acc: 0.5273 | Te AUC: 0.5661 | Te F1: 0.4428
+  Epoch 55, Grad Norm: 0.6586
+F5 E055 | Loss: 0.7054 | Tr Acc: 0.5519 | Te Acc: 0.5273 | Te AUC: 0.5582 | Te F1: 0.4227
+  Epoch 60, Grad Norm: 0.6402
+F5 E060 | Loss: 0.7036 | Tr Acc: 0.5519 | Te Acc: 0.5455 | Te AUC: 0.5622 | Te F1: 0.4341
+  Epoch 65, Grad Norm: 0.5991
+F5 E065 | Loss: 0.7009 | Tr Acc: 0.6069 | Te Acc: 0.4727 | Te AUC: 0.5489 | Te F1: 0.4336
+  Epoch 70, Grad Norm: 0.6880
+F5 E070 | Loss: 0.7068 | Tr Acc: 0.6232 | Te Acc: 0.5273 | Te AUC: 0.5463 | Te F1: 0.5254
+  Epoch 75, Grad Norm: 0.6504
+F5 E075 | Loss: 0.7032 | Tr Acc: 0.6232 | Te Acc: 0.4909 | Te AUC: 0.5437 | Te F1: 0.4858
+  Epoch 80, Grad Norm: 0.7199
+F5 E080 | Loss: 0.6914 | Tr Acc: 0.6253 | Te Acc: 0.4727 | Te AUC: 0.5397 | Te F1: 0.4653
+  Epoch 85, Grad Norm: 0.6565
+F5 E085 | Loss: 0.6961 | Tr Acc: 0.6293 | Te Acc: 0.4364 | Te AUC: 0.5423 | Te F1: 0.4227
+  Epoch 90, Grad Norm: 0.6167
+F5 E090 | Loss: 0.6890 | Tr Acc: 0.6293 | Te Acc: 0.4182 | Te AUC: 0.5450 | Te F1: 0.4004
+  Epoch 95, Grad Norm: 0.6269
+F5 E095 | Loss: 0.6868 | Tr Acc: 0.6049 | Te Acc: 0.4545 | Te AUC: 0.5463 | Te F1: 0.4298
+  Epoch 100, Grad Norm: 0.6557
+F5 E100 | Loss: 0.6844 | Tr Acc: 0.6130 | Te Acc: 0.4727 | Te AUC: 0.5437 | Te F1: 0.4442
+  Epoch 105, Grad Norm: 0.6903
+F5 E105 | Loss: 0.7016 | Tr Acc: 0.6049 | Te Acc: 0.4727 | Te AUC: 0.5437 | Te F1: 0.4442
+  Epoch 110, Grad Norm: 0.6003
+F5 E110 | Loss: 0.6845 | Tr Acc: 0.6314 | Te Acc: 0.4182 | Te AUC: 0.5437 | Te F1: 0.4004
+  Epoch 115, Grad Norm: 0.6326
+F5 E115 | Loss: 0.6825 | Tr Acc: 0.6375 | Te Acc: 0.4182 | Te AUC: 0.5437 | Te F1: 0.4004
+  Epoch 120, Grad Norm: 0.6624
+F5 E120 | Loss: 0.6915 | Tr Acc: 0.6212 | Te Acc: 0.4364 | Te AUC: 0.5450 | Te F1: 0.4152
+  Epoch 125, Grad Norm: 0.5518
+F5 E125 | Loss: 0.6800 | Tr Acc: 0.6212 | Te Acc: 0.4727 | Te AUC: 0.5450 | Te F1: 0.4336
+  Epoch 130, Grad Norm: 0.5689
+F5 E130 | Loss: 0.6716 | Tr Acc: 0.6049 | Te Acc: 0.4727 | Te AUC: 0.5450 | Te F1: 0.4442
+  Epoch 135, Grad Norm: 0.6745
+F5 E135 | Loss: 0.6723 | Tr Acc: 0.6069 | Te Acc: 0.4727 | Te AUC: 0.5450 | Te F1: 0.4442
+  Epoch 140, Grad Norm: 0.6216
+F5 E140 | Loss: 0.6711 | Tr Acc: 0.6090 | Te Acc: 0.4727 | Te AUC: 0.5423 | Te F1: 0.4442
+Early stopping triggered at epoch 140 due to lack of improvement in Test AUC.
+Fold 5 - Training finished. Best Test Accuracy: 0.5091, AUC: 0.5899
+Fold 5 elapsed time: 89.10 seconds.
+
+--- Fold 6/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 6 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 6 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 6... Train samples: 491, Test samples: 55
+  Epoch 1, Grad Norm: 0.7434
+F6 E001 | Loss: 0.7262 | Tr Acc: 0.4990 | Te Acc: 0.4364 | Te AUC: 0.4894 | Te F1: 0.4001
+  Epoch 5, Grad Norm: 0.6712
+F6 E005 | Loss: 0.7153 | Tr Acc: 0.5275 | Te Acc: 0.5091 | Te AUC: 0.5820 | Te F1: 0.3984
+  Epoch 10, Grad Norm: 0.6236
+F6 E010 | Loss: 0.7074 | Tr Acc: 0.5377 | Te Acc: 0.5273 | Te AUC: 0.4722 | Te F1: 0.3827
+  Epoch 15, Grad Norm: 0.6617
+F6 E015 | Loss: 0.7074 | Tr Acc: 0.5662 | Te Acc: 0.4727 | Te AUC: 0.5053 | Te F1: 0.4692
+  Epoch 20, Grad Norm: 0.5984
+F6 E020 | Loss: 0.6902 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.5489 | Te F1: 0.3233
+  Epoch 25, Grad Norm: 0.5806
+F6 E025 | Loss: 0.7017 | Tr Acc: 0.4908 | Te Acc: 0.4909 | Te AUC: 0.6085 | Te F1: 0.3233
+  Epoch 30, Grad Norm: 0.5945
+F6 E030 | Loss: 0.7035 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.6296 | Te F1: 0.3233
+  Epoch 35, Grad Norm: 0.5562
+F6 E035 | Loss: 0.6865 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.6402 | Te F1: 0.3233
+  Epoch 40, Grad Norm: 0.5485
+F6 E040 | Loss: 0.7033 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.6481 | Te F1: 0.3233
+  Epoch 45, Grad Norm: 0.5466
+F6 E045 | Loss: 0.6964 | Tr Acc: 0.4888 | Te Acc: 0.4909 | Te AUC: 0.6495 | Te F1: 0.3233
+  Epoch 50, Grad Norm: 0.5321
+F6 E050 | Loss: 0.6947 | Tr Acc: 0.4908 | Te Acc: 0.4909 | Te AUC: 0.6521 | Te F1: 0.3233
+  Epoch 55, Grad Norm: 0.5183
+F6 E055 | Loss: 0.6956 | Tr Acc: 0.4929 | Te Acc: 0.4909 | Te AUC: 0.6468 | Te F1: 0.3233
+  Epoch 60, Grad Norm: 0.5092
+F6 E060 | Loss: 0.6957 | Tr Acc: 0.4929 | Te Acc: 0.4909 | Te AUC: 0.6521 | Te F1: 0.3233
+  Epoch 65, Grad Norm: 0.5051
+F6 E065 | Loss: 0.6944 | Tr Acc: 0.4929 | Te Acc: 0.4909 | Te AUC: 0.6508 | Te F1: 0.3233
+  Epoch 70, Grad Norm: 0.5090
+F6 E070 | Loss: 0.6945 | Tr Acc: 0.5295 | Te Acc: 0.5273 | Te AUC: 0.6574 | Te F1: 0.3992
+  Epoch 75, Grad Norm: 0.5727
+F6 E075 | Loss: 0.6907 | Tr Acc: 0.6212 | Te Acc: 0.6000 | Te AUC: 0.6772 | Te F1: 0.5782
+  Epoch 80, Grad Norm: 0.4639
+F6 E080 | Loss: 0.6750 | Tr Acc: 0.5580 | Te Acc: 0.5455 | Te AUC: 0.6574 | Te F1: 0.4628
+  Epoch 85, Grad Norm: 0.5189
+F6 E085 | Loss: 0.6712 | Tr Acc: 0.6130 | Te Acc: 0.5818 | Te AUC: 0.6548 | Te F1: 0.5627
+  Epoch 90, Grad Norm: 0.5344
+F6 E090 | Loss: 0.6685 | Tr Acc: 0.6558 | Te Acc: 0.6000 | Te AUC: 0.6548 | Te F1: 0.5992
+  Epoch 95, Grad Norm: 0.5609
+F6 E095 | Loss: 0.6602 | Tr Acc: 0.6436 | Te Acc: 0.5636 | Te AUC: 0.6627 | Te F1: 0.5530
+  Epoch 100, Grad Norm: 0.5233
+F6 E100 | Loss: 0.6753 | Tr Acc: 0.5601 | Te Acc: 0.5273 | Te AUC: 0.6627 | Te F1: 0.4314
+  Epoch 105, Grad Norm: 0.4946
+F6 E105 | Loss: 0.6593 | Tr Acc: 0.6517 | Te Acc: 0.6545 | Te AUC: 0.6521 | Te F1: 0.6522
+  Epoch 110, Grad Norm: 0.5110
+F6 E110 | Loss: 0.6598 | Tr Acc: 0.5112 | Te Acc: 0.5273 | Te AUC: 0.6521 | Te F1: 0.3992
+  Epoch 115, Grad Norm: 0.4953
+F6 E115 | Loss: 0.6503 | Tr Acc: 0.5153 | Te Acc: 0.5273 | Te AUC: 0.6442 | Te F1: 0.3992
+  Epoch 120, Grad Norm: 0.5134
+F6 E120 | Loss: 0.6366 | Tr Acc: 0.6864 | Te Acc: 0.6727 | Te AUC: 0.6376 | Te F1: 0.6714
+  Epoch 125, Grad Norm: 0.4967
+F6 E125 | Loss: 0.6382 | Tr Acc: 0.6884 | Te Acc: 0.6000 | Te AUC: 0.6164 | Te F1: 0.5925
+  Epoch 130, Grad Norm: 0.4912
+F6 E130 | Loss: 0.6269 | Tr Acc: 0.5662 | Te Acc: 0.5273 | Te AUC: 0.5899 | Te F1: 0.4227
+  Epoch 135, Grad Norm: 0.5098
+F6 E135 | Loss: 0.6281 | Tr Acc: 0.6130 | Te Acc: 0.5273 | Te AUC: 0.5913 | Te F1: 0.4428
+  Epoch 140, Grad Norm: 0.5402
+F6 E140 | Loss: 0.6358 | Tr Acc: 0.6517 | Te Acc: 0.5091 | Te AUC: 0.5899 | Te F1: 0.4469
+  Epoch 145, Grad Norm: 0.5609
+F6 E145 | Loss: 0.6433 | Tr Acc: 0.6497 | Te Acc: 0.5273 | Te AUC: 0.5952 | Te F1: 0.4744
+  Epoch 150, Grad Norm: 0.4961
+F6 E150 | Loss: 0.6280 | Tr Acc: 0.6538 | Te Acc: 0.5091 | Te AUC: 0.5939 | Te F1: 0.4469
+Fold 6 - Training finished. Best Test Accuracy: 0.6000, AUC: 0.6772
+Fold 6 elapsed time: 92.96 seconds.
+
+--- Fold 7/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 7 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 7 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 7... Train samples: 492, Test samples: 54
+  Epoch 1, Grad Norm: 1.0412
+F7 E001 | Loss: 0.7351 | Tr Acc: 0.4878 | Te Acc: 0.5000 | Te AUC: 0.5048 | Te F1: 0.3333
+  Epoch 5, Grad Norm: 0.8888
+F7 E005 | Loss: 0.7377 | Tr Acc: 0.5508 | Te Acc: 0.5370 | Te AUC: 0.5528 | Te F1: 0.5291
+  Epoch 10, Grad Norm: 0.8376
+F7 E010 | Loss: 0.7291 | Tr Acc: 0.5589 | Te Acc: 0.5185 | Te AUC: 0.5528 | Te F1: 0.4227
+  Epoch 15, Grad Norm: 0.7835
+F7 E015 | Loss: 0.6975 | Tr Acc: 0.5163 | Te Acc: 0.5000 | Te AUC: 0.5775 | Te F1: 0.3333
+  Epoch 20, Grad Norm: 0.7322
+F7 E020 | Loss: 0.6962 | Tr Acc: 0.5630 | Te Acc: 0.5000 | Te AUC: 0.5775 | Te F1: 0.3892
+  Epoch 25, Grad Norm: 0.7568
+F7 E025 | Loss: 0.7055 | Tr Acc: 0.5772 | Te Acc: 0.5926 | Te AUC: 0.6049 | Te F1: 0.5875
+  Epoch 30, Grad Norm: 0.7188
+F7 E030 | Loss: 0.7071 | Tr Acc: 0.4939 | Te Acc: 0.5000 | Te AUC: 0.5981 | Te F1: 0.3636
+  Epoch 35, Grad Norm: 0.6870
+F7 E035 | Loss: 0.7002 | Tr Acc: 0.4959 | Te Acc: 0.5000 | Te AUC: 0.5953 | Te F1: 0.3892
+  Epoch 40, Grad Norm: 0.6534
+F7 E040 | Loss: 0.7015 | Tr Acc: 0.4858 | Te Acc: 0.5000 | Te AUC: 0.5665 | Te F1: 0.3333
+  Epoch 45, Grad Norm: 0.6865
+F7 E045 | Loss: 0.7122 | Tr Acc: 0.4959 | Te Acc: 0.5000 | Te AUC: 0.5665 | Te F1: 0.3636
+  Epoch 50, Grad Norm: 0.6615
+F7 E050 | Loss: 0.7129 | Tr Acc: 0.5386 | Te Acc: 0.5370 | Te AUC: 0.5638 | Te F1: 0.4716
+  Epoch 55, Grad Norm: 0.6666
+F7 E055 | Loss: 0.6850 | Tr Acc: 0.5915 | Te Acc: 0.5926 | Te AUC: 0.5789 | Te F1: 0.5926
+  Epoch 60, Grad Norm: 0.6524
+F7 E060 | Loss: 0.7073 | Tr Acc: 0.5549 | Te Acc: 0.5370 | Te AUC: 0.5665 | Te F1: 0.4716
+  Epoch 65, Grad Norm: 0.5686
+F7 E065 | Loss: 0.6842 | Tr Acc: 0.5854 | Te Acc: 0.5556 | Te AUC: 0.5802 | Te F1: 0.5128
+  Epoch 70, Grad Norm: 0.6765
+F7 E070 | Loss: 0.6911 | Tr Acc: 0.5691 | Te Acc: 0.5556 | Te AUC: 0.5748 | Te F1: 0.5128
+  Epoch 75, Grad Norm: 0.5991
+F7 E075 | Loss: 0.6879 | Tr Acc: 0.6220 | Te Acc: 0.5741 | Te AUC: 0.5761 | Te F1: 0.5739
+  Epoch 80, Grad Norm: 0.6007
+F7 E080 | Loss: 0.6789 | Tr Acc: 0.6179 | Te Acc: 0.5741 | Te AUC: 0.5816 | Te F1: 0.5739
+  Epoch 85, Grad Norm: 0.5839
+F7 E085 | Loss: 0.6980 | Tr Acc: 0.6301 | Te Acc: 0.5741 | Te AUC: 0.5885 | Te F1: 0.5728
+  Epoch 90, Grad Norm: 0.5779
+F7 E090 | Loss: 0.6884 | Tr Acc: 0.6341 | Te Acc: 0.5556 | Te AUC: 0.5885 | Te F1: 0.5531
+  Epoch 95, Grad Norm: 0.6302
+F7 E095 | Loss: 0.6923 | Tr Acc: 0.6280 | Te Acc: 0.5741 | Te AUC: 0.5830 | Te F1: 0.5728
+  Epoch 100, Grad Norm: 0.5933
+F7 E100 | Loss: 0.6915 | Tr Acc: 0.6240 | Te Acc: 0.5926 | Te AUC: 0.5912 | Te F1: 0.5926
+  Epoch 105, Grad Norm: 0.6144
+F7 E105 | Loss: 0.6858 | Tr Acc: 0.6220 | Te Acc: 0.5370 | Te AUC: 0.5926 | Te F1: 0.5330
+  Epoch 110, Grad Norm: 0.6269
+F7 E110 | Loss: 0.7029 | Tr Acc: 0.6280 | Te Acc: 0.5370 | Te AUC: 0.5898 | Te F1: 0.5330
+  Epoch 115, Grad Norm: 0.6688
+F7 E115 | Loss: 0.7070 | Tr Acc: 0.6159 | Te Acc: 0.5556 | Te AUC: 0.5912 | Te F1: 0.5456
+  Epoch 120, Grad Norm: 0.5910
+F7 E120 | Loss: 0.6965 | Tr Acc: 0.6159 | Te Acc: 0.5556 | Te AUC: 0.5926 | Te F1: 0.5456
+  Epoch 125, Grad Norm: 0.6462
+F7 E125 | Loss: 0.7080 | Tr Acc: 0.6341 | Te Acc: 0.5926 | Te AUC: 0.5885 | Te F1: 0.5920
+  Epoch 130, Grad Norm: 0.6125
+F7 E130 | Loss: 0.6917 | Tr Acc: 0.6382 | Te Acc: 0.5926 | Te AUC: 0.5871 | Te F1: 0.5920
+  Epoch 135, Grad Norm: 0.5829
+F7 E135 | Loss: 0.6806 | Tr Acc: 0.6199 | Te Acc: 0.5556 | Te AUC: 0.5885 | Te F1: 0.5456
+  Epoch 140, Grad Norm: 0.5805
+F7 E140 | Loss: 0.6934 | Tr Acc: 0.6280 | Te Acc: 0.5926 | Te AUC: 0.5912 | Te F1: 0.5903
+  Epoch 145, Grad Norm: 0.5759
+F7 E145 | Loss: 0.6750 | Tr Acc: 0.6301 | Te Acc: 0.5741 | Te AUC: 0.5898 | Te F1: 0.5728
+  Epoch 150, Grad Norm: 0.5651
+F7 E150 | Loss: 0.6716 | Tr Acc: 0.6362 | Te Acc: 0.5926 | Te AUC: 0.5898 | Te F1: 0.5920
+Early stopping triggered at epoch 150 due to lack of improvement in Test AUC.
+Fold 7 - Training finished. Best Test Accuracy: 0.5926, AUC: 0.6049
+Fold 7 elapsed time: 94.00 seconds.
+
+--- Fold 8/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 8 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 8 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 8... Train samples: 492, Test samples: 54
+  Epoch 1, Grad Norm: 1.0214
+F8 E001 | Loss: 0.7451 | Tr Acc: 0.5081 | Te Acc: 0.5370 | Te AUC: 0.4272 | Te F1: 0.3941
+  Epoch 5, Grad Norm: 0.9560
+F8 E005 | Loss: 0.7277 | Tr Acc: 0.5122 | Te Acc: 0.5185 | Te AUC: 0.4821 | Te F1: 0.3541
+  Epoch 10, Grad Norm: 0.8283
+F8 E010 | Loss: 0.7287 | Tr Acc: 0.5122 | Te Acc: 0.5185 | Te AUC: 0.5357 | Te F1: 0.3541
+  Epoch 15, Grad Norm: 0.7728
+F8 E015 | Loss: 0.7145 | Tr Acc: 0.5528 | Te Acc: 0.5556 | Te AUC: 0.5426 | Te F1: 0.4553
+  Epoch 20, Grad Norm: 0.7233
+F8 E020 | Loss: 0.7025 | Tr Acc: 0.5569 | Te Acc: 0.5926 | Te AUC: 0.5330 | Te F1: 0.5473
+  Epoch 25, Grad Norm: 0.7089
+F8 E025 | Loss: 0.6904 | Tr Acc: 0.5833 | Te Acc: 0.5926 | Te AUC: 0.5343 | Te F1: 0.5583
+  Epoch 30, Grad Norm: 0.6901
+F8 E030 | Loss: 0.7013 | Tr Acc: 0.5528 | Te Acc: 0.6296 | Te AUC: 0.5357 | Te F1: 0.5766
+  Epoch 35, Grad Norm: 0.7356
+F8 E035 | Loss: 0.7067 | Tr Acc: 0.5549 | Te Acc: 0.5741 | Te AUC: 0.5467 | Te F1: 0.4879
+  Epoch 40, Grad Norm: 0.7132
+F8 E040 | Loss: 0.7009 | Tr Acc: 0.5671 | Te Acc: 0.6111 | Te AUC: 0.5495 | Te F1: 0.5619
+  Epoch 45, Grad Norm: 0.6107
+F8 E045 | Loss: 0.6886 | Tr Acc: 0.5772 | Te Acc: 0.5926 | Te AUC: 0.5618 | Te F1: 0.5473
+  Epoch 50, Grad Norm: 0.6721
+F8 E050 | Loss: 0.7071 | Tr Acc: 0.5955 | Te Acc: 0.5000 | Te AUC: 0.5522 | Te F1: 0.4889
+  Epoch 55, Grad Norm: 0.6504
+F8 E055 | Loss: 0.7041 | Tr Acc: 0.5346 | Te Acc: 0.5185 | Te AUC: 0.5549 | Te F1: 0.4980
+  Epoch 60, Grad Norm: 0.6330
+F8 E060 | Loss: 0.6861 | Tr Acc: 0.5691 | Te Acc: 0.5000 | Te AUC: 0.5632 | Te F1: 0.4974
+  Epoch 65, Grad Norm: 0.6620
+F8 E065 | Loss: 0.6888 | Tr Acc: 0.5793 | Te Acc: 0.5185 | Te AUC: 0.5577 | Te F1: 0.5145
+  Epoch 70, Grad Norm: 0.7228
+F8 E070 | Loss: 0.7061 | Tr Acc: 0.5874 | Te Acc: 0.5185 | Te AUC: 0.5742 | Te F1: 0.5185
+  Epoch 75, Grad Norm: 0.6727
+F8 E075 | Loss: 0.7124 | Tr Acc: 0.5711 | Te Acc: 0.5370 | Te AUC: 0.5701 | Te F1: 0.5042
+  Epoch 80, Grad Norm: 0.5815
+F8 E080 | Loss: 0.6980 | Tr Acc: 0.6016 | Te Acc: 0.5556 | Te AUC: 0.5714 | Te F1: 0.5431
+  Epoch 85, Grad Norm: 0.5675
+F8 E085 | Loss: 0.6759 | Tr Acc: 0.6037 | Te Acc: 0.5556 | Te AUC: 0.5824 | Te F1: 0.5519
+  Epoch 90, Grad Norm: 0.6387
+F8 E090 | Loss: 0.7009 | Tr Acc: 0.5813 | Te Acc: 0.5741 | Te AUC: 0.6085 | Te F1: 0.5432
+  Epoch 95, Grad Norm: 0.6209
+F8 E095 | Loss: 0.6936 | Tr Acc: 0.5915 | Te Acc: 0.5926 | Te AUC: 0.6058 | Te F1: 0.5473
+  Epoch 100, Grad Norm: 0.5428
+F8 E100 | Loss: 0.6731 | Tr Acc: 0.5955 | Te Acc: 0.5926 | Te AUC: 0.6154 | Te F1: 0.5473
+  Epoch 105, Grad Norm: 0.5974
+F8 E105 | Loss: 0.6886 | Tr Acc: 0.5894 | Te Acc: 0.5556 | Te AUC: 0.6030 | Te F1: 0.5181
+  Epoch 110, Grad Norm: 0.6246
+F8 E110 | Loss: 0.6664 | Tr Acc: 0.6098 | Te Acc: 0.5926 | Te AUC: 0.5948 | Te F1: 0.5892
+  Epoch 115, Grad Norm: 0.6149
+F8 E115 | Loss: 0.6901 | Tr Acc: 0.5102 | Te Acc: 0.5000 | Te AUC: 0.5714 | Te F1: 0.3527
+  Epoch 120, Grad Norm: 0.6034
+F8 E120 | Loss: 0.6639 | Tr Acc: 0.4980 | Te Acc: 0.4815 | Te AUC: 0.5385 | Te F1: 0.3130
+  Epoch 125, Grad Norm: 0.5208
+F8 E125 | Loss: 0.6724 | Tr Acc: 0.5569 | Te Acc: 0.4815 | Te AUC: 0.5907 | Te F1: 0.3689
+  Epoch 130, Grad Norm: 0.5426
+F8 E130 | Loss: 0.6589 | Tr Acc: 0.6098 | Te Acc: 0.5370 | Te AUC: 0.6277 | Te F1: 0.5206
+  Epoch 135, Grad Norm: 0.5601
+F8 E135 | Loss: 0.6684 | Tr Acc: 0.6118 | Te Acc: 0.5926 | Te AUC: 0.6305 | Te F1: 0.5892
+  Epoch 140, Grad Norm: 0.5823
+F8 E140 | Loss: 0.6651 | Tr Acc: 0.6077 | Te Acc: 0.5556 | Te AUC: 0.6429 | Te F1: 0.5281
+  Epoch 145, Grad Norm: 0.5784
+F8 E145 | Loss: 0.6603 | Tr Acc: 0.6098 | Te Acc: 0.5741 | Te AUC: 0.6442 | Te F1: 0.5646
+  Epoch 150, Grad Norm: 0.5501
+F8 E150 | Loss: 0.6845 | Tr Acc: 0.6443 | Te Acc: 0.5926 | Te AUC: 0.6470 | Te F1: 0.5915
+Fold 8 - Training finished. Best Test Accuracy: 0.5926, AUC: 0.6470
+Fold 8 elapsed time: 93.04 seconds.
+
+--- Fold 9/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 9 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 9 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 9... Train samples: 492, Test samples: 54
+  Epoch 1, Grad Norm: 0.8959
+F9 E001 | Loss: 0.7319 | Tr Acc: 0.4898 | Te Acc: 0.4815 | Te AUC: 0.5769 | Te F1: 0.3130
+  Epoch 5, Grad Norm: 0.8138
+F9 E005 | Loss: 0.7051 | Tr Acc: 0.4898 | Te Acc: 0.4815 | Te AUC: 0.6909 | Te F1: 0.3130
+  Epoch 10, Grad Norm: 0.7610
+F9 E010 | Loss: 0.6956 | Tr Acc: 0.4898 | Te Acc: 0.4815 | Te AUC: 0.7363 | Te F1: 0.3130
+  Epoch 15, Grad Norm: 0.8058
+F9 E015 | Loss: 0.7007 | Tr Acc: 0.4939 | Te Acc: 0.4815 | Te AUC: 0.7212 | Te F1: 0.3130
+  Epoch 20, Grad Norm: 0.7839
+F9 E020 | Loss: 0.7153 | Tr Acc: 0.5752 | Te Acc: 0.5926 | Te AUC: 0.7253 | Te F1: 0.5473
+  Epoch 25, Grad Norm: 0.7435
+F9 E025 | Loss: 0.7054 | Tr Acc: 0.5589 | Te Acc: 0.5370 | Te AUC: 0.7047 | Te F1: 0.4624
+  Epoch 30, Grad Norm: 0.6683
+F9 E030 | Loss: 0.6848 | Tr Acc: 0.6098 | Te Acc: 0.6111 | Te AUC: 0.6978 | Te F1: 0.5912
+  Epoch 35, Grad Norm: 0.6664
+F9 E035 | Loss: 0.6864 | Tr Acc: 0.5122 | Te Acc: 0.5185 | Te AUC: 0.6978 | Te F1: 0.3901
+  Epoch 40, Grad Norm: 0.6735
+F9 E040 | Loss: 0.6949 | Tr Acc: 0.5833 | Te Acc: 0.5741 | Te AUC: 0.6964 | Te F1: 0.5217
+  Epoch 45, Grad Norm: 0.7052
+F9 E045 | Loss: 0.6730 | Tr Acc: 0.5467 | Te Acc: 0.5185 | Te AUC: 0.6923 | Te F1: 0.4343
+  Epoch 50, Grad Norm: 0.6687
+F9 E050 | Loss: 0.6906 | Tr Acc: 0.5081 | Te Acc: 0.5000 | Te AUC: 0.7005 | Te F1: 0.3527
+  Epoch 55, Grad Norm: 0.6446
+F9 E055 | Loss: 0.6741 | Tr Acc: 0.5793 | Te Acc: 0.5556 | Te AUC: 0.7143 | Te F1: 0.4778
+  Epoch 60, Grad Norm: 0.5822
+F9 E060 | Loss: 0.6705 | Tr Acc: 0.6057 | Te Acc: 0.6296 | Te AUC: 0.7212 | Te F1: 0.5895
+  Epoch 65, Grad Norm: 0.6679
+F9 E065 | Loss: 0.6722 | Tr Acc: 0.5915 | Te Acc: 0.6111 | Te AUC: 0.7363 | Te F1: 0.5734
+  Epoch 70, Grad Norm: 0.6897
+F9 E070 | Loss: 0.6899 | Tr Acc: 0.6301 | Te Acc: 0.6481 | Te AUC: 0.7459 | Te F1: 0.6403
+  Epoch 75, Grad Norm: 0.6320
+F9 E075 | Loss: 0.6727 | Tr Acc: 0.6301 | Te Acc: 0.6296 | Te AUC: 0.7431 | Te F1: 0.6286
+  Epoch 80, Grad Norm: 0.6867
+F9 E080 | Loss: 0.6786 | Tr Acc: 0.6443 | Te Acc: 0.6852 | Te AUC: 0.7390 | Te F1: 0.6849
+  Epoch 85, Grad Norm: 0.6121
+F9 E085 | Loss: 0.6803 | Tr Acc: 0.6423 | Te Acc: 0.6481 | Te AUC: 0.7308 | Te F1: 0.6148
+  Epoch 90, Grad Norm: 0.6265
+F9 E090 | Loss: 0.6723 | Tr Acc: 0.6341 | Te Acc: 0.6481 | Te AUC: 0.7294 | Te F1: 0.6049
+  Epoch 95, Grad Norm: 0.6909
+F9 E095 | Loss: 0.6905 | Tr Acc: 0.6057 | Te Acc: 0.6111 | Te AUC: 0.7294 | Te F1: 0.5504
+  Epoch 100, Grad Norm: 0.6267
+F9 E100 | Loss: 0.6752 | Tr Acc: 0.6138 | Te Acc: 0.6111 | Te AUC: 0.7308 | Te F1: 0.5504
+  Epoch 105, Grad Norm: 0.6798
+F9 E105 | Loss: 0.6884 | Tr Acc: 0.6362 | Te Acc: 0.6481 | Te AUC: 0.7308 | Te F1: 0.6049
+  Epoch 110, Grad Norm: 0.6231
+F9 E110 | Loss: 0.6789 | Tr Acc: 0.6484 | Te Acc: 0.6481 | Te AUC: 0.7349 | Te F1: 0.6049
+  Epoch 115, Grad Norm: 0.5962
+F9 E115 | Loss: 0.6842 | Tr Acc: 0.6443 | Te Acc: 0.6296 | Te AUC: 0.7418 | Te F1: 0.5895
+  Epoch 120, Grad Norm: 0.6532
+F9 E120 | Loss: 0.6756 | Tr Acc: 0.6463 | Te Acc: 0.6481 | Te AUC: 0.7390 | Te F1: 0.6049
+  Epoch 125, Grad Norm: 0.6445
+F9 E125 | Loss: 0.6683 | Tr Acc: 0.6524 | Te Acc: 0.6481 | Te AUC: 0.7390 | Te F1: 0.6049
+  Epoch 130, Grad Norm: 0.6785
+F9 E130 | Loss: 0.6655 | Tr Acc: 0.6504 | Te Acc: 0.6481 | Te AUC: 0.7445 | Te F1: 0.6049
+  Epoch 135, Grad Norm: 0.6374
+F9 E135 | Loss: 0.6561 | Tr Acc: 0.6423 | Te Acc: 0.6481 | Te AUC: 0.7418 | Te F1: 0.6049
+  Epoch 140, Grad Norm: 0.5938
+F9 E140 | Loss: 0.6882 | Tr Acc: 0.6341 | Te Acc: 0.6481 | Te AUC: 0.7418 | Te F1: 0.6049
+  Epoch 145, Grad Norm: 0.6556
+F9 E145 | Loss: 0.6683 | Tr Acc: 0.6382 | Te Acc: 0.6481 | Te AUC: 0.7459 | Te F1: 0.6049
+  Epoch 150, Grad Norm: 0.6382
+F9 E150 | Loss: 0.6735 | Tr Acc: 0.6443 | Te Acc: 0.6481 | Te AUC: 0.7473 | Te F1: 0.6049
+Fold 9 - Training finished. Best Test Accuracy: 0.6481, AUC: 0.7473
+Fold 9 elapsed time: 93.33 seconds.
+
+--- Fold 10/10 ---
+Calculating max TS length for Positional Encoding (546 subjects)...
+Determined max TS length 295 from 546 valid files for Positional Encoding.
+Fold 10 using dynamic max length (up to 295 for PE).
+Loading time series for 546 subjects in fold...
+No truncation active. Will pad to max length found in this fold's successful loads.
+Padding to max length found in fold: 295
+Padding 546 time series to final length: 295
+Proceeding with 546 subjects for Fold 10 model training/evaluation.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 32)...
+Initial embeddings generated.
+Building k-NN graph (k=15)...
+Graph built with 546 nodes and 8190 edges.
+Starting training for Fold 10... Train samples: 492, Test samples: 54
+  Epoch 1, Grad Norm: 0.8185
+F10 E001 | Loss: 0.7116 | Tr Acc: 0.5041 | Te Acc: 0.4815 | Te AUC: 0.5549 | Te F1: 0.4095
+  Epoch 5, Grad Norm: 0.8588
+F10 E005 | Loss: 0.7116 | Tr Acc: 0.5061 | Te Acc: 0.4815 | Te AUC: 0.5646 | Te F1: 0.4095
+  Epoch 10, Grad Norm: 0.8597
+F10 E010 | Loss: 0.7017 | Tr Acc: 0.5020 | Te Acc: 0.5000 | Te AUC: 0.5618 | Te F1: 0.4385
+  Epoch 15, Grad Norm: 0.7768
+F10 E015 | Loss: 0.6985 | Tr Acc: 0.5061 | Te Acc: 0.4630 | Te AUC: 0.5412 | Te F1: 0.3791
+  Epoch 20, Grad Norm: 0.7189
+F10 E020 | Loss: 0.6835 | Tr Acc: 0.5183 | Te Acc: 0.5370 | Te AUC: 0.5920 | Te F1: 0.4932
+  Epoch 25, Grad Norm: 0.7451
+F10 E025 | Loss: 0.6977 | Tr Acc: 0.4939 | Te Acc: 0.4444 | Te AUC: 0.5536 | Te F1: 0.3473
+  Epoch 30, Grad Norm: 0.7337
+F10 E030 | Loss: 0.6818 | Tr Acc: 0.5630 | Te Acc: 0.4815 | Te AUC: 0.5673 | Te F1: 0.4669
+  Epoch 35, Grad Norm: 0.7241
+F10 E035 | Loss: 0.6951 | Tr Acc: 0.5630 | Te Acc: 0.4630 | Te AUC: 0.5701 | Te F1: 0.4442
+  Epoch 40, Grad Norm: 0.7994
+F10 E040 | Loss: 0.6894 | Tr Acc: 0.6199 | Te Acc: 0.6111 | Te AUC: 0.5907 | Te F1: 0.6025
+  Epoch 45, Grad Norm: 0.7000
+F10 E045 | Loss: 0.6888 | Tr Acc: 0.6301 | Te Acc: 0.6111 | Te AUC: 0.6003 | Te F1: 0.5619
+  Epoch 50, Grad Norm: 0.6450
+F10 E050 | Loss: 0.6607 | Tr Acc: 0.6199 | Te Acc: 0.5926 | Te AUC: 0.6071 | Te F1: 0.5343
+  Epoch 55, Grad Norm: 0.6901
+F10 E055 | Loss: 0.6689 | Tr Acc: 0.6301 | Te Acc: 0.5185 | Te AUC: 0.5920 | Te F1: 0.5048
+  Epoch 60, Grad Norm: 0.7090
+F10 E060 | Loss: 0.6768 | Tr Acc: 0.6402 | Te Acc: 0.5370 | Te AUC: 0.6099 | Te F1: 0.5314
+  Epoch 65, Grad Norm: 0.5714
+F10 E065 | Loss: 0.6499 | Tr Acc: 0.6545 | Te Acc: 0.5185 | Te AUC: 0.6209 | Te F1: 0.5145
+  Epoch 70, Grad Norm: 0.6945
+F10 E070 | Loss: 0.6527 | Tr Acc: 0.6382 | Te Acc: 0.5926 | Te AUC: 0.6442 | Te F1: 0.5674
+  Epoch 75, Grad Norm: 0.6861
+F10 E075 | Loss: 0.6958 | Tr Acc: 0.6484 | Te Acc: 0.5926 | Te AUC: 0.6470 | Te F1: 0.5810
+  Epoch 80, Grad Norm: 0.6438
+F10 E080 | Loss: 0.6569 | Tr Acc: 0.6768 | Te Acc: 0.6296 | Te AUC: 0.6538 | Te F1: 0.6266
+  Epoch 85, Grad Norm: 0.6037
+F10 E085 | Loss: 0.6383 | Tr Acc: 0.6626 | Te Acc: 0.6481 | Te AUC: 0.6662 | Te F1: 0.6439
+  Epoch 90, Grad Norm: 0.6360
+F10 E090 | Loss: 0.6629 | Tr Acc: 0.6301 | Te Acc: 0.5926 | Te AUC: 0.6799 | Te F1: 0.5343
+  Epoch 95, Grad Norm: 0.6369
+F10 E095 | Loss: 0.6646 | Tr Acc: 0.5996 | Te Acc: 0.5741 | Te AUC: 0.6593 | Te F1: 0.4879
+  Epoch 100, Grad Norm: 0.5974
+F10 E100 | Loss: 0.6440 | Tr Acc: 0.6443 | Te Acc: 0.5926 | Te AUC: 0.6456 | Te F1: 0.5583
+  Epoch 105, Grad Norm: 0.5974
+F10 E105 | Loss: 0.6458 | Tr Acc: 0.6728 | Te Acc: 0.6111 | Te AUC: 0.6387 | Te F1: 0.6091
+  Epoch 110, Grad Norm: 0.6070
+F10 E110 | Loss: 0.6479 | Tr Acc: 0.6748 | Te Acc: 0.5370 | Te AUC: 0.6401 | Te F1: 0.5372
+  Epoch 115, Grad Norm: 0.6430
+F10 E115 | Loss: 0.6359 | Tr Acc: 0.6829 | Te Acc: 0.5556 | Te AUC: 0.6374 | Te F1: 0.5556
+  Epoch 120, Grad Norm: 0.5888
+F10 E120 | Loss: 0.6228 | Tr Acc: 0.6748 | Te Acc: 0.6296 | Te AUC: 0.6429 | Te F1: 0.6266
+  Epoch 125, Grad Norm: 0.5615
+F10 E125 | Loss: 0.6148 | Tr Acc: 0.6687 | Te Acc: 0.5926 | Te AUC: 0.6648 | Te F1: 0.5674
+  Epoch 130, Grad Norm: 0.5959
+F10 E130 | Loss: 0.6289 | Tr Acc: 0.6707 | Te Acc: 0.6111 | Te AUC: 0.6621 | Te F1: 0.5829
+  Epoch 135, Grad Norm: 0.5838
+F10 E135 | Loss: 0.6375 | Tr Acc: 0.6931 | Te Acc: 0.5741 | Te AUC: 0.6456 | Te F1: 0.5689
+  Epoch 140, Grad Norm: 0.5509
+F10 E140 | Loss: 0.6107 | Tr Acc: 0.6728 | Te Acc: 0.5741 | Te AUC: 0.6538 | Te F1: 0.5689
+  Epoch 145, Grad Norm: 0.5940
+F10 E145 | Loss: 0.6214 | Tr Acc: 0.7175 | Te Acc: 0.7037 | Te AUC: 0.6676 | Te F1: 0.7029
+  Epoch 150, Grad Norm: 0.6917
+F10 E150 | Loss: 0.6111 | Tr Acc: 0.7154 | Te Acc: 0.7037 | Te AUC: 0.6690 | Te F1: 0.7037
+Fold 10 - Training finished. Best Test Accuracy: 0.5926, AUC: 0.6799
+Fold 10 elapsed time: 93.32 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds with valid metrics: 10/10
+Average Accuracy:  0.5771 +/- 0.0568
+Average F1-Score:  0.5057
+Average Precision: 0.5729
+Average Recall:    0.5771
+Average AUC:       0.6724
+
+Total elapsed time: 917.96 seconds.
+--- Run Finished ---
+Frankenstein Training completed at Wed Apr 16 03:12:44 AM EDT 2025

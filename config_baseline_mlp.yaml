@@ -1,0 +1,34 @@
+# --- Configuration for Baseline (Static FC + MLP) ---
+run_params:
+  seed: 42
+  device: 'cuda' # Use GPU for MLP training
+  n_splits: 10
+  epochs: 200    # MLP might need more/fewer epochs, adjust based on loss curves
+  learning_rate: 0.001 # Common starting point for Adam
+  weight_decay: 0.0005 # L2 regularization
+  batch_size: 64     # Mini-batch size for MLP training
+  early_stopping_patience: 20 # Patience for early stopping based on validation AUC
+
+data_params:
+  phenotype_file: 'Phenotypic_V1_0b_preprocessed1.csv'
+  # Directory where preprocess_baseline.py saved features
+  output_feature_dir: 'processed_features_baseline'
+  # These are just for reference
+  num_regions: 200
+  phenotype_cols_numerical: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+  phenotype_cols_categorical: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  target_col: 'DX_GROUP'
+  sub_id_col: 'SUB_ID'
+  site_id_col: 'SITE_ID'
+
+# --- MLP Architecture and Training ---
+mlp_params:
+  # Example: [Input -> 128 -> 64 -> Output]
+  hidden_layer_sizes: [256, 64] # List of hidden layer dimensions
+  activation: 'relu'         # Activation function ('relu', 'tanh', etc.)
+  dropout_rate: 0.3           # Dropout rate between layers
+  use_batchnorm: True        # Use BatchNorm1d after linear layers (before activation)
+  optimizer: 'adamw'         # Optimizer ('adam', 'adamw', 'sgd')
+  # Add scheduler params if using one (e.g., ReduceLROnPlateau)
+  lr_scheduler_patience: 10
+  lr_scheduler_factor: 0.1

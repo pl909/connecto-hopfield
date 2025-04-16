@@ -1,0 +1,6 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 04:39:27 AM EDT 2025
+Loading configuration from config_baseline_mlp.yaml...
+Loading preprocessed features and labels...
+ Feature shape: (546, 19927), Label shape: (546,)
+ Label distribution: [279 267]
+Frankenstein Training completed at Wed Apr 16 04:39:32 AM EDT 2025

@@ -1,0 +1,105 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 04:20:23 AM EDT 2025
+Loading configuration from config_baseline_logreg.yaml...
+Loading preprocessed features and labels...
+ Feature shape: (546, 19927), Label shape: (546,)
+ Label distribution: [279 267]
+Attempting to retrieve feature names...
+
+--- Fold 1/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 1 Results: Acc=0.5091, AUC=0.5000, F1=0.3435
+Fold 1 elapsed time: 0.48 seconds.
+
+--- Fold 2/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 2 Results: Acc=0.5091, AUC=0.5000, F1=0.3435
+Fold 2 elapsed time: 0.47 seconds.
+
+--- Fold 3/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 3 Results: Acc=0.5091, AUC=0.5000, F1=0.3435
+Fold 3 elapsed time: 0.48 seconds.
+
+--- Fold 4/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 4 Results: Acc=0.5091, AUC=0.5000, F1=0.3435
+Fold 4 elapsed time: 0.48 seconds.
+
+--- Fold 5/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 5 Results: Acc=0.5091, AUC=0.5000, F1=0.3435
+Fold 5 elapsed time: 0.48 seconds.
+
+--- Fold 6/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 6 Results: Acc=0.5091, AUC=0.5000, F1=0.3435
+Fold 6 elapsed time: 0.47 seconds.
+
+--- Fold 7/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 7 Results: Acc=0.5000, AUC=0.5000, F1=0.3333
+Fold 7 elapsed time: 0.49 seconds.
+
+--- Fold 8/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 8 Results: Acc=0.5185, AUC=0.5000, F1=0.3541
+Fold 8 elapsed time: 0.49 seconds.
+
+--- Fold 9/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 9 Results: Acc=0.5185, AUC=0.5000, F1=0.3541
+Fold 9 elapsed time: 0.50 seconds.
+
+--- Fold 10/10 ---
+Training Logistic Regression Classifier...
+Evaluating on test set...
+Fold 10 Results: Acc=0.5185, AUC=0.5000, F1=0.3541
+Fold 10 elapsed time: 0.49 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds: 10/10
+Average Accuracy:  0.5110 +/- 0.0056
+Average F1-Score:  0.3457
+Average Precision: 0.2612
+Average Recall:    0.5110
+Average AUC:       0.5000
+
+--- Average Feature Importances (Logistic Regression Coefficients) ---
+Total features: 19927, FC features: 19900, Pheno features: 27
+
+Top 20 Most Important Features (Absolute Coefficient):
+ 1. FC between regions (np.int64(0), np.int64(1)) (Index: 0) - Coef: 0.0000
+ 2. Phenotype: EYE_STATUS_AT_SCAN_2 (Index: 19926) - Coef: 0.0000
+ 3. Phenotype: EYE_STATUS_AT_SCAN_1 (Index: 19925) - Coef: 0.0000
+ 4. Phenotype: SITE_ID_YALE (Index: 19924) - Coef: 0.0000
+ 5. Phenotype: SITE_ID_USM (Index: 19923) - Coef: 0.0000
+ 6. Phenotype: SITE_ID_UM_2 (Index: 19922) - Coef: 0.0000
+ 7. Phenotype: SITE_ID_UM_1 (Index: 19921) - Coef: 0.0000
+ 8. FC between regions (np.int64(0), np.int64(17)) (Index: 16) - Coef: 0.0000
+ 9. FC between regions (np.int64(0), np.int64(18)) (Index: 17) - Coef: 0.0000
+ 10. FC between regions (np.int64(0), np.int64(19)) (Index: 18) - Coef: 0.0000
+ 11. FC between regions (np.int64(0), np.int64(20)) (Index: 19) - Coef: 0.0000
+ 12. FC between regions (np.int64(0), np.int64(21)) (Index: 20) - Coef: 0.0000
+ 13. FC between regions (np.int64(0), np.int64(22)) (Index: 21) - Coef: 0.0000
+ 14. FC between regions (np.int64(0), np.int64(23)) (Index: 22) - Coef: 0.0000
+ 15. FC between regions (np.int64(0), np.int64(24)) (Index: 23) - Coef: 0.0000
+ 16. FC between regions (np.int64(0), np.int64(25)) (Index: 24) - Coef: 0.0000
+ 17. FC between regions (np.int64(0), np.int64(26)) (Index: 25) - Coef: 0.0000
+ 18. FC between regions (np.int64(0), np.int64(27)) (Index: 26) - Coef: 0.0000
+ 19. FC between regions (np.int64(0), np.int64(28)) (Index: 27) - Coef: 0.0000
+ 20. FC between regions (np.int64(0), np.int64(29)) (Index: 28) - Coef: 0.0000
+
+Number of features with non-zero average coefficient (L1 Selection): 0 / 19927
+
+Total elapsed time: 4.89 seconds.
+--- Baseline Logistic Regression Run Finished ---
+Frankenstein Training completed at Wed Apr 16 04:20:31 AM EDT 2025

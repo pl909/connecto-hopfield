@@ -1,0 +1,67 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 05:00:52 AM EDT 2025
+Loading configuration from config_baseline_xgboost.yaml...
+Loading preprocessed features and labels...
+ Feature shape: (546, 19927), Label shape: (546,)
+ Label distribution: [279 267]
+
+--- Fold 1/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 1: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 2/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 2: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 3/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 3: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 4/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 4: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 5/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 5: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 6/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 6: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 7/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 7: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 8/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 8: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 9/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 9: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Fold 10/10 ---
+Skipping RFE.
+Training XGBoost Classifier...
+Error fitting XGBoost in Fold 10: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'
+
+--- Cross-Validation Results ---
+Number of successfully completed folds: 10/10
+Average Accuracy:  0.0000 +/- 0.0000
+Average F1-Score:  0.0000
+Average Precision: 0.0000
+Average Recall:    0.0000
+Average AUC:       0.0000
+
+Total elapsed time: 1.06 seconds.
+--- Baseline XGBoost Run Finished ---
+Frankenstein Training completed at Wed Apr 16 05:00:55 AM EDT 2025

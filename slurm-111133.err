@@ -1,0 +1,53 @@
+Extracting Features:   0%|          | 0/1112 [00:00<?, ?it/s]Extracting Features:  10%|▉         | 109/1112 [00:00<00:00, 1030.26it/s]/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+Extracting Features:  19%|█▉        | 213/1112 [00:00<00:03, 232.29it/s] /home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+Extracting Features:  24%|██▍       | 265/1112 [00:01<00:05, 146.40it/s]Extracting Features:  27%|██▋       | 297/1112 [00:01<00:06, 121.17it/s]Extracting Features:  29%|██▊       | 319/1112 [00:02<00:07, 110.79it/s]Extracting Features:  30%|███       | 336/1112 [00:02<00:07, 104.50it/s]Extracting Features:  31%|███▏      | 350/1112 [00:02<00:07, 101.82it/s]Extracting Features:  33%|███▎      | 363/1112 [00:02<00:07, 105.27it/s]Extracting Features:  35%|███▍      | 389/1112 [00:02<00:05, 129.95it/s]Extracting Features:  37%|███▋      | 406/1112 [00:02<00:05, 121.07it/s]Extracting Features:  38%|███▊      | 421/1112 [00:03<00:05, 117.69it/s]Extracting Features:  39%|███▉      | 435/1112 [00:03<00:05, 115.68it/s]Extracting Features:  58%|█████▊    | 646/1112 [00:03<00:00, 545.46it/s]Extracting Features:  65%|██████▍   | 719/1112 [00:04<00:01, 248.97it/s]Extracting Features:  70%|██████▉   | 773/1112 [00:04<00:01, 186.00it/s]/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+Extracting Features:  73%|███████▎  | 814/1112 [00:04<00:01, 166.43it/s]Extracting Features:  76%|███████▌  | 846/1112 [00:05<00:01, 178.22it/s]/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3045: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/pl217/miniconda3/envs/frankenstein/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3046: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+Extracting Features:  80%|████████  | 891/1112 [00:05<00:01, 213.03it/s]Extracting Features:  83%|████████▎ | 926/1112 [00:05<00:00, 200.57it/s]Extracting Features:  86%|████████▌ | 956/1112 [00:05<00:00, 180.78it/s]Extracting Features:  88%|████████▊ | 981/1112 [00:05<00:00, 165.49it/s]Extracting Features: 100%|██████████| 1112/1112 [00:05<00:00, 192.07it/s]

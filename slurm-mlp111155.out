@@ -1,0 +1,279 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 04:48:20 AM EDT 2025
+Loading configuration from config_baseline_mlp.yaml...
+Loading preprocessed features and labels...
+ Feature shape: (546, 19927), Label shape: (546,)
+ Label distribution: [279 267]
+Random seed set to 42
+Using GPU: NVIDIA RTX A5000
+
+--- Fold 1/10 ---
+Starting training for Fold 1...
+F1 E001 | Tr Loss: 0.7031 | Te Loss: 0.6863 | Te Acc: 0.5818 | Te AUC: 0.6230
+F1 E005 | Tr Loss: 0.4408 | Te Loss: 0.6342 | Te Acc: 0.6364 | Te AUC: 0.7116
+F1 E010 | Tr Loss: 0.1626 | Te Loss: 0.6918 | Te Acc: 0.6909 | Te AUC: 0.7063
+F1 E015 | Tr Loss: 0.1058 | Te Loss: 0.7886 | Te Acc: 0.7273 | Te AUC: 0.7275
+F1 E020 | Tr Loss: 0.0504 | Te Loss: 1.0084 | Te Acc: 0.6545 | Te AUC: 0.6878
+F1 E025 | Tr Loss: 0.0369 | Te Loss: 1.1119 | Te Acc: 0.6364 | Te AUC: 0.6614
+F1 E030 | Tr Loss: 0.0406 | Te Loss: 1.1414 | Te Acc: 0.7091 | Te AUC: 0.6852
+F1 E035 | Tr Loss: 0.0187 | Te Loss: 1.1063 | Te Acc: 0.6909 | Te AUC: 0.7354
+F1 E040 | Tr Loss: 0.0273 | Te Loss: 1.2934 | Te Acc: 0.6000 | Te AUC: 0.7116
+F1 E045 | Tr Loss: 0.0320 | Te Loss: 1.3790 | Te Acc: 0.6545 | Te AUC: 0.7209
+F1 E050 | Tr Loss: 0.0191 | Te Loss: 1.5560 | Te Acc: 0.6182 | Te AUC: 0.6640
+F1 E055 | Tr Loss: 0.0266 | Te Loss: 1.3341 | Te Acc: 0.6727 | Te AUC: 0.7394
+F1 E060 | Tr Loss: 0.0340 | Te Loss: 1.4670 | Te Acc: 0.6545 | Te AUC: 0.6931
+F1 E065 | Tr Loss: 0.0362 | Te Loss: 1.3930 | Te Acc: 0.6909 | Te AUC: 0.7077
+F1 E070 | Tr Loss: 0.0152 | Te Loss: 1.3919 | Te Acc: 0.6909 | Te AUC: 0.7024
+F1 E075 | Tr Loss: 0.0166 | Te Loss: 1.6923 | Te Acc: 0.7091 | Te AUC: 0.6653
+F1 E080 | Tr Loss: 0.0335 | Te Loss: 1.6366 | Te Acc: 0.6364 | Te AUC: 0.6627
+F1 E085 | Tr Loss: 0.0118 | Te Loss: 1.4414 | Te Acc: 0.7091 | Te AUC: 0.7103
+F1 E090 | Tr Loss: 0.0121 | Te Loss: 1.4988 | Te Acc: 0.6909 | Te AUC: 0.7288
+F1 E095 | Tr Loss: 0.0184 | Te Loss: 1.4999 | Te Acc: 0.6909 | Te AUC: 0.7315
+F1 E100 | Tr Loss: 0.0047 | Te Loss: 1.5972 | Te Acc: 0.6909 | Te AUC: 0.7143
+Fold 1 - Training finished. Best Test Accuracy: 0.6727, AUC: 0.7394
+Fold 1 elapsed time: 6.56 seconds.
+
+--- Fold 2/10 ---
+Starting training for Fold 2...
+F2 E001 | Tr Loss: 0.6976 | Te Loss: 0.6870 | Te Acc: 0.6364 | Te AUC: 0.6230
+F2 E005 | Tr Loss: 0.4383 | Te Loss: 0.6624 | Te Acc: 0.6182 | Te AUC: 0.6812
+F2 E010 | Tr Loss: 0.1871 | Te Loss: 0.7165 | Te Acc: 0.6000 | Te AUC: 0.6984
+F2 E015 | Tr Loss: 0.0926 | Te Loss: 0.6951 | Te Acc: 0.7091 | Te AUC: 0.7606
+F2 E020 | Tr Loss: 0.0577 | Te Loss: 0.8554 | Te Acc: 0.6909 | Te AUC: 0.7513
+F2 E025 | Tr Loss: 0.0587 | Te Loss: 0.7879 | Te Acc: 0.6909 | Te AUC: 0.8148
+F2 E030 | Tr Loss: 0.0315 | Te Loss: 1.0393 | Te Acc: 0.6545 | Te AUC: 0.7672
+F2 E035 | Tr Loss: 0.0296 | Te Loss: 0.9912 | Te Acc: 0.6909 | Te AUC: 0.7540
+F2 E040 | Tr Loss: 0.0876 | Te Loss: 0.9492 | Te Acc: 0.6909 | Te AUC: 0.7831
+F2 E045 | Tr Loss: 0.0206 | Te Loss: 1.2823 | Te Acc: 0.6000 | Te AUC: 0.7196
+F2 E050 | Tr Loss: 0.0444 | Te Loss: 0.9707 | Te Acc: 0.7818 | Te AUC: 0.7989
+F2 E055 | Tr Loss: 0.0680 | Te Loss: 1.1257 | Te Acc: 0.6545 | Te AUC: 0.7500
+F2 E060 | Tr Loss: 0.0479 | Te Loss: 1.4202 | Te Acc: 0.6727 | Te AUC: 0.7156
+F2 E065 | Tr Loss: 0.0312 | Te Loss: 1.5029 | Te Acc: 0.6364 | Te AUC: 0.7368
+F2 E070 | Tr Loss: 0.0172 | Te Loss: 1.3725 | Te Acc: 0.6727 | Te AUC: 0.7447
+F2 E075 | Tr Loss: 0.0127 | Te Loss: 1.5752 | Te Acc: 0.6727 | Te AUC: 0.7368
+F2 E080 | Tr Loss: 0.0095 | Te Loss: 1.4658 | Te Acc: 0.6727 | Te AUC: 0.7910
+F2 E085 | Tr Loss: 0.0700 | Te Loss: 1.4432 | Te Acc: 0.6909 | Te AUC: 0.7447
+F2 E090 | Tr Loss: 0.0126 | Te Loss: 1.3253 | Te Acc: 0.7273 | Te AUC: 0.7725
+F2 E095 | Tr Loss: 0.0068 | Te Loss: 1.7008 | Te Acc: 0.6727 | Te AUC: 0.7870
+F2 E100 | Tr Loss: 0.0083 | Te Loss: 1.6024 | Te Acc: 0.7091 | Te AUC: 0.7579
+Fold 2 - Training finished. Best Test Accuracy: 0.6909, AUC: 0.8148
+Fold 2 elapsed time: 4.06 seconds.
+
+--- Fold 3/10 ---
+Starting training for Fold 3...
+F3 E001 | Tr Loss: 0.6751 | Te Loss: 0.6937 | Te Acc: 0.5455 | Te AUC: 0.6429
+F3 E005 | Tr Loss: 0.4096 | Te Loss: 0.6025 | Te Acc: 0.7273 | Te AUC: 0.7632
+F3 E010 | Tr Loss: 0.1473 | Te Loss: 0.5525 | Te Acc: 0.6909 | Te AUC: 0.8069
+F3 E015 | Tr Loss: 0.0810 | Te Loss: 0.6263 | Te Acc: 0.6909 | Te AUC: 0.7804
+F3 E020 | Tr Loss: 0.1042 | Te Loss: 0.7677 | Te Acc: 0.6909 | Te AUC: 0.7817
+F3 E025 | Tr Loss: 0.0425 | Te Loss: 0.7443 | Te Acc: 0.7273 | Te AUC: 0.7937
+F3 E030 | Tr Loss: 0.0351 | Te Loss: 0.8095 | Te Acc: 0.6364 | Te AUC: 0.7884
+F3 E035 | Tr Loss: 0.0368 | Te Loss: 1.0078 | Te Acc: 0.6909 | Te AUC: 0.7950
+F3 E040 | Tr Loss: 0.0238 | Te Loss: 1.0690 | Te Acc: 0.6727 | Te AUC: 0.7116
+F3 E045 | Tr Loss: 0.0474 | Te Loss: 1.1038 | Te Acc: 0.7091 | Te AUC: 0.7526
+F3 E050 | Tr Loss: 0.0190 | Te Loss: 0.9775 | Te Acc: 0.6909 | Te AUC: 0.7844
+F3 E055 | Tr Loss: 0.0283 | Te Loss: 1.1663 | Te Acc: 0.7273 | Te AUC: 0.7778
+F3 E060 | Tr Loss: 0.0491 | Te Loss: 1.0792 | Te Acc: 0.6727 | Te AUC: 0.7989
+F3 E065 | Tr Loss: 0.0305 | Te Loss: 0.8457 | Te Acc: 0.8182 | Te AUC: 0.8307
+F3 E070 | Tr Loss: 0.0567 | Te Loss: 1.0862 | Te Acc: 0.6727 | Te AUC: 0.7712
+F3 E075 | Tr Loss: 0.0238 | Te Loss: 1.1477 | Te Acc: 0.7091 | Te AUC: 0.7553
+F3 E080 | Tr Loss: 0.0114 | Te Loss: 1.0528 | Te Acc: 0.7636 | Te AUC: 0.7751
+F3 E085 | Tr Loss: 0.0212 | Te Loss: 1.1944 | Te Acc: 0.7091 | Te AUC: 0.7791
+F3 E090 | Tr Loss: 0.0127 | Te Loss: 1.3494 | Te Acc: 0.7091 | Te AUC: 0.7447
+F3 E095 | Tr Loss: 0.0173 | Te Loss: 0.9873 | Te Acc: 0.7818 | Te AUC: 0.8135
+F3 E100 | Tr Loss: 0.0556 | Te Loss: 1.3637 | Te Acc: 0.7091 | Te AUC: 0.7857
+Fold 3 - Training finished. Best Test Accuracy: 0.8182, AUC: 0.8307
+Fold 3 elapsed time: 3.87 seconds.
+
+--- Fold 4/10 ---
+Starting training for Fold 4...
+F4 E001 | Tr Loss: 0.6878 | Te Loss: 0.6786 | Te Acc: 0.5273 | Te AUC: 0.6336
+F4 E005 | Tr Loss: 0.4469 | Te Loss: 0.5931 | Te Acc: 0.6545 | Te AUC: 0.7474
+F4 E010 | Tr Loss: 0.1815 | Te Loss: 0.6268 | Te Acc: 0.6364 | Te AUC: 0.7354
+F4 E015 | Tr Loss: 0.1030 | Te Loss: 0.7092 | Te Acc: 0.6545 | Te AUC: 0.7394
+F4 E020 | Tr Loss: 0.0792 | Te Loss: 0.8918 | Te Acc: 0.6000 | Te AUC: 0.7037
+F4 E025 | Tr Loss: 0.0536 | Te Loss: 0.9046 | Te Acc: 0.6909 | Te AUC: 0.7169
+F4 E030 | Tr Loss: 0.0292 | Te Loss: 0.9834 | Te Acc: 0.6364 | Te AUC: 0.7487
+F4 E035 | Tr Loss: 0.0539 | Te Loss: 0.9895 | Te Acc: 0.6727 | Te AUC: 0.7500
+F4 E040 | Tr Loss: 0.0530 | Te Loss: 1.0742 | Te Acc: 0.6545 | Te AUC: 0.7354
+F4 E045 | Tr Loss: 0.0487 | Te Loss: 1.1876 | Te Acc: 0.6364 | Te AUC: 0.6958
+F4 E050 | Tr Loss: 0.0476 | Te Loss: 1.4604 | Te Acc: 0.6000 | Te AUC: 0.6495
+F4 E055 | Tr Loss: 0.0226 | Te Loss: 1.6456 | Te Acc: 0.6000 | Te AUC: 0.6548
+F4 E060 | Tr Loss: 0.0342 | Te Loss: 1.4970 | Te Acc: 0.6364 | Te AUC: 0.6892
+F4 E065 | Tr Loss: 0.0127 | Te Loss: 1.2937 | Te Acc: 0.6727 | Te AUC: 0.7368
+F4 E070 | Tr Loss: 0.0071 | Te Loss: 1.5688 | Te Acc: 0.6364 | Te AUC: 0.7235
+F4 E075 | Tr Loss: 0.0368 | Te Loss: 1.6120 | Te Acc: 0.6364 | Te AUC: 0.6640
+F4 E080 | Tr Loss: 0.0175 | Te Loss: 1.7094 | Te Acc: 0.5818 | Te AUC: 0.6799
+F4 E085 | Tr Loss: 0.0205 | Te Loss: 1.3117 | Te Acc: 0.6909 | Te AUC: 0.7487
+F4 E090 | Tr Loss: 0.0164 | Te Loss: 1.8473 | Te Acc: 0.5818 | Te AUC: 0.6812
+F4 E095 | Tr Loss: 0.0229 | Te Loss: 1.6107 | Te Acc: 0.6545 | Te AUC: 0.6918
+F4 E100 | Tr Loss: 0.0153 | Te Loss: 1.5945 | Te Acc: 0.6727 | Te AUC: 0.6971
+Fold 4 - Training finished. Best Test Accuracy: 0.6727, AUC: 0.7500
+Fold 4 elapsed time: 3.73 seconds.
+
+--- Fold 5/10 ---
+Starting training for Fold 5...
+F5 E001 | Tr Loss: 0.6758 | Te Loss: 0.6627 | Te Acc: 0.4909 | Te AUC: 0.6270
+F5 E005 | Tr Loss: 0.3871 | Te Loss: 0.6971 | Te Acc: 0.6545 | Te AUC: 0.6111
+F5 E010 | Tr Loss: 0.1720 | Te Loss: 0.8561 | Te Acc: 0.6000 | Te AUC: 0.6204
+F5 E015 | Tr Loss: 0.1058 | Te Loss: 1.0388 | Te Acc: 0.6000 | Te AUC: 0.6336
+F5 E020 | Tr Loss: 0.0503 | Te Loss: 1.1390 | Te Acc: 0.6182 | Te AUC: 0.6720
+F5 E025 | Tr Loss: 0.0648 | Te Loss: 1.1654 | Te Acc: 0.6000 | Te AUC: 0.6706
+F5 E030 | Tr Loss: 0.0431 | Te Loss: 1.3487 | Te Acc: 0.5636 | Te AUC: 0.6468
+F5 E035 | Tr Loss: 0.0623 | Te Loss: 1.3510 | Te Acc: 0.5455 | Te AUC: 0.6561
+F5 E040 | Tr Loss: 0.0305 | Te Loss: 1.5691 | Te Acc: 0.5636 | Te AUC: 0.6296
+F5 E045 | Tr Loss: 0.0201 | Te Loss: 1.7290 | Te Acc: 0.5636 | Te AUC: 0.6693
+F5 E050 | Tr Loss: 0.0189 | Te Loss: 1.6177 | Te Acc: 0.6182 | Te AUC: 0.6746
+F5 E055 | Tr Loss: 0.0231 | Te Loss: 1.7899 | Te Acc: 0.6182 | Te AUC: 0.6389
+F5 E060 | Tr Loss: 0.0222 | Te Loss: 2.0269 | Te Acc: 0.6000 | Te AUC: 0.6402
+F5 E065 | Tr Loss: 0.0322 | Te Loss: 1.9172 | Te Acc: 0.5818 | Te AUC: 0.6759
+F5 E070 | Tr Loss: 0.0158 | Te Loss: 1.9672 | Te Acc: 0.5455 | Te AUC: 0.6786
+F5 E075 | Tr Loss: 0.0289 | Te Loss: 2.0666 | Te Acc: 0.5455 | Te AUC: 0.6415
+F5 E080 | Tr Loss: 0.0154 | Te Loss: 2.0717 | Te Acc: 0.5818 | Te AUC: 0.6561
+F5 E085 | Tr Loss: 0.0122 | Te Loss: 2.1876 | Te Acc: 0.5818 | Te AUC: 0.6455
+F5 E090 | Tr Loss: 0.0267 | Te Loss: 1.9274 | Te Acc: 0.5818 | Te AUC: 0.6561
+F5 E095 | Tr Loss: 0.0382 | Te Loss: 1.9326 | Te Acc: 0.6545 | Te AUC: 0.6349
+F5 E100 | Tr Loss: 0.0094 | Te Loss: 1.9934 | Te Acc: 0.6182 | Te AUC: 0.6481
+Fold 5 - Training finished. Best Test Accuracy: 0.5455, AUC: 0.6786
+Fold 5 elapsed time: 4.24 seconds.
+
+--- Fold 6/10 ---
+Starting training for Fold 6...
+F6 E001 | Tr Loss: 0.6939 | Te Loss: 0.6784 | Te Acc: 0.4364 | Te AUC: 0.6257
+F6 E005 | Tr Loss: 0.4811 | Te Loss: 0.5678 | Te Acc: 0.7091 | Te AUC: 0.8188
+F6 E010 | Tr Loss: 0.1793 | Te Loss: 0.5101 | Te Acc: 0.7273 | Te AUC: 0.8598
+F6 E015 | Tr Loss: 0.1010 | Te Loss: 0.5394 | Te Acc: 0.7818 | Te AUC: 0.8558
+F6 E020 | Tr Loss: 0.0792 | Te Loss: 0.5385 | Te Acc: 0.7818 | Te AUC: 0.8730
+F6 E025 | Tr Loss: 0.0516 | Te Loss: 0.6301 | Te Acc: 0.7636 | Te AUC: 0.8333
+F6 E030 | Tr Loss: 0.0392 | Te Loss: 0.8641 | Te Acc: 0.7455 | Te AUC: 0.7738
+F6 E035 | Tr Loss: 0.0450 | Te Loss: 0.6547 | Te Acc: 0.8364 | Te AUC: 0.8466
+F6 E040 | Tr Loss: 0.0533 | Te Loss: 0.8066 | Te Acc: 0.7455 | Te AUC: 0.8241
+F6 E045 | Tr Loss: 0.0556 | Te Loss: 0.9337 | Te Acc: 0.7091 | Te AUC: 0.8558
+F6 E050 | Tr Loss: 0.0308 | Te Loss: 0.8984 | Te Acc: 0.7273 | Te AUC: 0.8333
+F6 E055 | Tr Loss: 0.0091 | Te Loss: 0.6353 | Te Acc: 0.7455 | Te AUC: 0.8690
+F6 E060 | Tr Loss: 0.0287 | Te Loss: 0.7129 | Te Acc: 0.8000 | Te AUC: 0.8664
+F6 E065 | Tr Loss: 0.0063 | Te Loss: 0.7152 | Te Acc: 0.7636 | Te AUC: 0.8730
+F6 E070 | Tr Loss: 0.0161 | Te Loss: 0.8779 | Te Acc: 0.8000 | Te AUC: 0.8413
+F6 E075 | Tr Loss: 0.0240 | Te Loss: 0.7865 | Te Acc: 0.8182 | Te AUC: 0.8624
+F6 E080 | Tr Loss: 0.0198 | Te Loss: 0.7444 | Te Acc: 0.8000 | Te AUC: 0.8730
+F6 E085 | Tr Loss: 0.0291 | Te Loss: 0.7096 | Te Acc: 0.8364 | Te AUC: 0.8823
+F6 E090 | Tr Loss: 0.0134 | Te Loss: 0.7076 | Te Acc: 0.8182 | Te AUC: 0.8836
+F6 E095 | Tr Loss: 0.0134 | Te Loss: 0.8627 | Te Acc: 0.8182 | Te AUC: 0.8664
+F6 E100 | Tr Loss: 0.0035 | Te Loss: 0.7930 | Te Acc: 0.8364 | Te AUC: 0.8783
+Fold 6 - Training finished. Best Test Accuracy: 0.8182, AUC: 0.8836
+Fold 6 elapsed time: 4.25 seconds.
+
+--- Fold 7/10 ---
+Starting training for Fold 7...
+F7 E001 | Tr Loss: 0.7303 | Te Loss: 0.6674 | Te Acc: 0.5926 | Te AUC: 0.6996
+F7 E005 | Tr Loss: 0.4764 | Te Loss: 0.5752 | Te Acc: 0.7222 | Te AUC: 0.7517
+F7 E010 | Tr Loss: 0.1913 | Te Loss: 0.5718 | Te Acc: 0.7222 | Te AUC: 0.8066
+F7 E015 | Tr Loss: 0.0859 | Te Loss: 0.7326 | Te Acc: 0.6481 | Te AUC: 0.7627
+F7 E020 | Tr Loss: 0.0853 | Te Loss: 0.8269 | Te Acc: 0.6296 | Te AUC: 0.7490
+F7 E025 | Tr Loss: 0.0630 | Te Loss: 0.8094 | Te Acc: 0.6667 | Te AUC: 0.7627
+F7 E030 | Tr Loss: 0.0656 | Te Loss: 0.8487 | Te Acc: 0.6852 | Te AUC: 0.7764
+F7 E035 | Tr Loss: 0.0342 | Te Loss: 0.9613 | Te Acc: 0.6852 | Te AUC: 0.7695
+F7 E040 | Tr Loss: 0.0292 | Te Loss: 1.0054 | Te Acc: 0.6667 | Te AUC: 0.7339
+F7 E045 | Tr Loss: 0.0417 | Te Loss: 0.9508 | Te Acc: 0.6852 | Te AUC: 0.7874
+F7 E050 | Tr Loss: 0.0407 | Te Loss: 1.1283 | Te Acc: 0.6481 | Te AUC: 0.7764
+F7 E055 | Tr Loss: 0.0156 | Te Loss: 0.9514 | Te Acc: 0.7037 | Te AUC: 0.8038
+F7 E060 | Tr Loss: 0.0178 | Te Loss: 1.0536 | Te Acc: 0.7407 | Te AUC: 0.8025
+F7 E065 | Tr Loss: 0.0386 | Te Loss: 0.9315 | Te Acc: 0.7222 | Te AUC: 0.8203
+F7 E070 | Tr Loss: 0.0178 | Te Loss: 1.1181 | Te Acc: 0.7222 | Te AUC: 0.7791
+F7 E075 | Tr Loss: 0.0098 | Te Loss: 1.1174 | Te Acc: 0.6852 | Te AUC: 0.7791
+F7 E080 | Tr Loss: 0.0190 | Te Loss: 1.3350 | Te Acc: 0.6667 | Te AUC: 0.7476
+F7 E085 | Tr Loss: 0.0260 | Te Loss: 1.5366 | Te Acc: 0.6481 | Te AUC: 0.7311
+F7 E090 | Tr Loss: 0.0126 | Te Loss: 1.4419 | Te Acc: 0.7037 | Te AUC: 0.7860
+F7 E095 | Tr Loss: 0.0059 | Te Loss: 1.4091 | Te Acc: 0.6852 | Te AUC: 0.7764
+F7 E100 | Tr Loss: 0.0134 | Te Loss: 1.6186 | Te Acc: 0.6852 | Te AUC: 0.7243
+Fold 7 - Training finished. Best Test Accuracy: 0.7222, AUC: 0.8203
+Fold 7 elapsed time: 4.24 seconds.
+
+--- Fold 8/10 ---
+Starting training for Fold 8...
+F8 E001 | Tr Loss: 0.7279 | Te Loss: 0.6889 | Te Acc: 0.5926 | Te AUC: 0.6030
+F8 E005 | Tr Loss: 0.4692 | Te Loss: 0.6184 | Te Acc: 0.6111 | Te AUC: 0.6992
+F8 E010 | Tr Loss: 0.1618 | Te Loss: 0.6162 | Te Acc: 0.6852 | Te AUC: 0.7514
+F8 E015 | Tr Loss: 0.0822 | Te Loss: 0.7629 | Te Acc: 0.6852 | Te AUC: 0.7157
+F8 E020 | Tr Loss: 0.0955 | Te Loss: 0.7445 | Te Acc: 0.6852 | Te AUC: 0.7418
+F8 E025 | Tr Loss: 0.0537 | Te Loss: 1.0887 | Te Acc: 0.6111 | Te AUC: 0.6552
+F8 E030 | Tr Loss: 0.0300 | Te Loss: 0.9755 | Te Acc: 0.7037 | Te AUC: 0.7363
+F8 E035 | Tr Loss: 0.0203 | Te Loss: 0.9545 | Te Acc: 0.6852 | Te AUC: 0.7404
+F8 E040 | Tr Loss: 0.0277 | Te Loss: 1.1725 | Te Acc: 0.6667 | Te AUC: 0.7321
+F8 E045 | Tr Loss: 0.0461 | Te Loss: 1.1336 | Te Acc: 0.6852 | Te AUC: 0.7266
+F8 E050 | Tr Loss: 0.0255 | Te Loss: 1.3138 | Te Acc: 0.6481 | Te AUC: 0.7005
+F8 E055 | Tr Loss: 0.0290 | Te Loss: 1.2927 | Te Acc: 0.6111 | Te AUC: 0.6964
+F8 E060 | Tr Loss: 0.0237 | Te Loss: 1.2810 | Te Acc: 0.6481 | Te AUC: 0.7294
+F8 E065 | Tr Loss: 0.0160 | Te Loss: 1.2352 | Te Acc: 0.6852 | Te AUC: 0.7349
+F8 E070 | Tr Loss: 0.0561 | Te Loss: 1.2603 | Te Acc: 0.6296 | Te AUC: 0.7115
+F8 E075 | Tr Loss: 0.0179 | Te Loss: 1.6420 | Te Acc: 0.6111 | Te AUC: 0.6951
+F8 E080 | Tr Loss: 0.0064 | Te Loss: 1.5003 | Te Acc: 0.6481 | Te AUC: 0.7253
+F8 E085 | Tr Loss: 0.0098 | Te Loss: 1.4520 | Te Acc: 0.7037 | Te AUC: 0.7321
+F8 E090 | Tr Loss: 0.0052 | Te Loss: 1.7472 | Te Acc: 0.6296 | Te AUC: 0.6992
+F8 E095 | Tr Loss: 0.0085 | Te Loss: 1.4023 | Te Acc: 0.5926 | Te AUC: 0.7033
+F8 E100 | Tr Loss: 0.0088 | Te Loss: 1.6032 | Te Acc: 0.5926 | Te AUC: 0.6937
+Fold 8 - Training finished. Best Test Accuracy: 0.6852, AUC: 0.7514
+Fold 8 elapsed time: 4.26 seconds.
+
+--- Fold 9/10 ---
+Starting training for Fold 9...
+F9 E001 | Tr Loss: 0.6842 | Te Loss: 0.6561 | Te Acc: 0.5926 | Te AUC: 0.6648
+F9 E005 | Tr Loss: 0.4586 | Te Loss: 0.5475 | Te Acc: 0.7407 | Te AUC: 0.8049
+F9 E010 | Tr Loss: 0.2168 | Te Loss: 0.5577 | Te Acc: 0.7407 | Te AUC: 0.7830
+F9 E015 | Tr Loss: 0.1195 | Te Loss: 0.7075 | Te Acc: 0.6111 | Te AUC: 0.7692
+F9 E020 | Tr Loss: 0.0572 | Te Loss: 0.6379 | Te Acc: 0.7407 | Te AUC: 0.8063
+F9 E025 | Tr Loss: 0.0477 | Te Loss: 0.8214 | Te Acc: 0.6481 | Te AUC: 0.8049
+F9 E030 | Tr Loss: 0.0246 | Te Loss: 0.7299 | Te Acc: 0.7037 | Te AUC: 0.8036
+F9 E035 | Tr Loss: 0.0181 | Te Loss: 0.7916 | Te Acc: 0.7593 | Te AUC: 0.8187
+F9 E040 | Tr Loss: 0.0162 | Te Loss: 0.7375 | Te Acc: 0.7222 | Te AUC: 0.8283
+F9 E045 | Tr Loss: 0.0433 | Te Loss: 0.7855 | Te Acc: 0.7407 | Te AUC: 0.8242
+F9 E050 | Tr Loss: 0.0269 | Te Loss: 1.0532 | Te Acc: 0.6667 | Te AUC: 0.7761
+F9 E055 | Tr Loss: 0.0388 | Te Loss: 0.8896 | Te Acc: 0.6852 | Te AUC: 0.8159
+F9 E060 | Tr Loss: 0.0156 | Te Loss: 0.9017 | Te Acc: 0.7037 | Te AUC: 0.8365
+F9 E065 | Tr Loss: 0.0260 | Te Loss: 1.1013 | Te Acc: 0.6667 | Te AUC: 0.7706
+F9 E070 | Tr Loss: 0.0098 | Te Loss: 1.3295 | Te Acc: 0.6667 | Te AUC: 0.7912
+F9 E075 | Tr Loss: 0.0117 | Te Loss: 1.2093 | Te Acc: 0.7037 | Te AUC: 0.7871
+F9 E080 | Tr Loss: 0.0433 | Te Loss: 0.9873 | Te Acc: 0.7037 | Te AUC: 0.8159
+F9 E085 | Tr Loss: 0.0077 | Te Loss: 1.0863 | Te Acc: 0.7778 | Te AUC: 0.8201
+F9 E090 | Tr Loss: 0.0262 | Te Loss: 0.9892 | Te Acc: 0.7037 | Te AUC: 0.8242
+F9 E095 | Tr Loss: 0.0199 | Te Loss: 1.1840 | Te Acc: 0.7593 | Te AUC: 0.8146
+F9 E100 | Tr Loss: 0.0199 | Te Loss: 1.1948 | Te Acc: 0.7778 | Te AUC: 0.7912
+Fold 9 - Training finished. Best Test Accuracy: 0.7037, AUC: 0.8365
+Fold 9 elapsed time: 3.80 seconds.
+
+--- Fold 10/10 ---
+Starting training for Fold 10...
+F10 E001 | Tr Loss: 0.7089 | Te Loss: 0.6714 | Te Acc: 0.6111 | Te AUC: 0.6580
+F10 E005 | Tr Loss: 0.4661 | Te Loss: 0.5549 | Te Acc: 0.7037 | Te AUC: 0.8324
+F10 E010 | Tr Loss: 0.1701 | Te Loss: 0.5348 | Te Acc: 0.7593 | Te AUC: 0.8022
+F10 E015 | Tr Loss: 0.0862 | Te Loss: 0.6268 | Te Acc: 0.7222 | Te AUC: 0.7871
+F10 E020 | Tr Loss: 0.1086 | Te Loss: 0.6443 | Te Acc: 0.7778 | Te AUC: 0.7940
+F10 E025 | Tr Loss: 0.0763 | Te Loss: 0.7830 | Te Acc: 0.6481 | Te AUC: 0.7582
+F10 E030 | Tr Loss: 0.0269 | Te Loss: 0.7335 | Te Acc: 0.7037 | Te AUC: 0.7775
+F10 E035 | Tr Loss: 0.0280 | Te Loss: 0.7816 | Te Acc: 0.6852 | Te AUC: 0.7885
+F10 E040 | Tr Loss: 0.0270 | Te Loss: 0.7378 | Te Acc: 0.7778 | Te AUC: 0.8228
+F10 E045 | Tr Loss: 0.0480 | Te Loss: 0.8124 | Te Acc: 0.7593 | Te AUC: 0.8146
+F10 E050 | Tr Loss: 0.0270 | Te Loss: 0.7711 | Te Acc: 0.7222 | Te AUC: 0.8063
+F10 E055 | Tr Loss: 0.0457 | Te Loss: 1.0573 | Te Acc: 0.6481 | Te AUC: 0.7967
+F10 E060 | Tr Loss: 0.0191 | Te Loss: 0.9419 | Te Acc: 0.7407 | Te AUC: 0.7995
+F10 E065 | Tr Loss: 0.0168 | Te Loss: 1.0614 | Te Acc: 0.6852 | Te AUC: 0.7761
+F10 E070 | Tr Loss: 0.0117 | Te Loss: 1.0765 | Te Acc: 0.7593 | Te AUC: 0.7871
+F10 E075 | Tr Loss: 0.0098 | Te Loss: 1.0979 | Te Acc: 0.7037 | Te AUC: 0.7843
+F10 E080 | Tr Loss: 0.0099 | Te Loss: 1.2939 | Te Acc: 0.6296 | Te AUC: 0.7651
+F10 E085 | Tr Loss: 0.0075 | Te Loss: 1.1100 | Te Acc: 0.7407 | Te AUC: 0.7871
+F10 E090 | Tr Loss: 0.0036 | Te Loss: 1.2884 | Te Acc: 0.6296 | Te AUC: 0.7514
+F10 E095 | Tr Loss: 0.0060 | Te Loss: 1.1170 | Te Acc: 0.7037 | Te AUC: 0.7871
+F10 E100 | Tr Loss: 0.0032 | Te Loss: 1.2098 | Te Acc: 0.7222 | Te AUC: 0.7802
+Fold 10 - Training finished. Best Test Accuracy: 0.7037, AUC: 0.8324
+Fold 10 elapsed time: 3.86 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds: 10/10
+Average Accuracy:  0.7033 +/- 0.0735
+Average F1-Score:  0.7020
+Average Precision: 0.7064
+Average Recall:    0.7033
+Average AUC:       0.7938
+
+Total elapsed time: 43.03 seconds.
+--- Baseline MLP Run Finished ---
+Frankenstein Training completed at Wed Apr 16 04:49:09 AM EDT 2025

@@ -1,0 +1,176 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 02:04:25 AM EDT 2025
+Loading configuration from config.yaml...
+Using configured max_ts_length: 1000
+Using configured num_regions: 169
+Using configured encoder_batch_size: 64
+Random seed set to 42
+Using GPU: NVIDIA L40S
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Original selected data shape: (1112, 6)
+Using target column: 'DX_GROUP'
+Filtered out 0 rows with invalid/missing target values.
+Phenotype data shape after filtering: (1112, 6)
+Processing specified numerical features...
+ Processing numerical columns: ['AGE_AT_SCAN', 'FIQ']
+Processing specified categorical features...
+ Processing categorical columns: ['SEX', 'SITE_ID']
+  Encoded categorical columns: ['SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE']
+Final phenotype features being used (24): ['AGE_AT_SCAN', 'FIQ', 'SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE']
+Processed 1112 subjects from phenotype data with valid IDs and selected columns.
+Matching time series files in: regions/
+Found 866 potential TS files in directory.
+Parsed 866 potential subject IDs from filenames.
+Matched 866 subjects with both phenotype and time series data.
+Total subjects available for K-Fold analysis: 866
+
+--- Fold 1/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 1... Train samples: 779, Test samples: 87
+Error during training epoch 1 for fold 1: name 'epoch' is not defined
+Fold 1 failed or did not complete training.
+Fold 1 elapsed time: 14.38 seconds.
+
+--- Fold 2/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 2... Train samples: 779, Test samples: 87
+Error during training epoch 1 for fold 2: name 'epoch' is not defined
+Fold 2 failed or did not complete training.
+Fold 2 elapsed time: 13.48 seconds.
+
+--- Fold 3/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 3... Train samples: 779, Test samples: 87
+Error during training epoch 1 for fold 3: name 'epoch' is not defined
+Fold 3 failed or did not complete training.
+Fold 3 elapsed time: 13.33 seconds.
+
+--- Fold 4/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 4... Train samples: 779, Test samples: 87
+Error during training epoch 1 for fold 4: name 'epoch' is not defined
+Fold 4 failed or did not complete training.
+Fold 4 elapsed time: 11.87 seconds.
+
+--- Fold 5/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 5... Train samples: 779, Test samples: 87
+Error during training epoch 1 for fold 5: name 'epoch' is not defined
+Fold 5 failed or did not complete training.
+Fold 5 elapsed time: 15.62 seconds.
+
+--- Fold 6/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 6... Train samples: 779, Test samples: 87
+Error during training epoch 1 for fold 6: name 'epoch' is not defined
+Fold 6 failed or did not complete training.
+Fold 6 elapsed time: 13.27 seconds.
+
+--- Fold 7/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 7... Train samples: 780, Test samples: 86
+Error during training epoch 1 for fold 7: name 'epoch' is not defined
+Fold 7 failed or did not complete training.
+Fold 7 elapsed time: 13.27 seconds.
+
+--- Fold 8/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 8... Train samples: 780, Test samples: 86
+Error during training epoch 1 for fold 8: name 'epoch' is not defined
+Fold 8 failed or did not complete training.
+Fold 8 elapsed time: 14.60 seconds.
+
+--- Fold 9/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 9... Train samples: 780, Test samples: 86
+Error during training epoch 1 for fold 9: name 'epoch' is not defined
+Fold 9 failed or did not complete training.
+Fold 9 elapsed time: 11.24 seconds.
+
+--- Fold 10/10 ---
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 1000
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Generating initial embeddings for graph construction (Batch Size: 64)...
+Initial embeddings generated.
+Building k-NN graph (k=10)...
+Graph built with 866 nodes and 8660 edges.
+Starting training for Fold 10... Train samples: 780, Test samples: 86
+Error during training epoch 1 for fold 10: name 'epoch' is not defined
+Fold 10 failed or did not complete training.
+Fold 10 elapsed time: 11.71 seconds.
+
+--- Cross-Validation Results ---
+Number of successfully completed folds with valid metrics: 10/10
+Average Accuracy:  0.0000 +/- 0.0000
+Average F1-Score:  0.0000
+Average Precision: 0.0000
+Average Recall:    0.0000
+Average AUC:       0.0000
+
+Total elapsed time: 133.31 seconds.
+--- Run Finished ---
+Frankenstein Training completed at Wed Apr 16 02:06:45 AM EDT 2025

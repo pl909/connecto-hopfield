@@ -1,0 +1,15 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 03:48:19 AM EDT 2025
+Loading configuration from config_baseline.yaml...
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Preprocessing phenotype features...
+Processing subjects and extracting FC features...
+
+Final processed feature matrix shape: (546, 19927)
+Final labels shape: (546,)
+Number of subjects with processed features: 546
+
+Saved features to: processed_features_baseline/features.npy
+Saved labels to: processed_features_baseline/labels.npy
+Saved subject IDs to: processed_features_baseline/subject_ids.npy
+--- Preprocessing Finished ---
+Frankenstein Training completed at Wed Apr 16 03:48:35 AM EDT 2025

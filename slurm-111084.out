@@ -1,0 +1,31 @@
+Starting ACHNN regression training with 16 CPUs and 1 GPU at Wed Apr 16 01:35:36 AM EDT 2025
+Loading configuration from config.yaml...
+Random seed set to 42
+Using GPU: NVIDIA L40S
+Loading phenotype data from: Phenotypic_V1_0b_preprocessed1.csv
+Original selected data shape: (1112, 6)
+Using target column: 'DX_GROUP'
+Filtered out 0 rows with invalid/missing target values.
+Phenotype data shape after filtering: (1112, 6)
+Processing specified numerical features...
+ Processing numerical columns: ['AGE_AT_SCAN', 'FIQ']
+Processing specified categorical features...
+ Processing categorical columns: ['SEX', 'SITE_ID']
+  Encoded categorical columns: ['SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE']
+Final phenotype features being used (24): ['AGE_AT_SCAN', 'FIQ', 'SEX_1', 'SEX_2', 'SITE_ID_CALTECH', 'SITE_ID_CMU', 'SITE_ID_KKI', 'SITE_ID_LEUVEN_1', 'SITE_ID_LEUVEN_2', 'SITE_ID_MAX_MUN', 'SITE_ID_NYU', 'SITE_ID_OHSU', 'SITE_ID_OLIN', 'SITE_ID_PITT', 'SITE_ID_SBL', 'SITE_ID_SDSU', 'SITE_ID_STANFORD', 'SITE_ID_TRINITY', 'SITE_ID_UCLA_1', 'SITE_ID_UCLA_2', 'SITE_ID_UM_1', 'SITE_ID_UM_2', 'SITE_ID_USM', 'SITE_ID_YALE']
+Processed 1112 subjects from phenotype data with valid IDs and selected columns.
+Matching time series files in: regions/
+Found 866 potential TS files in directory.
+Parsed 866 potential subject IDs from filenames.
+Matched 866 subjects with both phenotype and time series data.
+Total subjects available for K-Fold analysis: 866
+
+--- Fold 1/10 ---
+Calculating max TS length for 866 subjects...
+Found max length 53404 from 866 valid files.
+Fold 1 determined max TS length: 53404
+Loading time series for 866 subjects in fold...
+Padding 866 time series to max length: 53404
+Proceeding with 866 subjects after handling TS loading errors.
+Phenotype encoder created.
+Frankenstein Training completed at Wed Apr 16 01:36:15 AM EDT 2025

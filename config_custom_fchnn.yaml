@@ -1,0 +1,40 @@
+# --- Configuration for Custom fcHNN Embedding & SVM Classification ---
+run_params:
+  seed: 42
+  n_splits: 10 # For final classification CV
+
+data_params:
+  phenotype_file: 'Phenotypic_V1_0b_preprocessed1.csv'
+  region_dir: '/home/pl217/connecto-hopfield/results/abide_timeseries/ccs_filt_noglobal_rois_cc200' # CHECK PATH!
+  num_regions: 200 # CC200 Atlas
+  embedding_output_dir: 'custom_fchnn_embedding'
+  feature_output_dir: 'processed_features_custom_fchnn'
+  phenotype_cols_numerical: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+  phenotype_cols_categorical: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  target_col: 'DX_GROUP'
+  sub_id_col: 'SUB_ID'
+  site_id_col: 'SITE_ID'
+
+# Parameters for Building the Custom Embedding (Step 1)
+embedding_build_params:
+  connectome_subjects: 'controls_only' # Keep as controls for now
+  # --- INCREASED SIMULATION/SAMPLING ---
+  simulation_noise_coef: 0.37
+  simulation_num_iter: 500000  # Increased iterations
+  simulation_beta: 0.04
+  embedding_attractor_sample: 5000 # Increased sample size
+  # --- TRY EXPLICIT N_ATTRACTORS ---
+  #embedding_n_attractors: 4 # Explicitly ask for 4 attractors
+  # ---------------------------------
+
+# Parameters for Extracting Features (Step 2)
+fchnn_feature_params:
+  include_fractional_occupancy: True
+  include_dwell_times: True
+  include_transition_matrix: True
+
+# Parameters for Final Classifier (Step 3 - Using SVM)
+svm_params:
+  C: 10.0
+  gamma: 'scale'
+  kernel: 'rbf'

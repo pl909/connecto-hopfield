@@ -1,0 +1,41 @@
+# --- Configuration for Baseline (Static FC + XGBoost) ---
+run_params:
+  seed: 42
+  n_splits: 10
+  # --- XGBoost Specific Training Params ---
+  xgboost_early_stopping_rounds: 15 # Stop if eval metric doesn't improve for N rounds
+
+data_params:
+  phenotype_file: 'Phenotypic_V1_0b_preprocessed1.csv' # CHECK FILENAME!
+  # Directory where preprocess_baseline.py saved features
+  output_feature_dir: 'processed_features_baseline' # CHECK DIRECTORY NAME!
+  # These are just for reference, not directly used by this script
+  num_regions: 200
+  phenotype_cols_numerical: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+  phenotype_cols_categorical: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  target_col: 'DX_GROUP'
+  sub_id_col: 'SUB_ID'
+  site_id_col: 'SITE_ID' # Needed by preprocess_baseline.py
+
+feature_selection_params:
+  use_rfe: True         # <--- SET TO False TO AVOID SLOW RFE STEP
+  n_features_to_select: 1000 # Ignored if use_rfe is False
+  rfe_step: 0.1
+
+# --- XGBoost Hyperparameters (Tune these!) ---
+xgboost_params:
+  objective: 'binary:logistic' # for probability output
+  eval_metric: 'auc'           # Evaluation metric for early stopping
+  use_label_encoder: False     # Recommended False
+  n_estimators: 500            # Max number of trees (early stopping likely triggers sooner)
+  learning_rate: 0.05
+  max_depth: 4
+  subsample: 0.8
+  colsample_bytree: 0.8
+  gamma: 0.1
+  reg_alpha: 0.0               # L1 regularization
+  reg_lambda: 1.0              # L2 regularization
+  random_state: 42
+  n_jobs: -1                   # Use all available CPU cores
+  tree_method: 'gpu_hist'      # USE 'gpu_hist' FOR GPU ACCELERATION, 'hist' or 'auto' for CPU
+  # scale_pos_weight: 1.0 # Add if classes are imbalanced: count(neg)/count(pos)

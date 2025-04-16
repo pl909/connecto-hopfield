@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/pl217/frankensteins_model/train_baseline_xgboost.py", line 231, in <module>
+    main()
+  File "/home/pl217/frankensteins_model/train_baseline_xgboost.py", line 30, in main
+    feature_dir = data_cfg['feature_dir']
+KeyError: 'feature_dir'

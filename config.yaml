@@ -1,0 +1,49 @@
+# --- Configuration ---
+run_params:
+  seed: 42
+  device: 'cuda'
+  n_splits: 10
+  epochs: 200    # Keep higher epochs
+  # --- ADJUSTED ---
+  learning_rate: 0.0002   # Moderate LR
+  weight_decay: 0.0005   # Moderate WD
+  encoder_batch_size: 32 # Keep smaller batch size for now
+  early_stopping_patience: 30 # Slightly longer patience
+  lr_scheduler_patience: 15   # Scheduler patience
+  lr_scheduler_factor: 0.5    # Scheduler factor
+  # --------------
+
+data_params:
+  phenotype_file: 'Phenotypic_V1_0b_preprocessed1.csv'
+  region_dir: '/home/pl217/frankensteins_model/results/abide_timeseries/ccs_filt_noglobal_rois_cc200'
+  max_ts_length: -1
+  num_regions: 200
+  phenotype_cols_numerical: ['AGE_AT_SCAN', 'FIQ', 'func_mean_fd']
+  phenotype_cols_categorical: ['SEX', 'SITE_ID', 'EYE_STATUS_AT_SCAN']
+  target_col: 'DX_GROUP'
+  sub_id_col: 'SUB_ID'
+  site_id_col: 'SITE_ID'
+  exclude_cols: ['Unnamed: 0', 'X', 'subject', 'FILE_ID', 'qc_rater_1', 'qc_notes_rater_1', 'qc_anat_rater_2', 'qc_anat_notes_rater_2', 'qc_func_rater_2', 'qc_func_notes_rater_2', 'qc_anat_rater_3', 'qc_anat_notes_rater_3', 'qc_func_rater_3', 'qc_func_notes_rater_3']
+
+graph_params:
+  k_neighbors: 10 # Keep k=20
+
+model_params:
+  # TimeSeriesTransformer - RESTORED Layers
+  ts_embedding_dim: 128
+  ts_transformer_d_model: 128
+  ts_transformer_nhead: 8
+  ts_transformer_num_layers: 8 # Back to 3 layers
+  ts_transformer_dim_feedforward: 512
+
+  # PhenotypeEncoder (MLP) - Keep as is
+  pheno_hidden_dim: 128
+  pheno_embedding_dim: 64
+
+  # GNNClassifier (GATv2) - Keep as is
+  gnn_hidden_dim: 128
+  gnn_heads: 6
+  gnn_output_dim: 2
+
+  # Dropout - Back to moderate
+  dropout_rate: 0.2
